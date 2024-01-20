@@ -6,6 +6,7 @@ public class PlayerMovements : MonoBehaviour
 {
     #region Variables
     [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private float _speed, _maxSpeed;
     #endregion
 
     void TeleportToSpawnPoint()
