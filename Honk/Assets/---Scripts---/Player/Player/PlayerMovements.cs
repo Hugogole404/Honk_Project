@@ -35,9 +35,46 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float _jumpPower;
-    private bool _isGrounded;
+
+    [Header("TimerCoyauteJump")]
+    [SerializeField] private float _maxTimer;
+    private float _currentTimer;
+    private bool _canJump;
+
+    private bool _isWaking;
+    private bool _isSliding;
+    private bool _isSwiming;
     #endregion
 
+    private void IncreaseTimer()
+    {
+        _currentTimer += Time.deltaTime;
+    }
+    private void ResetTimer()
+    {
+        _currentTimer = 0;
+    }
+    private void ResetJumpCounter()
+    {
+        _canJump = true;
+    }
+    private void CheckIsGroundedCoyauteJump()
+    {
+        if (!IsGrounded())
+        {
+            IncreaseTimer();
+            //_canJump = false;
+            if (/*_canJump && */_currentTimer > _maxTimer)
+            {
+                _canJump = false;
+            }
+        }
+        if (IsGrounded())
+        {
+            ResetTimer();
+            ResetJumpCounter();
+        }
+    }
     private void AugmentSpeedToMaxSpeed()
     {
         if (_canSpeedAugment)
@@ -71,7 +108,7 @@ public class PlayerMovements : MonoBehaviour
     {
         if (IsGrounded() && _velocity < 0f)
         {
-            _velocity = 0f;
+            _velocity = -1f;
         }
         else
         {
@@ -101,11 +138,11 @@ public class PlayerMovements : MonoBehaviour
     private bool IsGrounded() => _characterController.isGrounded;
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            _canSpeedAugment = true;
-            _canSpeedDecrease = false;
-        }
+        //if (context.performed)
+        //{
+        _canSpeedAugment = true;
+        _canSpeedDecrease = false;
+        //}
         _input = context.ReadValue<Vector2>();
         _direction = new Vector3(_input.x, 0f, _input.y);
         if (context.canceled)
@@ -120,11 +157,23 @@ public class PlayerMovements : MonoBehaviour
         {
             return;
         }
-        if (!IsGrounded())
+
+        if (!IsGrounded() || _currentTimer >= _maxTimer)
         {
+            _canJump = false;
             return;
         }
-        _velocity += _jumpPower;
+        //else if (!IsGrounded() && _currentTimer >= _maxTimer)
+        //{
+        //    _canJump = false;
+        //    return;
+        //}
+
+        if (_canJump)
+        {
+            _velocity += _jumpPower;
+            _canJump = false;
+        }
     }
     public void HonkNoise(InputAction.CallbackContext context)
     {
@@ -145,9 +194,11 @@ public class PlayerMovements : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        CheckIsGroundedCoyauteJump();
         ApplyRotation();
         ApplyMovement();
         ApplyGravity();
         ApplySpeed();
+        Debug.Log(IsGrounded());
     }
 }

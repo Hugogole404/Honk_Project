@@ -522,7 +522,9 @@ MonoBehaviour:
   _smoothTime: 0.05
   _currentVelocity: 0
   _gravityMultiplier: 1
-  _jumpPower: 2
+  _jumpPower: 4
+  _maxTimer: 4
+  _jumpCounter: 1
 --- !u!143 &260911451
 CharacterController:
   m_ObjectHideFlags: 0
