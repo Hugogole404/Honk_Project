@@ -32,6 +32,10 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private float _gravityMultiplier;
     private float _gravity = -9.81f;
     private float _velocity;
+
+    [Header("Jump")]
+    [SerializeField] private float _jumpPower;
+    private bool _isGrounded;
     #endregion
 
     private void AugmentSpeedToMaxSpeed()
@@ -65,7 +69,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void ApplyGravity()
     {
-        if (_characterController.isGrounded && _velocity < 0f)
+        if (IsGrounded() && _velocity < 0f)
         {
             _velocity = 0f;
         }
@@ -94,6 +98,7 @@ public class PlayerMovements : MonoBehaviour
         AugmentSpeedToMaxSpeed();
         DecreaseSpeed();
     }
+    private bool IsGrounded() => _characterController.isGrounded;
     public void Move(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -111,10 +116,15 @@ public class PlayerMovements : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!context.performed)
         {
-            Debug.Log("Jump");
+            return;
         }
+        if (!IsGrounded())
+        {
+            return;
+        }
+        _velocity += _jumpPower;
     }
     public void HonkNoise(InputAction.CallbackContext context)
     {
