@@ -5,7 +5,7 @@ using UnityEngine;
 [HelpURL("https://app.milanote.com/1Rsc3R1SJGPM9g/cameramovement?p=5Aw4gcZ0pqp")]
 public class CameraMovements : MonoBehaviour
 {
-    [SerializeField] private float _offsetY, offsetZ;
+    [SerializeField] private float offsetY, offsetZ;
     private PlayerMovements Player;
 
     private void Start()
@@ -14,6 +14,6 @@ public class CameraMovements : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + _offsetY, Player.transform.position.z - offsetZ);
+        transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + offsetY, Player.transform.position.z - offsetZ);
     }
 }
