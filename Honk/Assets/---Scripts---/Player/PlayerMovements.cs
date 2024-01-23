@@ -5,8 +5,14 @@ using UnityEngine;
 public class PlayerMovements : MonoBehaviour
 {
     #region Variables
+    [Header("SpawnPoint")]
     [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private float _speed, _maxSpeed;
+
+    [Header("Movements")]
+    [SerializeField] private float _maxSpeed;
+    private float _actualSpeed;
+
+
     #endregion
 
     void TeleportToSpawnPoint()
