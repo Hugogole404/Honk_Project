@@ -30,7 +30,7 @@ Material:
   m_InvalidKeywords:
   - _ENUM_A
   - _ENUM_B
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -40,24 +40,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Texture2D:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture_01:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture_02:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _Texture_A:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a421beeb1e0764a4bad2df85926a1afd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture_B:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e1b77faab20926c4d813f4280a7f5af1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -74,31 +62,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BOOLEAN: 0
-    - _Changing_Speed: 3
-    - _ENUM: 0
     - _Hard_Edge: 0
     - _NOISE_TEXTURE: 1
-    - _NoiseScale: 31.61
-    - _Noise_Scale: 25
-    - _Noise_Texture: 0
-    - _PowerVertex: 5.75
-    - _Power_Color: 57.4
+    - _NoiseScale: 16.9
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 5
+    - _Speed: 0
     - _Swap: 0
-    - _SwapTex: 0
-    - _Swap_Tex: 0
-    - _VertexDisplacement: 0.02
-    - _VertexDistortion: 0.16
-    - _VertexDistortion_Mult: 0.2
-    - _VertexNoise: 6.16
+    - _VertexDisplacement: 0.16
     - _VertexNoiseScale: 6.16
-    - _Vertex_Distortion: 1
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _Color_A: {r: 0.7490195, g: 0.7490195, b: 0.7490195, a: 1}
-    - _Color_B: {r: 0.8018868, g: 0.13995194, b: 0.13995194, a: 1}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Color_A: {r: 0, g: 0.4811321, b: 0.0017202036, a: 1}
+    - _Color_B: {r: 0.60478234, g: 0.9150943, b: 0, a: 1}
   m_BuildTextureStacks: []
