@@ -13,8 +13,8 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
 
     [Header("Movements")]
-    [SerializeField] private float _maxSpeed;
-    [SerializeField] private float _actualSpeed = 10;
+    [SerializeField] private float _maxSpeed, _baseSpeed;
+    [SerializeField] private float _actualSpeed;
 
     [SerializeField] private float _speedAugmentation;
     [SerializeField] private float _speedDecrease;
@@ -50,9 +50,13 @@ public class PlayerMovements : MonoBehaviour
     }
     private void DecreaseSpeed()
     {
-        if (_currentVelocity > 0 && _canSpeedDecrease)
+        if (_actualSpeed > _baseSpeed && _canSpeedDecrease)
         {
             _actualSpeed -= _speedDecrease * Time.deltaTime;
+        }
+        if (_actualSpeed < _baseSpeed)
+        {
+            _actualSpeed = _baseSpeed;
         }
     }
     private void TeleportToSpawnPoint()
@@ -92,7 +96,7 @@ public class PlayerMovements : MonoBehaviour
     }
     public void Move(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             _canSpeedAugment = true;
             _canSpeedDecrease = false;
@@ -127,8 +131,9 @@ public class PlayerMovements : MonoBehaviour
     private void Start()
     {
         TeleportToSpawnPoint();
+        _actualSpeed = _baseSpeed;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         ApplyRotation();
         ApplyMovement();

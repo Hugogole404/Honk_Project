@@ -12,7 +12,7 @@ public class CameraMovements : MonoBehaviour
     {
         Player = FindAnyObjectByType<PlayerMovements>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + offsetY, Player.transform.position.z - offsetZ);
     }
