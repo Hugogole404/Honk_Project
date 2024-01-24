@@ -17,6 +17,7 @@ struct Varyings
     float2 uv : TEXCOORD0;
     float3 viewDir : TEXCOORD3;
     float fogFactor : TEXCOORD4;
+    //float4 color:COLOR;
 };
 
 float _Tess;
@@ -32,7 +33,8 @@ struct Attributes
 {
     float4 vertex : POSITION;
     float3 normal : NORMAL;
-    float2 uv : TEXCOORD0;    
+    float2 uv : TEXCOORD0;   
+    //float4 color:COLOR;
 };
 
 struct ControlPoint
@@ -86,6 +88,7 @@ uniform float _OrthographicCamSize;
 
 sampler2D  _Noise;
 float _NoiseScale, _SnowHeight, _NoiseWeight, _SnowDepth;
+float _SnowBorder, _StartBorder, _EndBorder;
 
 TessellationFactors patchConstantFunction(InputPatch<ControlPoint, 3> patch)
 {
@@ -124,6 +127,10 @@ Varyings vert(Attributes input)
     // Effects RenderTexture Reading
     float4 RTEffect = tex2Dlod(_GlobalEffectRT, float4(uv, 0, 0));
 
+    float border = smoothstep(0, _StartBorder, RTEffect.g);
+    border *= 1 - smoothstep(_StartBorder, _EndBorder, RTEffect.g);
+
+    RTEffect = smoothstep(_EndBorder, 1, RTEffect);
     // smoothstep to prevent bleeding
    	RTEffect *=  smoothstep(0.99, 0.9, uv.x) * smoothstep(0.99, 0.9,1- uv.x);
 	RTEffect *=  smoothstep(0.99, 0.9, uv.y) * smoothstep(0.99, 0.9,1- uv.y);
@@ -133,7 +140,11 @@ Varyings vert(Attributes input)
     output.viewDir = SafeNormalize(GetCameraPositionWS() - worldPosition);
 
 	// move vertices up where snow is
-	input.vertex.xyz += SafeNormalize(input.normal) * saturate((_SnowHeight)+(SnowNoise * _NoiseWeight)) * saturate(1-(RTEffect.g * _SnowDepth));
+    float snowNoise = saturate((_SnowHeight)+(SnowNoise * _NoiseWeight));
+	input.vertex.xyz += SafeNormalize(input.normal) * snowNoise * saturate(1-(RTEffect.g * _SnowDepth));
+	input.vertex.xyz += SafeNormalize(input.normal) * snowNoise *  saturate(border * _SnowBorder);
+
+    // output.color = border;
 
     // transform to clip space
     #ifdef SHADERPASS_SHADOWCASTER

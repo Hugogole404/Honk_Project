@@ -21,15 +21,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Clay
-  m_Shader: {fileID: -6465566751694194690, guid: ad48eaac5ad876f48b712b7ebbf0f84a,
+  m_Shader: {fileID: -6465566751694194690, guid: 31d98d2996e808740b2843b28293bdda,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _NOISE_TEXTURE
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ENUM_A
   - _ENUM_B
+  - _NOISE_TEXTURE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -40,6 +40,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _SampleTexture2DLOD_3b05d0578bff4d58bc32d7749d51491d_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e1b77faab20926c4d813f4280a7f5af1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_9cde10267d9b4afa802bec1864b220a3_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e1b77faab20926c4d813f4280a7f5af1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_d43fd66d71f84ac3a1bcb91b0ea056b7_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e1b77faab20926c4d813f4280a7f5af1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture_A:
         m_Texture: {fileID: 2800000, guid: a421beeb1e0764a4bad2df85926a1afd, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -62,16 +74,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Float: 0
+    - _Float_1: 0
+    - _Float_2: 0
     - _Hard_Edge: 0
     - _NOISE_TEXTURE: 1
-    - _NoiseScale: 16.9
+    - _NoiseScale: 126.24
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed: 0
-    - _Swap: 0
-    - _VertexDisplacement: 0.16
-    - _VertexNoiseScale: 6.16
+    - _Swap: 1
+    - _VertexDisplacement: 0.205
+    - _VertexNoiseScale: 5.03
     m_Colors:
-    - _Color_A: {r: 0, g: 0.4811321, b: 0.0017202036, a: 1}
-    - _Color_B: {r: 0.60478234, g: 0.9150943, b: 0, a: 1}
+    - _Color_A: {r: 1, g: 0, b: 0, a: 1}
+    - _Color_B: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

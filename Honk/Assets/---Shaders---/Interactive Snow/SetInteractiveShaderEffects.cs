@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class SetInteractiveShaderEffects : MonoBehaviour
 {
-    [SerializeField]
-    RenderTexture rt;
-    [SerializeField]
-    Transform target;
+    [SerializeField] RenderTexture rt;
+    [SerializeField] Transform target;
+    
     // Start is called before the first frame update
     void Awake()
     {
