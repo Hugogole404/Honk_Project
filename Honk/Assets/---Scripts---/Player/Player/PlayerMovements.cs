@@ -41,6 +41,7 @@ public class PlayerMovements : MonoBehaviour
     private float _currentTimer;
     private bool _canJump;
 
+    [Header("States")]
     private bool _isWaking;
     private bool _isSliding;
     private bool _isSwiming;
@@ -144,7 +145,7 @@ public class PlayerMovements : MonoBehaviour
         _canSpeedDecrease = false;
         //}
         _input = context.ReadValue<Vector2>();
-        _direction = new Vector3(_input.x, 0f, _input.y);
+        _direction = new Vector3(_input.x, _direction.y, _input.y);
         if (context.canceled)
         {
             _canSpeedAugment = false;
@@ -163,12 +164,6 @@ public class PlayerMovements : MonoBehaviour
             _canJump = false;
             return;
         }
-        //else if (!IsGrounded() && _currentTimer >= _maxTimer)
-        //{
-        //    _canJump = false;
-        //    return;
-        //}
-
         if (_canJump)
         {
             _velocity += _jumpPower;
@@ -195,10 +190,12 @@ public class PlayerMovements : MonoBehaviour
     private void FixedUpdate()
     {
         CheckIsGroundedCoyauteJump();
-        ApplyRotation();
         ApplyMovement();
         ApplyGravity();
         ApplySpeed();
-        Debug.Log(IsGrounded());
+    }
+    private void Update()
+    {
+        ApplyRotation();
     }
 }
