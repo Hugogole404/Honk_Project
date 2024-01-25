@@ -405,8 +405,9 @@ GameObject:
   - component: {fileID: 260911447}
   - component: {fileID: 260911446}
   - component: {fileID: 260911445}
-  - component: {fileID: 260911450}
   - component: {fileID: 260911451}
+  - component: {fileID: 260911450}
+  - component: {fileID: 260911452}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -550,6 +551,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &260911452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260911444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e810ddd2460ae4c9d04d48eb2bdb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsSliding: 0
 --- !u!4 &1025637468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 12f4b7a0ebcb4b44681139cca6f6a796,
@@ -1096,6 +1110,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 390fcc0d-96bc-494c-a1e3-ef34c6c74dbe
     m_ActionName: PlayerGameplay/Honk[/DualShock4GamepadHID/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6185e3ce-6302-431a-9fa8-9a032df34484
+    m_ActionName: TechTest/Pipi[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 260911452}
+        m_TargetAssemblyTypeName: PlayerSlides, Assembly-CSharp
+        m_MethodName: Slide
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 99499e07-6184-4dfc-98d8-a0c5f372a2da
+    m_ActionName: PlayerGameplay/Slide[/DualShock4GamepadHID/rightStickPress,/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerGameplay
