@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerSlides : MonoBehaviour
 {
     public bool IsSliding;
+    public float AngleSlide;
     private PlayerMovements _playerMovement;
 
     private void Awake()
@@ -18,6 +19,6 @@ public class PlayerSlides : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Slide");
+        _playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
     }
 }

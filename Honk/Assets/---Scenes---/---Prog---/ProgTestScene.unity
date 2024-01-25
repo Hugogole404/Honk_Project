@@ -525,6 +525,7 @@ MonoBehaviour:
   _gravityMultiplier: 1
   _jumpPower: 4
   _maxTimer: 1
+  IsWaking: 0
 --- !u!143 &260911451
 CharacterController:
   m_ObjectHideFlags: 0
@@ -564,6 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsSliding: 0
+  AngleSlide: 90
 --- !u!4 &1025637468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 12f4b7a0ebcb4b44681139cca6f6a796,

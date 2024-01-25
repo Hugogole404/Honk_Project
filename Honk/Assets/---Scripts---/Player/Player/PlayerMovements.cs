@@ -41,12 +41,21 @@ public class PlayerMovements : MonoBehaviour
     private float _currentTimer;
     private bool _canJump;
 
+    [Header("Silde")]
+    private PlayerSlides _playerSlide;
+
     [Header("States")]
-    private bool _isWaking;
+    [HideInInspector] public bool IsWaking;
     private bool _isSliding;
     private bool _isSwiming;
     #endregion
 
+    private void ResetBools()
+    {
+        IsWaking = true;
+        _isSliding = false;
+        _isSwiming = false;
+    }
     private void IncreaseTimer()
     {
         _currentTimer += Time.deltaTime;
@@ -139,17 +148,20 @@ public class PlayerMovements : MonoBehaviour
     private bool IsGrounded() => _characterController.isGrounded;
     public void Move(InputAction.CallbackContext context)
     {
-        //if (context.performed)
-        //{
-        _canSpeedAugment = true;
-        _canSpeedDecrease = false;
-        //}
-        _input = context.ReadValue<Vector2>();
-        _direction = new Vector3(_input.x, _direction.y, _input.y);
-        if (context.canceled)
+        if (IsWaking)
         {
-            _canSpeedAugment = false;
-            _canSpeedDecrease = true;
+            //if (context.performed)
+            //{
+            _canSpeedAugment = true;
+            _canSpeedDecrease = false;
+            //}
+            _input = context.ReadValue<Vector2>();
+            _direction = new Vector3(_input.x, _direction.y, _input.y);
+            if (context.canceled)
+            {
+                _canSpeedAugment = false;
+                _canSpeedDecrease = true;
+            }
         }
     }
     public void Jump(InputAction.CallbackContext context)
@@ -181,11 +193,13 @@ public class PlayerMovements : MonoBehaviour
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _playerSlide = GetComponent<PlayerSlides>();
     }
     private void Start()
     {
         TeleportToSpawnPoint();
         _actualSpeed = _baseSpeed;
+        ResetBools();
     }
     private void FixedUpdate()
     {
