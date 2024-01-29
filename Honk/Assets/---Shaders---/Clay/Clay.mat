@@ -21,15 +21,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Clay
-  m_Shader: {fileID: -6465566751694194690, guid: 31d98d2996e808740b2843b28293bdda,
+  m_Shader: {fileID: -6465566751694194690, guid: ad48eaac5ad876f48b712b7ebbf0f84a,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ENUM_A
-  - _ENUM_B
+  m_ValidKeywords:
   - _NOISE_TEXTURE
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -40,6 +38,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Base_Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2DLOD_3b05d0578bff4d58bc32d7749d51491d_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: e1b77faab20926c4d813f4280a7f5af1, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -74,19 +76,27 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BlendSnow: 0
+    - _Buildup_Noise_Size: 50
     - _Float: 0
     - _Float_1: 0
     - _Float_2: 0
     - _Hard_Edge: 0
     - _NOISE_TEXTURE: 1
-    - _NoiseScale: 126.24
+    - _NoiseScale: 14.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 0
+    - _Snow_Amout: 0.5
+    - _Snow_Blend_Distance: 0.5
+    - _Snow_Color_Noise_Strength: 0.5
+    - _Speed: 2.5
     - _Swap: 1
-    - _VertexDisplacement: 0.205
+    - _VertexDisplacement: 0.091
     - _VertexNoiseScale: 5.03
     m_Colors:
-    - _Color_A: {r: 1, g: 0, b: 0, a: 1}
-    - _Color_B: {r: 1, g: 1, b: 1, a: 1}
+    - _Base_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color_A: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
+    - _Color_B: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
+    - _Snow_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Snow_Direction: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

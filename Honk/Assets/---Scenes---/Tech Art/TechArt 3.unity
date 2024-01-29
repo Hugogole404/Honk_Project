@@ -671,6 +671,7 @@ Transform:
   - {fileID: 249485751}
   - {fileID: 1934812897}
   - {fileID: 419772464}
+  - {fileID: 1085240472}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15870,6 +15871,53 @@ Transform:
   m_Father: {fileID: 841053834}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &1085240471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085240472}
+  - component: {fileID: 1085240473}
+  m_Layer: 0
+  m_Name: _ScriptManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085240472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085240471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 444087639}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085240473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085240471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c215dfd8acb76479aef7fe0a941695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Clay: {fileID: 2100000, guid: 27788e4493c01a9489caad27804ba16e, type: 2}
+  PropertyName: _Swap
+  Speed: 0.2
 --- !u!1 &1122961266
 GameObject:
   m_ObjectHideFlags: 0
@@ -20917,7 +20965,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 12f4b7a0ebcb4b44681139cca6f6a796,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.829
+      value: -1.828
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12f4b7a0ebcb4b44681139cca6f6a796,
         type: 3}
@@ -20964,6 +21012,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PapaPenguin_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4407187375235809858, guid: 12f4b7a0ebcb4b44681139cca6f6a796,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27788e4493c01a9489caad27804ba16e, type: 2}
+    - target: {fileID: 8424073627695423409, guid: 12f4b7a0ebcb4b44681139cca6f6a796,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27788e4493c01a9489caad27804ba16e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
