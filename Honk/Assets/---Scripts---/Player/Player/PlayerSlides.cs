@@ -15,7 +15,6 @@ public class PlayerSlides : MonoBehaviour
     public float ForceSlideTime = 1f;
     public float DownSpeed;
     public float UpSpeed;
-    //public float _currentVelocity;
     public Vector3 CurrentSpeed;
     [SerializeField] private float _slideBoost;
     [SerializeField] private float _snowFriction;
