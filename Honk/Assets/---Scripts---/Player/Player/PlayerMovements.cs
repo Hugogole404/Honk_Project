@@ -14,24 +14,24 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Movements")]
     [SerializeField] private float _maxSpeed, _baseSpeed;
-    [SerializeField] private float _actualSpeed;
+    public float ActualSpeed;
 
     [SerializeField] private float _speedAugmentation;
     [SerializeField] private float _speedDecrease;
 
     private Vector2 _input;
-    private Vector3 _direction;
+    public Vector3 Direction;
 
     [SerializeField] private float _smoothTime;
     [SerializeField] private float _currentVelocity;
-    private CharacterController _characterController;
+    public CharacterController CharacterController;
 
     private bool _canSpeedAugment = false, _canSpeedDecrease = true;
 
     [Header("Gravity")]
     [SerializeField] private float _gravityMultiplier;
     private float _gravity = -9.81f;
-    private float _velocity;
+    /*[HideInInspector]*/ public float Velocity;
 
     [Header("Jump")]
     [SerializeField] private float _jumpPower;
@@ -45,9 +45,11 @@ public class PlayerMovements : MonoBehaviour
     private PlayerSlides _playerSlide;
 
     [Header("States")]
-    [HideInInspector] public bool IsWaking;
-    private bool _isSliding;
-    private bool _isSwiming;
+    /*[HideInInspector]*/
+    public bool IsWaking;
+    /*[HideInInspector]*/
+    public bool IsSliding;
+    public bool IsSwimming;
     #endregion
 
     public void Move(InputAction.CallbackContext context)
@@ -60,7 +62,7 @@ public class PlayerMovements : MonoBehaviour
             _canSpeedDecrease = false;
             //}
             _input = context.ReadValue<Vector2>();
-            _direction = new Vector3(_input.x, _direction.y, _input.y);
+            Direction = new Vector3(_input.x, Direction.y, _input.y);
             if (context.canceled)
             {
                 _canSpeedAugment = false;
@@ -82,7 +84,7 @@ public class PlayerMovements : MonoBehaviour
         }
         if (_canJump)
         {
-            _velocity += _jumpPower;
+            Velocity += _jumpPower;
             _canJump = false;
         }
     }
@@ -96,8 +98,8 @@ public class PlayerMovements : MonoBehaviour
     private void ResetBools()
     {
         IsWaking = true;
-        _isSliding = false;
-        _isSwiming = false;
+        IsSliding = false;
+        IsSwimming = false;
     }
     private void IncreaseTimer()
     {
@@ -132,25 +134,25 @@ public class PlayerMovements : MonoBehaviour
     {
         if (_canSpeedAugment)
         {
-            if (_actualSpeed < _maxSpeed)
+            if (ActualSpeed < _maxSpeed)
             {
-                _actualSpeed += _speedAugmentation * Time.deltaTime;
+                ActualSpeed += _speedAugmentation * Time.deltaTime;
             }
-            if (_actualSpeed > _maxSpeed)
+            if (ActualSpeed > _maxSpeed)
             {
-                _actualSpeed = _maxSpeed;
+                ActualSpeed = _maxSpeed;
             }
         }
     }
     private void DecreaseSpeed()
     {
-        if (_actualSpeed > _baseSpeed && _canSpeedDecrease)
+        if (ActualSpeed > _baseSpeed && _canSpeedDecrease)
         {
-            _actualSpeed -= _speedDecrease * Time.deltaTime;
+            ActualSpeed -= _speedDecrease * Time.deltaTime;
         }
-        if (_actualSpeed < _baseSpeed)
+        if (ActualSpeed < _baseSpeed)
         {
-            _actualSpeed = _baseSpeed;
+            ActualSpeed = _baseSpeed;
         }
     }
     private void TeleportToSpawnPoint()
@@ -159,15 +161,15 @@ public class PlayerMovements : MonoBehaviour
     }
     private void ApplyGravity()
     {
-        if (IsGrounded() && _velocity < 0f)
+        if (IsGrounded() && Velocity < 0f)
         {
-            _velocity = -1f;
+            Velocity = -1f;
         }
         else
         {
-            _velocity += _gravity * _gravityMultiplier * Time.deltaTime;
+            Velocity += _gravity * _gravityMultiplier * Time.deltaTime;
         }
-        _direction.y = _velocity;
+        Direction.y = Velocity;
     }
     private void ApplyRotation()
     {
@@ -175,30 +177,33 @@ public class PlayerMovements : MonoBehaviour
         {
             return;
         }
-        var targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
+        var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
         var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, _smoothTime);
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
     }
     private void ApplyMovement()
     {
-        _characterController.Move(_direction * _actualSpeed * Time.deltaTime);
+        if (IsWaking)
+        {
+            CharacterController.Move(Direction * ActualSpeed * Time.deltaTime);
+        }
     }
     private void ApplySpeed()
     {
         AugmentSpeedToMaxSpeed();
         DecreaseSpeed();
     }
-    private bool IsGrounded() => _characterController.isGrounded;
+    private bool IsGrounded() => CharacterController.isGrounded;
 
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
+        CharacterController = GetComponent<CharacterController>();
         _playerSlide = GetComponent<PlayerSlides>();
     }
     private void Start()
     {
         TeleportToSpawnPoint();
-        _actualSpeed = _baseSpeed;
+        ActualSpeed = _baseSpeed;
         ResetBools();
     }
     private void FixedUpdate()

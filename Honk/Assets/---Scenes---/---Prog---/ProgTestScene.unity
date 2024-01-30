@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 260911451}
   - component: {fileID: 260911450}
   - component: {fileID: 260911452}
+  - component: {fileID: 260911453}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -517,15 +518,19 @@ MonoBehaviour:
   _spawnPoint: {fileID: 1705373508}
   _maxSpeed: 20
   _baseSpeed: 10
-  _actualSpeed: 10
+  ActualSpeed: 0
   _speedAugmentation: 2
   _speedDecrease: 5
+  Direction: {x: 0, y: 0, z: 0}
   _smoothTime: 0.05
   _currentVelocity: 0
+  CharacterController: {fileID: 0}
   _gravityMultiplier: 1
+  Velocity: 0
   _jumpPower: 4
   _maxTimer: 1
   IsWaking: 0
+  IsSliding: 0
 --- !u!143 &260911451
 CharacterController:
   m_ObjectHideFlags: 0
@@ -564,8 +569,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e810ddd2460ae4c9d04d48eb2bdb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slopeMaxAngle: 90
+  slopeMinAngle: 90
+  slidingSpeed: 1
+  isPressed: 0
+  currentSpeed: {x: 0, y: 0, z: 0}
+  isSliding: 0
+  slideMult: 1
+  forceSlideTime: 1
+  downSpeed: 10
+  upSpeed: 10
+  _currentVelocity: 10
+  _slideBoost: 10
+  snowFriction: 10
   IsSliding: 0
   AngleSlide: 90
+  BaseSpeedSlide: 1
+--- !u!114 &260911453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260911444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c845b24b656e841ad6a40d5e374857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSwimming: 0
+  _player: {fileID: 1888951747}
+  _swimmingSprite: {fileID: 0}
 --- !u!4 &1025637468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 12f4b7a0ebcb4b44681139cca6f6a796,
@@ -813,6 +847,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PapaPenguin_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 12f4b7a0ebcb4b44681139cca6f6a796,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -940,6 +979,12 @@ Transform:
   m_Father: {fileID: 1963801449}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1888951747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 12f4b7a0ebcb4b44681139cca6f6a796,
+    type: 3}
+  m_PrefabInstance: {fileID: 1623081428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1895600708
 GameObject:
   m_ObjectHideFlags: 0
