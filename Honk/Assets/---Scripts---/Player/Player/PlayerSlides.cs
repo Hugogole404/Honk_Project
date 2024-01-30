@@ -1,50 +1,43 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using VolumetricLightsDemo;
 
 public class PlayerSlides : MonoBehaviour
 {
+    #region Variables
     [Header("Sliding")]
     public float slopeMaxAngle;
     public float slopeMinAngle;
     [Range(0.0f, 1.0f)][SerializeField] private float slidingSpeed;
 
     [HideInInspector] public bool isPressed = false;
-    public Vector3 currentSpeed;
-    public bool isSliding = false;
-    public float slideMult = 1;
-    public float forceSlideTime = 1f;
-    public float downSpeed;
-    public float upSpeed;
-    public float _currentVelocity;
-    private float slopeSpeed;
-    private float speed;
-    private float speedDecrease;
-    private float slopeAngle;
-    private float forceSlideCounter;
-    private Vector3 normalAngle;
-    private Vector3 speedGain;
+    public bool IsSliding = false;
+    public float SlideMultiplicator = 1;
+    public float ForceSlideTime = 1f;
+    public float DownSpeed;
+    public float UpSpeed;
+    //public float _currentVelocity;
+    public Vector3 CurrentSpeed;
+    [SerializeField] private float _slideBoost;
+    [SerializeField] private float _snowFriction;
+    private float _slopeSpeed;
+    private float _speedDecrease;
+    private float _speed;
+    private float _slopeAngle;
+    private float _forceSlideCounter;
+    private Vector3 _speedGain;
+    private Vector3 _normalAngle;
     private Vector3 _slideBSpeed;
     private Vector3 _slidingDir;
     private Vector3 _lastPos;
-    [SerializeField] private float _slideBoost;
-    [SerializeField] private float snowFriction;
     private RaycastHit _hit;
     private PlayerSwim _playerSwim;
 
-    public bool IsSliding;
+    //public bool IsSliding;
     public float AngleSlide;
-    private PlayerMovements _playerMovement;
     public float BaseSpeedSlide;
+    private PlayerMovements _playerMovement;
+    #endregion
 
-    private void ApplyMovement()
-    {
-        if (IsSliding)
-        {
-            _playerMovement.CharacterController.Move(_playerMovement.Direction * _playerMovement.ActualSpeed * Time.deltaTime);
-        }
-    }
     public void Slide(InputAction.CallbackContext context)
     {
         if (!context.performed)
@@ -53,7 +46,7 @@ public class PlayerSlides : MonoBehaviour
             //_playerMovement.IsSliding = false;
             return;
         }
-        _playerMovement.IsWaking = false;
+        //_playerMovement.IsWaking = false;
         //_playerMovement.IsSliding = true;
         _playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
         //_playerMovement.Direction = new Vector3(-_playerMovement.Direction.x * BaseSpeedSlide * _playerMovement.Velocity, _playerMovement.transform.position.y, -_playerMovement.Direction.z * BaseSpeedSlide * _playerMovement.Velocity);
@@ -63,102 +56,68 @@ public class PlayerSlides : MonoBehaviour
 
         if (context.started && !_playerMovement.IsSwimming)
         {
-            isSliding = true;
+            IsSliding = true;
             isPressed = true;
             _slideBSpeed = _playerMovement.CharacterController.velocity.normalized * BaseSpeedSlide;
-            currentSpeed = new Vector3(_slideBSpeed.x * _slideBoost, 0, _slideBSpeed.z * _slideBoost);
+            CurrentSpeed = new Vector3(_slideBSpeed.x * _slideBoost, 0, _slideBSpeed.z * _slideBoost);
             transform.rotation = Quaternion.Euler(90f, 0, 0);
         }
         if (context.canceled)
         {
-            isSliding = false;
+            IsSliding = false;
             isPressed = false;
-            currentSpeed = Vector3.zero;
+            CurrentSpeed = Vector3.zero;
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
-    private void Awake()
-    {
-        _playerMovement = GetComponent<PlayerMovements>();
-        _playerSwim = GetComponent<PlayerSwim>();
-    }
-    void Start()
-    {
-        forceSlideCounter = forceSlideTime;
-    }
-    private void FixedUpdate()
-    {
-        ApplyMovement();
 
-        slopeAngle = Mathf.Deg2Rad * Vector3.Angle(Vector3.up, _hit.normal);
-        Ray myRay = new Ray(transform.position, Vector3.down);
-
-        if (_playerMovement.CharacterController.isGrounded)
-        {
-            if (Physics.Raycast(myRay, out _hit, 10))
-            {
-                //DoIStartSlide(_hit);
-            }
-        }
-
-        if (isSliding == true)
-        {
-            OnSlide();
-            //if (_gamepad != null)
-            //{
-            //    _gamepad.SetMotorSpeeds(0.075f, 0.134f);
-            //}
-
-        }
-    }
-
-    public void OnSlide()
+    private void OnSlide()
     {
 
-        float speedAngle = slopeAngle - 90;
-        transform.rotation = Quaternion.LookRotation(new Vector3(_slidingDir.x, -90 + -normalAngle.z, _slidingDir.z));
-        speed = slopeAngle * Mathf.Deg2Rad * slidingSpeed * slideMult;
+        float speedAngle = _slopeAngle - 90;
+        transform.rotation = Quaternion.LookRotation(new Vector3(_slidingDir.x, -90 + -_normalAngle.z, _slidingDir.z));
+        _speed = _slopeAngle * Mathf.Deg2Rad * slidingSpeed * SlideMultiplicator;
 
-        normalAngle = new Vector3(_hit.normal.x, Mathf.Max(_hit.normal.y - 1.5f, -1f), _hit.normal.z);
-        currentSpeed = normalAngle * speed + currentSpeed / snowFriction;
-        //if (_playerMovement.CharacterController.isGrounded)
+        _normalAngle = new Vector3(_hit.normal.x, Mathf.Max(_hit.normal.y - 1.5f, -1f), _hit.normal.z);
+        CurrentSpeed = _normalAngle * _speed + CurrentSpeed / _snowFriction;
+        //if (_playerMovement.IsGrounded())
         //{
 
         //}
-        _playerMovement.CharacterController.Move((currentSpeed * Time.deltaTime));
-        _slidingDir = currentSpeed.normalized;
+        _playerMovement.CharacterController.Move((CurrentSpeed * Time.deltaTime));
+        _slidingDir = CurrentSpeed.normalized;
 
         Vector3 positionActuel = transform.position;
 
         if (positionActuel.y > _lastPos.y)
         {
-            slideMult = upSpeed;
+            SlideMultiplicator = UpSpeed;
         }
         else
         {
-            slideMult = downSpeed;
+            SlideMultiplicator = DownSpeed;
         }
 
         _lastPos = positionActuel;
 
-        Debug.DrawLine(transform.position, transform.position + normalAngle * 8, Color.red, 8f);
-        if (isSliding && isPressed == false)
+        Debug.DrawLine(transform.position, transform.position + _normalAngle * 8, Color.red, 8f);
+        if (IsSliding && isPressed == false)
         {
-            if (slopeAngle <= slopeMinAngle * Mathf.Deg2Rad)
+            if (_slopeAngle <= slopeMinAngle * Mathf.Deg2Rad)
             {
-                Debug.Log(forceSlideCounter);
-                forceSlideCounter -= Time.deltaTime;
-                currentSpeed = currentSpeed / 1.005f;
-                if (forceSlideCounter < 0.0f)
+                Debug.Log(_forceSlideCounter);
+                _forceSlideCounter -= Time.deltaTime;
+                CurrentSpeed = CurrentSpeed / 1.005f;
+                if (_forceSlideCounter < 0.0f)
                 {
-                    isSliding = false;
-                    currentSpeed = Vector3.zero;
+                    IsSliding = false;
+                    CurrentSpeed = Vector3.zero;
                     transform.rotation = Quaternion.LookRotation(Vector3.zero);
                 }
             }
             else
             {
-                forceSlideCounter = forceSlideTime;
+                _forceSlideCounter = ForceSlideTime;
 
             }
             //var targetAngle = Mathf.Atan2(slidingDir.x, slidingDir.z) * Mathf.Rad2Deg;
@@ -183,5 +142,47 @@ public class PlayerSlides : MonoBehaviour
         //    }
         //    return false;
         //}
+    }
+    private void ApplyMovement()
+    {
+        if (IsSliding)
+        {
+            _playerMovement.CharacterController.Move(_playerMovement.Direction * _playerMovement.ActualSpeed * Time.deltaTime);
+        }
+    }
+
+    private void Awake()
+    {
+        _playerMovement = GetComponent<PlayerMovements>();
+        _playerSwim = GetComponent<PlayerSwim>();
+    }
+    private void Start()
+    {
+        _forceSlideCounter = ForceSlideTime;
+    }
+    private void FixedUpdate()
+    {
+        ApplyMovement();
+
+        _slopeAngle = Mathf.Deg2Rad * Vector3.Angle(Vector3.up, _hit.normal);
+        Ray myRay = new Ray(transform.position, Vector3.down);
+
+        if (_playerMovement.IsGrounded())
+        {
+            if (Physics.Raycast(myRay, out _hit, 10))
+            {
+                //DoIStartSlide(_hit);
+            }
+        }
+
+        if (IsSliding == true)
+        {
+            OnSlide();
+            //if (_gamepad != null)
+            //{
+            //    _gamepad.SetMotorSpeeds(0.075f, 0.134f);
+            //}
+
+        }
     }
 }

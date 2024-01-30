@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,19 +16,19 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private float _speedAugmentation;
     [SerializeField] private float _speedDecrease;
 
-    private Vector2 _input;
     public Vector3 Direction;
+    private Vector2 _input;
 
     [SerializeField] private float _smoothTime;
-    [SerializeField] private float _currentVelocity;
+    public float CurrentVelocity;
     public CharacterController CharacterController;
 
     private bool _canSpeedAugment = false, _canSpeedDecrease = true;
 
     [Header("Gravity")]
+    [HideInInspector] public float Velocity;
     [SerializeField] private float _gravityMultiplier;
     private float _gravity = -9.81f;
-    /*[HideInInspector]*/ public float Velocity;
 
     [Header("Jump")]
     [SerializeField] private float _jumpPower;
@@ -45,11 +42,9 @@ public class PlayerMovements : MonoBehaviour
     private PlayerSlides _playerSlide;
 
     [Header("States")]
-    /*[HideInInspector]*/
-    public bool IsWaking;
-    /*[HideInInspector]*/
-    public bool IsSliding;
-    public bool IsSwimming;
+    [HideInInspector] public bool IsWaking;
+    [HideInInspector] public bool IsSliding;
+    [HideInInspector] public bool IsSwimming;
     #endregion
 
     public void Move(InputAction.CallbackContext context)
@@ -95,6 +90,9 @@ public class PlayerMovements : MonoBehaviour
             Debug.Log("HonkNoise");
         }
     }
+
+    public bool IsGrounded() => CharacterController.isGrounded;
+
     private void ResetBools()
     {
         IsWaking = true;
@@ -159,6 +157,7 @@ public class PlayerMovements : MonoBehaviour
     {
         transform.position = _spawnPoint.position;
     }
+
     private void ApplyGravity()
     {
         if (IsGrounded() && Velocity < 0f)
@@ -178,7 +177,7 @@ public class PlayerMovements : MonoBehaviour
             return;
         }
         var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
-        var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, _smoothTime);
+        var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
     }
     private void ApplyMovement()
@@ -193,7 +192,7 @@ public class PlayerMovements : MonoBehaviour
         AugmentSpeedToMaxSpeed();
         DecreaseSpeed();
     }
-    private bool IsGrounded() => CharacterController.isGrounded;
+
 
     private void Awake()
     {
