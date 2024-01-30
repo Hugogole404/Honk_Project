@@ -50,6 +50,49 @@ public class PlayerMovements : MonoBehaviour
     private bool _isSwiming;
     #endregion
 
+    public void Move(InputAction.CallbackContext context)
+    {
+        if (IsWaking)
+        {
+            //if (context.performed)
+            //{
+            _canSpeedAugment = true;
+            _canSpeedDecrease = false;
+            //}
+            _input = context.ReadValue<Vector2>();
+            _direction = new Vector3(_input.x, _direction.y, _input.y);
+            if (context.canceled)
+            {
+                _canSpeedAugment = false;
+                _canSpeedDecrease = true;
+            }
+        }
+    }
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            return;
+        }
+
+        if (!IsGrounded() || _currentTimer >= _maxTimer)
+        {
+            _canJump = false;
+            return;
+        }
+        if (_canJump)
+        {
+            _velocity += _jumpPower;
+            _canJump = false;
+        }
+    }
+    public void HonkNoise(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("HonkNoise");
+        }
+    }
     private void ResetBools()
     {
         IsWaking = true;
@@ -146,49 +189,6 @@ public class PlayerMovements : MonoBehaviour
         DecreaseSpeed();
     }
     private bool IsGrounded() => _characterController.isGrounded;
-    public void Move(InputAction.CallbackContext context)
-    {
-        if (IsWaking)
-        {
-            //if (context.performed)
-            //{
-            _canSpeedAugment = true;
-            _canSpeedDecrease = false;
-            //}
-            _input = context.ReadValue<Vector2>();
-            _direction = new Vector3(_input.x, _direction.y, _input.y);
-            if (context.canceled)
-            {
-                _canSpeedAugment = false;
-                _canSpeedDecrease = true;
-            }
-        }
-    }
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (!context.performed)
-        {
-            return;
-        }
-
-        if (!IsGrounded() || _currentTimer >= _maxTimer)
-        {
-            _canJump = false;
-            return;
-        }
-        if (_canJump)
-        {
-            _velocity += _jumpPower;
-            _canJump = false;
-        }
-    }
-    public void HonkNoise(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Debug.Log("HonkNoise");
-        }
-    }
 
     private void Awake()
     {

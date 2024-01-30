@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerSlides : MonoBehaviour
 {
+    [Range(0.0f, 1.0f)] public float mySliderFloat;
+
     public bool IsSliding;
     public float AngleSlide;
     private PlayerMovements _playerMovement;
@@ -15,7 +16,7 @@ public class PlayerSlides : MonoBehaviour
     }
     public void Slide(InputAction.CallbackContext context)
     {
-        if(!context.performed)
+        if (!context.performed)
         {
             return;
         }
