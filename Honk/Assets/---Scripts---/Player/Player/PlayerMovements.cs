@@ -64,6 +64,10 @@ public class PlayerMovements : MonoBehaviour
                 _canSpeedDecrease = true;
             }
         }
+        if (IsSliding)
+        {
+            _playerSlide.transform.rotation = Quaternion.EulerRotation(_playerSlide.AngleSlide, transform.rotation.y, transform.rotation.z);
+        }
     }
     public void Jump(InputAction.CallbackContext context)
     {
