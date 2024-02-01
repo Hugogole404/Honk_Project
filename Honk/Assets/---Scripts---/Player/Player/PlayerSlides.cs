@@ -38,14 +38,14 @@ public class PlayerSlides : MonoBehaviour
 
     public void Slide(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        //if (!context.performed && !context.started && !context.canceled)
+        //{
+        //    return;
+        //}
+        if (context.started)
         {
-            //_playerMovement.IsWaking = true;
-            //_playerMovement.IsSliding = false;
             return;
         }
-        //_playerMovement.IsWaking = false;
-        //_playerMovement.IsSliding = true;
 
         _playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
 
@@ -53,29 +53,29 @@ public class PlayerSlides : MonoBehaviour
 
 
 
-        if (context.started && !_playerMovement.IsSwimming)
+        if (context.performed && !_playerMovement.IsSwimming)
         {
             _playerMovement.IsSliding = true;
             _playerMovement.IsWaking = false;
-            isPressed = true;
+            //isPressed = true;
             _slideBSpeed = _playerMovement.CharacterController.velocity.normalized * BaseSpeedSlide;
             CurrentSpeed = new Vector3(_slideBSpeed.x * _slideBoost, 0, _slideBSpeed.z * _slideBoost);
-            //transform.rotation = Quaternion.Euler(90f, 0, 0);
+            transform.rotation = Quaternion.Euler(90f, 0, 0);
             Debug.Log(_playerMovement.IsSliding);
         }
         if (context.canceled)
         {
             _playerMovement.IsSliding = false;
             _playerMovement.IsWaking = true;
-            isPressed = false;
+            //isPressed = false;
             CurrentSpeed = Vector3.zero;
-            //transform.rotation = Quaternion.Euler(0, 0, 0);
+            Debug.Log(_playerMovement.IsSliding);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
     private void OnSlide()
     {
-
         float speedAngle = _slopeAngle - 90;
         transform.rotation = Quaternion.LookRotation(new Vector3(_slidingDir.x, -90 + -_normalAngle.z, _slidingDir.z));
         _speed = _slopeAngle * Mathf.Deg2Rad * slidingSpeed * SlideMultiplicator;
@@ -84,7 +84,6 @@ public class PlayerSlides : MonoBehaviour
         CurrentSpeed = _normalAngle * _speed + CurrentSpeed / _snowFriction;
         //if (_playerMovement.IsGrounded())
         //{
-
         //}
         _playerMovement.CharacterController.Move((CurrentSpeed * Time.deltaTime));
         _slidingDir = CurrentSpeed.normalized;
@@ -107,14 +106,14 @@ public class PlayerSlides : MonoBehaviour
         {
             if (_slopeAngle <= slopeMinAngle * Mathf.Deg2Rad)
             {
-                Debug.Log(_forceSlideCounter);
+                //Debug.Log(_forceSlideCounter);
                 _forceSlideCounter -= Time.deltaTime;
                 CurrentSpeed = CurrentSpeed / 1.005f;
                 if (_forceSlideCounter < 0.0f)
                 {
                     _playerMovement.IsSliding = false;
                     CurrentSpeed = Vector3.zero;
-                    transform.rotation = Quaternion.LookRotation(Vector3.zero);
+                    //transform.rotation = Quaternion.LookRotation(Vector3.zero);
                 }
             }
             else
@@ -149,7 +148,7 @@ public class PlayerSlides : MonoBehaviour
     {
         if (_playerMovement.IsSliding)
         {
-            _playerMovement.CharacterController.Move(_playerMovement.Direction * _playerMovement.ActualSpeed * Time.deltaTime);
+            _playerMovement.CharacterController.Move(/*_playerMovement.Direction*/new Vector3(1,0,1) * _playerMovement.ActualSpeed * Time.deltaTime);
         }
     }
 
@@ -166,7 +165,7 @@ public class PlayerSlides : MonoBehaviour
     {
         ApplyMovement();
 
-        _slopeAngle = Mathf.Deg2Rad * Vector3.Angle(Vector3.up, _hit.normal);
+        //_slopeAngle = Mathf.Deg2Rad * Vector3.Angle(Vector3.up, _hit.normal);
         Ray myRay = new Ray(transform.position, Vector3.down);
 
         if (_playerMovement.IsGrounded())
@@ -179,7 +178,7 @@ public class PlayerSlides : MonoBehaviour
 
         if (_playerMovement.IsSliding == true)
         {
-            OnSlide();
+            //OnSlide();
             //if (_gamepad != null)
             //{
             //    _gamepad.SetMotorSpeeds(0.075f, 0.134f);

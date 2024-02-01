@@ -523,10 +523,10 @@ MonoBehaviour:
   _speedDecrease: 5
   Direction: {x: 0, y: 0, z: 0}
   _smoothTime: 0.05
-  _currentVelocity: 0
+  CurrentVelocity: 0
   CharacterController: {fileID: 0}
-  _gravityMultiplier: 1
   Velocity: 0
+  _gravityMultiplier: 1
   _jumpPower: 4
   _maxTimer: 1
   IsWaking: 0
@@ -574,16 +574,13 @@ MonoBehaviour:
   slopeMinAngle: 90
   slidingSpeed: 1
   isPressed: 0
-  currentSpeed: {x: 0, y: 0, z: 0}
-  isSliding: 0
-  slideMult: 1
-  forceSlideTime: 1
-  downSpeed: 10
-  upSpeed: 10
-  _currentVelocity: 10
+  SlideMultiplicator: 1
+  ForceSlideTime: 1
+  DownSpeed: 1
+  UpSpeed: 1
+  CurrentSpeed: {x: 0, y: 0, z: 0}
   _slideBoost: 10
-  snowFriction: 10
-  IsSliding: 0
+  _snowFriction: 0
   AngleSlide: 90
   BaseSpeedSlide: 1
 --- !u!114 &260911453

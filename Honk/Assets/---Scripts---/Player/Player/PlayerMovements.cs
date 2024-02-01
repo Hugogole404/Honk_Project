@@ -64,10 +64,6 @@ public class PlayerMovements : MonoBehaviour
                 _canSpeedDecrease = true;
             }
         }
-        if (IsSliding)
-        {
-            _playerSlide.transform.rotation = Quaternion.EulerRotation(_playerSlide.AngleSlide, transform.rotation.y, transform.rotation.z);
-        }
     }
     public void Jump(InputAction.CallbackContext context)
     {
@@ -190,6 +186,10 @@ public class PlayerMovements : MonoBehaviour
         {
             CharacterController.Move(Direction * ActualSpeed * Time.deltaTime);
         }
+        if (IsSliding)
+        {
+            _playerSlide.transform.rotation = Quaternion.EulerRotation(_playerSlide.AngleSlide, transform.rotation.y, transform.rotation.z);
+        }
     }
     private void ApplySpeed()
     {
@@ -211,7 +211,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CheckIsGroundedCoyauteJump();
+        //CheckIsGroundedCoyauteJump();
         ApplyMovement();
         ApplyGravity();
         ApplySpeed();
