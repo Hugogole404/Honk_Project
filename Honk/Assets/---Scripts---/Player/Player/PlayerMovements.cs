@@ -188,7 +188,8 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
-            _playerSlide.transform.rotation = Quaternion.EulerRotation(_playerSlide.AngleSlide, transform.rotation.y, transform.rotation.z);
+            //_playerSlide.transform.rotation = Quaternion.EulerRotation(_playerSlide.AngleSlide, transform.rotation.y, transform.rotation.z);
+            //_playerSlide.transform.position = new Vector3(Direction.x * ActualSpeed, Direction.x * ActualSpeed, Direction.x * ActualSpeed);
         }
     }
     private void ApplySpeed()

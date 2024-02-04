@@ -58,9 +58,9 @@ public class PlayerSlides : MonoBehaviour
             _playerMovement.IsSliding = true;
             _playerMovement.IsWaking = false;
             //isPressed = true;
-            _slideBSpeed = _playerMovement.CharacterController.velocity.normalized * BaseSpeedSlide;
-            CurrentSpeed = new Vector3(_slideBSpeed.x * _slideBoost, 0, _slideBSpeed.z * _slideBoost);
-            transform.rotation = Quaternion.Euler(90f, 0, 0);
+            //_slideBSpeed = _playerMovement.CharacterController.velocity.normalized * BaseSpeedSlide;
+            //CurrentSpeed = new Vector3(_slideBSpeed.x * _slideBoost, 0, _slideBSpeed.z * _slideBoost);
+            //transform.rotation = Quaternion.Euler(90f, 0, 0);
             Debug.Log(_playerMovement.IsSliding);
         }
         if (context.canceled)
@@ -68,9 +68,9 @@ public class PlayerSlides : MonoBehaviour
             _playerMovement.IsSliding = false;
             _playerMovement.IsWaking = true;
             //isPressed = false;
-            CurrentSpeed = Vector3.zero;
+            //CurrentSpeed = Vector3.zero;
             Debug.Log(_playerMovement.IsSliding);
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -125,7 +125,6 @@ public class PlayerSlides : MonoBehaviour
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _playerMovement.CurrentVelocity, 0.05f);
             transform.rotation = Quaternion.Euler(transform.rotation.x, angle, 0.0f);
         }
-
     }
     private bool DoIStartSlide(RaycastHit hit)
     {
@@ -148,7 +147,7 @@ public class PlayerSlides : MonoBehaviour
     {
         if (_playerMovement.IsSliding)
         {
-            _playerMovement.CharacterController.Move(/*_playerMovement.Direction*/new Vector3(1,0,1) * _playerMovement.ActualSpeed * Time.deltaTime);
+            _playerMovement.CharacterController.Move(new Vector3(_playerMovement.Direction.x * _playerMovement.ActualSpeed / 10, _playerMovement.Velocity, _playerMovement.Direction.z * _playerMovement.ActualSpeed / 10) * _playerMovement.ActualSpeed * Time.deltaTime);
         }
     }
 
