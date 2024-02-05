@@ -60,7 +60,7 @@ public class PlayerSlides : MonoBehaviour
             //isPressed = true;
             //_slideBSpeed = _playerMovement.CharacterController.velocity.normalized * BaseSpeedSlide;
             //CurrentSpeed = new Vector3(_slideBSpeed.x * _slideBoost, 0, _slideBSpeed.z * _slideBoost);
-            //transform.rotation = Quaternion.Euler(90f, 0, 0);
+            transform.rotation = Quaternion.Euler(90f, 0, 0);
             Debug.Log(_playerMovement.IsSliding);
         }
         if (context.canceled)
