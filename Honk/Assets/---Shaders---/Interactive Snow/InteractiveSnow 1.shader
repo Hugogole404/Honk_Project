@@ -175,32 +175,32 @@ Shader "Custom/Snow Interactive Test" {
 
         }
 
-        // casting shadows is a little glitchy, I've turned it off, but maybe in future urp versions it works better?
-        // Shadow Casting Pass
-        // Pass
-        // {
-            // 	Name "ShadowCaster"
-            // 	Tags { "LightMode" = "ShadowCaster" }
-            // 	ZWrite On
-            // 	ZTest LEqual
-            // 	Cull Off
-            
-            // 	HLSLPROGRAM
-            // 	#pragma target 3.0
-            
-            // 	// Support all the various light  ypes and shadow paths
-            // 	#pragma multi_compile_shadowcaster
-            
-            // 	// Register our functions
-            
-            // 	#pragma fragment frag
-            // 	// A custom keyword to modify logic during the shadow caster pass
+         /*casting shadows is a little glitchy, I've turned it off, but maybe in future urp versions it works better?*/
+         /*Shadow Casting Pass*/
+         //Pass
+         //{
+         //    	Name "ShadowCaster"
+         //    	Tags { "LightMode" = "ShadowCaster" }
+         //    	ZWrite On
+         //    	ZTest LEqual
+         //    	Cull Off
+         //   
+         //    	HLSLPROGRAM
+         //    	#pragma target 3.0
+         //   
+         //    	// Support all the various light  ypes and shadow paths
+         //    	#pragma multi_compile_shadowcaster
+         //   
+         //    	// Register our functions
+         //   
+         //    	#pragma fragment frag
+         //    	// A custom keyword to modify logic during the shadow caster pass
 
-            // 	half4 frag(Varyings IN) : SV_Target{
-                // 		return 0;
-            // 	}
-            
-            // 	ENDHLSL
-        // }
+         //    	half4 frag(Varyings IN) : SV_Target{
+         //        		return 0;
+         //    	}
+         //   
+         //    	ENDHLSL
+         //}
     }
 }
