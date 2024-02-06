@@ -11,6 +11,8 @@ public class PlayerSwim : MonoBehaviour
 
     public void IsSwimming(RaycastHit hit)
     {
+        //_playerMovements.IsSwimmingBools();
+
         if (!_playerMovements.IsSwimming)
         {
             if (hit.collider.gameObject.tag == "Water")

@@ -36,7 +36,7 @@ public class PlayerSlides : MonoBehaviour
             return;
         }
 
-        _playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
+        //_playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
 
         if (context.performed && !_playerMovement.IsSwimming)
         {

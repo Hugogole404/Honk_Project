@@ -10,24 +10,24 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
 
     [Header("Movements")]
-    [SerializeField] private float _maxSpeed, _baseSpeed;
+    public float BaseSpeed;
     public float ActualSpeed;
-
+    [SerializeField] private float _maxSpeed;
     [SerializeField] private float _speedAugmentation;
     [SerializeField] private float _speedDecrease;
 
-    public Vector3 Direction;
-    private Vector2 _input;
+    [HideInInspector] public Vector3 Direction;
+    [HideInInspector] public float CurrentVelocity;
+    [HideInInspector] private Vector2 _input;
 
     [SerializeField] private float _smoothTime;
-    public float CurrentVelocity;
-    public CharacterController CharacterController;
 
-    private bool _canSpeedAugment = false, _canSpeedDecrease = true;
+    private bool _canSpeedAugment = false;
+    private bool _canSpeedDecrease = true;
 
     [Header("Gravity")]
-    [HideInInspector] public float Velocity;
     [SerializeField] private float _gravityMultiplier;
+    [HideInInspector] public float Velocity;
     private float _gravity = -9.81f;
 
     [Header("Jump")]
@@ -40,12 +40,15 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Silde")]
     public Vector3 LastPos;
-    private PlayerSlides _playerSlide;
 
     [Header("States")]
     [HideInInspector] public bool IsWaking;
     [HideInInspector] public bool IsSliding;
     [HideInInspector] public bool IsSwimming;
+
+    [HideInInspector] public CharacterController CharacterController;
+    [HideInInspector] private PlayerSlides _playerSlides;
+    [HideInInspector] private TimerManager _timerManager;
     #endregion
 
     public void Move(InputAction.CallbackContext context)
@@ -121,20 +124,16 @@ public class PlayerMovements : MonoBehaviour
         IsSwimming = true;
     }
 
-    private void IncreaseTimer()
-    {
-        _currentTimer += Time.deltaTime;
-    }
-    private void ResetTimer()
-    {
-        _currentTimer = 0;
-    }
-
     private void ResetJumpCounter()
     {
         _canJump = true;
     }
-    private void AugmentSpeedToMaxSpeed()
+    private void TeleportToSpawnPoint()
+    {
+        transform.position = _spawnPoint.position;
+    }
+
+    private void IncreaseSpeed()
     {
         if (_canSpeedAugment)
         {
@@ -150,26 +149,21 @@ public class PlayerMovements : MonoBehaviour
     }
     private void DecreaseSpeed()
     {
-        if (ActualSpeed > _baseSpeed && _canSpeedDecrease)
+        if (ActualSpeed > BaseSpeed && _canSpeedDecrease)
         {
             ActualSpeed -= _speedDecrease * Time.deltaTime;
         }
-        if (ActualSpeed < _baseSpeed)
+        if (ActualSpeed < BaseSpeed)
         {
-            ActualSpeed = _baseSpeed;
+            ActualSpeed = BaseSpeed;
         }
-    }
-    private void TeleportToSpawnPoint()
-    {
-        transform.position = _spawnPoint.position;
     }
 
     private void CheckIsGroundedCoyauteJump()
     {
         if (!IsGrounded())
         {
-            IncreaseTimer();
-            //_canJump = false;
+            _timerManager.IncreaseTimer(_currentTimer);
             if (/*_canJump && */_currentTimer > _maxTimer)
             {
                 _canJump = false;
@@ -177,7 +171,7 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsGrounded())
         {
-            ResetTimer();
+            _timerManager.ResetTimer(_currentTimer);
             ResetJumpCounter();
         }
     }
@@ -190,6 +184,10 @@ public class PlayerMovements : MonoBehaviour
         else if (LastPos.y < gameObject.transform.position.y)
         {
             Debug.Log("Il monte");
+        }
+        else 
+        {
+            Debug.Log("Il ne change pas de hauteur");
         }
         LastPos = gameObject.transform.position;
     }
@@ -233,7 +231,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void ApplySpeed()
     {
-        AugmentSpeedToMaxSpeed();
+        IncreaseSpeed();
         DecreaseSpeed();
     }
 
@@ -241,17 +239,18 @@ public class PlayerMovements : MonoBehaviour
     private void Awake()
     {
         CharacterController = GetComponent<CharacterController>();
-        _playerSlide = GetComponent<PlayerSlides>();
+        _playerSlides = GetComponent<PlayerSlides>();
+        _timerManager = FindAnyObjectByType<TimerManager>();
     }
     private void Start()
     {
         TeleportToSpawnPoint();
-        ActualSpeed = _baseSpeed;
+        ActualSpeed = BaseSpeed;
         IsWalkingBools();
     }
     private void FixedUpdate()
     {
-        //CheckIsGroundedCoyauteJump();
+        CheckIsGroundedCoyauteJump();
         ApplyMovement();
         ApplyGravity();
         ApplySpeed();
