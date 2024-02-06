@@ -80,7 +80,7 @@ public class PlayerMovements : MonoBehaviour
         if (_canJump)
         {
             Velocity += _jumpPower;
-            _canJump = false;
+            //_canJump = false;
         }
     }
     public void HonkNoise(InputAction.CallbackContext context)
@@ -220,5 +220,9 @@ public class PlayerMovements : MonoBehaviour
     private void Update()
     {
         ApplyRotation();
+        if (IsGrounded())
+        {
+            _canJump = true;
+        }
     }
 }
