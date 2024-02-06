@@ -39,6 +39,7 @@ public class PlayerMovements : MonoBehaviour
     private bool _canJump;
 
     [Header("Silde")]
+    public Vector3 LastPos;
     private PlayerSlides _playerSlide;
 
     [Header("States")]
@@ -66,6 +67,11 @@ public class PlayerMovements : MonoBehaviour
         {
             _input = context.ReadValue<Vector2>();
             Direction = new Vector3(_input.x, Direction.y, _input.y);
+        }
+        if (IsSwimming)
+        {
+            _input = context.ReadValue<Vector2>();
+            Direction = new Vector3(_input.x, Direction.y, _input.y) / 3;
         }
     }
     public void Jump(InputAction.CallbackContext context)
@@ -123,26 +129,10 @@ public class PlayerMovements : MonoBehaviour
     {
         _currentTimer = 0;
     }
+
     private void ResetJumpCounter()
     {
         _canJump = true;
-    }
-    private void CheckIsGroundedCoyauteJump()
-    {
-        if (!IsGrounded())
-        {
-            IncreaseTimer();
-            //_canJump = false;
-            if (/*_canJump && */_currentTimer > _maxTimer)
-            {
-                _canJump = false;
-            }
-        }
-        if (IsGrounded())
-        {
-            ResetTimer();
-            ResetJumpCounter();
-        }
     }
     private void AugmentSpeedToMaxSpeed()
     {
@@ -172,6 +162,36 @@ public class PlayerMovements : MonoBehaviour
     private void TeleportToSpawnPoint()
     {
         transform.position = _spawnPoint.position;
+    }
+
+    private void CheckIsGroundedCoyauteJump()
+    {
+        if (!IsGrounded())
+        {
+            IncreaseTimer();
+            //_canJump = false;
+            if (/*_canJump && */_currentTimer > _maxTimer)
+            {
+                _canJump = false;
+            }
+        }
+        if (IsGrounded())
+        {
+            ResetTimer();
+            ResetJumpCounter();
+        }
+    }
+    private void CheckLastPosition()
+    {
+        if (LastPos.y > gameObject.transform.position.y)
+        {
+            Debug.Log("Il descend");
+        }
+        else if (LastPos.y < gameObject.transform.position.y)
+        {
+            Debug.Log("Il monte");
+        }
+        LastPos = gameObject.transform.position;
     }
 
     private void ApplyGravity()
@@ -204,8 +224,11 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
-            //_playerSlide.transform.rotation = Quaternion.EulerRotation(_playerSlide.AngleSlide, transform.rotation.y, transform.rotation.z);
-            //_playerSlide.transform.position = new Vector3(Direction.x * ActualSpeed, Direction.x * ActualSpeed, Direction.x * ActualSpeed);
+            CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
+        }
+        if (IsSwimming)
+        {
+            CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
         }
     }
     private void ApplySpeed()
@@ -236,6 +259,7 @@ public class PlayerMovements : MonoBehaviour
     private void Update()
     {
         ApplyRotation();
+        CheckLastPosition();
         if (IsGrounded())
         {
             _canJump = true;
