@@ -51,11 +51,9 @@ public class PlayerMovements : MonoBehaviour
     {
         if (IsWaking)
         {
-            //if (context.performed)
-            //{
             _canSpeedAugment = true;
             _canSpeedDecrease = false;
-            //}
+
             _input = context.ReadValue<Vector2>();
             Direction = new Vector3(_input.x, Direction.y, _input.y);
             if (context.canceled)
@@ -63,6 +61,11 @@ public class PlayerMovements : MonoBehaviour
                 _canSpeedAugment = false;
                 _canSpeedDecrease = true;
             }
+        }
+        if (IsSliding)
+        {
+            _input = context.ReadValue<Vector2>();
+            Direction = new Vector3(_input.x, Direction.y, _input.y);
         }
     }
     public void Jump(InputAction.CallbackContext context)
@@ -93,12 +96,25 @@ public class PlayerMovements : MonoBehaviour
 
     public bool IsGrounded() => CharacterController.isGrounded;
 
-    private void ResetBools()
+    public void IsWalkingBools()
     {
         IsWaking = true;
         IsSliding = false;
         IsSwimming = false;
     }
+    public void IsSlidingBools()
+    {
+        IsWaking = false;
+        IsSliding = true;
+        IsSwimming = false;
+    }
+    public void IsSwimmingBools()
+    {
+        IsWaking = false;
+        IsSliding = false;
+        IsSwimming = true;
+    }
+
     private void IncreaseTimer()
     {
         _currentTimer += Time.deltaTime;
@@ -208,7 +224,7 @@ public class PlayerMovements : MonoBehaviour
     {
         TeleportToSpawnPoint();
         ActualSpeed = _baseSpeed;
-        ResetBools();
+        IsWalkingBools();
     }
     private void FixedUpdate()
     {
