@@ -144,7 +144,6 @@ public class PlayerSlides : MonoBehaviour
             //{
             //    _gamepad.SetMotorSpeeds(0.075f, 0.134f);
             //}
-
         }
     }
 }

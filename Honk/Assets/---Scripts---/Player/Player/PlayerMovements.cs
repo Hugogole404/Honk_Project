@@ -40,6 +40,7 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Silde")]
     public Vector3 LastPos;
+    [SerializeField] private LayerMask _whatIsGround;
 
     [Header("States")]
     [HideInInspector] public bool IsWaking;
@@ -76,6 +77,8 @@ public class PlayerMovements : MonoBehaviour
             _input = context.ReadValue<Vector2>();
             Direction = new Vector3(_input.x, Direction.y, _input.y) / 3;
         }
+
+        //_gamepad.SetMotorSpeeds(0.075f, 0.134f);
     }
     public void Jump(InputAction.CallbackContext context)
     {
@@ -131,6 +134,15 @@ public class PlayerMovements : MonoBehaviour
     private void TeleportToSpawnPoint()
     {
         transform.position = _spawnPoint.position;
+    }
+    private void SurfaceAllignementSlide()
+    {
+        Ray ray = new Ray(transform.position, -transform.up);
+        RaycastHit info = new RaycastHit();
+        if (Physics.Raycast(ray, out info, _whatIsGround))
+        {
+            transform.rotation = Quaternion.FromToRotation(Vector3.back, info.normal);
+        }
     }
 
     private void IncreaseSpeed()
@@ -262,6 +274,10 @@ public class PlayerMovements : MonoBehaviour
         if (IsGrounded())
         {
             _canJump = true;
+        }
+        if (IsSliding)
+        {
+            SurfaceAllignementSlide();
         }
     }
 }

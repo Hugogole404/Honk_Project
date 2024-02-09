@@ -6,8 +6,7 @@ public class AreaSwimming : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovements>() != null) 
         {
-            //other.GetComponent<PlayerMovements>().IsSwimmingBools();
-            Debug.Log("He is swimming");
+            other.GetComponent<PlayerMovements>().IsSwimmingBools();
         }
             
     }
@@ -15,8 +14,7 @@ public class AreaSwimming : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovements>() != null)
         {
-            //other.GetComponent<PlayerMovements>().IsWalkingBools();
-            Debug.Log("He is not swimming");
+            other.GetComponent<PlayerMovements>().IsWalkingBools();
         }
     }
 }
