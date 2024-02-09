@@ -41,6 +41,11 @@ public class PlayerMovements : MonoBehaviour
     [Header("Silde")]
     public Vector3 LastPos;
     [SerializeField] private LayerMask _whatIsGround;
+    [SerializeField] private Vector3 _orientationPlayerSlope = new Vector3();
+    [SerializeField] private AnimationCurve _animationCurve;
+    [SerializeField] private float _timerSlopeOrientation;
+    //[SerializeField] private GameObject _visualPlayer;
+    //private Vector3 _velo;
 
     [Header("States")]
     [HideInInspector] public bool IsWaking;
@@ -141,9 +146,25 @@ public class PlayerMovements : MonoBehaviour
         RaycastHit info = new RaycastHit();
         if (Physics.Raycast(ray, out info, _whatIsGround))
         {
-            transform.rotation = Quaternion.FromToRotation(Vector3.back, info.normal);
+            transform.rotation = Quaternion.FromToRotation(/*Vector3.back*/-Direction + _orientationPlayerSlope, info.normal);
+            //transform.rotation = Quaternion.FromToRotation(-Direction, -info.normal);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(/*Vector3.up*/-Direction + _orientationPlayerSlope, info.normal), _animationCurve.Evaluate(_timerSlopeOrientation));
         }
     }
+    //private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+    //{
+    //    var ray = new Ray(transform.position, Vector3.down);
+    //    if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
+    //    {
+    //        var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+    //        var adjustedVelocity = slopeRotation * velocity;
+    //        if (adjustedVelocity.y < 0)
+    //        {
+    //            return adjustedVelocity;
+    //        }
+    //    }
+    //    return velocity;
+    //}
 
     private void IncreaseSpeed()
     {
@@ -197,7 +218,7 @@ public class PlayerMovements : MonoBehaviour
         {
             Debug.Log("Il monte");
         }
-        else 
+        else
         {
             Debug.Log("Il ne change pas de hauteur");
         }
@@ -213,6 +234,8 @@ public class PlayerMovements : MonoBehaviour
         else
         {
             Velocity += _gravity * _gravityMultiplier * Time.deltaTime;
+            //_velo = AdjustVelocityToSlope(_velo);
+            //_velo.y += ActualSpeed;
         }
         Direction.y = Velocity;
     }
