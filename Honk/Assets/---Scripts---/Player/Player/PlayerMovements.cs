@@ -151,6 +151,11 @@ public class PlayerMovements : MonoBehaviour
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(/*Vector3.up*/-Direction + _orientationPlayerSlope, info.normal), _animationCurve.Evaluate(_timerSlopeOrientation));
         }
     }
+    private void StartSlidingInpulse()
+    {
+        Vector3 inpulseGiven = new Vector3(Direction.x * 10,0,Direction.z * 10);
+        Direction += inpulseGiven;
+    }
     //private Vector3 AdjustVelocityToSlope(Vector3 velocity)
     //{
     //    var ray = new Ray(transform.position, Vector3.down);
@@ -257,7 +262,9 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
-            CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
+            //CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
+            CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity * 2, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
+            //StartSlidingInpulse();
         }
         if (IsSwimming)
         {
