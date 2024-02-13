@@ -10,16 +10,15 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
 
     [Header("Movements")]
-
     public float BaseSpeed;
     public float ActualSpeed;
-
     [SerializeField] private float _maxSpeed;
+    [Space]
     [SerializeField] private float _speedAugmentation;
     [SerializeField] private float _speedDecrease;
-
+    [Space]
     [SerializeField] private float _smoothTime;
-
+    [Space]
     private bool _canSpeedAugment = false;
     private bool _canSpeedDecrease = true;
 
@@ -156,7 +155,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void StartSlidingInpulse()
     {
-        Vector3 inpulseGiven = new Vector3(Direction.x * 10,0,Direction.z * 10);
+        Vector3 inpulseGiven = new Vector3(Direction.x * 10, 0, Direction.z * 10);
         Direction += inpulseGiven;
     }
     //private Vector3 AdjustVelocityToSlope(Vector3 velocity)
@@ -257,9 +256,18 @@ public class PlayerMovements : MonoBehaviour
         {
             return;
         }
-        var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
-        var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        if (IsWaking)
+        {
+            var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
+            var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
+        else if (IsSliding)
+        {
+            var targetAngle = Mathf.Atan2(Direction.x, Direction.y) * Mathf.Rad2Deg;
+            var angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref CurrentVelocity, _smoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
     }
     private void ApplyMovement()
     {
