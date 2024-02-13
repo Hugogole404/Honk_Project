@@ -5,25 +5,27 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovements : MonoBehaviour
 {
-    #region Variables
+    #region VARIABLES
     [Header("SpawnPoint")]
     [SerializeField] private Transform _spawnPoint;
 
     [Header("Movements")]
+
     public float BaseSpeed;
     public float ActualSpeed;
+
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _speedAugmentation;
     [SerializeField] private float _speedDecrease;
-
-    [HideInInspector] public Vector3 Direction;
-    [HideInInspector] public float CurrentVelocity;
-    [HideInInspector] private Vector2 _input;
 
     [SerializeField] private float _smoothTime;
 
     private bool _canSpeedAugment = false;
     private bool _canSpeedDecrease = true;
+
+    [HideInInspector] public Vector3 Direction;
+    [HideInInspector] public float CurrentVelocity;
+    [HideInInspector] public Vector2 Input;
 
     [Header("Gravity")]
     [SerializeField] private float _gravityMultiplier;
@@ -57,6 +59,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] private TimerManager _timerManager;
     #endregion
 
+    #region ACTIONS
     public void Move(InputAction.CallbackContext context)
     {
         if (IsWaking)
@@ -64,8 +67,8 @@ public class PlayerMovements : MonoBehaviour
             _canSpeedAugment = true;
             _canSpeedDecrease = false;
 
-            _input = context.ReadValue<Vector2>();
-            Direction = new Vector3(_input.x, Direction.y, _input.y);
+            Input = context.ReadValue<Vector2>();
+            Direction = new Vector3(Input.x, Direction.y, Input.y);
             if (context.canceled)
             {
                 _canSpeedAugment = false;
@@ -74,15 +77,14 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
-            _input = context.ReadValue<Vector2>();
-            Direction = new Vector3(_input.x, Direction.y, _input.y);
+            Input = context.ReadValue<Vector2>();
+            Direction = new Vector3(Input.x, Direction.y, Input.y);
         }
         if (IsSwimming)
         {
-            _input = context.ReadValue<Vector2>();
-            Direction = new Vector3(_input.x, Direction.y, _input.y) / 3;
+            Input = context.ReadValue<Vector2>();
+            Direction = new Vector3(Input.x, Direction.y, Input.y) / 3;
         }
-
         //_gamepad.SetMotorSpeeds(0.075f, 0.134f);
     }
     public void Jump(InputAction.CallbackContext context)
@@ -110,9 +112,9 @@ public class PlayerMovements : MonoBehaviour
             Debug.Log("HonkNoise");
         }
     }
+    #endregion
 
-    public bool IsGrounded() => CharacterController.isGrounded;
-
+    #region BOOLS SWAP
     public void IsWalkingBools()
     {
         IsWaking = true;
@@ -131,14 +133,15 @@ public class PlayerMovements : MonoBehaviour
         IsSliding = false;
         IsSwimming = true;
     }
+    #endregion
 
-    private void ResetJumpCounter()
-    {
-        _canJump = true;
-    }
     private void TeleportToSpawnPoint()
     {
         transform.position = _spawnPoint.position;
+    }
+    private void ResetJumpCounter()
+    {
+        _canJump = true;
     }
     private void SurfaceAllignementSlide()
     {
@@ -197,6 +200,8 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
+    #region CHECKS
+    public bool IsGrounded() => CharacterController.isGrounded;
     private void CheckIsGroundedCoyauteJump()
     {
         if (!IsGrounded())
@@ -229,7 +234,9 @@ public class PlayerMovements : MonoBehaviour
         }
         LastPos = gameObject.transform.position;
     }
+    #endregion
 
+    #region APPLY
     private void ApplyGravity()
     {
         if (IsGrounded() && Velocity < 0f)
@@ -246,7 +253,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void ApplyRotation()
     {
-        if (_input.sqrMagnitude == 0)
+        if (Input.sqrMagnitude == 0)
         {
             return;
         }
@@ -276,7 +283,7 @@ public class PlayerMovements : MonoBehaviour
         IncreaseSpeed();
         DecreaseSpeed();
     }
-
+    #endregion
 
     private void Awake()
     {
