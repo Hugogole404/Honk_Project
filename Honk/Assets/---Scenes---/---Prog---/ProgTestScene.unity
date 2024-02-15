@@ -550,6 +550,9 @@ MonoBehaviour:
   _spawnPoint: {fileID: 1705373508}
   BaseSpeed: 10
   ActualSpeed: 0
+  CurrentSpeed: {x: 0, y: 0, z: 0}
+  NormalAngle: {x: 0, y: 0, z: 0}
+  WalkingSpeed: {x: 0, y: 0, z: 0}
   _maxSpeed: 20
   _speedAugmentation: 2
   _speedDecrease: 5
@@ -644,7 +647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slopeMaxAngle: 90
   slopeMinAngle: 90
-  slidingSpeed: 1
+  SlidingSpeed: 1
   SlideMultiplicator: 1
   ForceSlideTime: 1
   DownSpeed: 1

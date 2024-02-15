@@ -7,7 +7,7 @@ public class PlayerSlides : MonoBehaviour
     [Header("Sliding")]
     public float slopeMaxAngle;
     public float slopeMinAngle;
-    [Range(0.0f, 1.0f)][SerializeField] private float slidingSpeed;
+    [Range(0.0f, 1.0f)][SerializeField] public float SlidingSpeed;
 
     public float SlideMultiplicator = 1;
     public float ForceSlideTime = 1f;
@@ -33,9 +33,9 @@ public class PlayerSlides : MonoBehaviour
     {
         if (context.started)
         {
+            _playerMovement.CurrentSpeed = new Vector3(_playerMovement.WalkingSpeed.x /* *slide boost */ , _playerMovement.CurrentSpeed.y, _playerMovement.WalkingSpeed.z /* *slide boost*/);
             return;
         }
-
         //_playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
 
         if (context.performed && !_playerMovement.IsSwimming)
@@ -52,7 +52,7 @@ public class PlayerSlides : MonoBehaviour
     {
         float speedAngle = _slopeAngle - 90;
         transform.rotation = Quaternion.LookRotation(new Vector3(_slidingDir.x, -90 + -_normalAngle.z, _slidingDir.z));
-        _speed = _slopeAngle * Mathf.Deg2Rad * slidingSpeed * SlideMultiplicator;
+        _speed = _slopeAngle * Mathf.Deg2Rad * SlidingSpeed * SlideMultiplicator;
 
         _normalAngle = new Vector3(_hit.normal.x, Mathf.Max(_hit.normal.y - 1.5f, -1f), _hit.normal.z);
         CurrentSpeed = _normalAngle * _speed + CurrentSpeed / _snowFriction;

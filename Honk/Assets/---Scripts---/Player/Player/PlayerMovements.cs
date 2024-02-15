@@ -12,6 +12,10 @@ public class PlayerMovements : MonoBehaviour
     [Header("Movements")]
     public float BaseSpeed;
     public float ActualSpeed;
+    public float SlideActualSpeed;
+    public Vector3 CurrentSpeed;
+    public Vector3 NormalAngle;
+    public Vector3 WalkingSpeed;
     [SerializeField] private float _maxSpeed;
     [Space]
     [SerializeField] private float _speedAugmentation;
@@ -28,7 +32,7 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Gravity")]
     [SerializeField] private float _gravityMultiplier;
-    [HideInInspector] public float Velocity;
+    public float Velocity;
     private float _gravity = -9.81f;
 
     [Header("Jump")]
@@ -68,6 +72,7 @@ public class PlayerMovements : MonoBehaviour
 
             Input = context.ReadValue<Vector2>();
             Direction = new Vector3(Input.x, Direction.y, Input.y);
+            //Direction.Normalize();
             if (context.canceled)
             {
                 _canSpeedAugment = false;
@@ -78,11 +83,13 @@ public class PlayerMovements : MonoBehaviour
         {
             Input = context.ReadValue<Vector2>();
             Direction = new Vector3(Input.x, Direction.y, Input.y);
+            //Direction.Normalize();
         }
         if (IsSwimming)
         {
             Input = context.ReadValue<Vector2>();
             Direction = new Vector3(Input.x, Direction.y, Input.y) / 3;
+            //Direction.Normalize();
         }
         //_gamepad.SetMotorSpeeds(0.075f, 0.134f);
     }
@@ -148,7 +155,20 @@ public class PlayerMovements : MonoBehaviour
         RaycastHit info = new RaycastHit();
         if (Physics.Raycast(ray, out info, _whatIsGround))
         {
-            transform.rotation = Quaternion.FromToRotation(/*Vector3.back*/-Direction + _orientationPlayerSlope, info.normal);
+            //transform.rotation = Quaternion.FromToRotation(/*Vector3.back*/-Direction + _orientationPlayerSlope, info.normal);
+
+            float slopeAngle = Mathf.Deg2Rad * Vector3.Angle(Vector3.up, info.normal);
+            float speedAngle = slopeAngle - 90;
+            SlideActualSpeed = slopeAngle * Mathf.Deg2Rad * _playerSlides.SlidingSpeed;
+            NormalAngle = new Vector3(info.normal.x, Mathf.Max(info.normal.y - 1.5f, -1f), info.normal.z);
+
+            CurrentSpeed += NormalAngle * SlideActualSpeed;
+            CurrentSpeed = new Vector3(CurrentSpeed.x, WalkingSpeed.y, CurrentSpeed.z);
+
+            //if (IsGrounded())
+            //{
+            //    CurrentSpeed.y += _gravity;
+            //}
             //transform.rotation = Quaternion.FromToRotation(-Direction, -info.normal);
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(/*Vector3.up*/-Direction + _orientationPlayerSlope, info.normal), _animationCurve.Evaluate(_timerSlopeOrientation));
         }
@@ -273,12 +293,13 @@ public class PlayerMovements : MonoBehaviour
     {
         if (IsWaking)
         {
-            CharacterController.Move(Direction * ActualSpeed * Time.deltaTime);
+            CharacterController.Move(WalkingSpeed * Time.deltaTime);
         }
         if (IsSliding)
         {
             //CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
-            CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity * 2, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
+            //CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity * 2, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
+            CharacterController.Move(CurrentSpeed * Time.deltaTime);
             //StartSlidingInpulse();
         }
         if (IsSwimming)
@@ -308,14 +329,18 @@ public class PlayerMovements : MonoBehaviour
     private void FixedUpdate()
     {
         CheckIsGroundedCoyauteJump();
-        ApplyMovement();
-        ApplyGravity();
+        ApplyMovement(); ;
         ApplySpeed();
     }
     private void Update()
     {
+        Debug.Log(_gravity);
+        //Direction.Normalize();
+        WalkingSpeed = Direction * ActualSpeed;
+
         ApplyRotation();
         CheckLastPosition();
+        ApplyGravity();
         if (IsGrounded())
         {
             _canJump = true;
@@ -323,6 +348,7 @@ public class PlayerMovements : MonoBehaviour
         if (IsSliding)
         {
             SurfaceAllignementSlide();
+            Debug.DrawLine(transform.position, transform.position + NormalAngle * 8, Color.red, 8f);
         }
     }
 }
