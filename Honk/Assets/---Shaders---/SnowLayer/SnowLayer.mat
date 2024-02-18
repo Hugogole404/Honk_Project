@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Base_Texture:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Snow_Normal_Map:
@@ -55,21 +55,22 @@ Material:
     m_Ints: []
     m_Floats:
     - _Base_normal_Stength: 0
-    - _BlendSnow: -0.6
+    - _BlendSnow: -0.79
     - _Buildup_Noise_Size: 17.3
     - _Float: -0.76
     - _Gradient: 0.416
+    - _Height: 0.36
     - _Power_Snow_Normal: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Snow_Amout: 1
+    - _Snow_Amout: 0.86
     - _Snow_Blend_Distance: 0.487
     - _Snow_Color_Noise_Size: 161.46
-    - _Snow_Color_Noise_Strength: 0
+    - _Snow_Color_Noise_Strength: 0.039
     - _Snow_Displace: 0
     - _Snow_Opacity: 0.887
     m_Colors:
-    - _Base_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Base_Color: {r: 0.31330022, g: 0.41509432, b: 0.30701315, a: 1}
     - _Base_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Base_Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _SnowDirection: {r: 0, g: 1, b: 0, a: 0}
