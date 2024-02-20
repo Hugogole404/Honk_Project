@@ -557,6 +557,7 @@ MonoBehaviour:
   CurrentSpeed: {x: 0, y: 0, z: 0}
   NormalAngle: {x: 0, y: 0, z: 0}
   WalkingSpeed: {x: 0, y: 0, z: 0}
+  ModelePlayer: {fileID: 1064187130}
   _maxSpeed: 20
   _speedAugmentation: 2
   _speedDecrease: 5
@@ -709,6 +710,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1064187130 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2272467109808130228, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1344047092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1218166775
 GameObject:
   m_ObjectHideFlags: 0

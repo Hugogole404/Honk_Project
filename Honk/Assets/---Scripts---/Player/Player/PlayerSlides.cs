@@ -45,6 +45,7 @@ public class PlayerSlides : MonoBehaviour
         if (context.canceled)
         {
             _playerMovement.IsWalkingBools();
+            _playerMovement.ModelePlayer.transform.rotation = _playerMovement.PlayerOriginRotation;
         }
     }
 

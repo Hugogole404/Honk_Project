@@ -19,6 +19,7 @@ public class PlayerMovements : MonoBehaviour
     public Vector3 CurrentSpeed;
     public Vector3 NormalAngle;
     public Vector3 WalkingSpeed;
+    public GameObject ModelePlayer;
     [SerializeField] private float _maxSpeed;
     [Space]
     [SerializeField] private float _speedAugmentation;
@@ -29,9 +30,10 @@ public class PlayerMovements : MonoBehaviour
     private bool _canSpeedAugment = false;
     private bool _canSpeedDecrease = true;
 
-    [HideInInspector] public Vector3 Direction;
     [HideInInspector] public float CurrentVelocity;
+    [HideInInspector] public Vector3 Direction;
     [HideInInspector] public Vector2 Input;
+    [HideInInspector] public Quaternion PlayerOriginRotation;
 
     [Header("Gravity")]
     [SerializeField] private float _gravityMultiplier;
@@ -158,7 +160,7 @@ public class PlayerMovements : MonoBehaviour
         RaycastHit info = new RaycastHit();
         if (Physics.Raycast(ray, out info, _whatIsGround))
         {
-            //transform.rotation = Quaternion.FromToRotation(/*Vector3.back*/-Direction + _orientationPlayerSlope, info.normal);
+            ModelePlayer.transform.rotation = Quaternion.FromToRotation(/*Vector3.back*/-Direction + _orientationPlayerSlope, info.normal);
 
             float slopeAngle = Mathf.Deg2Rad * Vector3.Angle(Vector3.up, info.normal);
             //float speedAngle = slopeAngle - 90;
@@ -344,6 +346,7 @@ public class PlayerMovements : MonoBehaviour
         TeleportToSpawnPoint();
         ActualSpeed = BaseSpeed;
         IsWalkingBools();
+        PlayerOriginRotation = ModelePlayer.transform.rotation;
     }
     private void FixedUpdate()
     {
