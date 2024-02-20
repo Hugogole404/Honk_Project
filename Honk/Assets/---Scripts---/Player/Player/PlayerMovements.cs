@@ -62,6 +62,9 @@ public class PlayerMovements : MonoBehaviour
     //[SerializeField] private GameObject _visualPlayer;
     //private Vector3 _velo;
 
+    [Header("Friction")]
+    [SerializeField] float _frictionForce;
+
     [Header("States")]
     [HideInInspector] public bool IsWaking;
     [HideInInspector] public bool IsSliding;
@@ -175,7 +178,7 @@ public class PlayerMovements : MonoBehaviour
 
             CurrentSpeed += NormalAngle * SlideActualSpeed;
             //CurrentSpeed = new Vector3(CurrentSpeed.x, WalkingSpeed.y, CurrentSpeed.z);
-            CurrentSpeed = new Vector3(CurrentSpeed.x * BaseSpeed / 10 * SpeedModification, WalkingSpeed.y, CurrentSpeed.z * BaseSpeed / 10 * SpeedModification);
+            CurrentSpeed = new Vector3(CurrentSpeed.x * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.x * Time.deltaTime), WalkingSpeed.y, CurrentSpeed.z * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.z * Time.deltaTime));
 
             //if (IsGrounded())
             //{
@@ -326,8 +329,8 @@ public class PlayerMovements : MonoBehaviour
         {
             //CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
             //CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity * 2, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
-            CharacterController.Move(CurrentSpeed * Time.deltaTime);
             //StartSlidingInpulse();
+            CharacterController.Move(CurrentSpeed * Time.deltaTime);
         }
         if (IsSwimming)
         {
