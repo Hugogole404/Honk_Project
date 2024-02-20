@@ -10,6 +10,7 @@ public class AreaDeathZone : MonoBehaviour
         {
             other.GetComponent<CharacterController>().enabled = false;
             other.transform.position = other.GetComponent<PlayerMovements>().SpawnPoint.transform.position;
+            other.transform.rotation = other.GetComponent<PlayerMovements>().PlayerOriginRotation;
             other.GetComponent<CharacterController>().enabled = true;
         }
     }

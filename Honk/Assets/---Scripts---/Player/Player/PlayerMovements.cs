@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovements : MonoBehaviour
 {
     #region VARIABLES
+    public float ModifyTurn;
+    public RaycastHit INFOOOO;
     [Header("SpawnPoint")]
     public Transform SpawnPoint;
 
@@ -22,7 +24,7 @@ public class PlayerMovements : MonoBehaviour
     public Vector3 NormalAngle;
     public Vector3 WalkingSpeed;
     [Space]
-    public GameObject ModelePlayer;
+    public GameObject ModelPlayer;
     [SerializeField] private float _maxSpeed;
     [Space]
     [SerializeField] private float _speedAugmentation;
@@ -54,6 +56,8 @@ public class PlayerMovements : MonoBehaviour
     [Header("Silde")]
     public Vector3 LastPos;
     public float CoolDownSlope;
+    public float _slopeTurnSpeed;
+    private float _slopeValueToRotation;
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Vector3 _orientationPlayerSlope = new Vector3();
     [SerializeField] private AnimationCurve _animationCurve;
@@ -95,6 +99,9 @@ public class PlayerMovements : MonoBehaviour
         if (IsSliding)
         {
             Input = context.ReadValue<Vector2>();
+            //float dirX = ValueRotation(Input.x)
+            //float dirY = 
+            ValueRotation(Input.x);
             Direction = new Vector3(Input.x, Direction.y, Input.y);
             //ModelePlayer.transform.rotation = new Quaternion(Input.x, Direction.y, Input.y, 0);
             //Direction.Normalize();
@@ -169,7 +176,9 @@ public class PlayerMovements : MonoBehaviour
         RaycastHit info = new RaycastHit();
         if (Physics.Raycast(ray, out info, _whatIsGround))
         {
-            ModelePlayer.transform.rotation = Quaternion.FromToRotation(/*Vector3.back*/-Direction + _orientationPlayerSlope, info.normal);
+            INFOOOO.normal = info.normal;
+            //ModelPlayer.transform.rotation = Quaternion.FromToRotation(/*Vector3.back*/new Vector3(0, 0, -1), info.normal);
+            //ModelPlayer.transform.rotation = Quaternion.Euler(
 
             float slopeAngle = Mathf.Deg2Rad * Vector3.Angle(Vector3.up, info.normal);
             //float speedAngle = slopeAngle - 90;
@@ -178,7 +187,14 @@ public class PlayerMovements : MonoBehaviour
 
             CurrentSpeed += NormalAngle * SlideActualSpeed;
             //CurrentSpeed = new Vector3(CurrentSpeed.x, WalkingSpeed.y, CurrentSpeed.z);
-            CurrentSpeed = new Vector3(CurrentSpeed.x * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.x * Time.deltaTime), WalkingSpeed.y, CurrentSpeed.z * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.z * Time.deltaTime));
+            //CurrentSpeed = new Vector3(CurrentSpeed.x * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.x * Time.deltaTime), 
+            //    WalkingSpeed.y, 
+            //    CurrentSpeed.z * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.z * Time.deltaTime));
+            Vector3 varTemp = new Vector3(CurrentSpeed.x * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.x * Time.deltaTime),
+                WalkingSpeed.y,
+                CurrentSpeed.z * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.z * Time.deltaTime));
+            CurrentSpeed = Vector3.Lerp(CurrentSpeed, varTemp, ModifyTurn);
+            
 
             //if (IsGrounded())
             //{
@@ -231,6 +247,17 @@ public class PlayerMovements : MonoBehaviour
         if (ActualSpeed < BaseSpeed)
         {
             ActualSpeed = BaseSpeed;
+        }
+    }
+    private void ValueRotation(float inputValue)
+    {
+        if (inputValue < 0)
+        {
+            _slopeValueToRotation -= _slopeTurnSpeed * Time.deltaTime;
+        }
+        else if (inputValue >= 0)
+        {
+            _slopeValueToRotation += _slopeTurnSpeed * Time.deltaTime;
         }
     }
 
@@ -310,13 +337,18 @@ public class PlayerMovements : MonoBehaviour
         {
             var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
+            //transform.rotation = Quaternion.Euler(0f, angle, 0f);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
         else if (IsSliding)
         {
-            var targetAngle = Mathf.Atan2(Direction.x, Direction.y) * Mathf.Rad2Deg;
-            var angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref CurrentVelocity, _smoothTime);
+            var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
+            var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
+            //ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            //transform.rotation = Quaternion.Euler(0f, angle, 0f);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            ModelPlayer.transform.rotation = Quaternion.Euler(INFOOOO.normal.x, angle, INFOOOO.normal.z);
+
         }
     }
     private void ApplyMovement()
@@ -355,7 +387,7 @@ public class PlayerMovements : MonoBehaviour
         TeleportToSpawnPoint();
         ActualSpeed = BaseSpeed;
         IsWalkingBools();
-        PlayerOriginRotation = ModelePlayer.transform.rotation;
+        PlayerOriginRotation = ModelPlayer.transform.rotation;
     }
     private void FixedUpdate()
     {
@@ -369,6 +401,8 @@ public class PlayerMovements : MonoBehaviour
         //Debug.Log(_gravity);
         //Direction.Normalize();
         WalkingSpeed = Direction * ActualSpeed;
+
+        //Debug.Log(Input);
 
         ApplyRotation();
         CheckLastPosition();

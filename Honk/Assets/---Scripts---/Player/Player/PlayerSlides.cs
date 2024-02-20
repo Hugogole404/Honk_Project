@@ -8,6 +8,7 @@ public class PlayerSlides : MonoBehaviour
     public float slopeMaxAngle;
     public float slopeMinAngle;
     [Range(0.0f, 1.0f)][SerializeField] public float SlidingSpeed;
+    public bool ContextStarted = false;
 
     public float SlideMultiplicator = 1;
     public float ForceSlideTime = 1f;
@@ -36,7 +37,9 @@ public class PlayerSlides : MonoBehaviour
         {
             if (context.started)
             {
+                ContextStarted = true;
                 _playerMovement.CurrentSpeed = new Vector3(_playerMovement.WalkingSpeed.x /* *slide boost */ , _playerMovement.CurrentSpeed.y, _playerMovement.WalkingSpeed.z /* *slide boost*/);
+
                 return;
             }
             //_playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
@@ -48,7 +51,7 @@ public class PlayerSlides : MonoBehaviour
             if (context.canceled)
             {
                 _playerMovement.IsWalkingBools();
-                _playerMovement.ModelePlayer.transform.rotation = _playerMovement.PlayerOriginRotation;
+                _playerMovement.ModelPlayer.transform.rotation = _playerMovement.PlayerOriginRotation;
                 _playerMovement.TimerCoolDownSlope = 0f;
             }
         }
