@@ -6,7 +6,7 @@ using UnityEngine;
 public class AreaSpawnPoint : MonoBehaviour
 {
     [SerializeField] private Transform _spawnPoint;
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerMovements>() != null)
         {
