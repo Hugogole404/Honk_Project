@@ -13,6 +13,8 @@ public class PlayerMovements : MonoBehaviour
     public float BaseSpeed;
     public float ActualSpeed;
     public float SlideActualSpeed;
+    public float BoostSpeedDash;
+    public float SpeedModification;
     public Vector3 CurrentSpeed;
     public Vector3 NormalAngle;
     public Vector3 WalkingSpeed;
@@ -158,12 +160,13 @@ public class PlayerMovements : MonoBehaviour
             //transform.rotation = Quaternion.FromToRotation(/*Vector3.back*/-Direction + _orientationPlayerSlope, info.normal);
 
             float slopeAngle = Mathf.Deg2Rad * Vector3.Angle(Vector3.up, info.normal);
-            float speedAngle = slopeAngle - 90;
+            //float speedAngle = slopeAngle - 90;
             SlideActualSpeed = slopeAngle * Mathf.Deg2Rad * _playerSlides.SlidingSpeed;
             NormalAngle = new Vector3(info.normal.x, Mathf.Max(info.normal.y - 1.5f, -1f), info.normal.z);
 
             CurrentSpeed += NormalAngle * SlideActualSpeed;
-            CurrentSpeed = new Vector3(CurrentSpeed.x, WalkingSpeed.y, CurrentSpeed.z);
+            //CurrentSpeed = new Vector3(CurrentSpeed.x, WalkingSpeed.y, CurrentSpeed.z);
+            CurrentSpeed = new Vector3(CurrentSpeed.x * BaseSpeed / 10 * SpeedModification, WalkingSpeed.y, CurrentSpeed.z * BaseSpeed / 10 * SpeedModification);
 
             //if (IsGrounded())
             //{
@@ -241,17 +244,31 @@ public class PlayerMovements : MonoBehaviour
     {
         if (LastPos.y > gameObject.transform.position.y)
         {
+            SpeedModification += 0.1f;
             Debug.Log("Il descend");
         }
         else if (LastPos.y < gameObject.transform.position.y)
         {
+            SpeedModification -= 0.1f;
             Debug.Log("Il monte");
         }
         else
         {
+            SpeedModification = 1;
             Debug.Log("Il ne change pas de hauteur");
         }
         LastPos = gameObject.transform.position;
+    }
+    void CheckSpeedModification()
+    {
+        if (SpeedModification > _maxSpeed)
+        {
+            SpeedModification = _maxSpeed;
+        }
+        if(SpeedModification < -_maxSpeed)
+        {
+            SpeedModification = -_maxSpeed;
+        }
     }
     #endregion
 
@@ -334,7 +351,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(_gravity);
+        //Debug.Log(_gravity);
         //Direction.Normalize();
         WalkingSpeed = Direction * ActualSpeed;
 
