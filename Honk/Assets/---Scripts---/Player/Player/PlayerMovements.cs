@@ -15,6 +15,7 @@ public class PlayerMovements : MonoBehaviour
     public float SlideActualSpeed;
     public float BoostSpeedDash;
     public float SpeedModification;
+    public float SpeedModificationValueToUpAndDown;
     public Vector3 CurrentSpeed;
     public Vector3 NormalAngle;
     public Vector3 WalkingSpeed;
@@ -244,12 +245,12 @@ public class PlayerMovements : MonoBehaviour
     {
         if (LastPos.y > gameObject.transform.position.y)
         {
-            SpeedModification += 0.1f;
+            SpeedModification += SpeedModificationValueToUpAndDown * Time.deltaTime;
             Debug.Log("Il descend");
         }
         else if (LastPos.y < gameObject.transform.position.y)
         {
-            SpeedModification -= 0.1f;
+            SpeedModification -= SpeedModificationValueToUpAndDown * Time.deltaTime;
             Debug.Log("Il monte");
         }
         else
@@ -257,9 +258,10 @@ public class PlayerMovements : MonoBehaviour
             SpeedModification = 1;
             Debug.Log("Il ne change pas de hauteur");
         }
+        CheckSpeedModification();
         LastPos = gameObject.transform.position;
     }
-    void CheckSpeedModification()
+    private void CheckSpeedModification()
     {
         if (SpeedModification > _maxSpeed)
         {
