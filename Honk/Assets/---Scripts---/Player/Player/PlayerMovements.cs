@@ -13,12 +13,15 @@ public class PlayerMovements : MonoBehaviour
     public float BaseSpeed;
     public float ActualSpeed;
     public float SlideActualSpeed;
+    [Space]
     public float BoostSpeedDash;
     public float SpeedModification;
     public float SpeedModificationValueToUpAndDown;
+    [Space]
     public Vector3 CurrentSpeed;
     public Vector3 NormalAngle;
     public Vector3 WalkingSpeed;
+    [Space]
     public GameObject ModelePlayer;
     [SerializeField] private float _maxSpeed;
     [Space]
