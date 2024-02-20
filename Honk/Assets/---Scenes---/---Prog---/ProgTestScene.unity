@@ -562,14 +562,16 @@ MonoBehaviour:
   _speedAugmentation: 2
   _speedDecrease: 5
   _smoothTime: 0.05
-  Direction: {x: 0, y: 0, z: 0}
   CurrentVelocity: 0
+  Direction: {x: 0, y: 0, z: 0}
   Input: {x: 0, y: 0}
+  PlayerOriginRotation: {x: 0, y: 0, z: 0, w: 0}
   _gravityMultiplier: 1
   Velocity: 0
   _jumpPower: 4
   _maxTimer: 1
   LastPos: {x: 0, y: 0, z: 0}
+  CoolDownSlope: 1
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 128
@@ -608,6 +610,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _timerSlopeOrientation: 10.1
+  TimerCoolDownSlope: 0
   IsWaking: 0
   IsSliding: 0
   IsSwimming: 0

@@ -53,10 +53,12 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Silde")]
     public Vector3 LastPos;
+    public float CoolDownSlope;
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Vector3 _orientationPlayerSlope = new Vector3();
     [SerializeField] private AnimationCurve _animationCurve;
     [SerializeField] private float _timerSlopeOrientation;
+    [HideInInspector] public float TimerCoolDownSlope;
     //[SerializeField] private GameObject _visualPlayer;
     //private Vector3 _velo;
 
@@ -91,6 +93,7 @@ public class PlayerMovements : MonoBehaviour
         {
             Input = context.ReadValue<Vector2>();
             Direction = new Vector3(Input.x, Direction.y, Input.y);
+            //ModelePlayer.transform.rotation = new Quaternion(Input.x, Direction.y, Input.y, 0);
             //Direction.Normalize();
         }
         if (IsSwimming)
@@ -272,7 +275,7 @@ public class PlayerMovements : MonoBehaviour
         {
             SpeedModification = _maxSpeed;
         }
-        if(SpeedModification < -_maxSpeed)
+        if (SpeedModification < -_maxSpeed)
         {
             SpeedModification = -_maxSpeed;
         }
@@ -359,6 +362,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void Update()
     {
+        TimerCoolDownSlope += Time.deltaTime;
         //Debug.Log(_gravity);
         //Direction.Normalize();
         WalkingSpeed = Direction * ActualSpeed;

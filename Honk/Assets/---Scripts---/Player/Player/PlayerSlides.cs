@@ -27,25 +27,30 @@ public class PlayerSlides : MonoBehaviour
     public float BaseSpeedSlide;
     private PlayerSwim _playerSwim;
     private PlayerMovements _playerMovement;
+    private TimerManager _timerManager;
     #endregion
 
     public void Slide(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (_playerMovement.TimerCoolDownSlope > _playerMovement.CoolDownSlope)
         {
-            _playerMovement.CurrentSpeed = new Vector3(_playerMovement.WalkingSpeed.x /* *slide boost */ , _playerMovement.CurrentSpeed.y, _playerMovement.WalkingSpeed.z /* *slide boost*/);
-            return;
-        }
-        //_playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
+            if (context.started)
+            {
+                _playerMovement.CurrentSpeed = new Vector3(_playerMovement.WalkingSpeed.x /* *slide boost */ , _playerMovement.CurrentSpeed.y, _playerMovement.WalkingSpeed.z /* *slide boost*/);
+                return;
+            }
+            //_playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
 
-        if (context.performed && !_playerMovement.IsSwimming)
-        {
-            _playerMovement.IsSlidingBools();
-        }
-        if (context.canceled)
-        {
-            _playerMovement.IsWalkingBools();
-            _playerMovement.ModelePlayer.transform.rotation = _playerMovement.PlayerOriginRotation;
+            if (context.performed && !_playerMovement.IsSwimming)
+            {
+                _playerMovement.IsSlidingBools();
+            }
+            if (context.canceled)
+            {
+                _playerMovement.IsWalkingBools();
+                _playerMovement.ModelePlayer.transform.rotation = _playerMovement.PlayerOriginRotation;
+                _playerMovement.TimerCoolDownSlope = 0f;
+            }
         }
     }
 
