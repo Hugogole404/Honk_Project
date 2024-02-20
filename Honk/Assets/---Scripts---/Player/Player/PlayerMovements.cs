@@ -7,7 +7,7 @@ public class PlayerMovements : MonoBehaviour
 {
     #region VARIABLES
     [Header("SpawnPoint")]
-    [SerializeField] private Transform _spawnPoint;
+    public Transform SpawnPoint;
 
     [Header("Movements")]
     public float BaseSpeed;
@@ -157,7 +157,7 @@ public class PlayerMovements : MonoBehaviour
 
     private void TeleportToSpawnPoint()
     {
-        transform.position = _spawnPoint.position;
+        transform.position = SpawnPoint.position;
     }
     private void ResetJumpCounter()
     {
