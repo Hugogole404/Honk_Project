@@ -31,7 +31,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FoamTexture2D:
-        m_Texture: {fileID: 2800000, guid: 2ee2dd55a499eb940896b7f0ff00bca4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 63a723aede7ba5146a1fd7f0bbd4ed55, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -75,8 +75,8 @@ Material:
     - _CausticsSpeed: 0.05
     - _CausticsTiling: 5
     - _Cull: 2
-    - _Depth: 0.07
-    - _DepthFalloff: 0
+    - _Depth: 1.82
+    - _DepthFalloff: 2.32
     - _DstBlend: 10
     - _Float: 0.58
     - _FoamAmout: 0.2
@@ -89,9 +89,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ReflectionAmount: 0.622
-    - _ReflectionSpeed: 0.25
-    - _ReflextionDistortion: 0.06
+    - _ReflectionAmount: 0.249
+    - _ReflectionSpeed: 0.08
+    - _ReflextionDistortion: 0.075
     - _Refraction: 0.92
     - _RefractionSpeed: 0.01
     - _RefractionStrenght: 0.88
@@ -105,12 +105,12 @@ Material:
     m_Colors:
     - _CausticsColor: {r: 1.4980394, g: 1.4980394, b: 1.4980394, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FoamSpeed: {r: 0, g: 0.05, b: 0, a: 0}
-    - _FoamTilling: {r: 1, g: 1, b: 0, a: 0}
-    - _MainColor: {r: 0.12941174, g: 0.57473314, b: 0.78431374, a: 1}
-    - _ReflectionTiling: {r: 15, g: 15, b: 0, a: 0}
+    - _FoamSpeed: {r: 0, g: 0.2, b: 0, a: 0}
+    - _FoamTilling: {r: -4.14, g: 10, b: 0, a: 0}
+    - _MainColor: {r: 0.12941174, g: 0.44577923, b: 0.78431374, a: 1}
+    - _ReflectionTiling: {r: 5, g: 5, b: 0, a: 0}
     - _RefractionScale: {r: 3, g: 3, b: 0, a: 0}
-    - _SecondColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SecondColor: {r: 0.0039215684, g: 0.8375667, b: 0.94509804, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6479030351230788979
 MonoBehaviour:
