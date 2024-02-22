@@ -1074,8 +1074,8 @@ Transform:
   m_GameObject: {fileID: 260911444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 6.07, y: 3.01, z: 1.63}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1344047093}
   m_Father: {fileID: 0}
@@ -1093,7 +1093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c7ce83676819141975ec8065d7b4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPoint: {fileID: 1705373508}
+  ModifyTurn: 0
+  SpawnPoint: {fileID: 1705373508}
   BaseSpeed: 10
   ActualSpeed: 0
   SlideActualSpeed: 0
@@ -1103,7 +1104,7 @@ MonoBehaviour:
   CurrentSpeed: {x: 0, y: 0, z: 0}
   NormalAngle: {x: 0, y: 0, z: 0}
   WalkingSpeed: {x: 0, y: 0, z: 0}
-  ModelePlayer: {fileID: 0}
+  ModelPlayer: {fileID: 305153337}
   _maxSpeed: 20
   _speedAugmentation: 2
   _speedDecrease: 5
@@ -1118,6 +1119,7 @@ MonoBehaviour:
   _maxTimer: 1
   LastPos: {x: 0, y: 0, z: 0}
   CoolDownSlope: 0
+  _slopeTurnSpeed: 0
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 128
@@ -1203,6 +1205,7 @@ MonoBehaviour:
   slopeMaxAngle: 90
   slopeMinAngle: 90
   SlidingSpeed: 1
+  ContextStarted: 0
   SlideMultiplicator: 2.47
   ForceSlideTime: 1
   DownSpeed: 1
@@ -1384,6 +1387,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae3dfa1969b1357468d3048bd92128fb, type: 3}
+--- !u!1 &305153337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2272467109808130228, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1344047092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &308745108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4843,17 +4852,17 @@ PrefabInstance:
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 95.39
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 95.39
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 95.39
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}

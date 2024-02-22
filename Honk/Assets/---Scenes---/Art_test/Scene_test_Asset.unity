@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 78741153}
-  m_IndirectSpecularColor: {r: 0.18308833, g: 0.31737587, b: 0.5836095, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &7923121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2272467109808130228, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1344047092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &33027245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1236582774779706720, guid: ae3dfa1969b1357468d3048bd92128fb,
@@ -1208,7 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModifyTurn: 0
-  SpawnPoint: {fileID: 0}
+  SpawnPoint: {fileID: 1705373508}
   BaseSpeed: 10
   ActualSpeed: 0
   SlideActualSpeed: 0
@@ -1218,7 +1224,7 @@ MonoBehaviour:
   CurrentSpeed: {x: 0, y: 0, z: 0}
   NormalAngle: {x: 0, y: 0, z: 0}
   WalkingSpeed: {x: 0, y: 0, z: 0}
-  ModelPlayer: {fileID: 0}
+  ModelPlayer: {fileID: 7923121}
   _maxSpeed: 20
   _speedAugmentation: 2
   _speedDecrease: 5
@@ -5654,17 +5660,17 @@ PrefabInstance:
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 95.39
+      value: 1.5000001
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 95.39
+      value: 1.5000001
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 95.39
+      value: 1.5000001
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
