@@ -41,6 +41,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 38e01e7e37e4f4f43967d7fdeaa37cfb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MotifWallTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SnowTexture:
         m_Texture: {fileID: 2800000, guid: 38e01e7e37e4f4f43967d7fdeaa37cfb, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -71,14 +75,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blend: 10
+    - _Blend: 8.9
+    - _Float: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Tiling: 1
     m_Colors:
     - _BaseColor: {r: 0, g: 0, b: 0, a: 0}
+    - _MotifTopTiling: {r: 0.04, g: 0.04, b: 0, a: 0}
+    - _MotifWallColor: {r: 1, g: 1, b: 1, a: 1}
     - _Tiling: {r: 0.01, g: 0.01, b: 0, a: 0}
-    - _TopColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TopMotifColor: {r: 0.5283019, g: 0.30153078, b: 0.30153078, a: 1}
-    - _WallColor: {r: 0, g: 0, b: 0, a: 0}
+    - _TopColor: {r: 0.6901961, g: 0.62397826, b: 0.3137255, a: 1}
+    - _TopMotifColor: {r: 0.6037736, g: 0.4779483, b: 0.15606974, a: 1}
+    - _WallColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
