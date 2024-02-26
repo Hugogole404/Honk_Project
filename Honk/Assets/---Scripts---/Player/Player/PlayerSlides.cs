@@ -66,7 +66,7 @@ public class PlayerSlides : MonoBehaviour
         _normalAngle = new Vector3(_hit.normal.x, Mathf.Max(_hit.normal.y - 1.5f, -1f), _hit.normal.z);
         CurrentSpeed = _normalAngle * _speed + CurrentSpeed / _snowFriction;
 
-        _playerMovement.CharacterController.Move((CurrentSpeed * Time.deltaTime));
+        _playerMovement.CharaController.Move((CurrentSpeed * Time.deltaTime));
         _slidingDir = CurrentSpeed.normalized;
 
         Vector3 positionActuel = transform.position;

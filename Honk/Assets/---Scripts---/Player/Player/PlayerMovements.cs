@@ -74,7 +74,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public bool IsSliding;
     [HideInInspector] public bool IsSwimming;
 
-    [HideInInspector] public CharacterController CharacterController;
+    [HideInInspector] public CharacterController CharaController;
     [HideInInspector] private PlayerSlides _playerSlides;
     [HideInInspector] private TimerManager _timerManager;
     #endregion
@@ -164,7 +164,9 @@ public class PlayerMovements : MonoBehaviour
 
     private void TeleportToSpawnPoint()
     {
+        CharaController.enabled = false;
         transform.position = SpawnPoint.position;
+        CharaController.enabled = true;
     }
     private void ResetJumpCounter()
     {
@@ -262,7 +264,7 @@ public class PlayerMovements : MonoBehaviour
     }
 
     #region CHECKS
-    public bool IsGrounded() => CharacterController.isGrounded;
+    public bool IsGrounded() => CharaController.isGrounded;
     private void CheckIsGroundedCoyauteJump()
     {
         if (!IsGrounded())
@@ -355,18 +357,18 @@ public class PlayerMovements : MonoBehaviour
     {
         if (IsWaking)
         {
-            CharacterController.Move(WalkingSpeed * Time.deltaTime);
+            CharaController.Move(WalkingSpeed * Time.deltaTime);
         }
         if (IsSliding)
         {
             //CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
             //CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity * 2, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
             //StartSlidingInpulse();
-            CharacterController.Move(CurrentSpeed * Time.deltaTime);
+            CharaController.Move(CurrentSpeed * Time.deltaTime);
         }
         if (IsSwimming)
         {
-            CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
+            CharaController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
         }
     }
     private void ApplySpeed()
@@ -378,7 +380,7 @@ public class PlayerMovements : MonoBehaviour
 
     private void Awake()
     {
-        CharacterController = GetComponent<CharacterController>();
+        CharaController = GetComponent<CharacterController>();
         _playerSlides = GetComponent<PlayerSlides>();
         _timerManager = FindAnyObjectByType<TimerManager>();
     }
