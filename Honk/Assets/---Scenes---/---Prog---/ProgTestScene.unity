@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c7ce83676819141975ec8065d7b4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModifyTurn: 1
+  ModifyTurn: 0.1
   SpawnPoint: {fileID: 1705373508}
   BaseSpeed: 10
   ActualSpeed: 0
@@ -737,7 +737,7 @@ MonoBehaviour:
   IsWaking: 0
   IsSliding: 0
   IsSwimming: 0
-  CharacterController: {fileID: 0}
+  CharaController: {fileID: 0}
 --- !u!143 &260911451
 CharacterController:
   m_ObjectHideFlags: 0

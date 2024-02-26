@@ -1,3 +1,4 @@
+using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -89,7 +90,6 @@ public class PlayerMovements : MonoBehaviour
 
             Input = context.ReadValue<Vector2>();
             Direction = new Vector3(Input.x, Direction.y, Input.y);
-            //Direction.Normalize();
             if (context.canceled)
             {
                 _canSpeedAugment = false;
@@ -98,21 +98,20 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
+            //if (context.started)
+            //{
             Input = context.ReadValue<Vector2>();
-            //float dirX = ValueRotation(Input.x)
-            //float dirY = 
             ValueRotation(Input.x);
-            Direction = new Vector3(Input.x, Direction.y, Input.y);
+            //}
+            //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, /*ModifyTurn*/-1 * Time.deltaTime, 0));
+            //Direction = new Vector3(Input.x, Direction.y, Input.y);
             //ModelePlayer.transform.rotation = new Quaternion(Input.x, Direction.y, Input.y, 0);
-            //Direction.Normalize();
         }
         if (IsSwimming)
         {
             Input = context.ReadValue<Vector2>();
             Direction = new Vector3(Input.x, Direction.y, Input.y) / 3;
-            //Direction.Normalize();
         }
-        //_gamepad.SetMotorSpeeds(0.075f, 0.134f);
     }
     public void Jump(InputAction.CallbackContext context)
     {
@@ -180,7 +179,6 @@ public class PlayerMovements : MonoBehaviour
         {
             INFOOOO.normal = info.normal;
             //ModelPlayer.transform.rotation = Quaternion.FromToRotation(/*Vector3.back*/new Vector3(0, 0, -1), info.normal);
-            //ModelPlayer.transform.rotation = Quaternion.Euler(
 
             float slopeAngle = Mathf.Deg2Rad * Vector3.Angle(Vector3.up, info.normal);
             //float speedAngle = slopeAngle - 90;
@@ -195,13 +193,9 @@ public class PlayerMovements : MonoBehaviour
             Vector3 varTemp = new Vector3(CurrentSpeed.x * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.x * Time.deltaTime),
                 WalkingSpeed.y,
                 CurrentSpeed.z * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.z * Time.deltaTime));
-            CurrentSpeed = Vector3.Lerp(CurrentSpeed, varTemp, ModifyTurn);
-            
+            //CurrentSpeed = Vector3.Lerp(CurrentSpeed, varTemp, ModifyTurn);
 
-            //if (IsGrounded())
-            //{
-            //    CurrentSpeed.y += _gravity;
-            //}
+            //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, ModifyTurn * Time.deltaTime, 0));
             //transform.rotation = Quaternion.FromToRotation(-Direction, -info.normal);
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(/*Vector3.up*/-Direction + _orientationPlayerSlope, info.normal), _animationCurve.Evaluate(_timerSlopeOrientation));
         }
@@ -344,12 +338,12 @@ public class PlayerMovements : MonoBehaviour
         }
         else if (IsSliding)
         {
-            var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
-            var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
-            //ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            //var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
+            //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
+            ////ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            ////transform.rotation = Quaternion.Euler(0f, angle, 0f);
             //transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            ModelPlayer.transform.rotation = Quaternion.Euler(INFOOOO.normal.x, angle, INFOOOO.normal.z);
+            //ModelPlayer.transform.rotation = Quaternion.Euler(INFOOOO.normal.x, angle, INFOOOO.normal.z);
 
         }
     }
@@ -400,11 +394,7 @@ public class PlayerMovements : MonoBehaviour
     private void Update()
     {
         TimerCoolDownSlope += Time.deltaTime;
-        //Debug.Log(_gravity);
-        //Direction.Normalize();
         WalkingSpeed = Direction * ActualSpeed;
-
-        //Debug.Log(Input);
 
         ApplyRotation();
         CheckLastPosition();
@@ -415,6 +405,8 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
+            //transform.rotation = Quaternion.LookRotation(Input);
+            //transform.rotation = Quaternion.Euler(0, Time.deltaTime, 0);
             SurfaceAllignementSlide();
             Debug.DrawLine(transform.position, transform.position + NormalAngle * 8, Color.red, 8f);
         }
