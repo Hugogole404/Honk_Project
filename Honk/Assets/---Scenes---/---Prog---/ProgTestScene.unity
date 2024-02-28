@@ -667,37 +667,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c7ce83676819141975ec8065d7b4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModifyTurn: 0.1
+  ModifyTurn: 5
+  _smoothTime: 0
+  valueTest: 1
   SpawnPoint: {fileID: 1705373508}
+  ModelPlayer: {fileID: 1064187130}
   BaseSpeed: 10
-  ActualSpeed: 0
   SlideActualSpeed: 0
   BoostSpeedDash: 2
   SpeedModification: 0
   SpeedModificationValueToUpAndDown: 1
-  CurrentSpeed: {x: 0, y: 0, z: 0}
-  NormalAngle: {x: 0, y: 0, z: 0}
-  WalkingSpeed: {x: 0, y: 0, z: 0}
-  ModelPlayer: {fileID: 1064187130}
   _maxSpeed: 20
   _speedAugmentation: 2
   _speedDecrease: 5
-  _smoothTime: 0.05
-  CurrentVelocity: 0
-  Direction: {x: 0, y: 0, z: 0}
-  Input: {x: 0, y: 0}
-  PlayerOriginRotation: {x: 0, y: 0, z: 0, w: 0}
-  _gravityMultiplier: 1
   Velocity: 0
+  _gravityMultiplier: 1
   _jumpPower: 4
   _maxTimer: 1
-  LastPos: {x: 0, y: 0, z: 0}
   CoolDownSlope: 0
   _slopeTurnSpeed: 0
+  _frictionForce: 0.07
+  _timerSlopeOrientation: 10.1
+  _orientationPlayerSlope: {x: 0, y: 0, z: -50}
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 128
-  _orientationPlayerSlope: {x: 0, y: 0, z: -50}
   _animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -731,12 +725,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _timerSlopeOrientation: 10.1
+  ActualSpeed: 0
+  CurrentVelocity: 0
   TimerCoolDownSlope: 0
-  _frictionForce: 0.07
   IsWaking: 0
   IsSliding: 0
   IsSwimming: 0
+  CurrentSpeed: {x: 0, y: 0, z: 0}
+  NormalAngle: {x: 0, y: 0, z: 0}
+  WalkingSpeed: {x: 0, y: 0, z: 0}
+  LastPos: {x: 0, y: 0, z: 0}
+  Direction: {x: 0, y: 0, z: 0}
+  Input: {x: 0, y: 0}
+  PlayerOriginRotation: {x: 0, y: 0, z: 0, w: 0}
   CharaController: {fileID: 0}
 --- !u!143 &260911451
 CharacterController:

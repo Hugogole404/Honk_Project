@@ -9,6 +9,7 @@ public class PlayerMovements : MonoBehaviour
     public float ModifyTurn;
     public RaycastHit INFOOOO;
     [SerializeField] private float _smoothTime;
+    public float _rotationSpeedSlope = 1f;
 
     [Header("SpawnPoint")]
     public Transform SpawnPoint;
@@ -183,9 +184,7 @@ public class PlayerMovements : MonoBehaviour
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(/*Vector3.up*/-Direction + _orientationPlayerSlope, info.normal), _animationCurve.Evaluate(_timerSlopeOrientation));
         }
     }
-    /// <summary>
-    /// AXE Y le multiplier par INPUT.X * Time.deltaTime * _smoothTime
-    /// </summary>
+
     private void StartSlidingInpulse()
     {
         Vector3 inpulseGiven = new Vector3(Direction.x * 10, 0, Direction.z * 10);
@@ -322,6 +321,9 @@ public class PlayerMovements : MonoBehaviour
         }
         else if (IsSliding)
         {
+            var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
+            var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _rotationSpeedSlope);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
             //var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
             //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
             ////var ANGLE = Quaternion.Euler(Input.x, transform.rotation.y, Input.y);
