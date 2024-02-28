@@ -7,10 +7,12 @@ public class CameraMovements : MonoBehaviour
 {
     [SerializeField] private float offsetY, offsetZ;
     private PlayerMovements Player;
+    //private PLayerRigid Player;
 
     private void Awake()
     {
         Player = FindAnyObjectByType<PlayerMovements>();
+        //Player = FindAnyObjectByType<PLayerRigid>();
     }
     private void Update()
     {

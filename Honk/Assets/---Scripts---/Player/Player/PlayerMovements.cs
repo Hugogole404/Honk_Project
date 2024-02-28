@@ -1,4 +1,3 @@
-using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,72 +8,60 @@ public class PlayerMovements : MonoBehaviour
     #region VARIABLES
     public float ModifyTurn;
     public RaycastHit INFOOOO;
+    [SerializeField] private float _smoothTime;
+
     [Header("SpawnPoint")]
     public Transform SpawnPoint;
 
     [Header("Movements")]
+    public GameObject ModelPlayer;
     public float BaseSpeed;
-    public float ActualSpeed;
     public float SlideActualSpeed;
-    [Space]
     public float BoostSpeedDash;
     public float SpeedModification;
     public float SpeedModificationValueToUpAndDown;
-    [Space]
-    public Vector3 CurrentSpeed;
-    public Vector3 NormalAngle;
-    public Vector3 WalkingSpeed;
-    [Space]
-    public GameObject ModelPlayer;
-    [SerializeField] private float _maxSpeed;
-    [Space]
-    [SerializeField] private float _speedAugmentation;
-    [SerializeField] private float _speedDecrease;
-    [Space]
-    [SerializeField] private float _smoothTime;
-    [Space]
     private bool _canSpeedAugment = false;
     private bool _canSpeedDecrease = true;
-
-    [HideInInspector] public float CurrentVelocity;
-    [HideInInspector] public Vector3 Direction;
-    [HideInInspector] public Vector2 Input;
-    [HideInInspector] public Quaternion PlayerOriginRotation;
+    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float _speedAugmentation;
+    [SerializeField] private float _speedDecrease;
 
     [Header("Gravity")]
-    [SerializeField] private float _gravityMultiplier;
     public float Velocity;
     private float _gravity = -9.81f;
+    [SerializeField] private float _gravityMultiplier;
 
     [Header("Jump")]
     [SerializeField] private float _jumpPower;
 
     [Header("TimerCoyauteJump")]
-    [SerializeField] private float _maxTimer;
-    private float _currentTimer;
     private bool _canJump;
+    private float _currentTimer;
+    [SerializeField] private float _maxTimer;
 
     [Header("Silde")]
-    public Vector3 LastPos;
     public float CoolDownSlope;
     public float _slopeTurnSpeed;
     private float _slopeValueToRotation;
-    [SerializeField] private LayerMask _whatIsGround;
-    [SerializeField] private Vector3 _orientationPlayerSlope = new Vector3();
-    [SerializeField] private AnimationCurve _animationCurve;
+    [SerializeField] private float _frictionForce;
     [SerializeField] private float _timerSlopeOrientation;
+    [SerializeField] private Vector3 _orientationPlayerSlope = new Vector3();
+    [SerializeField] private LayerMask _whatIsGround;
+    [SerializeField] private AnimationCurve _animationCurve;
+
+    [HideInInspector] public float ActualSpeed;
+    [HideInInspector] public float CurrentVelocity;
     [HideInInspector] public float TimerCoolDownSlope;
-    //[SerializeField] private GameObject _visualPlayer;
-    //private Vector3 _velo;
-
-    [Header("Friction")]
-    [SerializeField] float _frictionForce;
-
-    [Header("States")]
     [HideInInspector] public bool IsWaking;
     [HideInInspector] public bool IsSliding;
     [HideInInspector] public bool IsSwimming;
-
+    [HideInInspector] public Vector3 CurrentSpeed;
+    [HideInInspector] public Vector3 NormalAngle;
+    [HideInInspector] public Vector3 WalkingSpeed;
+    [HideInInspector] public Vector3 LastPos;
+    [HideInInspector] public Vector3 Direction;
+    [HideInInspector] public Vector2 Input;
+    [HideInInspector] public Quaternion PlayerOriginRotation;
     [HideInInspector] public CharacterController CharaController;
     [HideInInspector] private PlayerSlides _playerSlides;
     [HideInInspector] private TimerManager _timerManager;
@@ -98,14 +85,11 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
-            //if (context.started)
-            //{
             Input = context.ReadValue<Vector2>();
-            ValueRotation(Input.x);
-            //}
+            Direction = new Vector3(Input.x, Direction.y, Input.y);
+            //ValueRotation(Input.x);
             //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, /*ModifyTurn*/-1 * Time.deltaTime, 0));
-            //Direction = new Vector3(Input.x, Direction.y, Input.y);
-            //ModelePlayer.transform.rotation = new Quaternion(Input.x, Direction.y, Input.y, 0);
+            //ModelPlayer.transform.rotation = new Quaternion(Input.x, Direction.y, Input.y, 0);
         }
         if (IsSwimming)
         {
@@ -128,7 +112,6 @@ public class PlayerMovements : MonoBehaviour
         if (_canJump)
         {
             Velocity += _jumpPower;
-            //_canJump = false;
         }
     }
     public void HonkNoise(InputAction.CallbackContext context)
@@ -193,13 +176,16 @@ public class PlayerMovements : MonoBehaviour
             Vector3 varTemp = new Vector3(CurrentSpeed.x * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.x * Time.deltaTime),
                 WalkingSpeed.y,
                 CurrentSpeed.z * BaseSpeed / 10 * SpeedModification - (_frictionForce * CurrentSpeed.z * Time.deltaTime));
-            //CurrentSpeed = Vector3.Lerp(CurrentSpeed, varTemp, ModifyTurn);
+            CurrentSpeed = Vector3.Lerp(CurrentSpeed, varTemp, ModifyTurn);
 
             //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, ModifyTurn * Time.deltaTime, 0));
             //transform.rotation = Quaternion.FromToRotation(-Direction, -info.normal);
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(/*Vector3.up*/-Direction + _orientationPlayerSlope, info.normal), _animationCurve.Evaluate(_timerSlopeOrientation));
         }
     }
+    /// <summary>
+    /// AXE Y le multiplier par INPUT.X * Time.deltaTime * _smoothTime
+    /// </summary>
     private void StartSlidingInpulse()
     {
         Vector3 inpulseGiven = new Vector3(Direction.x * 10, 0, Direction.z * 10);
@@ -318,8 +304,6 @@ public class PlayerMovements : MonoBehaviour
         else
         {
             Velocity += _gravity * _gravityMultiplier * Time.deltaTime;
-            //_velo = AdjustVelocityToSlope(_velo);
-            //_velo.y += ActualSpeed;
         }
         Direction.y = Velocity;
     }
@@ -340,11 +324,11 @@ public class PlayerMovements : MonoBehaviour
         {
             //var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
             //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
+            ////var ANGLE = Quaternion.Euler(Input.x, transform.rotation.y, Input.y);
             ////ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
             ////transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            //transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            ////transform.rotation = Quaternion.Euler(0f, angle, 0f);
             //ModelPlayer.transform.rotation = Quaternion.Euler(INFOOOO.normal.x, angle, INFOOOO.normal.z);
-
         }
     }
     private void ApplyMovement()
@@ -355,9 +339,6 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
-            //CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
-            //CharacterController.Move(new Vector3(Direction.x * ActualSpeed / 10, Velocity * 2, Direction.z * ActualSpeed / 10) * ActualSpeed * Time.deltaTime);
-            //StartSlidingInpulse();
             CharaController.Move(CurrentSpeed * Time.deltaTime);
         }
         if (IsSwimming)
@@ -405,8 +386,6 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
-            //transform.rotation = Quaternion.LookRotation(Input);
-            //transform.rotation = Quaternion.Euler(0, Time.deltaTime, 0);
             SurfaceAllignementSlide();
             Debug.DrawLine(transform.position, transform.position + NormalAngle * 8, Color.red, 8f);
         }
