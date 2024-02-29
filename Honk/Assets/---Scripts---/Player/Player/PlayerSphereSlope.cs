@@ -4,18 +4,11 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class PlayerSphereSlope : MonoBehaviour
 {
-    public GameObject Sphere;
+    [SerializeField] private Transform _spawnPoint;
     bool _isActive;
-    private PlayerMovements _playerMovements;
 
-    private void Awake()
+    private void Start()
     {
-        _playerMovements = GetComponent<PlayerMovements>();
-        Sphere.SetActive(_isActive);
-    }
-    private void Update()
-    {
-        _isActive = !_isActive;
-        Sphere.SetActive(_isActive);
+        transform.position = _spawnPoint.position;
     }
 }
