@@ -10,11 +10,11 @@ public class SwapTexture : MonoBehaviour
     private bool OnOff;
     public float Speed;
     private float Current;
-
+   
 
     void Start()
     {
-
+   
     }
 
     // Update is called once per frame
@@ -31,5 +31,4 @@ public class SwapTexture : MonoBehaviour
         }
 
     }
-
 }
