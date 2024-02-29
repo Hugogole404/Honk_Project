@@ -1,3 +1,4 @@
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ParticleSystemJobs;
@@ -12,6 +13,8 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private float _smoothTime;
     public float _rotationSpeedSlope = 1f;
     public GameObject ParticulesSyst;
+    public GameObject SphereSlope;
+    public float InertieSlopeSlow;
 
     [Header("SpawnPoint")]
     public Transform SpawnPoint;
@@ -351,11 +354,18 @@ public class PlayerMovements : MonoBehaviour
         if (IsWaking)
         {
             CharaController.Move(WalkingSpeed * Time.deltaTime);
+            GetComponent<CharacterController>().enabled = true;
+            SphereSlope.SetActive(false);
         }
         if (IsSliding)
         {
-            Vector3 oui = new Vector3(Direction.x, 0, Direction.z) * Time.deltaTime;
-            CharaController.Move((CurrentSpeed * Time.deltaTime) + oui);
+            //Vector3 oui = new Vector3(Direction.x, 0, Direction.z) * Time.deltaTime;
+            //CharaController.Move((CurrentSpeed * Time.deltaTime) + oui);
+            GetComponent<CharacterController>().enabled = false;
+            SphereSlope.SetActive(true);
+            CurrentSpeed /= 10000;
+            SphereSlope.GetComponent<Rigidbody>().AddForce(CurrentSpeed * Time.deltaTime / InertieSlopeSlow, ForceMode.VelocityChange);
+            transform.position = SphereSlope.transform.position;
         }
         if (IsSwimming)
         {
