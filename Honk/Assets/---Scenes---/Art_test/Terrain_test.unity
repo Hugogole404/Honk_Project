@@ -1541,6 +1541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyTurn: 0
   _smoothTime: 0.05
+  _rotationSpeedSlope: 1
   SpawnPoint: {fileID: 1705373508}
   ModelPlayer: {fileID: 305153337}
   BaseSpeed: 10
@@ -5845,17 +5846,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c5d19bcc9d8dc7c4ebc858bc23c2019b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.077068
+      value: 13.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5d19bcc9d8dc7c4ebc858bc23c2019b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000038146973
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5d19bcc9d8dc7c4ebc858bc23c2019b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.660866
+      value: 17.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5d19bcc9d8dc7c4ebc858bc23c2019b,
         type: 3}
