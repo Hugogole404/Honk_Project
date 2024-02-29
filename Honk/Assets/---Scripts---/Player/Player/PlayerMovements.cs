@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ParticleSystemJobs;
 
 [HelpURL("https://app.milanote.com/1RscWs1SJGPM9j/playermovements?p=5Aw4gcZ0pqp")]
 [RequireComponent(typeof(CharacterController))]
@@ -10,6 +11,7 @@ public class PlayerMovements : MonoBehaviour
     public RaycastHit INFOOOO;
     [SerializeField] private float _smoothTime;
     public float _rotationSpeedSlope = 1f;
+    public GameObject ParticulesSyst;
 
     [Header("SpawnPoint")]
     public Transform SpawnPoint;
@@ -291,6 +293,17 @@ public class PlayerMovements : MonoBehaviour
             SpeedModification = -_maxSpeed;
         }
     }
+    private void CheckIsGroundedForParticles()
+    {
+        if (IsGrounded())
+        {
+            ParticulesSyst.GetComponent<ParticleSystem>().enableEmission = true;
+        }
+        else
+        {
+            ParticulesSyst.GetComponent<ParticleSystem>().enableEmission = false;
+        }
+    }
     #endregion
 
     #region APPLY
@@ -341,7 +354,8 @@ public class PlayerMovements : MonoBehaviour
         }
         if (IsSliding)
         {
-            CharaController.Move(CurrentSpeed * Time.deltaTime);
+            Vector3 oui = new Vector3(Direction.x, 0, Direction.z) * Time.deltaTime;
+            CharaController.Move((CurrentSpeed * Time.deltaTime) + oui);
         }
         if (IsSwimming)
         {
@@ -391,5 +405,6 @@ public class PlayerMovements : MonoBehaviour
             SurfaceAllignementSlide();
             Debug.DrawLine(transform.position, transform.position + NormalAngle * 8, Color.red, 8f);
         }
+        CheckIsGroundedForParticles();
     }
 }
