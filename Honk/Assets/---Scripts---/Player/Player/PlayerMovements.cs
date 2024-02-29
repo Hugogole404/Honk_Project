@@ -361,10 +361,8 @@ public class PlayerMovements : MonoBehaviour
         {
             //Vector3 oui = new Vector3(Direction.x, 0, Direction.z) * Time.deltaTime;
             //CharaController.Move((CurrentSpeed * Time.deltaTime) + oui);
-            GetComponent<CharacterController>().enabled = false;
-            SphereSlope.SetActive(true);
-            CurrentSpeed /= 10000;
-            SphereSlope.GetComponent<Rigidbody>().AddForce(CurrentSpeed * Time.deltaTime / InertieSlopeSlow, ForceMode.VelocityChange);
+            //GetComponent<CharacterController>().enabled = false;
+            //SphereSlope.GetComponent<Rigidbody>().AddForce(CurrentSpeed * Time.deltaTime / (InertieSlopeSlow*InertieSlopeSlow), ForceMode.VelocityChange);
             transform.position = SphereSlope.transform.position;
         }
         if (IsSwimming)

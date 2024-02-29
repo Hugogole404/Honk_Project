@@ -24189,7 +24189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1450016199
 Transform:
   m_ObjectHideFlags: 0
@@ -32204,6 +32204,7 @@ GameObject:
   - component: {fileID: 2121814120}
   - component: {fileID: 2121814119}
   - component: {fileID: 2121814118}
+  - component: {fileID: 2121814125}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -32285,7 +32286,7 @@ MonoBehaviour:
   _rotationSpeedSlope: 1
   ParticulesSyst: {fileID: 2122664649}
   SphereSlope: {fileID: 1450016198}
-  InertieSlopeSlow: 300
+  InertieSlopeSlow: 10000
   SpawnPoint: {fileID: 204152730}
   ModelPlayer: {fileID: 1841659176}
   BaseSpeed: 10
@@ -32452,6 +32453,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121814116}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2121814125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121814116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2edad827b62e7c44d901cff17252d673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sphere: {fileID: 1450016198}
 --- !u!1 &2122664649
 GameObject:
   m_ObjectHideFlags: 0

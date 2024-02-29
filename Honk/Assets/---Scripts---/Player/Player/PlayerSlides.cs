@@ -38,7 +38,8 @@ public class PlayerSlides : MonoBehaviour
             if (context.started)
             {
                 ContextStarted = true;
-                _playerMovement.CurrentSpeed = new Vector3(_playerMovement.WalkingSpeed.x /* *slide boost */ , _playerMovement.CurrentSpeed.y, _playerMovement.WalkingSpeed.z /* *slide boost*/);
+                _playerMovement.SphereSlope.SetActive(true);
+                _playerMovement.CurrentSpeed = new Vector3(_playerMovement.WalkingSpeed.x, /*_playerMovement.CurrentSpeed.y*/0, _playerMovement.WalkingSpeed.z /* *slide boost*/);
 
                 return;
             }
@@ -50,6 +51,8 @@ public class PlayerSlides : MonoBehaviour
             }
             if (context.canceled)
             {
+                //_playerMovement.GetComponent<CharacterController>().enabled = true;
+                _playerMovement.SphereSlope.SetActive(false);
                 _playerMovement.IsWalkingBools();
                 _playerMovement.ModelPlayer.transform.rotation = _playerMovement.PlayerOriginRotation;
                 _playerMovement.TimerCoolDownSlope = 0f;
