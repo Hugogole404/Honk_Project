@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MotifWallTexture:
-        m_Texture: {fileID: 2800000, guid: a421beeb1e0764a4bad2df85926a1afd, type: 3}
+        m_Texture: {fileID: 2800000, guid: fafbd85c6df7f904893f62be1871902e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -46,16 +46,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blend: 1
+    - _Blend: 10.8
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0.068
     m_Colors:
-    - _MotifTopTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _MotifWallColor: {r: 0, g: 0, b: 0, a: 0}
+    - _MotifTopTiling: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _MotifWallColor: {r: 0.27941436, g: 0.3270158, b: 0.3679245, a: 0}
     - _TopColor: {r: 0, g: 0, b: 0, a: 0}
-    - _TopMotifColor: {r: 0, g: 0, b: 0, a: 0}
-    - _WallColor: {r: 0, g: 0, b: 0, a: 0}
+    - _TopMotifColor: {r: 0.623309, g: 0.8075119, b: 0.8207547, a: 0}
+    - _WallColor: {r: 0.29009438, g: 0.34624165, b: 0.38679248, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8416007273627996092
 MonoBehaviour:
