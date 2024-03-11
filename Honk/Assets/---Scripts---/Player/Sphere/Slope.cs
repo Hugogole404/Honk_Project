@@ -6,16 +6,16 @@ public class Slope : MonoBehaviour
 {
     public bool IsGrounded = false;
     [SerializeField] private float _speed;
+    [SerializeField] private float _boostSpeedStartSlope;
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _maxTimerJump;
     private float _currentTimerJump;
     private bool _canJump;
-    private Vector2 _moveInput;
-    private Rigidbody _rigidbody;
     private bool _modWalk;
     private bool _modSlide;
-
+    private Vector2 _moveInput;
+    private Rigidbody _rigidbody;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -26,13 +26,14 @@ public class Slope : MonoBehaviour
         }
         if (_modSlide)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * 5f, ForceMode.Force);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed, ForceMode.Force);
         }
     }
     public void StartSlide(InputAction.CallbackContext context)
     {
         if (context.started)
         {
+            //_rigidbody.AddForce(new Vector3(_rigidbody.velocity.x * _boostSpeedStartSlope, 0, _rigidbody.velocity.z * _boostSpeedStartSlope), ForceMode.Impulse);
             _modSlide = true;
             _modWalk = false;
         }
@@ -52,6 +53,20 @@ public class Slope : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Walkable>() != null)
+        {
+            IsGrounded = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Walkable>() != null)
+        {
+            IsGrounded = false;
+        }
+    }
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -66,20 +81,6 @@ public class Slope : MonoBehaviour
         if(_currentTimerJump > _maxTimerJump)
         {
             _canJump = true;
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<Walkable>() != null)
-        {
-            IsGrounded = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<Walkable>() != null)
-        {
-            IsGrounded = false;
         }
     }
     private void FixedUpdate()
