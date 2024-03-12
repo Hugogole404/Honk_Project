@@ -24,6 +24,11 @@ public class Slope : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
+        //if (context.canceled && _modWalk && IsGrounded)
+        //{
+        //    _rigidbody.velocity = new Vector3(0,0,0);
+        //    _moveInput = new Vector2(0, 0);
+        //}
     }
     public void StartSlide(InputAction.CallbackContext context)
     {
@@ -48,9 +53,17 @@ public class Slope : MonoBehaviour
             _currentTimerJump = 0;
         }
     }
+
     private void SpeedDown()
     {
-        _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _speedDownValue;
+        if (_modWalk)
+        {
+            _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDownValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDownValue * 10);
+        }
+        if (_modSlide)
+        {
+            _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _speedDownValue;
+        }
     }
     private void ApplyMovement()
     {
@@ -89,11 +102,14 @@ public class Slope : MonoBehaviour
         {
             Debug.Log(_rigidbody.velocity);
         }
+
         _currentTimerJump += Time.deltaTime;
-        if(_currentTimerJump > _maxTimerJump)
+
+        if (_currentTimerJump > _maxTimerJump)
         {
             _canJump = true;
         }
+
         ApplyMovement();
         _rigidbody.AddForce(Vector3.down * _gravity * Time.deltaTime * _gravityMultiplier);
         SpeedDown();
@@ -104,9 +120,9 @@ public class Slope : MonoBehaviour
         {
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxSpeed);
         }
-        if (_rigidbody.velocity.magnitude < - _maxSpeed)
+        if (_rigidbody.velocity.magnitude < -_maxSpeed)
         {
-            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, - _maxSpeed);
+            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, -_maxSpeed);
         }
     }
 }
