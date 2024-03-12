@@ -27,6 +27,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 69908
+--- !u!114 &-1737190343609810696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/ambiance.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Desktop/L3/Honk/fmod/main/Build/Desktop/ambiance.bank
+  Name: ambiance
+  StudioPath: bank:/ambiance
+  lastModified: 638458425262016937
+  FileSizes:
+  - Name: Desktop
+    Value: 441024
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,6 +62,7 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 5325754451757779920}
   - {fileID: 6838518509811433138}
+  - {fileID: -1737190343609810696}
   EditorEvents:
   - {fileID: 8249461774450022376}
   - {fileID: -6807432271720662682}
@@ -50,7 +71,7 @@ MonoBehaviour:
   - {fileID: 6838518509811433138}
   StringsBanks:
   - {fileID: 5325754451757779920}
-  cacheTime: 638458421441646796
+  cacheTime: 638458425262016937
   cacheVersion: 131616
 --- !u!114 &5325754451757779920
 MonoBehaviour:
@@ -67,10 +88,10 @@ MonoBehaviour:
   Path: ../../../../Desktop/L3/Honk/fmod/main/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638458421441646796
+  lastModified: 638458425261809705
   FileSizes:
   - Name: Desktop
-    Value: 806
+    Value: 858
   Exists: 1
 --- !u!114 &6838518509811433138
 MonoBehaviour:
@@ -87,7 +108,7 @@ MonoBehaviour:
   Path: ../../../../Desktop/L3/Honk/fmod/main/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638458421441626791
+  lastModified: 638458425261789694
   FileSizes:
   - Name: Desktop
     Value: 1277856
@@ -111,6 +132,7 @@ MonoBehaviour:
     Data3: 840929443
     Data4: 38253177
   Banks:
+  - {fileID: -1737190343609810696}
   - {fileID: 6838518509811433138}
   IsStream: 1
   Is3D: 0
