@@ -13,7 +13,12 @@ public class Slope : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _maxTimerJump;
     [SerializeField] private float _gravityMultiplier;
+
+    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private Vector3 _direction;
+
     [SerializeField] private bool _modWalk = true;
+    [SerializeField] private bool _modOnSlope = false;
     [SerializeField] private bool _modSlide = false;
     private float _gravity = -9.81f;
     private float _currentTimerJump;
@@ -42,6 +47,7 @@ public class Slope : MonoBehaviour
         {
             _modSlide = false;
             _modWalk = true;
+            _modOnSlope = false;
         }
     }
     public void Jump(InputAction.CallbackContext context)
@@ -54,7 +60,7 @@ public class Slope : MonoBehaviour
         }
     }
 
-    private void SpeedDown()
+    private async void SpeedDown()
     {
         if (_modWalk)
         {
@@ -63,6 +69,25 @@ public class Slope : MonoBehaviour
         if (_modSlide)
         {
             _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _speedDownValue;
+            _modOnSlope = true;
+            _modSlide = false;
+        }
+        if (_modOnSlope)
+        {
+            if (_rigidbody.velocity != Vector3.zero)
+            {
+                _direction = _rigidbody.velocity;
+            }
+
+            if (_moveInput.y > 0)
+            {
+                _rigidbody.velocity += new Vector3(10 * Time.deltaTime, 0, 0);
+                /// faire une soustraction ou addition en fonction de la magnitude actuelle 
+            }
+            if (_moveInput.y < 0)
+            {
+                _rigidbody.velocity += new Vector3(-10 * Time.deltaTime, 0, 0);
+            }
         }
     }
     private void ApplyMovement()
@@ -73,7 +98,9 @@ public class Slope : MonoBehaviour
         }
         if (_modSlide)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed, ForceMode.Force);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * 5, ForceMode.Impulse);
+            _modOnSlope = true;
+            _modSlide = false;
         }
     }
 
