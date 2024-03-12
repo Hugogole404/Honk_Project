@@ -50,7 +50,7 @@ public class Slope : MonoBehaviour
     }
     private void SpeedDown()
     {
-        //_rigidbody.velocity.sqrMagnitude
+        _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _speedDownValue;
     }
     private void ApplyMovement()
     {
@@ -96,6 +96,7 @@ public class Slope : MonoBehaviour
         }
         ApplyMovement();
         _rigidbody.AddForce(Vector3.down * _gravity * Time.deltaTime * _gravityMultiplier);
+        SpeedDown();
     }
     private void FixedUpdate()
     {
