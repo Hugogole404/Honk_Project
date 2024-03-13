@@ -62,7 +62,7 @@ public class Slope : MonoBehaviour
         }
     }
 
-    private async void SpeedDown()
+    private void SpeedDown()
     {
         if (_modWalk)
         {
@@ -77,14 +77,6 @@ public class Slope : MonoBehaviour
     }
     private void CheckLastPosition()
     {
-        //if (_lastPosition.y > transform.position.y)
-        //{
-        //    Debug.Log("Il descend");
-        //}
-        //else if (_lastPosition.y < transform.position.y)
-        //{
-        //    Debug.Log("Il monte");
-        //}
         if (_lastPosition.y - transform.position.y < 0 - _toleranceSlopeValue)
         {
             Debug.Log("Il Monte");
@@ -126,20 +118,20 @@ public class Slope : MonoBehaviour
         _rigidbody.velocity += new Vector3(0, _gravity * Time.deltaTime * _gravityMultiplier, 0);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<Walkable>() != null)
-        {
-            IsGrounded = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<Walkable>() != null)
-        {
-            IsGrounded = false;
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.GetComponent<Walkable>() != null)
+    //    {
+    //        IsGrounded = true;
+    //    }
+    //}
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.GetComponent<Walkable>() != null)
+    //    {
+    //        IsGrounded = false;
+    //    }
+    //}
 
     private void Start()
     {
@@ -148,24 +140,17 @@ public class Slope : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(_rigidbody.velocity);
-        }
-
         _currentTimerJump += Time.deltaTime;
 
         if (_currentTimerJump > _maxTimerJump)
         {
             _canJump = true;
         }
-
         ApplyMovement();
         SpeedDown();
         ApplyRotationSlope();
         CheckLastPosition();
         ApplyGravity();
-        Debug.Log(_rigidbody.velocity);
     }
     private void FixedUpdate()
     {
