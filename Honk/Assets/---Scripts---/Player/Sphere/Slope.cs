@@ -9,22 +9,26 @@ public class Slope : MonoBehaviour
     [SerializeField] private float _speedDecreaseValue;
     [SerializeField] private float _boostSpeedStartSlope;
     [SerializeField] private float _maxSpeed;
+
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _maxTimerJump;
+
     [SerializeField] private float _gravityMultiplier;
 
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _toleranceSlopeValue;
-    [SerializeField] private Vector3 _direction;
 
     [SerializeField] private bool _modWalk = true;
     [SerializeField] private bool _modOnSlope = false;
     [SerializeField] private bool _modSlide = false;
 
-    private Vector3 _lastPosition;
+    [SerializeField] private float _maxTimerSlide;
+
     private float _gravity = -9.81f;
     private float _currentTimerJump;
+    private float _currentTimerSlide;
     private bool _canJump;
+    private Vector3 _lastPosition;
     private Vector2 _moveInput;
     private Rigidbody _rigidbody;
 
@@ -117,21 +121,24 @@ public class Slope : MonoBehaviour
         //_rigidbody.AddForce(Vector3.down * _gravity * Time.deltaTime * _gravityMultiplier, ForceMode.Force);
         _rigidbody.velocity += new Vector3(0, _gravity * Time.deltaTime * _gravityMultiplier, 0);
     }
+    private void TimerSlide()
+    {
+        _currentTimerSlide = Time.deltaTime;
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.GetComponent<Walkable>() != null)
-    //    {
-    //        IsGrounded = true;
-    //    }
-    //}
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.GetComponent<Walkable>() != null)
-    //    {
-    //        IsGrounded = false;
-    //    }
-    //}
+        //if(_currentTimerSlide >  )
+        //{
+
+        //}
+    }
+    private void TimerJump()
+    {
+        _currentTimerJump += Time.deltaTime;
+
+        if (_currentTimerJump > _maxTimerJump)
+        {
+            _canJump = true;
+        }
+    }
 
     private void Start()
     {
@@ -140,12 +147,8 @@ public class Slope : MonoBehaviour
     }
     private void Update()
     {
-        _currentTimerJump += Time.deltaTime;
-
-        if (_currentTimerJump > _maxTimerJump)
-        {
-            _canJump = true;
-        }
+        TimerJump();
+        TimerSlide();
         ApplyMovement();
         SpeedDown();
         ApplyRotationSlope();
