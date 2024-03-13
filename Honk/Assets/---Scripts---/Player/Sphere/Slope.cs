@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +6,7 @@ public class Slope : MonoBehaviour
     public bool IsGrounded = false;
     public bool CanSpeedDown = false;
     [SerializeField] private float _speed;
-    [SerializeField] private float _speedDownValue;
+    [SerializeField] private float _speedDecreaseValue;
     [SerializeField] private float _boostSpeedStartSlope;
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _jumpForce;
@@ -15,11 +14,14 @@ public class Slope : MonoBehaviour
     [SerializeField] private float _gravityMultiplier;
 
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _toleranceSlopeValue;
     [SerializeField] private Vector3 _direction;
 
     [SerializeField] private bool _modWalk = true;
     [SerializeField] private bool _modOnSlope = false;
     [SerializeField] private bool _modSlide = false;
+
+    private Vector3 _lastPosition;
     private float _gravity = -9.81f;
     private float _currentTimerJump;
     private bool _canJump;
@@ -64,30 +66,45 @@ public class Slope : MonoBehaviour
     {
         if (_modWalk)
         {
-            _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDownValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDownValue * 10);
+            _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 10);
         }
         if (_modSlide)
         {
-            _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _speedDownValue;
+            _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _speedDecreaseValue;
             _modOnSlope = true;
             _modSlide = false;
         }
+    }
+    private void CheckLastPosition()
+    {
+        //if (_lastPosition.y > transform.position.y)
+        //{
+        //    Debug.Log("Il descend");
+        //}
+        //else if (_lastPosition.y < transform.position.y)
+        //{
+        //    Debug.Log("Il monte");
+        //}
+        if (_lastPosition.y - transform.position.y < 0 - _toleranceSlopeValue)
+        {
+            Debug.Log("Il Monte");
+        }
+        else if (_lastPosition.y - transform.position.y > 0 + _toleranceSlopeValue)
+        {
+            Debug.Log("Il descend");
+        }
+        else if (_lastPosition.y == transform.position.y)
+        {
+            Debug.Log("Il ne change pas de hauteur");
+        }
+        _lastPosition = transform.position;
+    }
+    private void ApplyRotationSlope()
+    {
         if (_modOnSlope)
         {
-            if (_rigidbody.velocity != Vector3.zero)
-            {
-                _direction = _rigidbody.velocity;
-            }
-
-            if (_moveInput.y > 0)
-            {
-                _rigidbody.velocity += new Vector3(10 * Time.deltaTime, 0, 0);
-                /// faire une soustraction ou addition en fonction de la magnitude actuelle 
-            }
-            if (_moveInput.y < 0)
-            {
-                _rigidbody.velocity += new Vector3(-10 * Time.deltaTime, 0, 0);
-            }
+            /// faire une soustraction ou addition en fonction de la magnitude actuelle 
+            _rigidbody.velocity += new Vector3(_rotationSpeed * _moveInput.x * Time.deltaTime, 0, _rotationSpeed * _moveInput.y * Time.deltaTime);
         }
     }
     private void ApplyMovement()
@@ -102,6 +119,11 @@ public class Slope : MonoBehaviour
             _modOnSlope = true;
             _modSlide = false;
         }
+    }
+    private void ApplyGravity()
+    {
+        //_rigidbody.AddForce(Vector3.down * _gravity * Time.deltaTime * _gravityMultiplier, ForceMode.Force);
+        _rigidbody.velocity += new Vector3(0, _gravity * Time.deltaTime * _gravityMultiplier, 0);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -122,6 +144,7 @@ public class Slope : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _lastPosition = transform.position;
     }
     private void Update()
     {
@@ -138,8 +161,11 @@ public class Slope : MonoBehaviour
         }
 
         ApplyMovement();
-        _rigidbody.AddForce(Vector3.down * _gravity * Time.deltaTime * _gravityMultiplier);
         SpeedDown();
+        ApplyRotationSlope();
+        CheckLastPosition();
+        ApplyGravity();
+        Debug.Log(_rigidbody.velocity);
     }
     private void FixedUpdate()
     {
