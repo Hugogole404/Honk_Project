@@ -56,7 +56,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public float ActualSpeed;
     [HideInInspector] public float CurrentVelocity;
     [HideInInspector] public float TimerCoolDownSlope;
-    [HideInInspector] public bool IsWaking;
+    [HideInInspector] public bool IsWalking;
     [HideInInspector] public bool IsSliding;
     [HideInInspector] public bool IsSwimming;
     [HideInInspector] public Vector3 CurrentSpeed;
@@ -74,7 +74,7 @@ public class PlayerMovements : MonoBehaviour
     #region ACTIONS
     public void Move(InputAction.CallbackContext context)
     {
-        if (IsWaking)
+        if (IsWalking)
         {
             _canSpeedAugment = true;
             _canSpeedDecrease = false;
@@ -130,19 +130,19 @@ public class PlayerMovements : MonoBehaviour
     #region BOOLS SWAP
     public void IsWalkingBools()
     {
-        IsWaking = true;
+        IsWalking = true;
         IsSliding = false;
         IsSwimming = false;
     }
     public void IsSlidingBools()
     {
-        IsWaking = false;
+        IsWalking = false;
         IsSliding = true;
         IsSwimming = false;
     }
     public void IsSwimmingBools()
     {
-        IsWaking = false;
+        IsWalking = false;
         IsSliding = false;
         IsSwimming = true;
     }
@@ -326,7 +326,7 @@ public class PlayerMovements : MonoBehaviour
         {
             return;
         }
-        if (IsWaking)
+        if (IsWalking)
         {
             var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
@@ -349,7 +349,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void ApplyMovement()
     {
-        if (IsWaking)
+        if (IsWalking)
         {
             CharaController.Move(WalkingSpeed * Time.deltaTime);
             GetComponent<CharacterController>().enabled = true;
