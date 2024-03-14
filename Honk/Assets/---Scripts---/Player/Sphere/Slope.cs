@@ -87,10 +87,10 @@ public class Slope : MonoBehaviour
         if (_lastPosition.y - transform.position.y < 0 - _toleranceSlopeValue)
         {
             Debug.Log("Il Monte");
-            if (_rigidbody.velocity.magnitude < 10f)
-            {
-                _rigidbody.AddForce(-_rigidbody.velocity, ForceMode.Force);
-            }
+            //if (_rigidbody.velocity.magnitude < 10f)
+            //{
+            //    _rigidbody.AddForce(-_rigidbody.velocity, ForceMode.Force);
+            //}
         }
         else if (_lastPosition.y - transform.position.y > 0 + _toleranceSlopeValue)
         {
