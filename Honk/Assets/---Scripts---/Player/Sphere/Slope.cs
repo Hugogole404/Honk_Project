@@ -75,7 +75,7 @@ public class Slope : MonoBehaviour
         {
             _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 10);
         }
-        if (_modSlide)
+        if ((_modSlide || _modOnSlope) && IsGrounded)
         {
             _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _speedDecreaseValue;
             _modOnSlope = true;
@@ -87,6 +87,10 @@ public class Slope : MonoBehaviour
         if (_lastPosition.y - transform.position.y < 0 - _toleranceSlopeValue)
         {
             Debug.Log("Il Monte");
+            if (_rigidbody.velocity.magnitude < 10f)
+            {
+                _rigidbody.AddForce(-_rigidbody.velocity, ForceMode.Force);
+            }
         }
         else if (_lastPosition.y - transform.position.y > 0 + _toleranceSlopeValue)
         {
@@ -98,6 +102,7 @@ public class Slope : MonoBehaviour
         }
         _lastPosition = transform.position;
     }
+
     private void ApplyRotationSlope()
     {
         if (_modOnSlope)
@@ -124,6 +129,7 @@ public class Slope : MonoBehaviour
         //_rigidbody.AddForce(Vector3.down * _gravity * Time.deltaTime * _gravityMultiplier, ForceMode.Force);
         _rigidbody.velocity += new Vector3(0, _gravity * Time.deltaTime * _gravityMultiplier, 0);
     }
+
     private void TimerSlide()
     {
         _currentTimerSlide += Time.deltaTime;
