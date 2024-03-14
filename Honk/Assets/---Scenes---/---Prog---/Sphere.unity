@@ -579,10 +579,10 @@ MonoBehaviour:
   _gravityMultiplier: 1
   _rotationSpeed: 10
   _toleranceSlopeValue: 0.05
-  _direction: {x: 0, y: 0, z: 0}
   _modWalk: 1
   _modOnSlope: 0
   _modSlide: 0
+  _maxTimerSlide: 0
 --- !u!1 &794094491
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +745,6 @@ GameObject:
   m_Component:
   - component: {fileID: 847837969}
   - component: {fileID: 847837968}
-  - component: {fileID: 847837967}
   - component: {fileID: 847837970}
   m_Layer: 0
   m_Name: Main Camera
@@ -754,14 +753,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &847837967
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847837966}
-  m_Enabled: 1
 --- !u!20 &847837968
 Camera:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class Slope : MonoBehaviour
     [SerializeField] private bool _modWalk = true;
     [SerializeField] private bool _modOnSlope = false;
     [SerializeField] private bool _modSlide = false;
+    [SerializeField] private bool _slideTimer = false;
 
     [SerializeField] private float _maxTimerSlide;
 
@@ -43,11 +44,13 @@ public class Slope : MonoBehaviour
     }
     public void StartSlide(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && _slideTimer)
         {
             //_rigidbody.AddForce(new Vector3(_rigidbody.velocity.x * _boostSpeedStartSlope, 0, _rigidbody.velocity.z * _boostSpeedStartSlope), ForceMode.Impulse);
             _modSlide = true;
             _modWalk = false;
+            _slideTimer = false;
+            _currentTimerSlide = 0;
         }
         if (context.canceled)
         {
@@ -123,12 +126,12 @@ public class Slope : MonoBehaviour
     }
     private void TimerSlide()
     {
-        _currentTimerSlide = Time.deltaTime;
+        _currentTimerSlide += Time.deltaTime;
 
-        //if(_currentTimerSlide >  )
-        //{
-
-        //}
+        if (_currentTimerSlide > _maxTimerSlide)
+        {
+            _slideTimer = true;
+        }
     }
     private void TimerJump()
     {
@@ -149,11 +152,13 @@ public class Slope : MonoBehaviour
     {
         TimerJump();
         TimerSlide();
+
         ApplyMovement();
-        SpeedDown();
         ApplyRotationSlope();
-        CheckLastPosition();
         ApplyGravity();
+
+        SpeedDown();
+        CheckLastPosition();
     }
     private void FixedUpdate()
     {

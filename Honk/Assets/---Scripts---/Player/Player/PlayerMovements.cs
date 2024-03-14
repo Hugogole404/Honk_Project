@@ -1,7 +1,5 @@
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.ParticleSystemJobs;
 
 [HelpURL("https://app.milanote.com/1RscWs1SJGPM9j/playermovements?p=5Aw4gcZ0pqp")]
 [RequireComponent(typeof(CharacterController))]
