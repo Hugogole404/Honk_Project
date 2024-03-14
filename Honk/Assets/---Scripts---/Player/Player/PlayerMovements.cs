@@ -343,7 +343,6 @@ public class PlayerMovements : MonoBehaviour
             ////var ANGLE = Quaternion.Euler(Input.x, transform.rotation.y, Input.y);
             ////ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
             ////transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            ////transform.rotation = Quaternion.Euler(0f, angle, 0f);
             //ModelPlayer.transform.rotation = Quaternion.Euler(INFOOOO.normal.x, angle, INFOOOO.normal.z);
         }
     }
