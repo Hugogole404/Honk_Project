@@ -46,7 +46,6 @@ public class Slope : MonoBehaviour
     {
         if (context.started && _slideTimer)
         {
-            //_rigidbody.AddForce(new Vector3(_rigidbody.velocity.x * _boostSpeedStartSlope, 0, _rigidbody.velocity.z * _boostSpeedStartSlope), ForceMode.Impulse);
             _modSlide = true;
             _modWalk = false;
             _slideTimer = false;
@@ -107,7 +106,7 @@ public class Slope : MonoBehaviour
     {
         if (_modOnSlope)
         {
-            /// faire une soustraction ou addition en fonction de la magnitude actuelle 
+            /// faire une soustraction ou addition en fonction de la magnitude actuelle (rotation sur l'axe y) 
             _rigidbody.velocity += new Vector3(_rotationSpeed * _moveInput.x * Time.deltaTime, 0, _rotationSpeed * _moveInput.y * Time.deltaTime);
         }
     }
@@ -126,7 +125,6 @@ public class Slope : MonoBehaviour
     }
     private void ApplyGravity()
     {
-        //_rigidbody.AddForce(Vector3.down * _gravity * Time.deltaTime * _gravityMultiplier, ForceMode.Force);
         _rigidbody.velocity += new Vector3(0, _gravity * Time.deltaTime * _gravityMultiplier, 0);
     }
 
