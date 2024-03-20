@@ -602,29 +602,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c7ce83676819141975ec8065d7b4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPoint: {fileID: 1705373508}
+  ModifyTurn: 0
+  _smoothTime: 0.05
+  _rotationSpeedSlope: 1
+  ParticulesSyst: {fileID: 0}
+  SphereSlope: {fileID: 0}
+  InertieSlopeSlow: 0
+  SpawnPoint: {fileID: 0}
+  ModelPlayer: {fileID: 0}
   BaseSpeed: 10
-  ActualSpeed: 0
   SlideActualSpeed: 0
-  CurrentSpeed: {x: 0, y: 0, z: 0}
-  NormalAngle: {x: 0, y: 0, z: 0}
-  WalkingSpeed: {x: 0, y: 0, z: 0}
+  BoostSpeedDash: 0
+  SpeedModification: 0
+  SpeedModificationValueToUpAndDown: 0
   _maxSpeed: 20
   _speedAugmentation: 2
   _speedDecrease: 5
-  _smoothTime: 0.05
-  Direction: {x: 0, y: 0, z: 0}
-  CurrentVelocity: 0
-  Input: {x: 0, y: 0}
-  _gravityMultiplier: 1
   Velocity: 0
+  _gravityMultiplier: 1
   _jumpPower: 4
   _maxTimer: 1
-  LastPos: {x: 0, y: 0, z: 0}
+  CoolDownSlope: 0
+  _slopeTurnSpeed: 0
+  _frictionForce: 0
+  _timerSlopeOrientation: 10.1
+  _orientationPlayerSlope: {x: 0, y: 0, z: -50}
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 128
-  _orientationPlayerSlope: {x: 0, y: 0, z: -50}
   _animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -658,11 +663,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _timerSlopeOrientation: 10.1
-  IsWaking: 0
+  ActualSpeed: 0
+  CurrentVelocity: 0
+  TimerCoolDownSlope: 0
+  IsWalking: 0
   IsSliding: 0
   IsSwimming: 0
-  CharacterController: {fileID: 0}
+  CurrentSpeed: {x: 0, y: 0, z: 0}
+  NormalAngle: {x: 0, y: 0, z: 0}
+  WalkingSpeed: {x: 0, y: 0, z: 0}
+  LastPos: {x: 0, y: 0, z: 0}
+  Direction: {x: 0, y: 0, z: 0}
+  Input: {x: 0, y: 0}
+  PlayerOriginRotation: {x: 0, y: 0, z: 0, w: 0}
+  CharaController: {fileID: 0}
 --- !u!143 &260911451
 CharacterController:
   m_ObjectHideFlags: 0
@@ -704,6 +718,7 @@ MonoBehaviour:
   slopeMaxAngle: 90
   slopeMinAngle: 90
   SlidingSpeed: 1
+  ContextStarted: 0
   SlideMultiplicator: 1
   ForceSlideTime: 1
   DownSpeed: 1
@@ -977,17 +992,17 @@ PrefabInstance:
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 95.39
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 95.39
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 95.39
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
@@ -997,7 +1012,7 @@ PrefabInstance:
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.196
+      value: -1.8
       objectReference: {fileID: 0}
     - target: {fileID: 1495965177905877518, guid: 1ebedb366eb02bc45a3a490db7fdf00b,
         type: 3}
@@ -1274,7 +1289,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1e8ebc9ff6dea4348a392186f60f96e1, type: 2}
+      objectReference: {fileID: 2100000, guid: 3305f347ebeb5374f8cd396d23c37320, type: 2}
     - target: {fileID: 919132149155446097, guid: d728f4cf4817e514e9b73d24400059c8,
         type: 3}
       propertyPath: m_Name
