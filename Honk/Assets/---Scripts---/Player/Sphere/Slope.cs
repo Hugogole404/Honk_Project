@@ -24,6 +24,7 @@ public class Slope : MonoBehaviour
 
     [SerializeField] private float _maxTimerSlide;
 
+    private bool _isMovingDown, _isMovingUp, _isMovingStraight;
     private float _gravity = -9.81f;
     private float _currentTimerJump;
     private float _currentTimerSlide;
@@ -73,7 +74,7 @@ public class Slope : MonoBehaviour
         {
             _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 10);
         }
-        if ((_modSlide || _modOnSlope) && IsGrounded)
+        if ((_modSlide || _modOnSlope) && IsGrounded && (_isMovingStraight || _isMovingUp))
         {
             _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _speedDecreaseValue;
             _modOnSlope = true;
@@ -84,6 +85,9 @@ public class Slope : MonoBehaviour
     {
         if (_lastPosition.y - transform.position.y < 0)
         {
+            _isMovingUp = true;
+            _isMovingDown = false;
+            _isMovingStraight = false;
             Debug.Log("Il Monte");
             //if (_rigidbody.velocity.magnitude < 10f)
             //{
@@ -92,10 +96,16 @@ public class Slope : MonoBehaviour
         }
         else if (_lastPosition.y - transform.position.y > 0)
         {
+            _isMovingUp = false;
+            _isMovingDown = true;
+            _isMovingStraight = false;
             Debug.Log("Il descend");
         }
         else if (_lastPosition.y == transform.position.y)
         {
+            _isMovingUp = false;
+            _isMovingDown = false;
+            _isMovingStraight = true;
             Debug.Log("Il ne change pas de hauteur");
         }
         _lastPosition = transform.position;
