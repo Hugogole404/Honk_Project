@@ -352,7 +352,7 @@ public class PlayerMovements : MonoBehaviour
         {
             CharaController.Move(WalkingSpeed * Time.deltaTime);
             GetComponent<CharacterController>().enabled = true;
-            SphereSlope.SetActive(false);
+            //SphereSlope.SetActive(false);
         }
         if (IsSliding)
         {
@@ -399,7 +399,7 @@ public class PlayerMovements : MonoBehaviour
         WalkingSpeed = Direction * ActualSpeed;
 
         ApplyRotation();
-        CheckLastPosition();
+        //CheckLastPosition();
         ApplyGravity();
         if (IsGrounded())
         {
