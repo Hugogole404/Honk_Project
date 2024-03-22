@@ -16,7 +16,6 @@ public class Slope : MonoBehaviour
     [SerializeField] private float _gravityMultiplier;
 
     [SerializeField] private float _rotationSpeed;
-    [SerializeField] private float _toleranceSlopeValue;
 
     [SerializeField] private bool _modWalk = true;
     [SerializeField] private bool _modOnSlope = false;
@@ -83,7 +82,7 @@ public class Slope : MonoBehaviour
     }
     private void CheckLastPosition()
     {
-        if (_lastPosition.y - transform.position.y < 0 - _toleranceSlopeValue)
+        if (_lastPosition.y - transform.position.y < 0)
         {
             Debug.Log("Il Monte");
             //if (_rigidbody.velocity.magnitude < 10f)
@@ -91,7 +90,7 @@ public class Slope : MonoBehaviour
             //    _rigidbody.AddForce(-_rigidbody.velocity, ForceMode.Force);
             //}
         }
-        else if (_lastPosition.y - transform.position.y > 0 + _toleranceSlopeValue)
+        else if (_lastPosition.y - transform.position.y > 0)
         {
             Debug.Log("Il descend");
         }
@@ -106,7 +105,6 @@ public class Slope : MonoBehaviour
     {
         if (_modOnSlope)
         {
-            /// faire une soustraction ou addition en fonction de la magnitude actuelle (rotation sur l'axe y) 
             _rigidbody.velocity += new Vector3(_rotationSpeed * _moveInput.x * Time.deltaTime, 0, _rotationSpeed * _moveInput.y * Time.deltaTime);
         }
     }
@@ -162,10 +160,11 @@ public class Slope : MonoBehaviour
         ApplyGravity();
 
         SpeedDown();
-        CheckLastPosition();
     }
     private void FixedUpdate()
     {
+        CheckLastPosition();
+
         if (_rigidbody.velocity.magnitude > _maxSpeed)
         {
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxSpeed);
