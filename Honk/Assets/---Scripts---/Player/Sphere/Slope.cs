@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Slope : MonoBehaviour
 {
+    public GameObject SpawnPoint;
     public bool IsGrounded = false;
     public bool CanSpeedDown = false;
     [SerializeField] private float _speed;
@@ -32,6 +33,7 @@ public class Slope : MonoBehaviour
     private Vector3 _lastPosition;
     private Vector2 _moveInput;
     private Rigidbody _rigidbody;
+    private PlayerMovements _playerMovements;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -158,7 +160,9 @@ public class Slope : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _playerMovements = FindAnyObjectByType<PlayerMovements>();
         _lastPosition = transform.position;
+        transform.position = SpawnPoint.transform.position;
     }
     private void Update()
     {

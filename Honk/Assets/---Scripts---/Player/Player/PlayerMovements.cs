@@ -52,6 +52,7 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private Vector3 _orientationPlayerSlope = new Vector3();
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private AnimationCurve _animationCurve;
+    [SerializeField] private RaycastHit _slopeHit;
 
     [HideInInspector] public float ActualSpeed;
     [HideInInspector] public float CurrentVelocity;
@@ -69,6 +70,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public CharacterController CharaController;
     [HideInInspector] private PlayerSlides _playerSlides;
     [HideInInspector] private TimerManager _timerManager;
+    [HideInInspector] private Slope _slope;
     #endregion
 
     #region ACTIONS
@@ -247,6 +249,15 @@ public class PlayerMovements : MonoBehaviour
 
     #region CHECKS
     public bool IsGrounded() => CharaController.isGrounded;
+    public bool IsOnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, 5f))
+        {
+            if(_slopeHit.normal != Vector3.up) { return true; }
+            else { return false; }
+        }
+        return false;   
+    }
     private void CheckIsGroundedCoyauteJump()
     {
         if (!IsGrounded())
@@ -296,7 +307,15 @@ public class PlayerMovements : MonoBehaviour
     }
     private void CheckIsGroundedForParticles()
     {
-        if (IsGrounded())
+        //if (IsGrounded())
+        //{
+        //    SnowTrail.GetComponent<ParticleSystem>().enableEmission = true;
+        //}
+        //else
+        //{
+        //    SnowTrail.GetComponent<ParticleSystem>().enableEmission = false;
+        //}
+        if (_slope.IsGrounded)
         {
             SnowTrail.GetComponent<ParticleSystem>().enableEmission = true;
         }
@@ -379,6 +398,7 @@ public class PlayerMovements : MonoBehaviour
         CharaController = GetComponent<CharacterController>();
         _playerSlides = GetComponent<PlayerSlides>();
         _timerManager = FindAnyObjectByType<TimerManager>();
+        _slope = FindAnyObjectByType<Slope>();
     }
     private void Start()
     {
@@ -398,6 +418,7 @@ public class PlayerMovements : MonoBehaviour
         TimerCoolDownSlope += Time.deltaTime;
         WalkingSpeed = Direction * ActualSpeed;
 
+        Debug.Log(IsOnSlope());
         ApplyRotation();
         //CheckLastPosition();
         ApplyGravity();
