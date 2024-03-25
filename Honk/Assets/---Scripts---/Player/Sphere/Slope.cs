@@ -146,10 +146,10 @@ public class Slope : MonoBehaviour
         }
 
         // a voir si gardé 
-        if (!IsGrounded)
-        {
-            transform.position += Vector3.down * 0.1f;
-        }
+        //if (!IsGrounded)
+        //{
+        //    transform.position += Vector3.down * 0.1f;
+        //}
     }
     private void ApplyGravity()
     {
