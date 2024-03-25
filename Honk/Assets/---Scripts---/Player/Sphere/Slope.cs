@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Slope : MonoBehaviour
 {
+    public GameObject SpawnPoint;
     public bool IsGrounded = false;
     public bool CanSpeedDown = false;
     [SerializeField] private float _speed;
@@ -32,6 +33,7 @@ public class Slope : MonoBehaviour
     private Vector3 _lastPosition;
     private Vector2 _moveInput;
     private Rigidbody _rigidbody;
+    private PlayerMovements _playerMovements;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -124,11 +126,29 @@ public class Slope : MonoBehaviour
         {
             _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed, ForceMode.Force);
         }
-        if (_modSlide)
+        if (_modSlide /*&& _rigidbody.velocity.magnitude > 0.05f*/)
         {
             _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * 5, ForceMode.Impulse);
             _modOnSlope = true;
             _modSlide = false;
+        }
+        //if (_playerMovements.IsOnSlope())
+        //{
+        //    _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * 5, ForceMode.Acceleration);
+        //    _modOnSlope = true;
+        //    _modSlide = false;
+        //}
+        if(IsGrounded && _playerMovements.IsOnSlope())
+        {
+            _rigidbody.AddForce(_moveInput.normalized * _speed, ForceMode.Force);
+            _modOnSlope = true;
+            _modSlide = false;
+        }
+
+        // a voir si gardé 
+        if (!IsGrounded)
+        {
+            transform.position += Vector3.down * 0.1f;
         }
     }
     private void ApplyGravity()
@@ -158,7 +178,9 @@ public class Slope : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _playerMovements = FindAnyObjectByType<PlayerMovements>();
         _lastPosition = transform.position;
+        transform.position = SpawnPoint.transform.position;
     }
     private void Update()
     {
