@@ -124,7 +124,7 @@ public class Slope : MonoBehaviour
         {
             _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed, ForceMode.Force);
         }
-        if (_modSlide)
+        if (_modSlide /*&& _rigidbody.velocity.magnitude > 0.05f*/)
         {
             _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * 5, ForceMode.Impulse);
             _modOnSlope = true;

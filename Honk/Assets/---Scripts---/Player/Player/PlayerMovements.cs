@@ -389,7 +389,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CheckIsGroundedCoyauteJump();
+        //CheckIsGroundedCoyauteJump();
         ApplyMovement();
         ApplySpeed();
     }
