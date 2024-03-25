@@ -132,9 +132,15 @@ public class Slope : MonoBehaviour
             _modOnSlope = true;
             _modSlide = false;
         }
-        if (_playerMovements.IsOnSlope())
+        //if (_playerMovements.IsOnSlope())
+        //{
+        //    _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * 5, ForceMode.Acceleration);
+        //    _modOnSlope = true;
+        //    _modSlide = false;
+        //}
+        if(IsGrounded && _playerMovements.IsOnSlope())
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * 5, ForceMode.Force);
+            _rigidbody.AddForce(_moveInput.normalized * _speed, ForceMode.Force);
             _modOnSlope = true;
             _modSlide = false;
         }
