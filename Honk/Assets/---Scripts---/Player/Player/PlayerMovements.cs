@@ -10,7 +10,7 @@ public class PlayerMovements : MonoBehaviour
     public RaycastHit INFOOOO;
     [SerializeField] private float _smoothTime;
     public float _rotationSpeedSlope = 1f;
-    public GameObject ParticulesSyst;
+    public GameObject SnowTrail;
     public GameObject SphereSlope;
     public float InertieSlopeSlow;
 
@@ -298,11 +298,11 @@ public class PlayerMovements : MonoBehaviour
     {
         if (IsGrounded())
         {
-            ParticulesSyst.GetComponent<ParticleSystem>().enableEmission = true;
+            SnowTrail.GetComponent<ParticleSystem>().enableEmission = true;
         }
         else
         {
-            ParticulesSyst.GetComponent<ParticleSystem>().enableEmission = false;
+            SnowTrail.GetComponent<ParticleSystem>().enableEmission = false;
         }
     }
     #endregion
