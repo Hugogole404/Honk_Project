@@ -418,7 +418,6 @@ public class PlayerMovements : MonoBehaviour
         TimerCoolDownSlope += Time.deltaTime;
         WalkingSpeed = Direction * ActualSpeed;
 
-        Debug.Log(IsOnSlope());
         ApplyRotation();
         //CheckLastPosition();
         ApplyGravity();

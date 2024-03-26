@@ -92,7 +92,7 @@ public class Slope : MonoBehaviour
             _isMovingUp = true;
             _isMovingDown = false;
             _isMovingStraight = false;
-            Debug.Log("Il Monte");
+            //Debug.Log("Il Monte");
             //if (_rigidbody.velocity.magnitude < 10f)
             //{
             //    _rigidbody.AddForce(-_rigidbody.velocity, ForceMode.Force);
@@ -103,14 +103,14 @@ public class Slope : MonoBehaviour
             _isMovingUp = false;
             _isMovingDown = true;
             _isMovingStraight = false;
-            Debug.Log("Il descend");
+            //Debug.Log("Il descend");
         }
         else if (_lastPosition.y == transform.position.y)
         {
             _isMovingUp = false;
             _isMovingDown = false;
             _isMovingStraight = true;
-            Debug.Log("Il ne change pas de hauteur");
+            //Debug.Log("Il ne change pas de hauteur");
         }
         _lastPosition = transform.position;
     }
@@ -213,15 +213,13 @@ public class Slope : MonoBehaviour
     {
         TimerJump();
         TimerSlide();
-
-        ApplyMovement();
-        ApplyRotationSlope();
         ApplyGravity();
-
         SpeedDown();
     }
     private void FixedUpdate()
     {
+        ApplyRotationSlope();
+        ApplyMovement();
         CheckLastPosition();
         CheckMaxSpeed();
     }
