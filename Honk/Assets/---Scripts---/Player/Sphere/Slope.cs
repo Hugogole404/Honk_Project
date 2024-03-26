@@ -152,11 +152,11 @@ public class Slope : MonoBehaviour
     {
         if (_modWalk)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed, ForceMode.Force);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * Time.deltaTime * 100, ForceMode.Acceleration);
         }
         if (_modSlide /*&& _rigidbody.velocity.magnitude > 0.05f*/)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speedSlope * 5, ForceMode.Impulse);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speedSlope * 5 * Time.deltaTime * 100, ForceMode.Impulse);
             _modOnSlope = true;
             _modSlide = false;
         }
@@ -208,11 +208,11 @@ public class Slope : MonoBehaviour
     {
         TimerJump();
         TimerSlide();
-        ApplyGravity();
-        SpeedDown();
     }
     private void FixedUpdate()
     {
+        ApplyGravity();
+        SpeedDown();
         ApplyRotationSlope();
         ApplyMovement();
         CheckLastPosition();
