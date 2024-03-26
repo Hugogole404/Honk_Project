@@ -1,6 +1,4 @@
-using FMOD;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 
 public class PlayerSphereSlope : MonoBehaviour
 {

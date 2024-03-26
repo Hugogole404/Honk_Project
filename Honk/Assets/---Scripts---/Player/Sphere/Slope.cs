@@ -93,6 +93,7 @@ public class Slope : MonoBehaviour
             _isMovingDown = false;
             _isMovingStraight = false;
             //Debug.Log("Il Monte");
+
             //if (_rigidbody.velocity.magnitude < 10f)
             //{
             //    _rigidbody.AddForce(-_rigidbody.velocity, ForceMode.Force);
@@ -159,12 +160,6 @@ public class Slope : MonoBehaviour
             _modOnSlope = true;
             _modSlide = false;
         }
-        //if (_playerMovements.IsOnSlope())
-        //{
-        //    _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * 5, ForceMode.Acceleration);
-        //    _modOnSlope = true;
-        //    _modSlide = false;
-        //}
         //if (IsGrounded && _playerMovements.IsOnSlope())
         //{
         //    _rigidbody.AddForce(_moveInput.normalized * _speedSlope, ForceMode.Force);
