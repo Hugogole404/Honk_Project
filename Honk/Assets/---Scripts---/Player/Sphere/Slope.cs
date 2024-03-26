@@ -53,13 +53,13 @@ public class Slope : MonoBehaviour
             _modSlide = true;
             _modWalk = false;
             _slideTimer = false;
-            _currentTimerSlide = 0;
         }
         if (context.canceled)
         {
             _modSlide = false;
             _modWalk = true;
             _modOnSlope = false;
+            _currentTimerSlide = 0;
         }
     }
     public void Jump(InputAction.CallbackContext context)
@@ -152,11 +152,11 @@ public class Slope : MonoBehaviour
     {
         if (_modWalk)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * Time.deltaTime * 100, ForceMode.Acceleration);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * Time.deltaTime * 100, ForceMode.Force);
         }
         if (_modSlide /*&& _rigidbody.velocity.magnitude > 0.05f*/)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speedSlope * 5 * Time.deltaTime * 100, ForceMode.Impulse);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speedSlope * Time.deltaTime * 100, ForceMode.Impulse);
             _modOnSlope = true;
             _modSlide = false;
         }
@@ -168,10 +168,10 @@ public class Slope : MonoBehaviour
         //}
 
         // a voir si gardé 
-        //if (!IsGrounded)
-        //{
-        //    transform.position += Vector3.down * 0.1f;
-        //}
+        if (!IsGrounded)
+        {
+            transform.position += Vector3.down * 0.1f;
+        }
     }
     private void ApplyGravity()
     {
