@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class Slope : MonoBehaviour
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _maxSpeedSlope;
     [SerializeField] private float _speedDecreaseValue;
+    [SerializeField] private float _speedAugmentationSlopeValue;
     [SerializeField] private float _boostSpeedStartSlope;
 
     [SerializeField] private float _jumpForce;
@@ -28,6 +30,7 @@ public class Slope : MonoBehaviour
     [SerializeField] private float _maxTimerSlide;
 
     private bool _isMovingDown, _isMovingUp, _isMovingStraight;
+    private float _originSpeedSlope;
     private float _gravity = -9.81f;
     private float _currentTimerJump;
     private float _currentTimerSlide;
@@ -60,6 +63,7 @@ public class Slope : MonoBehaviour
             _modWalk = true;
             _modOnSlope = false;
             _currentTimerSlide = 0;
+            _speedSlope = _originSpeedSlope;
         }
     }
     public void Jump(InputAction.CallbackContext context)
@@ -104,6 +108,10 @@ public class Slope : MonoBehaviour
             _isMovingUp = false;
             _isMovingDown = true;
             _isMovingStraight = false;
+            if (_modOnSlope)
+            {
+                _speedSlope += _speedAugmentationSlopeValue * Time.deltaTime;
+            }
             //Debug.Log("Il descend");
         }
         else if (_lastPosition.y == transform.position.y)
@@ -168,10 +176,10 @@ public class Slope : MonoBehaviour
         //}
 
         // a voir si gardé 
-        if (!IsGrounded)
-        {
-            transform.position += Vector3.down * 0.1f;
-        }
+        //if (!IsGrounded)
+        //{
+        //    transform.position += Vector3.down * 0.1f;
+        //}
     }
     private void ApplyGravity()
     {
@@ -203,11 +211,13 @@ public class Slope : MonoBehaviour
         _playerMovements = FindAnyObjectByType<PlayerMovements>();
         _lastPosition = transform.position;
         transform.position = SpawnPoint.transform.position;
+        _originSpeedSlope = _speedSlope;
     }
     private void Update()
     {
         TimerJump();
         TimerSlide();
+        Debug.Log(_speedSlope);
     }
     private void FixedUpdate()
     {
