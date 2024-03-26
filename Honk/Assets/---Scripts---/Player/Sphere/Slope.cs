@@ -7,9 +7,11 @@ public class Slope : MonoBehaviour
     public bool IsGrounded = false;
     public bool CanSpeedDown = false;
     [SerializeField] private float _speed;
+    [SerializeField] private float _speedSlope;
+    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float _maxSpeedSlope;
     [SerializeField] private float _speedDecreaseValue;
     [SerializeField] private float _boostSpeedStartSlope;
-    [SerializeField] private float _maxSpeed;
 
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _maxTimerJump;
@@ -112,6 +114,31 @@ public class Slope : MonoBehaviour
         }
         _lastPosition = transform.position;
     }
+    private void CheckMaxSpeed()
+    {
+        if (_modWalk)
+        {
+            if (_rigidbody.velocity.magnitude > _maxSpeed)
+            {
+                _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxSpeed);
+            }
+            if (_rigidbody.velocity.magnitude < -_maxSpeed)
+            {
+                _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, -_maxSpeed);
+            }
+        }
+        else
+        {
+            if (_rigidbody.velocity.magnitude > _maxSpeedSlope)
+            {
+                _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxSpeedSlope);
+            }
+            if (_rigidbody.velocity.magnitude < -_maxSpeedSlope)
+            {
+                _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, -_maxSpeedSlope);
+            }
+        }
+    }
 
     private void ApplyRotationSlope()
     {
@@ -128,7 +155,7 @@ public class Slope : MonoBehaviour
         }
         if (_modSlide /*&& _rigidbody.velocity.magnitude > 0.05f*/)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * 5, ForceMode.Impulse);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speedSlope * 5, ForceMode.Impulse);
             _modOnSlope = true;
             _modSlide = false;
         }
@@ -138,18 +165,18 @@ public class Slope : MonoBehaviour
         //    _modOnSlope = true;
         //    _modSlide = false;
         //}
-        if(IsGrounded && _playerMovements.IsOnSlope())
+        if (IsGrounded && _playerMovements.IsOnSlope())
         {
-            _rigidbody.AddForce(_moveInput.normalized * _speed, ForceMode.Force);
+            _rigidbody.AddForce(_moveInput.normalized * _speedSlope, ForceMode.Force);
             _modOnSlope = true;
             _modSlide = false;
         }
 
         // a voir si gardé 
-        //if (!IsGrounded)
-        //{
-        //    transform.position += Vector3.down * 0.1f;
-        //}
+        if (!IsGrounded)
+        {
+            transform.position += Vector3.down * 0.1f;
+        }
     }
     private void ApplyGravity()
     {
@@ -196,14 +223,6 @@ public class Slope : MonoBehaviour
     private void FixedUpdate()
     {
         CheckLastPosition();
-
-        if (_rigidbody.velocity.magnitude > _maxSpeed)
-        {
-            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxSpeed);
-        }
-        if (_rigidbody.velocity.magnitude < -_maxSpeed)
-        {
-            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, -_maxSpeed);
-        }
+        CheckMaxSpeed();
     }
 }
