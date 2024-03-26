@@ -74,11 +74,11 @@ public class Slope : MonoBehaviour
 
     private void SpeedDown()
     {
-        if (_modWalk)
+        if (_modWalk && _rigidbody.velocity.magnitude > 1)
         {
             _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 10);
         }
-        if ((_modSlide || _modOnSlope) && IsGrounded && (_isMovingStraight || _isMovingUp))
+        if ((_modSlide || _modOnSlope) && IsGrounded && (_isMovingStraight || _isMovingUp) && _rigidbody.velocity.magnitude > 1)
         {
             _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _speedDecreaseValue;
             _modOnSlope = true;
@@ -165,18 +165,18 @@ public class Slope : MonoBehaviour
         //    _modOnSlope = true;
         //    _modSlide = false;
         //}
-        if (IsGrounded && _playerMovements.IsOnSlope())
-        {
-            _rigidbody.AddForce(_moveInput.normalized * _speedSlope, ForceMode.Force);
-            _modOnSlope = true;
-            _modSlide = false;
-        }
+        //if (IsGrounded && _playerMovements.IsOnSlope())
+        //{
+        //    _rigidbody.AddForce(_moveInput.normalized * _speedSlope, ForceMode.Force);
+        //    _modOnSlope = true;
+        //    _modSlide = false;
+        //}
 
         // a voir si gardé 
-        if (!IsGrounded)
-        {
-            transform.position += Vector3.down * 0.1f;
-        }
+        //if (!IsGrounded)
+        //{
+        //    transform.position += Vector3.down * 0.1f;
+        //}
     }
     private void ApplyGravity()
     {
