@@ -6,12 +6,12 @@ public class Slope : MonoBehaviour
     public GameObject SpawnPoint;
     public bool IsGrounded = false;
     public bool CanSpeedDown = false;
-    [SerializeField] private float _speedSlope;
     [SerializeField] private float _speed;
-    [SerializeField] private float _speedDecreaseValue;
-    [SerializeField] private float _boostSpeedStartSlope;
+    [SerializeField] private float _speedSlope;
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _maxSpeedSlope;
+    [SerializeField] private float _speedDecreaseValue;
+    [SerializeField] private float _boostSpeedStartSlope;
 
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _maxTimerJump;

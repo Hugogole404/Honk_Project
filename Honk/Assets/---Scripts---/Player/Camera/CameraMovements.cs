@@ -7,12 +7,12 @@ using UnityEngine.ProBuilder.Shapes;
 public class CameraMovements : MonoBehaviour
 {
     [SerializeField] private float offsetY, offsetZ;
-    private PlayerMovements Player;
+    private Slope Player;
     //[SerializeField] private Sphere Player;
 
     private void Awake()
     {
-        Player = FindAnyObjectByType<PlayerMovements>();
+        Player = FindAnyObjectByType<Slope>();
     }
     private void Update()
     {
