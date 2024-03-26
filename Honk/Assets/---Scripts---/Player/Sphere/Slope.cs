@@ -108,7 +108,7 @@ public class Slope : MonoBehaviour
             _isMovingUp = false;
             _isMovingDown = true;
             _isMovingStraight = false;
-            if (_modOnSlope)
+            if (_modOnSlope && IsGrounded)
             {
                 _speedSlope += _speedAugmentationSlopeValue * Time.deltaTime;
             }
@@ -217,7 +217,6 @@ public class Slope : MonoBehaviour
     {
         TimerJump();
         TimerSlide();
-        Debug.Log(_speedSlope);
     }
     private void FixedUpdate()
     {
