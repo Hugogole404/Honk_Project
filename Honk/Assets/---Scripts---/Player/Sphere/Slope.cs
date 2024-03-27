@@ -7,8 +7,8 @@ public class Slope : MonoBehaviour
     public GameObject SpawnPoint;
     public bool IsGrounded = false;
     public bool CanSpeedDown = false;
-    [SerializeField] private float _speed;
-    [SerializeField] private float _speedSlope;
+    [SerializeField] public float Speed;
+    [SerializeField] public float _speedSlope;
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _maxSpeedSlope;
     [SerializeField] private float _speedDecreaseValue;
@@ -37,7 +37,7 @@ public class Slope : MonoBehaviour
     private bool _canJump;
     private Vector3 _lastPosition;
     private Vector2 _moveInput;
-    private Rigidbody _rigidbody;
+    [HideInInspector] public Rigidbody _rigidbody;
     private PlayerMovements _playerMovements;
 
     public void OnMove(InputAction.CallbackContext context)
@@ -160,7 +160,7 @@ public class Slope : MonoBehaviour
     {
         if (_modWalk)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speed * Time.deltaTime * 100, ForceMode.Force);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * Speed * Time.deltaTime * 100, ForceMode.Force);
         }
         if (_modSlide /*&& _rigidbody.velocity.magnitude > 0.05f*/)
         {
