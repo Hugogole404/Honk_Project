@@ -85,9 +85,9 @@ public class Slope : MonoBehaviour
 
     public void SpeedDownAfterSpeedUpArea()
     {
-        if(SpeedMaxCanDecrease) 
+        if (SpeedMaxCanDecrease)
         {
-            if(_maxSpeed <= OldSpeed || _maxSpeedSlope <= OldSpeedSlope)
+            if (_maxSpeed <= OldSpeed && _maxSpeedSlope <= OldSpeedSlope)
             {
                 _maxSpeed = OldSpeed;
                 _maxSpeedSlope = OldSpeedSlope;
@@ -97,6 +97,14 @@ public class Slope : MonoBehaviour
             {
                 _maxSpeed -= SpeedToReduce * Time.deltaTime;
                 _maxSpeedSlope -= SpeedToReduce * Time.deltaTime;
+                if (_maxSpeed <= OldSpeed )
+                {
+                    _maxSpeed = OldSpeed;
+                }
+                if(_maxSpeedSlope <= OldSpeedSlope )
+                {
+                    _maxSpeedSlope = OldSpeedSlope;
+                }
             }
         }
     }
@@ -105,7 +113,7 @@ public class Slope : MonoBehaviour
     {
         if (_modWalk && _rigidbody.velocity.magnitude > 1)
         {
-            _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 100, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 100);
+            _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 10);
         }
         if ((_modSlide || _modOnSlope) && IsGrounded && (_isMovingStraight || _isMovingUp) && _rigidbody.velocity.magnitude > 1)
         {
