@@ -7,7 +7,8 @@ public class AreaSpeedUp : MonoBehaviour
     //public float VelocityMultiplier;
     public float SpeedUpMax;
     public float SpeedUpSlopeMax;
-    public float SpeedToReducePerSec;
+    public float MaxSpeedToDecreasePerSec;
+
     private float _oldSpeedMax;
     private float _oldSpeedSlopeMax;
     private void OnTriggerEnter(Collider other)
@@ -28,7 +29,7 @@ public class AreaSpeedUp : MonoBehaviour
         {
             other.GetComponent<Slope>().OldSpeed = _oldSpeedMax;
             other.GetComponent<Slope>().OldSpeedSlope = _oldSpeedSlopeMax;
-            other.GetComponent<Slope>().SpeedToReduce = SpeedToReducePerSec;
+            other.GetComponent<Slope>().SpeedToReduce = MaxSpeedToDecreasePerSec;
             other.GetComponent<Slope>().SpeedMaxCanDecrease = true;
         }
     }
