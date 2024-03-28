@@ -31,8 +31,8 @@ public class AreaSpeedUp : MonoBehaviour
 
             other.GetComponent<Slope>()._maxSpeed = SpeedUpMax;
             other.GetComponent<Slope>()._maxSpeedSlope = SpeedUpSlopeMax;
+
             other.GetComponent<Slope>()._rigidbody.velocity += other.GetComponent<Slope>()._rigidbody.velocity * VelocityPercent;
-            //other.GetComponent<Slope>()._rigidbody.velocity = other.GetComponent<Slope>()._rigidbody.velocity * VelocityMultiplier;
         }
     }
     private void OnTriggerStay(Collider other)
