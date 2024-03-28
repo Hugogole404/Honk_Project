@@ -15,7 +15,7 @@ public class PlayerMovements : MonoBehaviour
     public float InertieSlopeSlow;
 
     [Header("SpawnPoint")]
-    public Transform SpawnPoint;
+    public GameObject SpawnPoint;
 
     [Header("Movements")]
     public GameObject ModelPlayer;
@@ -153,7 +153,7 @@ public class PlayerMovements : MonoBehaviour
     private void TeleportToSpawnPoint()
     {
         CharaController.enabled = false;
-        transform.position = SpawnPoint.position;
+        transform.position = SpawnPoint.transform.position;
         CharaController.enabled = true;
     }
     private void ResetJumpCounter()

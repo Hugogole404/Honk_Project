@@ -169,10 +169,10 @@ public class Slope : MonoBehaviour
     {
         if (_modWalk)
         {
-            if (_rigidbody.velocity.magnitude > VelocityMax)
-            {
-                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x * VelocityMax / 10, 0, _rigidbody.velocity.z * VelocityMax / 10);
-            }
+            //if (_rigidbody.velocity.magnitude > VelocityMax)
+            //{
+            //    _rigidbody.velocity = new Vector3(_rigidbody.velocity.x * VelocityMax / 10, 0, _rigidbody.velocity.z * VelocityMax / 10);
+            //}
             if (_rigidbody.velocity.magnitude > _maxSpeed)
             {
                 _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxSpeed);

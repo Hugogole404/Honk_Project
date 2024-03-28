@@ -5,12 +5,16 @@ using UnityEngine;
 [HelpURL("https://app.milanote.com/1RCpEj14cuel2K/spawn-point-area?p=5Aw4gcZ0pqp")]
 public class AreaSpawnPoint : MonoBehaviour
 {
-    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private GameObject _spawnPoint;
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerMovements>() != null)
         {
             other.GetComponent<PlayerMovements>().SpawnPoint = _spawnPoint;
+        }
+        if (other.GetComponent<Slope>() != null)
+        {
+            other.GetComponent<Slope>().SpawnPoint = _spawnPoint;
         }
     }
 }
