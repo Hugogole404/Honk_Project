@@ -8,8 +8,8 @@ public class Slope : MonoBehaviour
     public bool IsGrounded = false;
     public bool CanSpeedDown = false;
     [Header("Speed")]
-    [SerializeField] public float Speed;
-    [SerializeField] public float _speedSlope;
+    public float Speed;
+    public float _speedSlope;
     [Space]
     public float _maxSpeed;
     public float _maxSpeedSlope;
@@ -45,7 +45,7 @@ public class Slope : MonoBehaviour
     private PlayerMovements _playerMovements;
     [HideInInspector] public Rigidbody _rigidbody;
     [HideInInspector] public bool SpeedMaxCanDecrease = false;
-    [HideInInspector] public float OldSpeed, OldSpeedSlope, SpeedToReduce;
+    [HideInInspector] public float OldSpeedMax, OldSpeedSlopeMax, SpeedToReduce, OldSpeed, OldSpeedSlope;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -87,23 +87,25 @@ public class Slope : MonoBehaviour
     {
         if (SpeedMaxCanDecrease)
         {
-            if (_maxSpeed <= OldSpeed && _maxSpeedSlope <= OldSpeedSlope)
+            if (_maxSpeed <= OldSpeedMax && _maxSpeedSlope <= OldSpeedSlopeMax)
             {
-                _maxSpeed = OldSpeed;
-                _maxSpeedSlope = OldSpeedSlope;
+                _maxSpeed = OldSpeedMax;
+                _maxSpeedSlope = OldSpeedSlopeMax;
+                Speed = OldSpeed;
+                _speedSlope = OldSpeedSlope;
                 SpeedMaxCanDecrease = false;
             }
             else
             {
                 _maxSpeedSlope -= SpeedToReduce * Time.deltaTime;
                 _maxSpeed -= SpeedToReduce * Time.deltaTime;
-                if (_maxSpeed <= OldSpeed)
+                if (_maxSpeed <= OldSpeedMax)
                 {
-                    _maxSpeed = OldSpeed;
+                    _maxSpeed = OldSpeedMax;
                 }
-                if (_maxSpeedSlope <= OldSpeedSlope)
+                if (_maxSpeedSlope <= OldSpeedSlopeMax)
                 {
-                    _maxSpeedSlope = OldSpeedSlope;
+                    _maxSpeedSlope = OldSpeedSlopeMax;
                 }
             }
         }
@@ -172,6 +174,14 @@ public class Slope : MonoBehaviour
             {
                 _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, -_maxSpeed);
             }
+            if (Speed > _maxSpeed)
+            {
+                Speed = _maxSpeed;
+            }
+            if (_speedSlope > _maxSpeedSlope)
+            {
+                _speedSlope = _maxSpeedSlope;
+            }
         }
         else
         {
@@ -182,6 +192,14 @@ public class Slope : MonoBehaviour
             if (_rigidbody.velocity.magnitude < -_maxSpeedSlope)
             {
                 _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, -_maxSpeedSlope);
+            }
+            if (Speed > _maxSpeed)
+            {
+                Speed = _maxSpeed;
+            }
+            if (_speedSlope > _maxSpeedSlope)
+            {
+                _speedSlope = _maxSpeedSlope;
             }
         }
     }
@@ -199,7 +217,7 @@ public class Slope : MonoBehaviour
         {
             _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * Speed * Time.deltaTime * 100, ForceMode.Force);
         }
-        if (_modSlide /*&& _rigidbody.velocity.magnitude > 0.05f*/)
+        if (_modSlide && _rigidbody.velocity.magnitude > 0.05f)
         {
             _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speedSlope * Time.deltaTime * 100, ForceMode.Impulse);
             _modOnSlope = true;
