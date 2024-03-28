@@ -80,7 +80,7 @@ public class Slope : MonoBehaviour
     {
         if (_modWalk && _rigidbody.velocity.magnitude > 1)
         {
-            _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 10);
+            _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 100);
         }
         if ((_modSlide || _modOnSlope) && IsGrounded && (_isMovingStraight || _isMovingUp) && _rigidbody.velocity.magnitude > 1)
         {
@@ -102,6 +102,10 @@ public class Slope : MonoBehaviour
             //{
             //    _rigidbody.AddForce(-_rigidbody.velocity, ForceMode.Force);
             //}
+            if (_modOnSlope && IsGrounded)
+            {
+                _speedSlope -= _speedAugmentationSlopeValue * Time.deltaTime;
+            }
         }
         else if (_lastPosition.y - transform.position.y > 0)
         {
