@@ -95,13 +95,13 @@ public class Slope : MonoBehaviour
             }
             else
             {
-                _maxSpeed -= SpeedToReduce * Time.deltaTime;
                 _maxSpeedSlope -= SpeedToReduce * Time.deltaTime;
-                if (_maxSpeed <= OldSpeed )
+                _maxSpeed -= SpeedToReduce * Time.deltaTime;
+                if (_maxSpeed <= OldSpeed)
                 {
                     _maxSpeed = OldSpeed;
                 }
-                if(_maxSpeedSlope <= OldSpeedSlope )
+                if (_maxSpeedSlope <= OldSpeedSlope)
                 {
                     _maxSpeedSlope = OldSpeedSlope;
                 }

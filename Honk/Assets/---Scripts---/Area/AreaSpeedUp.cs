@@ -18,7 +18,7 @@ public class AreaSpeedUp : MonoBehaviour
             _oldSpeedSlopeMax = other.GetComponent<Slope>()._speedSlope;
 
             other.GetComponent<Slope>()._maxSpeed = SpeedUpMax;
-            other.GetComponent<Slope>()._maxSpeed = SpeedUpSlopeMax;
+            other.GetComponent<Slope>()._maxSpeedSlope = SpeedUpSlopeMax;
             //other.GetComponent<Slope>()._rigidbody.velocity = other.GetComponent<Slope>()._rigidbody.velocity * VelocityMultiplier;
         }
     }
