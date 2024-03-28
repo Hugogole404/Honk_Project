@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class AreaSpeedUp : MonoBehaviour
 {
-    public float VelocityMultiplier;
-    public float SpeedUp;
-    public float SpeedUpSlope;
-    private float _oldSpeed;
-    private float _oldSpeedSlope;
+    //public float VelocityMultiplier;
+    public float SpeedUpMax;
+    public float SpeedUpSlopeMax;
+    public float SpeedToReducePerSec;
+    private float _oldSpeedMax;
+    private float _oldSpeedSlopeMax;
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Slope>() != null)
         {
-            _oldSpeed = other.GetComponent<Slope>().Speed;
-            _oldSpeedSlope = other.GetComponent<Slope>()._speedSlope;
-            other.GetComponent<Slope>().Speed = SpeedUp;
-            other.GetComponent<Slope>().Speed = SpeedUpSlope;
-            other.GetComponent<Slope>()._rigidbody.velocity = other.GetComponent<Slope>()._rigidbody.velocity * VelocityMultiplier;
+            _oldSpeedMax = other.GetComponent<Slope>()._maxSpeed;
+            _oldSpeedSlopeMax = other.GetComponent<Slope>()._speedSlope;
+
+            other.GetComponent<Slope>()._maxSpeed = SpeedUpMax;
+            other.GetComponent<Slope>()._maxSpeed = SpeedUpSlopeMax;
+            //other.GetComponent<Slope>()._rigidbody.velocity = other.GetComponent<Slope>()._rigidbody.velocity * VelocityMultiplier;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Slope>() != null)
         {
-            other.GetComponent<Slope>().Speed = _oldSpeed;
-            other.GetComponent<Slope>()._speedSlope = _oldSpeedSlope;
+            other.GetComponent<Slope>().OldSpeed = _oldSpeedMax;
+            other.GetComponent<Slope>().OldSpeedSlope = _oldSpeedSlopeMax;
+            other.GetComponent<Slope>().SpeedToReduce = SpeedToReducePerSec;
+            other.GetComponent<Slope>().SpeedMaxCanDecrease = true;
         }
     }
 }

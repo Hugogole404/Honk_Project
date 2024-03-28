@@ -7,27 +7,32 @@ public class Slope : MonoBehaviour
     public GameObject SpawnPoint;
     public bool IsGrounded = false;
     public bool CanSpeedDown = false;
+    [Header("Speed")]
     [SerializeField] public float Speed;
     [SerializeField] public float _speedSlope;
-    [SerializeField] private float _maxSpeed;
-    [SerializeField] private float _maxSpeedSlope;
+    [Space]
+    public float _maxSpeed;
+    public float _maxSpeedSlope;
+    [Space]
     [SerializeField] private float _speedDecreaseValue;
+    [Space]
     [SerializeField] private float _speedAugmentationSlopeValue;
+    [SerializeField] private float _speedDecreaseSlopeValue;
+    [Space]
     [SerializeField] private float _boostSpeedStartSlope;
-
+    [Header("Jump")]
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _maxTimerJump;
-
+    [Header("Gravity")]
     [SerializeField] private float _gravityMultiplier;
 
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _maxTimerSlide;
 
     [SerializeField] private bool _modWalk = true;
     [SerializeField] private bool _modOnSlope = false;
     [SerializeField] private bool _modSlide = false;
     [SerializeField] private bool _slideTimer = false;
-
-    [SerializeField] private float _maxTimerSlide;
 
     private bool _isMovingDown, _isMovingUp, _isMovingStraight;
     private float _originSpeedSlope;
@@ -37,8 +42,10 @@ public class Slope : MonoBehaviour
     private bool _canJump;
     private Vector3 _lastPosition;
     private Vector2 _moveInput;
-    [HideInInspector] public Rigidbody _rigidbody;
     private PlayerMovements _playerMovements;
+    [HideInInspector] public Rigidbody _rigidbody;
+    [HideInInspector] public bool SpeedMaxCanDecrease = false;
+    [HideInInspector] public float OldSpeed, OldSpeedSlope, SpeedToReduce;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -76,11 +83,29 @@ public class Slope : MonoBehaviour
         }
     }
 
+    public void SpeedDownAfterSpeedUpArea()
+    {
+        if(SpeedMaxCanDecrease) 
+        {
+            if(_maxSpeed <= OldSpeed || _maxSpeedSlope <= OldSpeedSlope)
+            {
+                _maxSpeed = OldSpeed;
+                _maxSpeedSlope = OldSpeedSlope;
+                SpeedMaxCanDecrease = false;
+            }
+            else
+            {
+                _maxSpeed -= SpeedToReduce * Time.deltaTime;
+                _maxSpeedSlope -= SpeedToReduce * Time.deltaTime;
+            }
+        }
+    }
+
     private void SpeedDown()
     {
         if (_modWalk && _rigidbody.velocity.magnitude > 1)
         {
-            _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 10, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 100);
+            _rigidbody.velocity -= new Vector3(_rigidbody.velocity.x * Time.deltaTime * _speedDecreaseValue * 100, 0, _rigidbody.velocity.z * Time.deltaTime * _speedDecreaseValue * 100);
         }
         if ((_modSlide || _modOnSlope) && IsGrounded && (_isMovingStraight || _isMovingUp) && _rigidbody.velocity.magnitude > 1)
         {
@@ -98,13 +123,13 @@ public class Slope : MonoBehaviour
             _isMovingStraight = false;
             //Debug.Log("Il Monte");
 
-            //if (_rigidbody.velocity.magnitude < 10f)
-            //{
-            //    _rigidbody.AddForce(-_rigidbody.velocity, ForceMode.Force);
-            //}
             if (_modOnSlope && IsGrounded)
             {
-                _speedSlope -= _speedAugmentationSlopeValue * Time.deltaTime;
+                _speedSlope -= _speedDecreaseSlopeValue * Time.deltaTime;
+            }
+            if (_speedSlope <= 0)
+            {
+                _rigidbody.velocity = new Vector3(0, 0, 0);
             }
         }
         else if (_lastPosition.y - transform.position.y > 0)
@@ -221,6 +246,7 @@ public class Slope : MonoBehaviour
     {
         TimerJump();
         TimerSlide();
+        SpeedDownAfterSpeedUpArea();
     }
     private void FixedUpdate()
     {
