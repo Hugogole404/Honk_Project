@@ -303,9 +303,5 @@ public class Slope : MonoBehaviour
         ApplyMovement();
         CheckLastPosition();
         CheckMaxSpeed();
-        if (IsGrounded == true && m_Animator.GetBool("IsJumping") == true)
-        {
-            m_Animator.SetBool("IsJumping", false);
-        }
     }
 }
