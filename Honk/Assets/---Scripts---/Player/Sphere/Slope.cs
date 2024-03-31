@@ -91,6 +91,8 @@ public class Slope : MonoBehaviour
             _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _canJump = false;
             _currentTimerJump = 0;
+            m_Animator.SetTrigger("Jump");
+            m_Animator.SetBool("IsJumping", true);
         }
     }
 
@@ -290,6 +292,8 @@ public class Slope : MonoBehaviour
         TimerJump();
         TimerSlide();
         SpeedModificationAfterSpeedUpArea();
+
+
     }
     private void FixedUpdate()
     {
@@ -299,5 +303,9 @@ public class Slope : MonoBehaviour
         ApplyMovement();
         CheckLastPosition();
         CheckMaxSpeed();
+        if (IsGrounded == true && m_Animator.GetBool("IsJumping") == true)
+        {
+            m_Animator.SetBool("IsJumping", false);
+        }
     }
 }
