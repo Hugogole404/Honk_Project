@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Slope : MonoBehaviour
 {
+    public Animator m_Animator;                                                         //J'ai rajouté ça (Adam)
     public GameObject SpawnPoint;
     public bool IsGrounded = false;
     public bool CanSpeedDown = false;
@@ -51,11 +52,16 @@ public class Slope : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
+        m_Animator.SetBool("IsMoving", true);
         //if (context.canceled && _modWalk && IsGrounded)
         //{
         //    _rigidbody.velocity = new Vector3(0,0,0);
         //    _moveInput = new Vector2(0, 0);
         //}
+        if (context.canceled)                                                           //J'ai rajouté ça (Adam)
+        {
+            m_Animator.SetBool("IsMoving", false);
+        }
     }
     public void StartSlide(InputAction.CallbackContext context)
     {
@@ -64,6 +70,8 @@ public class Slope : MonoBehaviour
             _modSlide = true;
             _modWalk = false;
             _slideTimer = false;
+            m_Animator.SetBool("IsSliding", true);                                     //J'ai rajouté ça (Adam)
+            m_Animator.SetTrigger("StartSlide");
         }
         if (context.canceled)
         {
@@ -72,6 +80,8 @@ public class Slope : MonoBehaviour
             _modOnSlope = false;
             _currentTimerSlide = 0;
             _speedSlope = _originSpeedSlope;
+            m_Animator.SetBool("IsSliding", false);                                     //J'ai rajouté ça (Adam)
+            m_Animator.SetTrigger("StopSlide");
         }
     }
     public void Jump(InputAction.CallbackContext context)
