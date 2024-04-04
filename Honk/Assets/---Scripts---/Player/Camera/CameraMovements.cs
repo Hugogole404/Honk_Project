@@ -8,14 +8,26 @@ public class CameraMovements : MonoBehaviour
 {
     [SerializeField] private float offsetY, offsetZ;
     private Slope Player;
+    private PlayerMovements PlayerMovWalk;
     //[SerializeField] private Sphere Player;
 
     private void Awake()
     {
         Player = FindAnyObjectByType<Slope>();
+        if (Player == null)
+        {
+            PlayerMovWalk = FindAnyObjectByType<PlayerMovements>();
+        }
     }
     private void Update()
     {
-        transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + offsetY, Player.transform.position.z - offsetZ);
+        if (Player == null)
+        {
+            transform.position = new Vector3(PlayerMovWalk.transform.position.x, PlayerMovWalk.transform.position.y + offsetY, PlayerMovWalk.transform.position.z - offsetZ);
+        }
+        else
+        {
+            transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + offsetY, Player.transform.position.z - offsetZ);
+        }
     }
 }

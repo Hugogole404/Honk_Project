@@ -307,15 +307,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void CheckIsGroundedForParticles()
     {
-        //if (IsGrounded())
-        //{
-        //    SnowTrail.GetComponent<ParticleSystem>().enableEmission = true;
-        //}
-        //else
-        //{
-        //    SnowTrail.GetComponent<ParticleSystem>().enableEmission = false;
-        //}
-        if (_slope.IsGrounded)
+        if (IsGrounded())
         {
             SnowTrail.GetComponent<ParticleSystem>().enableEmission = true;
         }
@@ -323,6 +315,14 @@ public class PlayerMovements : MonoBehaviour
         {
             SnowTrail.GetComponent<ParticleSystem>().enableEmission = false;
         }
+        //if (_slope.IsGrounded)
+        //{
+        //    SnowTrail.GetComponent<ParticleSystem>().enableEmission = true;
+        //}
+        //else
+        //{
+        //    SnowTrail.GetComponent<ParticleSystem>().enableEmission = false;
+        //}
     }
     #endregion
 
