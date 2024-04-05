@@ -5,7 +5,9 @@ using UnityEngine;
 public class MeshDrop : MonoBehaviour
 {
     public GameObject spike;
-    private void OnTriggerEnter(Collider other)
+    public Collider CACA;
+
+    private void OnTriggerEnter(Collider col)
     {
         Debug.Log("cc");
         spike.GetComponent<Rigidbody>().useGravity = true;
