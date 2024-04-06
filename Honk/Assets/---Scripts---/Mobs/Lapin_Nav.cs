@@ -9,6 +9,7 @@ public class Lapin_Nav : MonoBehaviour
     // Start is called before the first frame update
     public Transform player;
     private NavMeshAgent agent;
+    public Animator m_animator;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -29,19 +30,21 @@ public class Lapin_Nav : MonoBehaviour
         if (Vector3.Distance(agent.transform.position, player.position) <= 2)
         {
             Vector3 dirToPlayer = transform.position - player.position;
-            Vector3 newPos = transform.position + dirToPlayer *6;
+            Vector3 newPos = transform.position + dirToPlayer *4;
             agent.destination = newPos;
             //StartCoroutine(JustRan());
             //StopCoroutine(CheckTransform());
+            m_animator.SetBool("IsMoving", true);
         }
         else if (Vector3.Distance(agent.transform.position, player.position) >= 3)
         {
             agent.destination = player.position;
-
+            m_animator.SetBool("IsMoving", true);
         }
         else
         {
             agent.destination = agent.transform.position;
+            m_animator.SetBool("IsMoving", false);
         }
 
 
