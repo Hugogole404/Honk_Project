@@ -248,7 +248,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528242172}
   serializedVersion: 4
-  m_Mass: 5
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -267,6 +267,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &528242179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528242172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70487ffb9608bf42bb0cc4f9712a492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distance: 0.981
+  _delayBetweenShakes: 0.0075
 --- !u!1 &918847165
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +411,7 @@ GameObject:
   - component: {fileID: 989074035}
   - component: {fileID: 989074034}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: TopDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5292,12 +5306,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 128b1839d70fa8043afe757546426ce0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.8
+      value: 20.89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 128b1839d70fa8043afe757546426ce0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1800003
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 128b1839d70fa8043afe757546426ce0,
         type: 3}
@@ -5351,6 +5365,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 528242176}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 128b1839d70fa8043afe757546426ce0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 528242179}
   m_SourcePrefab: {fileID: 100100000, guid: 128b1839d70fa8043afe757546426ce0, type: 3}
 --- !u!1 &1842326431
 GameObject:
