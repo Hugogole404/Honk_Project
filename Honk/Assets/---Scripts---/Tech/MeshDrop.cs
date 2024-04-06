@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeshDrop : MonoBehaviour
 {
     public GameObject spike;
-    public Collider CACA;
+   
 
     private void OnTriggerEnter(Collider col)
     {

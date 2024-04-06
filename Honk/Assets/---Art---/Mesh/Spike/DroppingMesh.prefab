@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5893770744719470981}
-  - component: {fileID: 2135604887151967482}
   m_Layer: 0
   m_Name: DroppingMesh
   m_TagString: Untagged
@@ -33,24 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2135604887151967482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4488805332267912713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e523620aee8480f468b0f1d1238c87f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originalObject: {fileID: 8096510838739853213}
-  fracturedObject: {fileID: 3983491932473067860}
-  explosionMinForce: 5
-  explosionMaxForce: 100
-  explosionForceRadius: 10
-  fragScaleFactor: 1
 --- !u!1001 &4290062508925662213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -439,12 +420,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8635204611340952200, guid: b477b1d0a40c8844f8fbb919bacb2e58, type: 3}
---- !u!1 &3983491932473067860 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b477b1d0a40c8844f8fbb919bacb2e58,
-    type: 3}
-  m_PrefabInstance: {fileID: 4290062508925662213}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4324551177736901614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b477b1d0a40c8844f8fbb919bacb2e58,
