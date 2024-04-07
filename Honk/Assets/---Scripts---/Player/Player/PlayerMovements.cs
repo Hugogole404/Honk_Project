@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerMovements : MonoBehaviour
 {
     #region VARIABLES
+    public Animator AnimatorHonk;
     public float ModifyTurn;
     public RaycastHit INFOOOO;
     [SerializeField] private float _smoothTime;
     public float _rotationSpeedSlope = 1f;
     public GameObject SnowTrail;
-    public GameObject SphereSlope;
     public float InertieSlopeSlow;
 
     [Header("SpawnPoint")]
@@ -70,7 +70,6 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public CharacterController CharaController;
     [HideInInspector] private PlayerSlides _playerSlides;
     [HideInInspector] private TimerManager _timerManager;
-    [HideInInspector] private Slope _slope;
     #endregion
 
     #region ACTIONS
@@ -78,6 +77,7 @@ public class PlayerMovements : MonoBehaviour
     {
         if (IsWalking)
         {
+            AnimatorHonk.SetBool("IsMoving", true);
             _canSpeedAugment = true;
             _canSpeedDecrease = false;
 
@@ -85,6 +85,7 @@ public class PlayerMovements : MonoBehaviour
             Direction = new Vector3(Input.x, Direction.y, Input.y);
             if (context.canceled)
             {
+                AnimatorHonk.SetBool("IsMoving", false);
                 _canSpeedAugment = false;
                 _canSpeedDecrease = true;
             }
@@ -110,14 +111,25 @@ public class PlayerMovements : MonoBehaviour
             return;
         }
 
-        if (!IsGrounded() || _currentTimer >= _maxTimer)
+        if (!IsGrounded() || _currentTimer <= _maxTimer)
         {
             _canJump = false;
             return;
         }
+        else
+        {
+            _canJump = true;
+        }
+
         if (_canJump)
         {
+            AnimatorHonk.SetBool("Jump", true);
             Velocity += _jumpPower;
+            _currentTimer = 0;
+        }
+        if(IsGrounded())
+        {
+            AnimatorHonk.SetBool("Jump", false);
         }
     }
     public void HonkNoise(InputAction.CallbackContext context)
@@ -379,7 +391,6 @@ public class PlayerMovements : MonoBehaviour
             //CharaController.Move((CurrentSpeed * Time.deltaTime) + oui);
             //GetComponent<CharacterController>().enabled = false;
             //SphereSlope.GetComponent<Rigidbody>().AddForce(CurrentSpeed * Time.deltaTime / (InertieSlopeSlow*InertieSlopeSlow), ForceMode.VelocityChange);
-            transform.position = SphereSlope.transform.position;
         }
         if (IsSwimming)
         {
@@ -398,7 +409,6 @@ public class PlayerMovements : MonoBehaviour
         CharaController = GetComponent<CharacterController>();
         _playerSlides = GetComponent<PlayerSlides>();
         _timerManager = FindAnyObjectByType<TimerManager>();
-        _slope = FindAnyObjectByType<Slope>();
     }
     private void Start()
     {
@@ -417,7 +427,7 @@ public class PlayerMovements : MonoBehaviour
     {
         TimerCoolDownSlope += Time.deltaTime;
         WalkingSpeed = Direction * ActualSpeed;
-
+        _currentTimer += Time.deltaTime;
         ApplyRotation();
         //CheckLastPosition();
         ApplyGravity();
