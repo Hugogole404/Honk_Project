@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MeshDrop : MonoBehaviour
 {
-    public GameObject spike;
-   
+    public ConstantForce Spike;
+    public GameObject fx;
+    public float Speed;
 
-    private void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("cc");
-        spike.GetComponent<Rigidbody>().useGravity = true;
+        fx.gameObject.SetActive(true);
+        Spike.force = new Vector3 (0,Speed * -1,0); 
     }
 
 
