@@ -23,7 +23,6 @@ public class PlayerAnimations : MonoBehaviour
         {
             m_Animator.SetBool("isJumping", false);
         }
-
         //A mettre au moment de l'input du jump
         m_Animator.SetBool("isJumping", true);
 
@@ -32,10 +31,5 @@ public class PlayerAnimations : MonoBehaviour
 
         // A mettre au moment de l'arret de l'input de marche
         m_Animator.SetBool("isMoving", false);
-
-
-
     }
-
-
 }

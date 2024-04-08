@@ -37,6 +37,9 @@ public class PlayerMovements : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float _jumpPower;
+    [SerializeField] private float _timerAnimJump;
+    private float _currentTimerAnimJump;
+    private bool _canTimerAnimJump = false;
 
     [Header("TimerCoyauteJump")]
     private bool _canJump;
@@ -123,13 +126,11 @@ public class PlayerMovements : MonoBehaviour
 
         if (_canJump)
         {
-            AnimatorHonk.SetBool("Jump", true);
+            _canTimerAnimJump = true;
+            AnimatorHonk.SetBool("IsJumping", true);
+            AnimatorHonk.SetTrigger("Jump");
             Velocity += _jumpPower;
             _currentTimer = 0;
-        }
-        if(IsGrounded())
-        {
-            AnimatorHonk.SetBool("Jump", false);
         }
     }
     public void HonkNoise(InputAction.CallbackContext context)
@@ -141,6 +142,22 @@ public class PlayerMovements : MonoBehaviour
     }
     #endregion
 
+    private void IncreaseTimerAnimJump()
+    {
+        if (_canTimerAnimJump)
+        {
+            _currentTimerAnimJump += Time.deltaTime;
+        }
+        if (_currentTimerAnimJump > _timerAnimJump)
+        {
+            if (IsGrounded())
+            {
+                AnimatorHonk.SetBool("IsJumping", false);
+                _currentTimerAnimJump = 0;
+                _canTimerAnimJump = false;
+            }
+        }
+    }
     #region BOOLS SWAP
     public void IsWalkingBools()
     {
@@ -265,10 +282,10 @@ public class PlayerMovements : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, 5f))
         {
-            if(_slopeHit.normal != Vector3.up) { return true; }
+            if (_slopeHit.normal != Vector3.up) { return true; }
             else { return false; }
         }
-        return false;   
+        return false;
     }
     private void CheckIsGroundedCoyauteJump()
     {
@@ -319,6 +336,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void CheckIsGroundedForParticles()
     {
+        Debug.Log(IsGrounded());
         if (IsGrounded())
         {
             SnowTrail.GetComponent<ParticleSystem>().enableEmission = true;
@@ -441,5 +459,6 @@ public class PlayerMovements : MonoBehaviour
             Debug.DrawLine(transform.position, transform.position + NormalAngle * 8, Color.red, 8f);
         }
         CheckIsGroundedForParticles();
+        IncreaseTimerAnimJump();
     }
 }
