@@ -97,9 +97,6 @@ public class PlayerMovements : MonoBehaviour
         {
             Input = context.ReadValue<Vector2>();
             Direction = new Vector3(Input.x, Direction.y, Input.y);
-            //ValueRotation(Input.x);
-            //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, /*ModifyTurn*/-1 * Time.deltaTime, 0));
-            //ModelPlayer.transform.rotation = new Quaternion(Input.x, Direction.y, Input.y, 0);
         }
         if (IsSwimming)
         {
@@ -113,7 +110,6 @@ public class PlayerMovements : MonoBehaviour
         {
             return;
         }
-
         if (!IsGrounded() || _currentTimer <= _maxTimer)
         {
             _canJump = false;
@@ -123,7 +119,6 @@ public class PlayerMovements : MonoBehaviour
         {
             _canJump = true;
         }
-
         if (_canJump)
         {
             _canTimerAnimJump = true;
@@ -142,22 +137,6 @@ public class PlayerMovements : MonoBehaviour
     }
     #endregion
 
-    private void IncreaseTimerAnimJump()
-    {
-        if (_canTimerAnimJump)
-        {
-            _currentTimerAnimJump += Time.deltaTime;
-        }
-        if (_currentTimerAnimJump > _timerAnimJump)
-        {
-            if (IsGrounded())
-            {
-                AnimatorHonk.SetBool("IsJumping", false);
-                _currentTimerAnimJump = 0;
-                _canTimerAnimJump = false;
-            }
-        }
-    }
     #region BOOLS SWAP
     public void IsWalkingBools()
     {
@@ -179,6 +158,7 @@ public class PlayerMovements : MonoBehaviour
     }
     #endregion
 
+    #region FUNCTIONS
     private void TeleportToSpawnPoint()
     {
         CharaController.enabled = false;
@@ -218,27 +198,22 @@ public class PlayerMovements : MonoBehaviour
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(/*Vector3.up*/-Direction + _orientationPlayerSlope, info.normal), _animationCurve.Evaluate(_timerSlopeOrientation));
         }
     }
-
-    private void StartSlidingInpulse()
+    private void IncreaseTimerAnimJump()
     {
-        Vector3 inpulseGiven = new Vector3(Direction.x * 10, 0, Direction.z * 10);
-        Direction += inpulseGiven;
+        if (_canTimerAnimJump)
+        {
+            _currentTimerAnimJump += Time.deltaTime;
+        }
+        if (_currentTimerAnimJump > _timerAnimJump)
+        {
+            if (IsGrounded())
+            {
+                AnimatorHonk.SetBool("IsJumping", false);
+                _currentTimerAnimJump = 0;
+                _canTimerAnimJump = false;
+            }
+        }
     }
-    //private Vector3 AdjustVelocityToSlope(Vector3 velocity)
-    //{
-    //    var ray = new Ray(transform.position, Vector3.down);
-    //    if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
-    //    {
-    //        var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-    //        var adjustedVelocity = slopeRotation * velocity;
-    //        if (adjustedVelocity.y < 0)
-    //        {
-    //            return adjustedVelocity;
-    //        }
-    //    }
-    //    return velocity;
-    //}
-
     private void IncreaseSpeed()
     {
         if (_canSpeedAugment)
@@ -275,6 +250,27 @@ public class PlayerMovements : MonoBehaviour
             _slopeValueToRotation += _slopeTurnSpeed * Time.deltaTime;
         }
     }
+    #endregion
+
+    //private void StartSlidingInpulse()
+    //{
+    //    Vector3 inpulseGiven = new Vector3(Direction.x * 10, 0, Direction.z * 10);
+    //    Direction += inpulseGiven;
+    //}
+    //private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+    //{
+    //    var ray = new Ray(transform.position, Vector3.down);
+    //    if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
+    //    {
+    //        var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+    //        var adjustedVelocity = slopeRotation * velocity;
+    //        if (adjustedVelocity.y < 0)
+    //        {
+    //            return adjustedVelocity;
+    //        }
+    //    }
+    //    return velocity;
+    //}
 
     #region CHECKS
     public bool IsGrounded() => CharaController.isGrounded;
