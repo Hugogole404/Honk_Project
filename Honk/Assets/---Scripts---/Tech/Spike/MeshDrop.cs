@@ -5,16 +5,16 @@ using UnityEngine;
 public class MeshDrop : MonoBehaviour
 {
     public ConstantForce Spike;
-    public GameObject fx;
+    public GameObject FX_drop;
     public float Speed;
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        
-        fx.gameObject.SetActive(true);
+        FX_drop.gameObject.SetActive(true);
         Spike.force = new Vector3 (0,Speed * -1,0); 
     }
+
+    
 
 
 }
