@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Slope : MonoBehaviour
 {
+    #region VARIABLES
     public Animator m_Animator;                                                         //J'ai rajouté ça (Adam)
     public GameObject SpawnPoint;
     public bool IsGrounded = false;
@@ -48,7 +49,7 @@ public class Slope : MonoBehaviour
     [HideInInspector] public Rigidbody _rigidbody;
     [HideInInspector] public bool SpeedMaxCanDecrease = false;
     [HideInInspector] public float OldSpeedMax, OldSpeedSlopeMax, SpeedToReduce, OldSpeed, OldSpeedSlope;
-
+    #endregion
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
@@ -292,8 +293,6 @@ public class Slope : MonoBehaviour
         TimerJump();
         TimerSlide();
         SpeedModificationAfterSpeedUpArea();
-
-
     }
     private void FixedUpdate()
     {
