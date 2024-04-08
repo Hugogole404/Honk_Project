@@ -10,6 +10,8 @@ public class MeshDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
+        
         fx.gameObject.SetActive(true);
         Spike.force = new Vector3 (0,Speed * -1,0); 
     }
