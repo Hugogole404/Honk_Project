@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 944124985070566514}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &7603550321964739163
 NavMeshAgent:
@@ -89,6 +89,7 @@ MonoBehaviour:
   m_animator: {fileID: 386152325685309476}
   contactBefFly: 0
   contactNumber: 0
+  distance: 3.09
 --- !u!1001 &761264289570806681
 PrefabInstance:
   m_ObjectHideFlags: 0
