@@ -11,7 +11,7 @@ public class MeshDrop : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("pipi");
-        FX_drop.gameObject.SetActive(true);
+        //FX_drop.gameObject.SetActive(true);
         Spike.force = new Vector3 (0,Speed * -1,0); 
     }
 
