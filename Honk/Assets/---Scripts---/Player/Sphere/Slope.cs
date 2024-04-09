@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 public class Slope : MonoBehaviour
 {
     #region VARIABLES
+    public Vector2 InputsJoystick;
+    public GameObject ModelPlayer;
+    public float OrientationMoveSpeed;
+
     public Animator m_Animator;                                                         //J'ai rajouté ça (Adam)
     public GameObject SpawnPoint;
     public bool IsGrounded = false;
@@ -53,6 +57,9 @@ public class Slope : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
+
+        InputsJoystick = new Vector3(_moveInput.x, InputsJoystick.y, _moveInput.y);
+
         m_Animator.SetBool("IsMoving", true);
         //if (context.canceled && _modWalk && IsGrounded)
         //{
@@ -66,6 +73,8 @@ public class Slope : MonoBehaviour
     }
     public void StartSlide(InputAction.CallbackContext context)
     {
+        InputsJoystick = new Vector3(_moveInput.x, InputsJoystick.y, _moveInput.y);
+
         if (context.started && _slideTimer)
         {
             _modSlide = true;
@@ -74,16 +83,16 @@ public class Slope : MonoBehaviour
             m_Animator.SetBool("IsSliding", true);                                     //J'ai rajouté ça (Adam)
             m_Animator.SetTrigger("StartSlide");
         }
-        if (context.canceled)
-        {
-            _modSlide = false;
-            _modWalk = true;
-            _modOnSlope = false;
-            _currentTimerSlide = 0;
-            _speedSlope = _originSpeedSlope;
-            m_Animator.SetBool("IsSliding", false);                                     //J'ai rajouté ça (Adam)
-            m_Animator.SetTrigger("StopSlide");
-        }
+        //if (context.canceled)
+        //{
+        //    _modSlide = false;
+        //    _modWalk = true;
+        //    _modOnSlope = false;
+        //    _currentTimerSlide = 0;
+        //    _speedSlope = _originSpeedSlope;
+        //    m_Animator.SetBool("IsSliding", false);                                     //J'ai rajouté ça (Adam)
+        //    m_Animator.SetTrigger("StopSlide");
+        //}
     }
     public void Jump(InputAction.CallbackContext context)
     {
@@ -229,6 +238,7 @@ public class Slope : MonoBehaviour
         if (_modOnSlope)
         {
             _rigidbody.velocity += new Vector3(_rotationSpeed * _moveInput.x * Time.deltaTime, 0, _rotationSpeed * _moveInput.y * Time.deltaTime);
+            OrientationPlayer();
         }
     }
     private void ApplyMovement()
@@ -278,6 +288,19 @@ public class Slope : MonoBehaviour
         {
             _canJump = true;
         }
+    }
+    private void OrientationPlayer()
+    {
+        //Vector2 playerPos = new Vector2(_target.transform.position.x, _target.transform.position.y);
+        //Vector2 aimDir = playerPos - _rb.position;
+        //float aimAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg - 90f;
+        //ModelPlayer.transform.rotation = aimAngle;
+
+        //var targetAngle = Mathf.Atan2(InputsJoystick.x ,InputsJoystick.y) * Mathf.Rad2Deg;
+        //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref Speed, OrientationMoveSpeed);
+        //ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+
     }
 
     private void Start()
