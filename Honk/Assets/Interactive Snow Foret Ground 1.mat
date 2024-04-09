@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Interactive Snow Foret
+  m_Name: Interactive Snow Foret Ground 1
   m_Shader: {fileID: 4800000, guid: b96fd73ce115f494cb90046769e8a78e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -115,26 +115,26 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EndBorder: 0.587
+    - _EndBorder: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaxTessDistance: 100
+    - _MaxTessDistance: 10
     - _Metallic: 0
-    - _NoiseScale: 0
+    - _NoiseScale: 0.01
     - _NoiseWeight: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PathBlending: 0.9
+    - _PathBlending: 1.49
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimPower: 0.9
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _SnowBorder: 0.15
-    - _SnowDepth: 18.4
-    - _SnowHeight: 0.01
+    - _SnowBorder: 0
+    - _SnowDepth: 0
+    - _SnowHeight: 0.015
     - _SnowTextureOpacity: 0.07
     - _SnowTextureScale: 0.01
     - _SparkCutoff: 0.85
@@ -142,19 +142,19 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _StartBorder: 0.034
+    - _StartBorder: 0
     - _Surface: 0
-    - _Tess: 32
+    - _Tess: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.042, g: 0.042, b: 0.042, a: 1}
+    - _Color: {r: 0.5520116, g: 0.5840786, b: 0.60382754, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PathColorBorder: {r: 0.17225882, g: 0.745283, b: 0.63508606, a: 1}
-    - _PathColorIn: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
-    - _PathColorOut: {r: 0.01183696, g: 0.05369421, b: 0.3584906, a: 1}
+    - _PathColorBorder: {r: 0.5457247, g: 0.57758063, b: 0.597202, a: 1}
+    - _PathColorIn: {r: 0.5332766, g: 0.5647117, b: 0.590619, a: 1}
+    - _PathColorOut: {r: 0.5457247, g: 0.57758063, b: 0.597202, a: 1}
     - _RimColor: {r: 0.1470273, g: 0.19461787, b: 0.3515327, a: 1}
-    - _ShadowColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
+    - _ShadowColor: {r: 0.38047346, g: 0.7003319, b: 0.8490566, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
