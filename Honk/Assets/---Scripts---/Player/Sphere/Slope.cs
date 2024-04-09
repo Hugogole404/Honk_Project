@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class Slope : MonoBehaviour
 {
     #region VARIABLES
-    public Vector2 InputsJoystick;
+    public Vector3 InputsJoystick;
     public GameObject ModelPlayer;
     public float OrientationMoveSpeed;
 
@@ -75,7 +75,7 @@ public class Slope : MonoBehaviour
     {
         InputsJoystick = new Vector3(_moveInput.x, InputsJoystick.y, _moveInput.y);
 
-        if (context.started && _slideTimer)
+        if (context.started && _slideTimer && m_Animator.GetBool("IsSliding") == false)
         {
             _modSlide = true;
             _modWalk = false;
@@ -135,7 +135,6 @@ public class Slope : MonoBehaviour
             }
         }
     }
-
     private void SpeedDown()
     {
         if (_modWalk && _rigidbody.velocity.magnitude > 1)
@@ -238,7 +237,11 @@ public class Slope : MonoBehaviour
         if (_modOnSlope)
         {
             _rigidbody.velocity += new Vector3(_rotationSpeed * _moveInput.x * Time.deltaTime, 0, _rotationSpeed * _moveInput.y * Time.deltaTime);
-            OrientationPlayer();
+
+            //Vector3 target = new Vector3(InputsJoystick.x, InputsJoystick.y, InputsJoystick.z);
+            //ModelPlayer.transform.rotation = Quaternion.Euler(InputsJoystick.x, _rigidbody.rotation.y, InputsJoystick.y);
+
+            //OrientationPlayer();
         }
     }
     private void ApplyMovement()
@@ -300,7 +303,49 @@ public class Slope : MonoBehaviour
         //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref Speed, OrientationMoveSpeed);
         //ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
+        //var targetAngle = Mathf.Atan2(InputsJoystick.x, InputsJoystick.z) * Mathf.Rad2Deg;
+        //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref Speed, OrientationMoveSpeed);
+        ////transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        //ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
+        //ModelPlayer.transform.eulerAngles = InputsJoystick;
+
+        //Vector3 test = new Vector3(InputsJoystick.x, transform.position.y, InputsJoystick.z);
+        //Vector3 aimDir = test - _rigidbody.position;
+        //float aimAngle = Mathf.Atan2(aimDir.z, aimDir.x) * Mathf.Rad2Deg - 90f;
+        //ModelPlayer.transform.localEulerAngles = new Vector3(0, aimAngle, 0);
+
+        //var targetAngle = Mathf.Atan2(InputsJoystick.x, InputsJoystick.z) * Mathf.Rad2Deg;
+        //var targetAngle = 1;
+        //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _speedSlope, OrientationMoveSpeed);
+        //ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+        //Vector3 targetPos = new Vector3();
+
+        //if (InputsJoystick.x > 0)
+        //{
+        //    targetPos += new Vector3(ModelPlayer.transform.position.x + InputsJoystick.x, 0, 0);
+        //}        
+        //if (InputsJoystick.x < 0)
+        //{
+        //    targetPos += new Vector3(ModelPlayer.transform.position.x + InputsJoystick.x, 0, 0);
+        //}
+        //if (InputsJoystick.y > 0)
+        //{
+        //    targetPos += new Vector3(0, 0, ModelPlayer.transform.position.z + InputsJoystick.z);
+        //}
+        //if (InputsJoystick.y < 0)
+        //{
+        //    targetPos += new Vector3(0, 0, ModelPlayer.transform.position.z + InputsJoystick.z);
+        //}
+
+        Vector3 targetPos = new Vector3(ModelPlayer.transform.position.x + 1 * InputsJoystick.x, 0, ModelPlayer.transform.position.z - 1 * InputsJoystick.z);
+
+        Vector3 POS = new Vector3(targetPos.x, 0, targetPos.z);
+
+        Vector3 aimDir = POS - ModelPlayer.transform.position;
+        float aimAngle = Mathf.Atan2(aimDir.z, aimDir.x) * Mathf.Rad2Deg - 90f;
+        ModelPlayer.transform.localEulerAngles = new Vector3(0, aimAngle + 180, 0);
     }
 
     private void Start()
@@ -316,6 +361,7 @@ public class Slope : MonoBehaviour
         TimerJump();
         TimerSlide();
         SpeedModificationAfterSpeedUpArea();
+        OrientationPlayer();
     }
     private void FixedUpdate()
     {
