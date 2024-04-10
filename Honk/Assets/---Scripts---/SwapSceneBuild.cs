@@ -10,11 +10,19 @@ public class SwapSceneBuild : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
-            SceneManager.LoadScene("LevelArtV2");
+            SceneManager.LoadScene("Forest");
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            SceneManager.LoadScene("Blocking_All_Light");
+            SceneManager.LoadScene("Cave");
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SceneManager.LoadScene("PartieGlissade");
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SceneManager.LoadScene("PartieMarche");
         }
     }
 }
