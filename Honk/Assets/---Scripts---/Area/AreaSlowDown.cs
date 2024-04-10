@@ -14,7 +14,7 @@ public class AreaSlowDown : MonoBehaviour
         if (other.GetComponent<Slope>() != null)
         {
             _oldSpeed = other.GetComponent<Slope>().Speed;
-            _oldSpeedSlope = other.GetComponent<Slope>()._speedSlope;
+            _oldSpeedSlope = other.GetComponent<Slope>().SpeedSlope;
             other.GetComponent<Slope>().Speed = SpeedSlow;
             other.GetComponent<Slope>().Speed = SpeedSlowSlope;
             other.GetComponent<Slope>()._rigidbody.velocity = other.GetComponent<Slope>()._rigidbody.velocity / VelocityDivide;
@@ -25,7 +25,7 @@ public class AreaSlowDown : MonoBehaviour
         if (other.GetComponent<Slope>() != null)
         {
             other.GetComponent<Slope>().Speed = _oldSpeed;
-            other.GetComponent<Slope>()._speedSlope = _oldSpeedSlope;
+            other.GetComponent<Slope>().SpeedSlope = _oldSpeedSlope;
         }
     }
 }

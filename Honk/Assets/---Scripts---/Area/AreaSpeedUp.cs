@@ -27,7 +27,7 @@ public class AreaSpeedUp : MonoBehaviour
             _oldSpeedSlopeMax = other.GetComponent<Slope>()._maxSpeedSlope;
 
             _oldSpeed = other.GetComponent<Slope>().Speed;
-            _oldSpeedSlope = other.GetComponent<Slope>()._speedSlope;
+            _oldSpeedSlope = other.GetComponent<Slope>().SpeedSlope;
 
             other.GetComponent<Slope>()._maxSpeed = SpeedUpMax;
             other.GetComponent<Slope>()._maxSpeedSlope = SpeedUpSlopeMax;
@@ -40,7 +40,7 @@ public class AreaSpeedUp : MonoBehaviour
         if (other.GetComponent<Slope>() != null)
         {
             other.GetComponent<Slope>().Speed += ActualSpeedUp * Time.deltaTime;
-            other.GetComponent<Slope>()._speedSlope += ActualSpeedSlopeUp * Time.deltaTime;
+            other.GetComponent<Slope>().SpeedSlope += ActualSpeedSlopeUp * Time.deltaTime;
         }
     }
     private void OnTriggerExit(Collider other)

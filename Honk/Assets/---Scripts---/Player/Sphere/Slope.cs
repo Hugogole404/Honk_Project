@@ -5,67 +5,64 @@ using UnityEngine.InputSystem;
 public class Slope : MonoBehaviour
 {
     #region VARIABLES
-    public Vector3 InputsJoystick;
+    [Header("Player")]
     public GameObject ModelPlayer;
-    public float OrientationMoveSpeed;
-
     public Animator m_Animator;                                                         //J'ai rajouté ça (Adam)
-    public GameObject SpawnPoint;
-    public bool IsGrounded = false;
-    public bool CanSpeedDown = false;
     [Header("Speed")]
     public float Speed;
-    public float _speedSlope;
-    public float VelocityMax;
-    [Space]
     public float _maxSpeed;
+    [Space]
+    public float SpeedSlope;
     public float _maxSpeedSlope;
     [Space]
-    [SerializeField] private float _speedDecreaseValue;
-    [Space]
-    [SerializeField] private float _speedAugmentationSlopeValue;
-    [SerializeField] private float _speedDecreaseSlopeValue;
-    [Space]
-    [SerializeField] private float _boostSpeedStartSlope;
+    public float VelocityMax;
+    [Header("Orientation")]
+    public float OrientationTurningSpeed;
     [Header("Jump")]
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _maxTimerJump;
     [Header("Gravity")]
     [SerializeField] private float _gravityMultiplier;
-
+    [Header("Spawn Point")]
+    public GameObject SpawnPoint;
+    [Header("Speed Modification")]
+    [SerializeField] private float _speedDecreaseValue;
+    [Space]
+    [SerializeField] private float _speedAugmentationSlopeValue;
+    [SerializeField] private float _speedDecreaseSlopeValue;
+    [Header("Slope")]
     [SerializeField] private float _rotationSpeed;
-    [SerializeField] private float _maxTimerSlide;
 
-    [SerializeField] private bool _modWalk = true;
-    [SerializeField] private bool _modOnSlope = false;
-    [SerializeField] private bool _modSlide = false;
-    [SerializeField] private bool _slideTimer = false;
-
+    private bool _modWalk = true;
+    private bool _modOnSlope = false;
+    private bool _modSlide = false;
+    private bool _slideTimer = false;
     private bool _isMovingDown, _isMovingUp, _isMovingStraight;
+    private bool _canJump;
     private float _originSpeedSlope;
     private float _gravity = -9.81f;
     private float _currentTimerJump;
     private float _currentTimerSlide;
-    private bool _canJump;
+    private Vector3 _inputsJoystick;
     private Vector3 _lastPosition;
     private Vector2 _moveInput;
     private PlayerMovements _playerMovements;
-    [HideInInspector] public Rigidbody _rigidbody;
+
+    [HideInInspector] public bool IsGrounded = false;
+    [HideInInspector] public bool CanSpeedDown = false;
     [HideInInspector] public bool SpeedMaxCanDecrease = false;
+    [HideInInspector] public Rigidbody _rigidbody;
+    [HideInInspector] private float _maxTimerSlide;
     [HideInInspector] public float OldSpeedMax, OldSpeedSlopeMax, SpeedToReduce, OldSpeed, OldSpeedSlope;
     #endregion
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
 
-        InputsJoystick = new Vector3(_moveInput.x, InputsJoystick.y, _moveInput.y);
+        _inputsJoystick = new Vector3(_moveInput.x, _inputsJoystick.y, _moveInput.y);
 
         m_Animator.SetBool("IsMoving", true);
-        //if (context.canceled && _modWalk && IsGrounded)
-        //{
-        //    _rigidbody.velocity = new Vector3(0,0,0);
-        //    _moveInput = new Vector2(0, 0);
-        //}
+
         if (context.canceled)                                                           //J'ai rajouté ça (Adam)
         {
             m_Animator.SetBool("IsMoving", false);
@@ -73,7 +70,7 @@ public class Slope : MonoBehaviour
     }
     public void StartSlide(InputAction.CallbackContext context)
     {
-        InputsJoystick = new Vector3(_moveInput.x, InputsJoystick.y, _moveInput.y);
+        _inputsJoystick = new Vector3(_moveInput.x, _inputsJoystick.y, _moveInput.y);
 
         if (context.started && _slideTimer && m_Animator.GetBool("IsSliding") == false)
         {
@@ -83,16 +80,6 @@ public class Slope : MonoBehaviour
             m_Animator.SetBool("IsSliding", true);                                     //J'ai rajouté ça (Adam)
             m_Animator.SetTrigger("StartSlide");
         }
-        //if (context.canceled)
-        //{
-        //    _modSlide = false;
-        //    _modWalk = true;
-        //    _modOnSlope = false;
-        //    _currentTimerSlide = 0;
-        //    _speedSlope = _originSpeedSlope;
-        //    m_Animator.SetBool("IsSliding", false);                                     //J'ai rajouté ça (Adam)
-        //    m_Animator.SetTrigger("StopSlide");
-        //}
     }
     public void Jump(InputAction.CallbackContext context)
     {
@@ -116,7 +103,7 @@ public class Slope : MonoBehaviour
                 _maxSpeedSlope = OldSpeedSlopeMax;
 
                 Speed = OldSpeed;
-                _speedSlope = OldSpeedSlope;
+                SpeedSlope = OldSpeedSlope;
 
                 SpeedMaxCanDecrease = false;
             }
@@ -159,9 +146,9 @@ public class Slope : MonoBehaviour
 
             if (_modOnSlope && IsGrounded)
             {
-                _speedSlope -= _speedDecreaseSlopeValue * Time.deltaTime;
+                SpeedSlope -= _speedDecreaseSlopeValue * Time.deltaTime;
             }
-            if (_speedSlope <= 0)
+            if (SpeedSlope <= 0)
             {
                 _rigidbody.velocity = new Vector3(0, 0, 0);
             }
@@ -173,7 +160,7 @@ public class Slope : MonoBehaviour
             _isMovingStraight = false;
             if (_modOnSlope && IsGrounded)
             {
-                _speedSlope += _speedAugmentationSlopeValue * Time.deltaTime;
+                SpeedSlope += _speedAugmentationSlopeValue * Time.deltaTime;
             }
             //Debug.Log("Il descend");
         }
@@ -190,10 +177,6 @@ public class Slope : MonoBehaviour
     {
         if (_modWalk)
         {
-            //if (_rigidbody.velocity.magnitude > VelocityMax)
-            //{
-            //    _rigidbody.velocity = new Vector3(_rigidbody.velocity.x * VelocityMax / 10, 0, _rigidbody.velocity.z * VelocityMax / 10);
-            //}
             if (_rigidbody.velocity.magnitude > _maxSpeed)
             {
                 _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxSpeed);
@@ -206,9 +189,9 @@ public class Slope : MonoBehaviour
             {
                 Speed = _maxSpeed;
             }
-            if (_speedSlope > _maxSpeedSlope)
+            if (SpeedSlope > _maxSpeedSlope)
             {
-                _speedSlope = _maxSpeedSlope;
+                SpeedSlope = _maxSpeedSlope;
             }
         }
         else
@@ -225,9 +208,9 @@ public class Slope : MonoBehaviour
             {
                 Speed = _maxSpeed;
             }
-            if (_speedSlope > _maxSpeedSlope)
+            if (SpeedSlope > _maxSpeedSlope)
             {
-                _speedSlope = _maxSpeedSlope;
+                SpeedSlope = _maxSpeedSlope;
             }
         }
     }
@@ -237,11 +220,6 @@ public class Slope : MonoBehaviour
         if (_modOnSlope)
         {
             _rigidbody.velocity += new Vector3(_rotationSpeed * _moveInput.x * Time.deltaTime, 0, _rotationSpeed * _moveInput.y * Time.deltaTime);
-
-            //Vector3 target = new Vector3(InputsJoystick.x, InputsJoystick.y, InputsJoystick.z);
-            //ModelPlayer.transform.rotation = Quaternion.Euler(InputsJoystick.x, _rigidbody.rotation.y, InputsJoystick.y);
-
-            //OrientationPlayer();
         }
     }
     private void ApplyMovement()
@@ -252,22 +230,10 @@ public class Slope : MonoBehaviour
         }
         if (_modSlide && _rigidbody.velocity.magnitude > 0.05f)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * _speedSlope * Time.deltaTime * 100, ForceMode.Impulse);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * SpeedSlope * Time.deltaTime * 100, ForceMode.Impulse);
             _modOnSlope = true;
             _modSlide = false;
         }
-        //if (IsGrounded && _playerMovements.IsOnSlope())
-        //{
-        //    _rigidbody.AddForce(_moveInput.normalized * _speedSlope, ForceMode.Force);
-        //    _modOnSlope = true;
-        //    _modSlide = false;
-        //}
-
-        // a voir si gardé 
-        //if (!IsGrounded)
-        //{
-        //    transform.position += Vector3.down * 0.1f;
-        //}
     }
     private void ApplyGravity()
     {
@@ -294,57 +260,13 @@ public class Slope : MonoBehaviour
     }
     private void OrientationPlayer()
     {
-        //Vector2 playerPos = new Vector2(_target.transform.position.x, _target.transform.position.y);
-        //Vector2 aimDir = playerPos - _rb.position;
-        //float aimAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg - 90f;
-        //ModelPlayer.transform.rotation = aimAngle;
-
-        //var targetAngle = Mathf.Atan2(InputsJoystick.x ,InputsJoystick.y) * Mathf.Rad2Deg;
-        //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref Speed, OrientationMoveSpeed);
-        //ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-        //var targetAngle = Mathf.Atan2(InputsJoystick.x, InputsJoystick.z) * Mathf.Rad2Deg;
-        //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref Speed, OrientationMoveSpeed);
-        ////transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        //ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-        //ModelPlayer.transform.eulerAngles = InputsJoystick;
-
-        //Vector3 test = new Vector3(InputsJoystick.x, transform.position.y, InputsJoystick.z);
-        //Vector3 aimDir = test - _rigidbody.position;
-        //float aimAngle = Mathf.Atan2(aimDir.z, aimDir.x) * Mathf.Rad2Deg - 90f;
-        //ModelPlayer.transform.localEulerAngles = new Vector3(0, aimAngle, 0);
-
-        //var targetAngle = Mathf.Atan2(InputsJoystick.x, InputsJoystick.z) * Mathf.Rad2Deg;
-        //var targetAngle = 1;
-        //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _speedSlope, OrientationMoveSpeed);
-        //ModelPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-        //Vector3 targetPos = new Vector3();
-
-        //if (InputsJoystick.x > 0)
-        //{
-        //    targetPos += new Vector3(ModelPlayer.transform.position.x + InputsJoystick.x, 0, 0);
-        //}        
-        //if (InputsJoystick.x < 0)
-        //{
-        //    targetPos += new Vector3(ModelPlayer.transform.position.x + InputsJoystick.x, 0, 0);
-        //}
-        //if (InputsJoystick.y > 0)
-        //{
-        //    targetPos += new Vector3(0, 0, ModelPlayer.transform.position.z + InputsJoystick.z);
-        //}
-        //if (InputsJoystick.y < 0)
-        //{
-        //    targetPos += new Vector3(0, 0, ModelPlayer.transform.position.z + InputsJoystick.z);
-        //}
-
-        Vector3 targetPos = new Vector3(ModelPlayer.transform.position.x + 1 * InputsJoystick.x, 0, ModelPlayer.transform.position.z - 1 * InputsJoystick.z);
+        Vector3 targetPos = new Vector3(ModelPlayer.transform.position.x + 1 * _inputsJoystick.x, 0, ModelPlayer.transform.position.z - 1 * _inputsJoystick.z);
 
         Vector3 POS = new Vector3(targetPos.x, 0, targetPos.z);
 
         Vector3 aimDir = POS - ModelPlayer.transform.position;
         float aimAngle = Mathf.Atan2(aimDir.z, aimDir.x) * Mathf.Rad2Deg - 90f;
+
         ModelPlayer.transform.localEulerAngles = new Vector3(0, aimAngle + 180, 0);
     }
 
@@ -354,7 +276,7 @@ public class Slope : MonoBehaviour
         _playerMovements = FindAnyObjectByType<PlayerMovements>();
         _lastPosition = transform.position;
         transform.position = SpawnPoint.transform.position;
-        _originSpeedSlope = _speedSlope;
+        _originSpeedSlope = SpeedSlope;
     }
     private void Update()
     {
