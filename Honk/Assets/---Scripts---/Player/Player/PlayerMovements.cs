@@ -281,7 +281,6 @@ public class PlayerMovements : MonoBehaviour
     }
     private void CheckIsGroundedForParticles()
     {
-        Debug.Log(IsGrounded());
         if (IsGrounded())
         {
             SnowTrail.GetComponent<ParticleSystem>().enableEmission = true;
