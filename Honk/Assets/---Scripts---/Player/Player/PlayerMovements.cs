@@ -33,6 +33,7 @@ public class PlayerMovements : MonoBehaviour
     public GameObject SpawnPoint;
     [Header("FX")]
     public GameObject SnowTrail;
+
     [Header("Slope")]
     public float _rotationSpeedSlope = 1f;
     public float InertieSlopeSlow;
@@ -47,6 +48,7 @@ public class PlayerMovements : MonoBehaviour
     private float _currentTimer;
     private bool _canSpeedAugment = false;
     private bool _canSpeedDecrease = true;
+    private HoldBaby _holdBaby;
 
     [HideInInspector] public RaycastHit INFOOOO;
     [HideInInspector] public float ActualSpeed;
@@ -123,7 +125,23 @@ public class PlayerMovements : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("HonkNoise");
+            if (_holdBaby.IsOnHisBack)
+            {
+                Debug.Log("IS NOT");
+                _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
+                _holdBaby.Baby.transform.position = _holdBaby.PositionBabyPut.transform.position;
+                _holdBaby.IsOnHisBack = false;
+            }
+            else
+            {
+                if (_holdBaby.CanHoldBaby)
+                {
+                    Debug.Log("IS ON");
+                    _holdBaby.Baby.gameObject.transform.parent = gameObject.transform;
+                    _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x, _holdBaby.BasePositionBaby.transform.position.y, _holdBaby.BasePositionBaby.transform.position.z);
+                    _holdBaby.IsOnHisBack = true;
+                }
+            }
         }
     }
     #endregion
@@ -317,12 +335,12 @@ public class PlayerMovements : MonoBehaviour
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _smoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
-        else if (IsSliding)
-        {
-            var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
-            var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _rotationSpeedSlope);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        }
+        //else if (IsSliding)
+        //{
+        //    var targetAngle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg;
+        //    var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref CurrentVelocity, _rotationSpeedSlope);
+        //    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        //}
     }
     private void ApplyMovement()
     {
@@ -345,6 +363,7 @@ public class PlayerMovements : MonoBehaviour
 
     private void Awake()
     {
+        _holdBaby = FindAnyObjectByType<HoldBaby>();
         CharaController = GetComponent<CharacterController>();
         _timerManager = FindAnyObjectByType<TimerManager>();
     }
