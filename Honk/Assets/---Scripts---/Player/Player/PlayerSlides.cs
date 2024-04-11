@@ -33,28 +33,25 @@ public class PlayerSlides : MonoBehaviour
 
     public void Slide(InputAction.CallbackContext context)
     {
-        if (_playerMovement.TimerCoolDownSlope > _playerMovement.CoolDownSlope)
+        if (context.started)
         {
-            if (context.started)
-            {
-                ContextStarted = true;
-                _playerMovement.CurrentSpeed = new Vector3(_playerMovement.WalkingSpeed.x, /*_playerMovement.CurrentSpeed.y*/0, _playerMovement.WalkingSpeed.z /* *slide boost*/);
+            ContextStarted = true;
+            _playerMovement.CurrentSpeed = new Vector3(_playerMovement.WalkingSpeed.x, /*_playerMovement.CurrentSpeed.y*/0, _playerMovement.WalkingSpeed.z /* *slide boost*/);
 
-                return;
-            }
-            //_playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
+            return;
+        }
+        //_playerMovement.transform.rotation = Quaternion.EulerRotation(AngleSlide, _playerMovement.transform.rotation.y, _playerMovement.transform.rotation.z);
 
-            if (context.performed && !_playerMovement.IsSwimming)
-            {
-                _playerMovement.IsSlidingBools();
-            }
-            if (context.canceled)
-            {
-                //_playerMovement.GetComponent<CharacterController>().enabled = true;
-                _playerMovement.IsWalkingBools();
-                _playerMovement.ModelPlayer.transform.rotation = _playerMovement.PlayerOriginRotation;
-                _playerMovement.TimerCoolDownSlope = 0f;
-            }
+        if (context.performed && !_playerMovement.IsSwimming)
+        {
+            _playerMovement.IsSlidingBools();
+        }
+        if (context.canceled)
+        {
+            //_playerMovement.GetComponent<CharacterController>().enabled = true;
+            _playerMovement.IsWalkingBools();
+            _playerMovement.ModelPlayer.transform.rotation = _playerMovement.PlayerOriginRotation;
+            _playerMovement.TimerCoolDownSlope = 0f;
         }
     }
 

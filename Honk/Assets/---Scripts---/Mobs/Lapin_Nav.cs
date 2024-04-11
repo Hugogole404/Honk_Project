@@ -8,18 +8,12 @@ public class Lapin_Nav : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform player;
-    private NavMeshAgent agent;
     public Animator m_animator;
+    private NavMeshAgent agent;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         StartCoroutine(CheckTransform());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     IEnumerator CheckTransform()
@@ -46,8 +40,6 @@ public class Lapin_Nav : MonoBehaviour
             agent.destination = agent.transform.position;
             m_animator.SetBool("IsMoving", false);
         }
-
-
         StartCoroutine(CheckTransform());
     }
     //IEnumerator JustRan()

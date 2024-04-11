@@ -6,24 +6,18 @@ public class Oiseau_Nav : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform player;
-    private NavMeshAgent agent;
     public Animator m_animator;
     public int contactBefFly;
     public int contactNumber = 0;
+    [Range(0.0f, 10.0f)] public float distance = 1f;
 
-    [Range(0.0f, 10.0f)]
-    public float distance = 1f;
+    private NavMeshAgent agent;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         StartCoroutine(CheckTransform());
         contactBefFly = Random.Range(1, 4);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     IEnumerator CheckTransform()
