@@ -26,10 +26,10 @@ public class Baby : MonoBehaviour
         _lastPositionPlayer.Clear();
         _lastPositionPlayer = _lastPositionPlayerCopy;
         _lastPositionPlayerCopy.Clear();
+        _point = 0;
     }
     private void MoveBaby()
     {
-        // pas encore operationnel
         if (_holdBaby.IsOnHisBack == false)
         {
             //transform.position = ToFollow.position - _offset;
@@ -38,6 +38,7 @@ public class Baby : MonoBehaviour
             transform.position = _lastPositionPlayer[_point];
             _point++;
             _lastPositionPlayer.Remove(_lastPositionPlayer[_point]);
+            UpdateLists();
         }
     }
     void Start()
@@ -56,5 +57,7 @@ public class Baby : MonoBehaviour
         //_lastPositionPlayer.Add(_playerMov.gameObject.transform.position);
         //MoveBaby();
         //UpdateLists();
+
+        //Le petit bouge et il reproduit le déplacement de son papa. 
     }
 }
