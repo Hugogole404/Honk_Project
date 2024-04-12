@@ -133,58 +133,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimatorHonk: {fileID: 4127185888448144698}
+  ModelPlayer: {fileID: 7746591991613219580}
   ModifyTurn: 0
   _smoothTime: 0
-  _rotationSpeedSlope: 1
-  SnowTrail: {fileID: 7911071039276250457}
-  InertieSlopeSlow: 0
-  SpawnPoint: {fileID: 0}
-  ModelPlayer: {fileID: 7746591991613219580}
   BaseSpeed: 5
-  SlideActualSpeed: 10
-  BoostSpeedDash: 1
-  SpeedModification: 1
-  SpeedModificationValueToUpAndDown: 1
-  _maxSpeed: 15
+  _maxSpeed: 10
   _speedAugmentation: 1
   _speedDecrease: 1
+  SpeedModification: 1
+  SpeedModificationValueToUpAndDown: 1
+  _jumpPower: 4
+  _timerAnimJump: 0.1
   Velocity: 1
   _gravityMultiplier: 1
-  _jumpPower: 5
-  _timerAnimJump: 0.1
   _maxTimer: 0
-  CoolDownSlope: 0
-  _slopeTurnSpeed: 0
+  SpawnPoint: {fileID: 0}
+  SnowTrail: {fileID: 7911071039276250457}
+  _rotationSpeedSlope: 1
+  InertieSlopeSlow: 0
   _frictionForce: 0
-  _timerSlopeOrientation: 0
-  _orientationPlayerSlope: {x: 0, y: 0, z: 0}
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 128
-  _animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   ActualSpeed: 0
   CurrentVelocity: 0
   TimerCoolDownSlope: 0
