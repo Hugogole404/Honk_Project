@@ -10,7 +10,7 @@ public class CameraTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("caca");
+        Debug.Log("fix");
         Cam.gameObject.SetActive(true);
         
     }
