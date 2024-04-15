@@ -49,6 +49,8 @@ public class PlayerMovements : MonoBehaviour
     private bool _canSpeedAugment = false;
     private bool _canSpeedDecrease = true;
     private HoldBaby _holdBaby;
+    private Baby _baby;
+
 
     [HideInInspector] public RaycastHit INFOOOO;
     [HideInInspector] public float ActualSpeed;
@@ -66,6 +68,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public Quaternion PlayerOriginRotation;
     [HideInInspector] public CharacterController CharaController;
     [HideInInspector] private TimerManager _timerManager;
+    [HideInInspector] private bool IsMoving;
     #endregion
 
     #region ACTIONS
@@ -366,6 +369,7 @@ public class PlayerMovements : MonoBehaviour
         _holdBaby = FindAnyObjectByType<HoldBaby>();
         CharaController = GetComponent<CharacterController>();
         _timerManager = FindAnyObjectByType<TimerManager>();
+        _baby = FindAnyObjectByType<Baby>();
     }
     private void Start()
     {

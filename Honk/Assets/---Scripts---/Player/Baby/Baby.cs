@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,9 +6,10 @@ public class Baby : MonoBehaviour
 {
     public List<Vector3> _lastPositionPlayer;
     private List<Vector3> _lastPositionPlayerCopy;
-    private Transform ToFollow;
+    private Transform _toFollow;
 
     [SerializeField] private Vector3 _offset;
+    [SerializeField] private float _speed;
     private int _point;
     private HoldBaby _holdBaby;
     private PlayerMovements _playerMov;
@@ -43,21 +43,21 @@ public class Baby : MonoBehaviour
     }
     void Start()
     {
-        _offset = ToFollow.position - transform.position;
+        _offset = _toFollow.position - transform.position;
     }
     private void Awake()
     {
         _holdBaby = FindAnyObjectByType<HoldBaby>();
         _playerMov = FindAnyObjectByType<PlayerMovements>();
-        ToFollow = FindAnyObjectByType<PlayerMovements>().transform;
+        _toFollow = FindAnyObjectByType<PlayerMovements>().transform;
     }
     private void Update()
     {
         //_lastPositionPlayer.Append(_playerMov.gameObject.transform.position);
-        //_lastPositionPlayer.Add(_playerMov.gameObject.transform.position);
-        //MoveBaby();
-        //UpdateLists();
+        _lastPositionPlayer.Add(_playerMov.gameObject.transform.position);
+        MoveBaby();
+        UpdateLists();
 
-        //Le petit bouge et il reproduit le déplacement de son papa. 
+        //Le petit bouge et il reproduit le déplacement de son papa. w
     }
 }
