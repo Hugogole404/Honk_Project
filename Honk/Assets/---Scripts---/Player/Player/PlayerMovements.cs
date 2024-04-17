@@ -59,6 +59,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public bool IsWalking;
     [HideInInspector] public bool IsSliding;
     [HideInInspector] public bool IsSwimming;
+    [HideInInspector] private bool IsMoving;
     [HideInInspector] public Vector3 CurrentSpeed;
     [HideInInspector] public Vector3 NormalAngle;
     [HideInInspector] public Vector3 WalkingSpeed;
@@ -68,7 +69,6 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public Quaternion PlayerOriginRotation;
     [HideInInspector] public CharacterController CharaController;
     [HideInInspector] private TimerManager _timerManager;
-    [HideInInspector] private bool IsMoving;
     #endregion
 
     #region ACTIONS
@@ -131,6 +131,12 @@ public class PlayerMovements : MonoBehaviour
             if (_holdBaby.IsOnHisBack)
             {
                 Debug.Log("IS NOT");
+                _baby.GetComponent<Rigidbody>().useGravity = true;
+                _baby.LasPositionPlayer.Add(_holdBaby.PositionBabyPut.gameObject.transform.position);
+
+                _baby.Offset = transform.position - _baby.transform.position;
+                _baby.Offset.y = 0;
+
                 _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
                 _holdBaby.Baby.transform.position = _holdBaby.PositionBabyPut.transform.position;
                 _holdBaby.IsOnHisBack = false;
@@ -140,6 +146,7 @@ public class PlayerMovements : MonoBehaviour
                 if (_holdBaby.CanHoldBaby)
                 {
                     Debug.Log("IS ON");
+                    _baby.GetComponent<Rigidbody>().useGravity = false;
                     _holdBaby.Baby.gameObject.transform.parent = gameObject.transform;
                     _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x, _holdBaby.BasePositionBaby.transform.position.y, _holdBaby.BasePositionBaby.transform.position.z);
                     _holdBaby.IsOnHisBack = true;

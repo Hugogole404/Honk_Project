@@ -5,16 +5,15 @@ using UnityEngine.InputSystem;
 
 public class Baby : MonoBehaviour
 {
-    public List<Vector3> _lastPositionPlayer;
-    private List<Vector3> _lastPositionPlayerCopy;
-    private Transform _toFollow;
+    public Vector3 Offset;
+    public List<Vector3> LasPositionPlayer;
 
-    [SerializeField] private Vector3 _offset;
     [SerializeField] private float _speed;
 
     private int _point;
     private bool _isDadMoving;
     private Vector3 _oldPosPlayer;
+    private Transform _toFollow;
     private HoldBaby _holdBaby;
     private PlayerMovements _playerMov;
 
@@ -34,40 +33,35 @@ public class Baby : MonoBehaviour
     {
         if(_isDadMoving && _holdBaby.IsOnHisBack == false)
         {
-            _lastPositionPlayer.Add(_playerMov.gameObject.transform.position);
+            LasPositionPlayer.Add(_playerMov.gameObject.transform.position + Offset);
         }
         if(_holdBaby.IsOnHisBack == true)
         {
-            _lastPositionPlayer.Clear();
+            LasPositionPlayer.Clear();
             _point = 0;
         }
-
-        //foreach (var item in _lastPositionPlayer)
-        //{
-        //    if(item != null)
-        //    {
-        //        _lastPositionPlayerCopy.Add(item);
-        //    }
-        //}
-        //_lastPositionPlayer.Clear();
-        //_lastPositionPlayer = _lastPositionPlayerCopy;
-        //_lastPositionPlayerCopy.Clear();
-        //_point = 0;
+    }
+    private void OffsetMovBaby()
+    {
+        //Offset = _playerMov.gameObject.transform.position - gameObject.transform.position;
+        //Offset.y = 0;
     }
     private void MoveBaby()
     {
-        if (_holdBaby.IsOnHisBack == false)
+        // calculer la différence de LastPlaterPos[X] et de LastPosPlayer[X-1]
+        // l'ajouter au vector du player 
+
+        if (_holdBaby.IsOnHisBack == false && _isDadMoving && LasPositionPlayer.Count >= 2)
         {
             //transform.position = ToFollow.position - _offset;
             //transform.rotation = ToFollow.rotation;
-            foreach (var item in _lastPositionPlayer)
+
+            foreach (var item in LasPositionPlayer)
             {
-                transform.position = item;
+                //transform.position += LasPositionPlayer[_point] - LasPositionPlayer[_point - 1];
+                //_point++;
+                transform.position = item + Offset;
             }
-            transform.position = _lastPositionPlayer[_point];
-            _point++;
-            //_lastPositionPlayer.Remove(_lastPositionPlayer[_point]);
-            UpdateLists();
         }
     }
     private void Awake()
@@ -78,11 +72,12 @@ public class Baby : MonoBehaviour
     void Start()
     {
         _toFollow = _playerMov.gameObject.transform;
-        _offset = _toFollow.position - transform.position;
+        Offset = _toFollow.position - transform.position;
         _oldPosPlayer = _playerMov.gameObject.transform.position;
     }
     private void Update()
     {
+        OffsetMovBaby();
         UpdateLists();
         MoveBaby();
 

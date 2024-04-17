@@ -9,6 +9,7 @@ public class HoldBaby : MonoBehaviour
     public GameObject PositionBabyPut;
     public GameObject Baby;
     public GameObject BasePositionBaby;
+
     [HideInInspector] public bool CanHoldBaby = false;
     [HideInInspector] public bool IsOnHisBack;
 
