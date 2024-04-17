@@ -40,6 +40,7 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private float _frictionForce;
     [SerializeField] private RaycastHit _slopeHit;
     [SerializeField] private LayerMask _whatIsGround;
+    [SerializeField] private GameObject _inputsForBaby;
 
     private float _gravity = -9.81f;
     private float _currentTimerAnimJump;
@@ -131,7 +132,10 @@ public class PlayerMovements : MonoBehaviour
             if (_holdBaby.IsOnHisBack)
             {
                 Debug.Log("IS NOT");
+                _baby.GetComponent<BabyMovements>().enabled = true;
+                _inputsForBaby.SetActive(true);
                 _baby.GetComponent<Rigidbody>().useGravity = true;
+                //_baby.GetComponent<CharacterController>().enabled = false;
                 _baby.LasPositionPlayer.Add(_holdBaby.PositionBabyPut.gameObject.transform.position);
 
                 _baby.Offset = transform.position - _baby.transform.position;
@@ -140,16 +144,21 @@ public class PlayerMovements : MonoBehaviour
                 _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
                 _holdBaby.Baby.transform.position = _holdBaby.PositionBabyPut.transform.position;
                 _holdBaby.IsOnHisBack = false;
+                //_baby.GetComponent<CharacterController>().enabled = true;
             }
             else
             {
                 if (_holdBaby.CanHoldBaby)
                 {
                     Debug.Log("IS ON");
+                    _baby.GetComponent<BabyMovements>().enabled = false;
+                    _inputsForBaby.SetActive(false);
                     _baby.GetComponent<Rigidbody>().useGravity = false;
+                    //_baby.GetComponent<CharacterController>().enabled = false;
                     _holdBaby.Baby.gameObject.transform.parent = gameObject.transform;
                     _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x, _holdBaby.BasePositionBaby.transform.position.y, _holdBaby.BasePositionBaby.transform.position.z);
                     _holdBaby.IsOnHisBack = true;
+                    //_baby.GetComponent<CharacterController>().enabled = true;
                 }
             }
         }
@@ -357,6 +366,10 @@ public class PlayerMovements : MonoBehaviour
         if (IsWalking)
         {
             CharaController.Move(WalkingSpeed * Time.deltaTime);
+            //_baby.GetComponent<CharacterController>().Move(WalkingSpeed * Time.deltaTime);
+            //if (_holdBaby.IsOnHisBack == false)
+            //{
+            //}
             GetComponent<CharacterController>().enabled = true;
         }
         if (IsSwimming)
@@ -384,6 +397,9 @@ public class PlayerMovements : MonoBehaviour
         ActualSpeed = BaseSpeed;
         IsWalkingBools();
         PlayerOriginRotation = ModelPlayer.transform.rotation;
+
+        _baby.GetComponent<BabyMovements>().enabled = false;
+        _inputsForBaby.SetActive(false);
     }
     private void FixedUpdate()
     {
