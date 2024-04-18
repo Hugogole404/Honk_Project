@@ -20,13 +20,9 @@ public class Baby : MonoBehaviour
     private void CheckIsPlayerMoving()
     {
         if (_oldPosPlayer.x != _playerMov.transform.position.x || _oldPosPlayer.z != _playerMov.transform.position.z)
-        {
             _isDadMoving = true;
-        }
         else
-        {
             _isDadMoving = false;
-        }
         _oldPosPlayer = _playerMov.transform.position;
     }
     private void UpdateLists()
