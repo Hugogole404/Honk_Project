@@ -23,11 +23,11 @@ Material:
   m_Name: IceCube
   m_Shader: {fileID: -6465566751694194690, guid: 21bec9fe08d30d7419f6acd32beb41c3,
     type: 3}
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 2100000, guid: 66ee99b874a6f3b43a1b13eaa8e6d79e, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -36,37 +36,11 @@ Material:
   m_LockedProperties: _FresnelColor
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _DistortionTexture2D:
-        m_Texture: {fileID: 2800000, guid: 2177e9e7fdf53aa47b1d25dad7227e5d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _IceTexture2D:
-        m_Texture: {fileID: 2800000, guid: 2177e9e7fdf53aa47b1d25dad7227e5d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Distortion: 0.12
-    - _FresnelPower: 1.32
-    - _Metalic: 0
-    - _Normal: 0
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _Smoothness: 0.77
-    m_Colors:
-    - _Color: {r: 0.1462264, g: 0.75371903, b: 1, a: 1}
-    - _FresnelColor: {r: 0.64328945, g: 0.9593356, b: 0.9811321, a: 0}
+    - _Distortion: 0
+    - _Float: 0
+    - _Float_1: 0.938
+    m_Colors: []
   m_BuildTextureStacks: []
