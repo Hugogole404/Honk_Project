@@ -51,7 +51,7 @@ public class PlayerMovements : MonoBehaviour
     private bool _canSpeedDecrease = true;
     private HoldBaby _holdBaby;
     private Baby _baby;
-
+    private TestBabyWalk _testBabyWalk;
 
     [HideInInspector] public RaycastHit INFOOOO;
     [HideInInspector] public float ActualSpeed;
@@ -70,6 +70,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public Quaternion PlayerOriginRotation;
     [HideInInspector] public CharacterController CharaController;
     [HideInInspector] private TimerManager _timerManager;
+    [HideInInspector] public bool CanBabyFollow;
     #endregion
 
     #region ACTIONS
@@ -134,26 +135,46 @@ public class PlayerMovements : MonoBehaviour
                 Debug.Log("IS NOT");
                 //_baby.GetComponent<BabyMovements>().enabled = true;
                 //_inputsForBaby.SetActive(true);
-                _baby.GetComponent<Rigidbody>().useGravity = true;
+                //_baby.GetComponent<Rigidbody>().useGravity = true;
                 //_baby.GetComponent<CharacterController>().enabled = false;
-                _baby.LastPositionPlayer.Add(_holdBaby.PositionBabyPut.gameObject.transform.position);
+
+                //_baby.LastPositionPlayer.Add(_holdBaby.PositionBabyPut.gameObject.transform.position);
 
                 //_baby.Offset = transform.position - _baby.transform.position;
                 //_baby.Offset.y = 0;
 
                 _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
-                _holdBaby.Baby.transform.position = _holdBaby.PositionBabyPut.transform.position;
+
+                //_holdBaby.Baby.transform.position = _holdBaby.PositionBabyPut.transform.position;
+                _testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
+
+                _testBabyWalk.LastPositionPlayer.Add(transform.position);
+                //_testBabyWalk.Point++;
+
                 _holdBaby.IsOnHisBack = false;
                 //_baby.GetComponent<CharacterController>().enabled = true;
+            }
+            else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false)
+            {
+                if (CanBabyFollow)
+                {
+                    CanBabyFollow = false;
+                    Debug.Log("OFF");
+                }
+                else
+                {
+                    CanBabyFollow = true;
+                    Debug.Log("ON");
+                }
             }
             else
             {
                 if (_holdBaby.CanHoldBaby)
                 {
                     Debug.Log("IS ON");
-                    _baby.GetComponent<BabyMovements>().enabled = false;
+                    //_baby.GetComponent<BabyMovements>().enabled = false;
                     _inputsForBaby.SetActive(false);
-                    _baby.GetComponent<Rigidbody>().useGravity = false;
+                    //_baby.GetComponent<Rigidbody>().useGravity = false;
                     //_baby.GetComponent<CharacterController>().enabled = false;
                     _holdBaby.Baby.gameObject.transform.parent = gameObject.transform;
                     _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x, _holdBaby.BasePositionBaby.transform.position.y, _holdBaby.BasePositionBaby.transform.position.z);
@@ -389,7 +410,8 @@ public class PlayerMovements : MonoBehaviour
         _holdBaby = FindAnyObjectByType<HoldBaby>();
         CharaController = GetComponent<CharacterController>();
         _timerManager = FindAnyObjectByType<TimerManager>();
-        _baby = FindAnyObjectByType<Baby>();
+        _testBabyWalk = FindAnyObjectByType<TestBabyWalk>();
+        //_baby = FindAnyObjectByType<Baby>();
     }
     private void Start()
     {
@@ -398,8 +420,9 @@ public class PlayerMovements : MonoBehaviour
         IsWalkingBools();
         PlayerOriginRotation = ModelPlayer.transform.rotation;
 
-        _baby.GetComponent<BabyMovements>().enabled = false;
+        //_baby.GetComponent<BabyMovements>().enabled = false;
         _inputsForBaby.SetActive(false);
+        CanBabyFollow = false;
     }
     private void FixedUpdate()
     {

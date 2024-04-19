@@ -42,9 +42,6 @@ public class Baby : MonoBehaviour
     }
     private void OffsetMovBaby()
     {
-        Offset = LastPositionPlayer[_point] - LastPositionPlayer[_point - 1];
-        Offset.y = 0;
-        _point++;
         //Offset.z = LastPositionPlayer[_point].z - LastPositionPlayer[_point - 1].z;
         //Offset.x = LastPositionPlayer[_point].x - LastPositionPlayer[_point - 1].x;
     }
@@ -53,15 +50,21 @@ public class Baby : MonoBehaviour
         // calculer la différence de LastPlaterPos[X] et de LastPosPlayer[X-1]
         // l'ajouter au vector du player 
 
+        //if (_isDadMoving == false)
+        //{
+        //    LastPositionPlayer.Clear();
+        //    _point = 0;
+        //}
         if (_holdBaby.IsOnHisBack == false && _isDadMoving)
         {
-            //transform.position = ToFollow.position - _offset;
-            //transform.rotation = ToFollow.rotation;
-
             foreach (var item in LastPositionPlayer)
             {
-                OffsetMovBaby();
-                transform.position += Offset;
+                Offset = _playerMov.gameObject.transform.position - LastPositionPlayer[_point];
+                Offset.y = 0;
+                //OffsetMovBaby();
+                transform.position += Offset * 2;
+                Debug.Log(_point);
+                _point++;
                 //transform.position += Offset;
             }
         }
@@ -80,13 +83,13 @@ public class Baby : MonoBehaviour
     }
     private void Update()
     {
-        UpdateLists();
-        MoveBaby();
 
         //Le petit bouge et il reproduit le déplacement de son papa. 
     }
     private void FixedUpdate()
     {
+        UpdateLists();
         CheckIsPlayerMoving();
+        MoveBaby();
     }
 }
