@@ -53,8 +53,8 @@ public class TestBabyWalk : MonoBehaviour
             Offset.y = 0;
             transform.position -= Offset;
             Point++;
-            UpdatePlayerPos();
         }
+        UpdatePlayerPos();
     }
     private void Update()
     {
