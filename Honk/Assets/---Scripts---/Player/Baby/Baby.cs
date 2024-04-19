@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Baby : MonoBehaviour
 {
     public Vector3 Offset;
-    public List<Vector3> LasPositionPlayer;
+    public List<Vector3> LastPositionPlayer;
 
     [SerializeField] private float _speed;
 
@@ -29,21 +31,22 @@ public class Baby : MonoBehaviour
     {
         if (_isDadMoving && _holdBaby.IsOnHisBack == false)
         {
-            LasPositionPlayer.Add(_playerMov.gameObject.transform.position + Offset);
+            //LastPositionPlayer.Add(_playerMov.gameObject.transform.position + Offset);
+            LastPositionPlayer.Add(_playerMov.gameObject.transform.position);
         }
         if (_holdBaby.IsOnHisBack == true)
         {
-            LasPositionPlayer.Clear();
+            LastPositionPlayer.Clear();
             _point = 0;
         }
     }
     private void OffsetMovBaby()
     {
-        //Offset = _playerMov.gameObject.transform.position - gameObject.transform.position;
-        _point++;
+        Offset = LastPositionPlayer[_point] - LastPositionPlayer[_point - 1];
         Offset.y = 0;
-        Offset.z = LasPositionPlayer[_point].z - LasPositionPlayer[_point - 1].z;
-        Offset.x = LasPositionPlayer[_point].x - LasPositionPlayer[_point - 1].x;
+        _point++;
+        //Offset.z = LastPositionPlayer[_point].z - LastPositionPlayer[_point - 1].z;
+        //Offset.x = LastPositionPlayer[_point].x - LastPositionPlayer[_point - 1].x;
     }
     private void MoveBaby()
     {
@@ -55,10 +58,10 @@ public class Baby : MonoBehaviour
             //transform.position = ToFollow.position - _offset;
             //transform.rotation = ToFollow.rotation;
 
-            foreach (var item in LasPositionPlayer)
+            foreach (var item in LastPositionPlayer)
             {
-                //OffsetMovBaby();
-                transform.position = item + Offset;
+                OffsetMovBaby();
+                transform.position += Offset;
                 //transform.position += Offset;
             }
         }

@@ -132,14 +132,14 @@ public class PlayerMovements : MonoBehaviour
             if (_holdBaby.IsOnHisBack)
             {
                 Debug.Log("IS NOT");
-                _baby.GetComponent<BabyMovements>().enabled = true;
-                _inputsForBaby.SetActive(true);
+                //_baby.GetComponent<BabyMovements>().enabled = true;
+                //_inputsForBaby.SetActive(true);
                 _baby.GetComponent<Rigidbody>().useGravity = true;
                 //_baby.GetComponent<CharacterController>().enabled = false;
-                _baby.LasPositionPlayer.Add(_holdBaby.PositionBabyPut.gameObject.transform.position);
+                _baby.LastPositionPlayer.Add(_holdBaby.PositionBabyPut.gameObject.transform.position);
 
-                _baby.Offset = transform.position - _baby.transform.position;
-                _baby.Offset.y = 0;
+                //_baby.Offset = transform.position - _baby.transform.position;
+                //_baby.Offset.y = 0;
 
                 _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
                 _holdBaby.Baby.transform.position = _holdBaby.PositionBabyPut.transform.position;

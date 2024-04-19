@@ -20,7 +20,7 @@ public class RiftBaby : MonoBehaviour
             float offsetY = _playerMovements.gameObject.transform.position.y - _pointEnterRift.transform .position.y;
             float offsetX = _playerMovements.gameObject.transform.position.x - _pointEnterRift.transform.position.x;
 
-            _baby.LasPositionPlayer.Add(_pointEnterRift.gameObject.transform.position);
+            _baby.LastPositionPlayer.Add(_pointEnterRift.gameObject.transform.position);
 
             _baby.Offset = _playerMovements.gameObject.transform.position - _pointEnterRift.gameObject.transform.position;
             _baby.Offset.y = 0;
