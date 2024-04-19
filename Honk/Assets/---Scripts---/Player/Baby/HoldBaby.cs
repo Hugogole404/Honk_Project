@@ -10,8 +10,8 @@ public class HoldBaby : MonoBehaviour
     public GameObject Baby;
     public GameObject BasePositionBaby;
 
-    [HideInInspector] public bool CanHoldBaby = false;
-    [HideInInspector] public bool IsOnHisBack;
+    public bool CanHoldBaby = false;
+    public bool IsOnHisBack;
 
     private void Start()
     {
@@ -19,14 +19,14 @@ public class HoldBaby : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Baby>() != null)
+        if (other.GetComponent<TestBabyWalk>() != null && IsOnHisBack == false)
         {
             CanHoldBaby = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Baby>() != null)
+        if (other.GetComponent<TestBabyWalk>() != null && IsOnHisBack == false)
         {
             CanHoldBaby = false;
         }

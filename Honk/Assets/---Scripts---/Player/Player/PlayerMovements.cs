@@ -130,57 +130,34 @@ public class PlayerMovements : MonoBehaviour
     {
         if (context.performed)
         {
-            if (_holdBaby.IsOnHisBack)
+            if (_holdBaby.CanHoldBaby && _holdBaby)
             {
+                // PRENDRE LE PETIT
+                Debug.Log("IS ON");
+                _inputsForBaby.SetActive(false);
+                _holdBaby.Baby.gameObject.transform.parent = gameObject.transform;
+                _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x, _holdBaby.BasePositionBaby.transform.position.y, _holdBaby.BasePositionBaby.transform.position.z);
+                _holdBaby.IsOnHisBack = true;
+                _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
+                _holdBaby.CanHoldBaby = false;
+            }
+            else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
+            {
+                // DEPOSER LE PETIT
                 Debug.Log("IS NOT");
-                //_baby.GetComponent<BabyMovements>().enabled = true;
-                //_inputsForBaby.SetActive(true);
-                //_baby.GetComponent<Rigidbody>().useGravity = true;
-                //_baby.GetComponent<CharacterController>().enabled = false;
-
-                //_baby.LastPositionPlayer.Add(_holdBaby.PositionBabyPut.gameObject.transform.position);
-
-                //_baby.Offset = transform.position - _baby.transform.position;
-                //_baby.Offset.y = 0;
-
+                _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = false;
                 _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
-
-                //_holdBaby.Baby.transform.position = _holdBaby.PositionBabyPut.transform.position;
                 _testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
-
                 _testBabyWalk.LastPositionPlayer.Add(transform.position);
-                //_testBabyWalk.Point++;
-
                 _holdBaby.IsOnHisBack = false;
-                //_baby.GetComponent<CharacterController>().enabled = true;
             }
             else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false)
             {
+                // LE FAIRE FOLLOW
                 if (CanBabyFollow)
-                {
                     CanBabyFollow = false;
-                    Debug.Log("OFF");
-                }
                 else
-                {
                     CanBabyFollow = true;
-                    Debug.Log("ON");
-                }
-            }
-            else
-            {
-                if (_holdBaby.CanHoldBaby)
-                {
-                    Debug.Log("IS ON");
-                    //_baby.GetComponent<BabyMovements>().enabled = false;
-                    _inputsForBaby.SetActive(false);
-                    //_baby.GetComponent<Rigidbody>().useGravity = false;
-                    //_baby.GetComponent<CharacterController>().enabled = false;
-                    _holdBaby.Baby.gameObject.transform.parent = gameObject.transform;
-                    _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x, _holdBaby.BasePositionBaby.transform.position.y, _holdBaby.BasePositionBaby.transform.position.z);
-                    _holdBaby.IsOnHisBack = true;
-                    //_baby.GetComponent<CharacterController>().enabled = true;
-                }
             }
         }
     }

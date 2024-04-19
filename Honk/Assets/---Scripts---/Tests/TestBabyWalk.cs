@@ -27,6 +27,7 @@ public class TestBabyWalk : MonoBehaviour
     private void UpdatePlayerPos()
     {
         LastPOSPLAYER = _playerMov.transform.position;
+        GetComponent<Rigidbody>().AddForce(Vector3.down * Time.deltaTime);
     }
 
     private void Awake()
