@@ -9,6 +9,7 @@ public class Platform : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _maxTimerBaby;
     [SerializeField] private float _maxTimerDad;
+    private float t_transform_initial;
     private float _currentTimer;
     private bool _canFall;
     private bool _canTimerIncrease;
@@ -17,7 +18,7 @@ public class Platform : MonoBehaviour
 
     private void Fall()
     {
-        if (_canFall && _platform.transform.position.y > _platform.transform.position.y - _fallDistValue)
+        if (_canFall && _platform.transform.position.y > t_transform_initial)
         {
             _platform.transform.position -= new Vector3(0, _speed * Time.deltaTime, 0);
         }
@@ -73,5 +74,9 @@ public class Platform : MonoBehaviour
     {
         Timer();
         Fall();
+    }
+    private void Start()
+    {
+        t_transform_initial = _platform.transform.position.y - _fallDistValue;
     }
 }
