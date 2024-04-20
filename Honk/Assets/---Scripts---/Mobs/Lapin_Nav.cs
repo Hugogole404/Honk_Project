@@ -19,7 +19,7 @@ public class Lapin_Nav : MonoBehaviour
     IEnumerator CheckTransform()
     {
         Debug.Log("commence");
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.05f);
         Debug.Log("fini");
         if (Vector3.Distance(agent.transform.position, player.position) <= 2)
         {
