@@ -29,7 +29,7 @@ public class Platform : MonoBehaviour
             _canTimerIncrease = true;
             _isDad = true;
         }
-        else if (other.gameObject.GetComponent<Baby>() != null)
+        else if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
             _canTimerIncrease = true;
             _isBaby = true;
@@ -42,7 +42,7 @@ public class Platform : MonoBehaviour
             _canTimerIncrease = false;
             _currentTimer = 0;
         }
-        else if (other.gameObject.GetComponent<Baby>() != null)
+        else if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
             _canTimerIncrease = false;
             _currentTimer = 0;
