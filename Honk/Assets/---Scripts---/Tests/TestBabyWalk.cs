@@ -9,6 +9,7 @@ public class TestBabyWalk : MonoBehaviour
     public Vector3 LastPOSPLAYER;
 
     [SerializeField] private float _speed;
+    [SerializeField] private float _gravityMultiplier;
 
     public int Point;
     private bool _isDadMoving;
@@ -27,7 +28,7 @@ public class TestBabyWalk : MonoBehaviour
     private void UpdatePlayerPos()
     {
         LastPOSPLAYER = _playerMov.transform.position;
-        GetComponent<Rigidbody>().AddForce(Vector3.down * Time.deltaTime);
+        GetComponent<Rigidbody>().AddForce(Vector3.down * Time.deltaTime * _gravityMultiplier);
     }
 
     private void Awake()
@@ -57,9 +58,17 @@ public class TestBabyWalk : MonoBehaviour
         }
         UpdatePlayerPos();
     }
+    private void UpdateRotationBaby()
+    {
+        if (_holdBaby.IsOnHisBack == false && _isDadMoving && _playerMov.CanBabyFollow)
+        {
+            transform.rotation = _playerMov.transform.rotation;
+        }
+    }
     private void Update()
     {
         CheckIsPlayerMoving();
         BabyMov();
+        UpdateRotationBaby();
     }
 }
