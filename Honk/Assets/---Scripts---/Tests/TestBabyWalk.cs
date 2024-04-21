@@ -8,7 +8,7 @@ public class TestBabyWalk : MonoBehaviour
     public List<Vector3> LastPositionPlayer;
     public Vector3 LastPOSPLAYER;
 
-    [SerializeField] private float _speed;
+    //[SerializeField] private float _speed;
     [SerializeField] private float _gravityMultiplier;
 
     public int Point;
