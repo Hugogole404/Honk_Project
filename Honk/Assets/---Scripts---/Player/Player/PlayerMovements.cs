@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.GameCenter;
 
 [HelpURL("https://app.milanote.com/1RscWs1SJGPM9j/playermovements?p=5Aw4gcZ0pqp")]
 [RequireComponent(typeof(CharacterController))]
@@ -41,6 +42,8 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private RaycastHit _slopeHit;
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private GameObject _inputsForBaby;
+    [Header("Push Obstacles")]
+    [SerializeField] private float _pushForce;
 
     private float _gravity = -9.81f;
     private float _currentTimerAnimJump;
@@ -52,6 +55,9 @@ public class PlayerMovements : MonoBehaviour
     private HoldBaby _holdBaby;
     private Baby _baby;
     private TestBabyWalk _testBabyWalk;
+
+    [HideInInspector] public bool CanPushObstacles;
+    [HideInInspector] public GameObject ActualObstacle;
 
     [HideInInspector] public RaycastHit INFOOOO;
     [HideInInspector] public float ActualSpeed;
@@ -128,9 +134,17 @@ public class PlayerMovements : MonoBehaviour
     }
     public void HonkNoise(InputAction.CallbackContext context)
     {
+
         if (context.performed)
         {
-            if (_holdBaby.CanHoldBaby && _holdBaby)
+            if (CanPushObstacles)
+            {
+                // animation push
+                Direction.y = 0;
+                ActualObstacle.GetComponent<Rigidbody>().AddForce(Direction * Time.deltaTime * _pushForce, ForceMode.Force);
+                CanPushObstacles = false;
+            }
+            else if (_holdBaby.CanHoldBaby && _holdBaby)
             {
                 // PRENDRE LE PETIT
                 Debug.Log("IS ON");
@@ -400,6 +414,7 @@ public class PlayerMovements : MonoBehaviour
         //_baby.GetComponent<BabyMovements>().enabled = false;
         _inputsForBaby.SetActive(false);
         CanBabyFollow = false;
+        CanPushObstacles = false;
     }
     private void FixedUpdate()
     {

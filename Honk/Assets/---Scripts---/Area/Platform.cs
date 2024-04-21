@@ -15,7 +15,6 @@ public class Platform : MonoBehaviour
     private bool _canTimerIncrease;
     private bool _isDad;
     private bool _isBaby;
-
     private void Fall()
     {
         if (_canFall && _platform.transform.position.y > t_transform_initial)
