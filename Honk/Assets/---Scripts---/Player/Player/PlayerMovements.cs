@@ -9,6 +9,7 @@ public class PlayerMovements : MonoBehaviour
     #region VARIABLES
     [Header("Player")]
     public Animator AnimatorHonk;
+    public Animator AnimatorHonkJR;
     public GameObject ModelPlayer;
     [Header("Orientation")]
     public float ModifyTurn;
@@ -85,6 +86,7 @@ public class PlayerMovements : MonoBehaviour
         if (IsWalking)
         {
             AnimatorHonk.SetBool("IsMoving", true);
+            AnimatorHonkJR.SetBool("IsMoving", true);
             _canSpeedAugment = true;
             _canSpeedDecrease = false;
 
@@ -93,6 +95,7 @@ public class PlayerMovements : MonoBehaviour
             if (context.canceled)
             {
                 AnimatorHonk.SetBool("IsMoving", false);
+                AnimatorHonkJR.SetBool("IsMoving", false);
                 _canSpeedAugment = false;
                 _canSpeedDecrease = true;
             }
@@ -154,6 +157,7 @@ public class PlayerMovements : MonoBehaviour
                 _holdBaby.IsOnHisBack = true;
                 _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
                 _holdBaby.CanHoldBaby = false;
+                AnimatorHonkJR.SetBool("OnBack", true);
             }
             else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
             {
@@ -164,14 +168,22 @@ public class PlayerMovements : MonoBehaviour
                 _testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
                 _testBabyWalk.LastPositionPlayer.Add(transform.position);
                 _holdBaby.IsOnHisBack = false;
+                AnimatorHonkJR.SetBool("OnBack", false);
             }
             else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false)
             {
                 // LE FAIRE FOLLOW
                 if (CanBabyFollow)
+                {
                     CanBabyFollow = false;
+                    AnimatorHonkJR.SetBool("IsActive", false);
+                }
                 else
+                {
                     CanBabyFollow = true;
+                    AnimatorHonkJR.SetBool("IsActive", true);
+                }
+                    
             }
         }
     }

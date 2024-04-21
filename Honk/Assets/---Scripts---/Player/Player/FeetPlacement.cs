@@ -44,6 +44,7 @@ public class FeetPlacement : MonoBehaviour
         }
     }
 
+
     public void AtterissageNeige()
     {
         if (isSnow)
