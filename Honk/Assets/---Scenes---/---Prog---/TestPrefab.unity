@@ -642,6 +642,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4099217670610028174, guid: e939f4ffd0d3c014181e100b5c8978f8,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1814014238}
+    - target: {fileID: 4099217670610028174, guid: e939f4ffd0d3c014181e100b5c8978f8,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1814014238}
+    - target: {fileID: 4099217670610028174, guid: e939f4ffd0d3c014181e100b5c8978f8,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1814014238}
     - target: {fileID: 4836283322744895863, guid: e939f4ffd0d3c014181e100b5c8978f8,
         type: 3}
       propertyPath: m_Name
@@ -712,3 +727,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e939f4ffd0d3c014181e100b5c8978f8, type: 3}
+--- !u!114 &1814014238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4862313834149559057, guid: 20b56a25508619449a666ffbe41628a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 274533738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c7ce83676819141975ec8065d7b4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
