@@ -191,7 +191,6 @@ public class PlayerMovements : MonoBehaviour
                     CanBabyFollow = true;
                     AnimatorHonkJR.SetBool("IsActive", true);
                 }
-
             }
         }
     }
