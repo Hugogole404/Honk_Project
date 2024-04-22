@@ -61626,7 +61626,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1790993176
 GameObject:
@@ -88155,6 +88155,11 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 1135556313}
+    - target: {fileID: 4862313834149559057, guid: 21e31f1a83a387f49b00a25a91251e02,
+        type: 3}
+      propertyPath: _pushForce
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5200098008797289418, guid: 21e31f1a83a387f49b00a25a91251e02,
         type: 3}
       propertyPath: m_RootOrder

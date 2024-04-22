@@ -19,4 +19,12 @@ public class PushObstacles : MonoBehaviour
             other.GetComponent<PlayerMovements>().CanPushObstacles = false;
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.GetComponent<PlayerMovements>() != null)
+        {
+            other.GetComponent<PlayerMovements>().CanPushObstacles = true;
+            other.GetComponent<PlayerMovements>().ActualObstacle = gameObject.transform.parent.transform.gameObject;
+        }
+    }
 }

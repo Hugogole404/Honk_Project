@@ -143,8 +143,15 @@ public class PlayerMovements : MonoBehaviour
             if (CanPushObstacles)
             {
                 // animation push
-                Direction.y = 0;
-                ActualObstacle.GetComponent<Rigidbody>().AddForce(Direction * Time.deltaTime * _pushForce, ForceMode.Force);
+                Vector3 pushForce = Direction;
+
+                Vector3 distBetween = ActualObstacle.transform.position - transform.position;
+                distBetween.y = 0;
+
+                if (Mathf.Abs(distBetween.x) > Mathf.Abs(distBetween.z)) distBetween.z = 0;
+                else distBetween.x = 0;
+                distBetween = distBetween.normalized;
+                ActualObstacle.GetComponent<Rigidbody>().AddForce(_pushForce * distBetween, ForceMode.VelocityChange);
                 CanPushObstacles = false;
             }
             else if (_holdBaby.CanHoldBaby && _holdBaby)
@@ -183,7 +190,7 @@ public class PlayerMovements : MonoBehaviour
                     CanBabyFollow = true;
                     AnimatorHonkJR.SetBool("IsActive", true);
                 }
-                    
+
             }
         }
     }
