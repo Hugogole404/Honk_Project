@@ -164,6 +164,7 @@ public class PlayerMovements : MonoBehaviour
                 _holdBaby.IsOnHisBack = true;
                 _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
                 _holdBaby.CanHoldBaby = false;
+                CanBabyFollow = false;
                 AnimatorHonkJR.SetBool("OnBack", true);
             }
             else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
