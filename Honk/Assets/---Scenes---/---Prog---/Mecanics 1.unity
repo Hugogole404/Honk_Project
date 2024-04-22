@@ -10618,6 +10618,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 233947585}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &245141371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8680799507856513822, guid: 20b56a25508619449a666ffbe41628a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8450083860067161768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &245141374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245141371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba8ff009fb281b4bb7dbaaf7775917f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PasDumanchot: {fileID: 245141371}
+  isSnow: 0
 --- !u!1 &248557981
 GameObject:
   m_ObjectHideFlags: 0
@@ -88264,6 +88284,11 @@ PrefabInstance:
       propertyPath: ParentObjectBaby
       value: 
       objectReference: {fileID: 2056577374}
+    - target: {fileID: 3080388227612630232, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4690b905b90c832498d22474cb9bb1b3, type: 2}
     - target: {fileID: 3097462340748107904, guid: 20b56a25508619449a666ffbe41628a4,
         type: 3}
       propertyPath: m_Name
@@ -88332,5 +88357,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8680799507856513822, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 245141374}
   m_SourcePrefab: {fileID: 100100000, guid: 20b56a25508619449a666ffbe41628a4, type: 3}
