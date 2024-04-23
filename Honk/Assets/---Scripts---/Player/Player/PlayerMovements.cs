@@ -42,7 +42,7 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private float _frictionForce;
     [SerializeField] private RaycastHit _slopeHit;
     [SerializeField] private LayerMask _whatIsGround;
-    [SerializeField] private GameObject _inputsForBaby;
+    public GameObject _inputsForBaby;
     [Header("Push Obstacles")]
     [SerializeField] private float _pushForce;
 
@@ -53,7 +53,7 @@ public class PlayerMovements : MonoBehaviour
     private float _currentTimer;
     private bool _canSpeedAugment = false;
     private bool _canSpeedDecrease = true;
-    private HoldBaby _holdBaby;
+    public HoldBaby _holdBaby;
     private Baby _baby;
     private TestBabyWalk _testBabyWalk;
 
