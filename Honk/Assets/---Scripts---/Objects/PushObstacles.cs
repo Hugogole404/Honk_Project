@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class PushObstacles : MonoBehaviour
 {
-    private float _maxTimer = 2;
-    private float _currentTimer = 0;
+    [SerializeField] private GameObject _top;
+    [SerializeField] private GameObject _parentBaby;
+    [SerializeField] private GameObject _bloc;
+    private GameObject _baby;
+    [SerializeField] private float _timerMaxGetBaby;
+    [SerializeField] private float _currentTimerGetBaby;
+    private bool _isOnCube;
+
+    private float _maxTimerGravity = 2;
+    private float _currentTimerGravity = 0;
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerMovements>() != null)
         {
             other.GetComponent<PlayerMovements>().CanPushObstacles = true;
-            other.GetComponent<PlayerMovements>().ActualObstacle = gameObject.transform.parent.transform.gameObject;
+            other.GetComponent<PlayerMovements>().ActualObstacle = _bloc;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -19,6 +27,12 @@ public class PushObstacles : MonoBehaviour
         if (other.GetComponent<PlayerMovements>() != null)
         {
             other.GetComponent<PlayerMovements>().CanPushObstacles = false;
+        }
+        if (other.GetComponent<TestBabyWalk>() != null)
+        {
+            _currentTimerGetBaby = 0;
+            other.GetComponent<TestBabyWalk>().gameObject.transform.parent = _parentBaby.transform;
+            _isOnCube = false;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -28,18 +42,40 @@ public class PushObstacles : MonoBehaviour
             other.GetComponent<PlayerMovements>().CanPushObstacles = true;
             other.GetComponent<PlayerMovements>().ActualObstacle = gameObject.transform.parent.transform.gameObject;
         }
+        if (other.GetComponent<TestBabyWalk>() != null)
+        {
+            if (other.GetComponent<TestBabyWalk>().transform.position.y > _top.transform.position.y)
+            {
+                _currentTimerGetBaby += Time.deltaTime;
+            }
+            if (_currentTimerGetBaby >= _timerMaxGetBaby)
+            {
+                other.GetComponent<TestBabyWalk>().gameObject.transform.parent = _bloc.transform;
+                _isOnCube = true;
+            }
+        }
     }
     private void Start()
     {
-        _maxTimer = 2;
+        _baby = FindAnyObjectByType<TestBabyWalk>().gameObject;
+        _maxTimerGravity = 2;
     }
     private void Update()
     {
-        _currentTimer += Time.deltaTime;
-        if (_currentTimer >= _maxTimer)
+        _currentTimerGravity += Time.deltaTime;
+
+        if (_currentTimerGravity >= _maxTimerGravity)
         {
-            _currentTimer = _maxTimer;
+            _currentTimerGravity = _maxTimerGravity;
             GetComponentInParent<Rigidbody>().useGravity = false;
+        }
+        if (_isOnCube)
+        {
+            _baby.GetComponent<Rigidbody>().velocity = _bloc.GetComponent<Rigidbody>().velocity;
+        }
+        else
+        {
+            _baby.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
     }
 }
