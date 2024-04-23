@@ -35,7 +35,7 @@ public class PushObstacles : MonoBehaviour
     }
     private void Update()
     {
-        _maxTimer += Time.deltaTime;
+        _currentTimer += Time.deltaTime;
         if (_currentTimer >= _maxTimer)
         {
             _currentTimer = _maxTimer;
