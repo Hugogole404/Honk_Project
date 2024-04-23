@@ -22156,7 +22156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cam: {fileID: 11527681}
-  Player: {fileID: 0}
+  Player: {fileID: 782477521}
 --- !u!4 &399662291
 Transform:
   m_ObjectHideFlags: 0
@@ -41759,6 +41759,12 @@ PrefabInstance:
       addedObject: {fileID: 55469117}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20b56a25508619449a666ffbe41628a4, type: 3}
+--- !u!143 &782477521 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 586904536817460072, guid: 20b56a25508619449a666ffbe41628a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 782477520}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &786453671
 Mesh:
   m_ObjectHideFlags: 0
@@ -53578,7 +53584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cam: {fileID: 1045499329}
-  Player: {fileID: 0}
+  Player: {fileID: 782477521}
 --- !u!4 &1011470977
 Transform:
   m_ObjectHideFlags: 0
