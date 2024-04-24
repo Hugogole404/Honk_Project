@@ -53,6 +53,7 @@ public class PlayerMovements : MonoBehaviour
     private bool _canSpeedAugment = false;
     private bool _canSpeedDecrease = true;
     public HoldBaby _holdBaby;
+    public GameObject BabyParent;
     private Baby _baby;
     private TestBabyWalk _testBabyWalk;
 
@@ -158,7 +159,7 @@ public class PlayerMovements : MonoBehaviour
                 // PRENDRE LE PETIT
                 Debug.Log("IS ON");
                 _inputsForBaby.SetActive(false);
-                _holdBaby.Baby.gameObject.transform.parent = gameObject.transform;
+                _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
                 _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x, _holdBaby.BasePositionBaby.transform.position.y, _holdBaby.BasePositionBaby.transform.position.z);
                 _holdBaby.IsOnHisBack = true;
                 _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
