@@ -6,23 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class SwapSceneBuild : MonoBehaviour
 {
+    public List<SceneToSwap> ListScene = new List<SceneToSwap>();
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        foreach (SceneToSwap list in ListScene)
         {
-            SceneManager.LoadScene("Forest");
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene("Cave");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SceneManager.LoadScene("PartieGlissade");
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SceneManager.LoadScene("PartieMarche");
+            if (Input.GetKeyUp(list.KeyCodeScene))
+            {
+                SceneManager.LoadScene(list.SceneName);
+            }
         }
     }
+}
+
+[System.Serializable]
+public class SceneToSwap
+{
+    public string SceneName;
+    public KeyCode KeyCodeScene;
 }
