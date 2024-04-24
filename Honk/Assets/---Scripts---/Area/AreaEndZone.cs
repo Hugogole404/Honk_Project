@@ -13,5 +13,9 @@ public class AreaEndZone : MonoBehaviour
         {
             SceneManager.LoadScene(NameSceneToLoad);
         }
+        if(other.GetComponent<Slope>() != null)
+        {
+            SceneManager.LoadScene(NameSceneToLoad);
+        }
     }
 }
