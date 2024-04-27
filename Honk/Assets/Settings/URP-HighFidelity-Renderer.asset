@@ -139,7 +139,7 @@ MonoBehaviour:
     dBufferSettings:
       surfaceData: 1
     screenSpaceSettings:
-      normalBlend: 0
+      normalBlend: 2
   m_CopyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
   m_DBufferClear: {fileID: 4800000, guid: f056d8bd2a1c7e44e9729144b4c70395, type: 3}
 --- !u!114 &11400000
@@ -160,13 +160,13 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  - {fileID: -38389442138740952}
   - {fileID: 8606740354184355474}
   - {fileID: 8565310102246508192}
   - {fileID: -5401716513711808420}
   - {fileID: -9082408995824856696}
   - {fileID: 7109272685160207298}
-  m_RendererFeatureMap: adc0de57c6d2eee528e7317a019d77ff929e2d6dc0487177a0c677332818de765ca0d846733f09b588110c9323cdf481c2935c32d735a962
+  - {fileID: -38389442138740952}
+  m_RendererFeatureMap: adc0de57c6d2eee5929e2d6dc0487177a0c677332818de765ca0d846733f09b588110c9323cdf481c2935c32d735a96228e7317a019d77ff
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 3583
+    m_Bits: 4294967295
   m_TransparentLayerMask:
     serializedVersion: 2
     m_Bits: 1471

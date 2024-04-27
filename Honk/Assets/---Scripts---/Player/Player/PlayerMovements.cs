@@ -189,11 +189,13 @@ public class PlayerMovements : MonoBehaviour
                 {
                     CanBabyFollow = false;
                     AnimatorHonkJR.SetBool("IsActive", false);
+                    AnimatorHonkJR.SetTrigger("ChangingState");
                 }
                 else
                 {
                     CanBabyFollow = true;
                     AnimatorHonkJR.SetBool("IsActive", true);
+                    AnimatorHonkJR.SetTrigger("ChangingState");
                 }
             }
         }
