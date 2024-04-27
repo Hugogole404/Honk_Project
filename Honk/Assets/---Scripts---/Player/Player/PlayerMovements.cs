@@ -143,6 +143,7 @@ public class PlayerMovements : MonoBehaviour
 
         if (context.performed)
         {
+            AnimatorHonk.SetTrigger("Shout");
             if (CanPushObstacles)
             {
                 // animation push
