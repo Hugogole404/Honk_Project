@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6427645831231044516}
   - component: {fileID: 1685603528369332063}
   - component: {fileID: 7665384090951964141}
+  - component: {fileID: 7560069048957421904}
   m_Layer: 0
   m_Name: Feuilles_Bas_low
   m_TagString: Untagged
@@ -83,6 +84,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &7560069048957421904
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144050753960261794}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.23185094
+  m_Height: 0.92
+  m_Direction: 2
+  m_Center: {x: 0.00006453693, y: -0.000088520355, z: 0.45}
 --- !u!1 &2459974526445373495
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +201,7 @@ GameObject:
   - component: {fileID: 9196892066633705788}
   - component: {fileID: 3087021378884447524}
   - component: {fileID: 6225506597226198806}
+  - component: {fileID: 8244763689319670681}
   m_Layer: 0
   m_Name: Tronc_low
   m_TagString: Untagged
@@ -249,6 +274,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &8244763689319670681
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356559873378241847}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.08
+  m_Height: 0.5
+  m_Direction: 2
+  m_Center: {x: 0.00000022724271, y: 0.00000021979213, z: 0.21015465}
 --- !u!1 &4075024972938358519
 GameObject:
   m_ObjectHideFlags: 0
