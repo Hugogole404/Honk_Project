@@ -10,6 +10,7 @@ public class PlayerMovements : MonoBehaviour
     public Animator AnimatorHonk;
     public Animator AnimatorHonkJR;
     public GameObject ModelPlayer;
+    public GameObject FX_Honking;
     [Header("Orientation")]
     public float ModifyTurn;
     [SerializeField] private float _smoothTime;
@@ -144,6 +145,7 @@ public class PlayerMovements : MonoBehaviour
         if (context.performed)
         {
             AnimatorHonk.SetTrigger("Shout");
+            Instantiate(FX_Honking,transform.parent);
             if (CanPushObstacles)
             {
                 // animation push
