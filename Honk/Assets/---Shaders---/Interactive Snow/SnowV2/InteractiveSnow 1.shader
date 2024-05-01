@@ -4,7 +4,7 @@ Shader "Custom/Snow Interactive Test" {
         _Noise("Snow Noise", 2D) = "gray" {}
         _NoiseScale("Noise Scale", Range(0,2)) = 0.1
         _NoiseWeight("Noise Weight", Range(0,2)) = 0.1
-        [HDR]_ShadowColor("Shadow Color", Color) = (0.5,0.5,0.5,1)
+        _ShadowColor("Shadow Color", Color) = (0.5,0.5,0.5,1)
 
         [Space]
         [Header(Tesselation)]
@@ -13,10 +13,10 @@ Shader "Custom/Snow Interactive Test" {
 
         [Space]
         [Header(Snow)]
-        [HDR]_Color("Snow Color", Color) = (0.5,0.5,0.5,1)
-        [HDR]_PathColorIn("Snow Path Color In", Color) = (0.5,0.5,0.7,1)
-        [HDR]_PathColorOut("Snow Path Color Out", Color) = (0.5,0.5,0.7,1)
-        [HDR]_PathColorBorder("Snow Path Color Border", Color) = (0.5,0.5,0.7,1)
+        _Color("Snow Color", Color) = (0.5,0.5,0.5,1)
+        _PathColorIn("Snow Path Color In", Color) = (0.5,0.5,0.7,1)
+        _PathColorOut("Snow Path Color Out", Color) = (0.5,0.5,0.7,1)
+        _PathColorBorder("Snow Path Color Border", Color) = (0.5,0.5,0.7,1)
         _PathBlending("Snow Path Blending", Range(0,3)) = 0.3
         _MainTex("Snow Texture", 2D) = "white" {}
         _SnowHeight("Snow Height", Range(0,2)) = 0.3
