@@ -61958,7 +61958,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &1790993176
 GameObject:
@@ -88561,6 +88561,11 @@ PrefabInstance:
       propertyPath: _pushForce
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4862313834149559057, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: ShakeData.Strength
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5200098008797289418, guid: 20b56a25508619449a666ffbe41628a4,
         type: 3}
       propertyPath: m_RootOrder
@@ -88615,6 +88620,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115840917688788090, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -32.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115840917688788090, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 40.199997
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115840917688788090, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

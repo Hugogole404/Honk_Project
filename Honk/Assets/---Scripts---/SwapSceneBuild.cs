@@ -16,6 +16,10 @@ public class SwapSceneBuild : MonoBehaviour
                 SceneManager.LoadScene(list.SceneName);
             }
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
 
