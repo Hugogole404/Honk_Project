@@ -35,6 +35,8 @@ public class PlayerMovements : MonoBehaviour
     public GameObject SpawnPoint;
     [Header("FX")]
     public GameObject SnowTrail;
+    [Header("CameraSkake")]
+    public ShakeData ShakeData;
 
     [Header("Slope")]
     public float _rotationSpeedSlope = 1f;
@@ -145,7 +147,7 @@ public class PlayerMovements : MonoBehaviour
         if (context.performed)
         {
             AnimatorHonk.SetTrigger("Shout");
-            Instantiate(FX_Honking,transform.parent);
+            ScreenShake.Instance.Shake(ShakeData);
             if (CanPushObstacles)
             {
                 // animation push
