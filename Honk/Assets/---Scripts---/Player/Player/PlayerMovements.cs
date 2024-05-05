@@ -141,16 +141,13 @@ public class PlayerMovements : MonoBehaviour
             _currentTimer = 0;
         }
     }
-    public void HonkNoise(InputAction.CallbackContext context)
+    public void Push(InputAction.CallbackContext context)
     {
-
         if (context.performed)
         {
-            AnimatorHonk.SetTrigger("Shout");
-            ScreenShake.Instance.Shake(ShakeData);
+            // animation push
             if (CanPushObstacles)
             {
-                // animation push
                 Vector3 pushForce = Direction;
 
                 Vector3 distBetween = ActualObstacle.transform.position - transform.position;
@@ -161,7 +158,18 @@ public class PlayerMovements : MonoBehaviour
                 distBetween = distBetween.normalized;
                 ActualObstacle.GetComponent<Rigidbody>().AddForce(_pushForce * distBetween, ForceMode.VelocityChange);
                 CanPushObstacles = false;
+
+                Debug.Log("PUSHHH");
             }
+        }
+    }
+    public void HonkNoise(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            AnimatorHonk.SetTrigger("Shout");
+            ScreenShake.Instance.Shake(ShakeData);
+            if (CanPushObstacles) { }
             else if (_holdBaby.CanHoldBaby && _holdBaby)
             {
                 // PRENDRE LE PETIT

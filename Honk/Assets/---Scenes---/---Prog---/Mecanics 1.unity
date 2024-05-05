@@ -55881,6 +55881,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1610125049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4862313834149559057, guid: 20b56a25508619449a666ffbe41628a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8450083860067161768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c7ce83676819141975ec8065d7b4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1621811635
 Mesh:
   m_ObjectHideFlags: 0
@@ -88525,6 +88537,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: 23395361-d6ed-46ab-926c-7aafe4a3e8fe
+      objectReference: {fileID: 0}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
+      value: PlayerGameplay/PushObjects[/DualShock4GamepadHID/rightTrigger,/Keyboard/f]
+      objectReference: {fileID: 0}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1610125049}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Push
+      objectReference: {fileID: 0}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovements, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 293919248658966308, guid: 20b56a25508619449a666ffbe41628a4,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 623012011222798414, guid: 20b56a25508619449a666ffbe41628a4,
         type: 3}

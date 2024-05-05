@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "PushObjects",
+                    "type": "Button",
+                    "id": "23395361-d6ed-46ab-926c-7aafe4a3e8fe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Honk",
                     "type": "Button",
                     "id": "390fcc0d-96bc-494c-a1e3-ef34c6c74dbe",
@@ -172,6 +181,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Slide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e89ac50-acdf-4448-b2b2-4d791bd29b9c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PushObjects",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "334a5999-5ef2-48ac-8503-f2b7cd561eb9",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PushObjects",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
