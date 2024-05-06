@@ -17,12 +17,17 @@ public class Paw : MonoBehaviour
     {
         if (!AudioSourceSound.isPlaying && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0))
         {
-            // son de pas aleatoire
+            // son de pas aléatoire
             int randomIndex = Random.Range(0, paw_snow_sounds.Length);
             AudioSourceSound.clip = paw_snow_sounds[randomIndex];
 
             // Jouez le son choisi
             AudioSourceSound.Play();
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Arrête le son du pas si la barre espace est enfoncée
+            AudioSourceSound.Stop();
         }
     }
 }
