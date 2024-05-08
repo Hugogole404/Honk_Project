@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.Shapes;
 
 [HelpURL("https://app.milanote.com/1RscWs1SJGPM9j/playermovements?p=5Aw4gcZ0pqp")]
 [RequireComponent(typeof(CharacterController))]
@@ -84,6 +85,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public CharacterController CharaController;
     [HideInInspector] private TimerManager _timerManager;
     [HideInInspector] public bool CanBabyFollow;
+    [HideInInspector] public bool CanTeleportbabyRift;
     #endregion
 
     #region ACTIONS
@@ -163,13 +165,28 @@ public class PlayerMovements : MonoBehaviour
             }
         }
     }
+    public void TeleportBaby(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            CanTeleportbabyRift = true;
+            Debug.Log("TRUEEE");
+        }
+        if (context.canceled)
+        {
+            CanTeleportbabyRift = false;
+            Debug.Log("FALSEEE");
+        }
+    }
     public void HonkNoise(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             AnimatorHonk.SetTrigger("Shout");
             ScreenShake.Instance.Shake(ShakeData);
+
             if (CanPushObstacles) { }
+
             else if (_holdBaby.CanHoldBaby && _holdBaby)
             {
                 // PRENDRE LE PETIT

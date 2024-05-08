@@ -12,7 +12,7 @@ public class RiftBaby : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false)
+        if(other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false && _playerMovements.CanTeleportbabyRift)
         {
             // lancer l'anim où il rentre 
             // deplacer la cam 

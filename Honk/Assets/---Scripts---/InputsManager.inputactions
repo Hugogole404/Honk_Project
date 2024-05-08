@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "TeleportBabyRift",
+                    "type": "Button",
+                    "id": "27d82a8e-7589-4ad2-b758-1921c25cf182",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Honk",
                     "type": "Button",
                     "id": "390fcc0d-96bc-494c-a1e3-ef34c6c74dbe",
@@ -143,7 +152,7 @@
                 {
                     "name": "",
                     "id": "5d8d27db-53c8-42f8-8584-b36b9676a1c1",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -203,6 +212,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PushObjects",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2239af6-3cb2-45b4-94f4-c5697f36427f",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TeleportBabyRift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a73b8cc-59ad-484b-8758-15ddcf902813",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TeleportBabyRift",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
