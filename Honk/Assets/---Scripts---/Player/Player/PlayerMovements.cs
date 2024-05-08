@@ -86,6 +86,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] private TimerManager _timerManager;
     [HideInInspector] public bool CanBabyFollow;
     [HideInInspector] public bool CanTeleportbabyRift;
+    [HideInInspector] public Transform TransformRotationBaby;
     #endregion
 
     #region ACTIONS
@@ -198,6 +199,7 @@ public class PlayerMovements : MonoBehaviour
                 _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
                 _holdBaby.CanHoldBaby = false;
                 CanBabyFollow = false;
+                //_testBabyWalk.transform.rotation = TransformRotationBaby.rotation;
                 AnimatorHonkJR.SetBool("OnBack", true);
             }
             else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
@@ -456,6 +458,7 @@ public class PlayerMovements : MonoBehaviour
         CharaController = GetComponent<CharacterController>();
         _timerManager = FindAnyObjectByType<TimerManager>();
         _testBabyWalk = FindAnyObjectByType<TestBabyWalk>();
+        TransformRotationBaby = _testBabyWalk.gameObject.transform;
         //_baby = FindAnyObjectByType<Baby>();
     }
     private void Start()
