@@ -8,8 +8,9 @@ public class EmissiveColider : MonoBehaviour
     private Material emissiveMaterial;
     private float Time = 0;
     private bool InOut = false;
-    public float EaseIn;
-    public float EaseOut;
+    public float EaseIn = 0.05f;
+    public float EaseOut = 0.01f;
+    public float EmissiveAmount = 5;
     private Renderer rend;
 
     private void Start()
@@ -20,19 +21,19 @@ public class EmissiveColider : MonoBehaviour
     }
     private void Update()
     {
-        if (InOut == true && Time<=1)
+        if (InOut == true && Time<= EmissiveAmount)
         {
             
             Time += EaseIn;
             
-            emissiveMaterial.SetColor("_EmissionColor", Color.white * Time);
+            emissiveMaterial.SetColor("_EmissionColor", Color.blue * Time);
             rend.material = emissiveMaterial;
             rend.material.EnableKeyword("_EMISSION");
         }
         else if (InOut == false && Time>0) 
         {
             Time -= EaseOut;
-            emissiveMaterial.SetColor("_EmissionColor", Color.white * Time);
+            emissiveMaterial.SetColor("_EmissionColor", Color.blue * Time);
             rend.material = emissiveMaterial;
             rend.material.EnableKeyword("_EMISSION");
 
