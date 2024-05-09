@@ -55665,7 +55665,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31852
+  m_Name: pb_Mesh2818582
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -88469,6 +88469,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLAYER
       objectReference: {fileID: 0}
+    - target: {fileID: 2194466666111562979, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2890229034580983940, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
         type: 3}
       propertyPath: ParentObjectBaby
@@ -88534,6 +88539,16 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 1135556313}
+    - target: {fileID: 8530601275188834436, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: _maxTimerBabyJump
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530601275188834436, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: _currentTimerBabyJump
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

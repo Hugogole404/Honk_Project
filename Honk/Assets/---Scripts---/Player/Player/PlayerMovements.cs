@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.ProBuilder.Shapes;
+using DG.Tweening;
 
 [HelpURL("https://app.milanote.com/1RscWs1SJGPM9j/playermovements?p=5Aw4gcZ0pqp")]
 [RequireComponent(typeof(CharacterController))]
@@ -62,6 +62,9 @@ public class PlayerMovements : MonoBehaviour
     public float OffsetBabyParentZ;
     private Baby _baby;
     private TestBabyWalk _testBabyWalk;
+    private bool _canTimerBabyJump;
+    private float _currentTimerBabyJump;
+    [SerializeField] private float _maxTimerBabyJump;
 
     [HideInInspector] public bool CanPushObstacles;
     [HideInInspector] public GameObject ActualObstacle;
@@ -86,145 +89,171 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public bool CanBabyFollow;
     [HideInInspector] public bool CanTeleportbabyRift;
     [HideInInspector] public Transform TransformRotationBaby;
+    [HideInInspector] public bool CanMove;
     #endregion
 
     #region ACTIONS
     public void Move(InputAction.CallbackContext context)
     {
-        if (IsWalking)
+        if (CanMove)
         {
-            AnimatorHonk.SetBool("IsMoving", true);
-            AnimatorHonkJR.SetBool("IsMoving", true);
-            _canSpeedAugment = true;
-            _canSpeedDecrease = false;
-
-            Input = context.ReadValue<Vector2>();
-            Direction = new Vector3(Input.x, Direction.y, Input.y);
-            if (context.canceled)
+            if (IsWalking)
             {
-                AnimatorHonk.SetBool("IsMoving", false);
-                AnimatorHonkJR.SetBool("IsMoving", false);
-                _canSpeedAugment = false;
-                _canSpeedDecrease = true;
+                AnimatorHonk.SetBool("IsMoving", true);
+                AnimatorHonkJR.SetBool("IsMoving", true);
+                _canSpeedAugment = true;
+                _canSpeedDecrease = false;
+
+                Input = context.ReadValue<Vector2>();
+                Direction = new Vector3(Input.x, Direction.y, Input.y);
+                if (context.canceled)
+                {
+                    AnimatorHonk.SetBool("IsMoving", false);
+                    AnimatorHonkJR.SetBool("IsMoving", false);
+                    _canSpeedAugment = false;
+                    _canSpeedDecrease = true;
+                }
             }
-        }
-        if (IsSliding)
-        {
-            Input = context.ReadValue<Vector2>();
-            Direction = new Vector3(Input.x, Direction.y, Input.y);
-        }
-        if (IsSwimming)
-        {
-            Input = context.ReadValue<Vector2>();
-            Direction = new Vector3(Input.x, Direction.y, Input.y) / 3;
+            if (IsSliding)
+            {
+                Input = context.ReadValue<Vector2>();
+                Direction = new Vector3(Input.x, Direction.y, Input.y);
+            }
+            if (IsSwimming)
+            {
+                Input = context.ReadValue<Vector2>();
+                Direction = new Vector3(Input.x, Direction.y, Input.y) / 3;
+            }
         }
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (CanMove)
         {
-            return;
-        }
-        if (!IsGrounded() || _currentTimer <= _maxTimer)
-        {
-            _canJump = false;
-            return;
-        }
-        else
-        {
-            _canJump = true;
-        }
-        if (_canJump)
-        {
-            _canTimerAnimJump = true;
-            AnimatorHonk.SetBool("IsJumping", true);
-            AnimatorHonk.SetTrigger("Jump");
-            Velocity += _jumpPower;
-            _currentTimer = 0;
+            if (!context.performed)
+            {
+                return;
+            }
+            if (!IsGrounded() || _currentTimer <= _maxTimer)
+            {
+                _canJump = false;
+                return;
+            }
+            else
+            {
+                _canJump = true;
+            }
+            if (_canJump)
+            {
+                _canTimerAnimJump = true;
+                AnimatorHonk.SetBool("IsJumping", true);
+                AnimatorHonk.SetTrigger("Jump");
+                Velocity += _jumpPower;
+                _currentTimer = 0;
+            }
         }
     }
     public void Push(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (CanMove)
         {
-            // animation push
-            if (CanPushObstacles)
+            if (context.performed)
             {
-                Vector3 pushForce = Direction;
+                // animation push
+                if (CanPushObstacles)
+                {
+                    Vector3 pushForce = Direction;
 
-                Vector3 distBetween = ActualObstacle.transform.position - transform.position;
-                distBetween.y = 0;
+                    Vector3 distBetween = ActualObstacle.transform.position - transform.position;
+                    distBetween.y = 0;
 
-                if (Mathf.Abs(distBetween.x) > Mathf.Abs(distBetween.z)) distBetween.z = 0;
-                else distBetween.x = 0;
-                distBetween = distBetween.normalized;
-                ActualObstacle.GetComponent<Rigidbody>().AddForce(_pushForce * distBetween, ForceMode.VelocityChange);
-                CanPushObstacles = false;
+                    if (Mathf.Abs(distBetween.x) > Mathf.Abs(distBetween.z)) distBetween.z = 0;
+                    else distBetween.x = 0;
+                    distBetween = distBetween.normalized;
+                    ActualObstacle.GetComponent<Rigidbody>().AddForce(_pushForce * distBetween, ForceMode.VelocityChange);
+                    CanPushObstacles = false;
 
-                Debug.Log("PUSHHH");
+                    Debug.Log("PUSHHH");
+                }
             }
         }
     }
     public void TeleportBaby(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (CanMove)
         {
-            CanTeleportbabyRift = true;
-            Debug.Log("TRUEEE");
-        }
-        if (context.canceled)
-        {
-            CanTeleportbabyRift = false;
-            Debug.Log("FALSEEE");
+            if (context.performed)
+            {
+                CanTeleportbabyRift = true;
+                Debug.Log("TRUEEE");
+            }
+            if (context.canceled)
+            {
+                CanTeleportbabyRift = false;
+                Debug.Log("FALSEEE");
+            }
         }
     }
     public void HonkNoise(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (CanMove)
         {
-            AnimatorHonk.SetTrigger("Shout");
-            ScreenShake.Instance.Shake(ShakeData);
+            if (context.performed)
+            {
+                AnimatorHonk.SetTrigger("Shout");
+                ScreenShake.Instance.Shake(ShakeData);
 
-            if (CanPushObstacles) { }
+                if (CanPushObstacles) { }
 
-            else if (_holdBaby.CanHoldBaby && _holdBaby)
-            {
-                // PRENDRE LE PETIT
-                Debug.Log("IS ON");
-                _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
-                _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
-                _holdBaby.IsOnHisBack = true;
-                _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
-                _holdBaby.CanHoldBaby = false;
-                CanBabyFollow = false;
-                //_testBabyWalk.transform.rotation = TransformRotationBaby.rotation;
-                AnimatorHonkJR.SetBool("OnBack", true);
-            }
-            else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
-            {
-                // DEPOSER LE PETIT
-                Debug.Log("IS NOT");
-                _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = false;
-                _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
-                _testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
-                _testBabyWalk.LastPositionPlayer.Add(transform.position);
-                _holdBaby.IsOnHisBack = false;
-                AnimatorHonkJR.SetBool("OnBack", false);
-            }
-            else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false)
-            {
-                // LE FAIRE FOLLOW
-                if (CanBabyFollow)
+                else if (_holdBaby.CanHoldBaby && _holdBaby)
                 {
+                    // PRENDRE LE PETIT
+                    Debug.Log("IS ON");
+                    CanMove = false;
+                    _canTimerBabyJump = true;
+                    ActualSpeed = 0;
+                    _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                    _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
+                    _holdBaby.Baby.gameObject.transform.DOJump(new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ), 1, 1, _maxTimerBabyJump);
+                    //_holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
+                    _holdBaby.IsOnHisBack = true;
+                    _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
+                    _holdBaby.CanHoldBaby = false;
                     CanBabyFollow = false;
-                    AnimatorHonkJR.SetBool("IsActive", false);
-                    AnimatorHonkJR.SetTrigger("ChangingState");
+                    //_testBabyWalk.transform.rotation = TransformRotationBaby.rotation;
+                    AnimatorHonkJR.SetBool("OnBack", true);
                 }
-                else
+                else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
                 {
-                    CanBabyFollow = true;
-                    AnimatorHonkJR.SetBool("IsActive", true);
-                    AnimatorHonkJR.SetTrigger("ChangingState");
+                    // DEPOSER LE PETIT
+                    Debug.Log("IS NOT");
+                    CanMove = false;
+                    _canTimerBabyJump = true;
+                    ActualSpeed = 0;
+                    _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                    _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = false;
+                    _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
+                    _testBabyWalk.transform.DOJump(_holdBaby.PositionBabyPut.transform.position, 2, 1, _maxTimerBabyJump);
+                    //_testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
+                    _testBabyWalk.LastPositionPlayer.Add(transform.position);
+                    _holdBaby.IsOnHisBack = false;
+                    AnimatorHonkJR.SetBool("OnBack", false);
+                }
+                else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false)
+                {
+                    // LE FAIRE FOLLOW
+                    if (CanBabyFollow)
+                    {
+                        CanBabyFollow = false;
+                        AnimatorHonkJR.SetBool("IsActive", false);
+                        AnimatorHonkJR.SetTrigger("ChangingState");
+                    }
+                    else
+                    {
+                        CanBabyFollow = true;
+                        AnimatorHonkJR.SetBool("IsActive", true);
+                        AnimatorHonkJR.SetTrigger("ChangingState");
+                    }
                 }
             }
         }
@@ -319,6 +348,21 @@ public class PlayerMovements : MonoBehaviour
         }
         if (ActualSpeed < BaseSpeed)
         {
+            ActualSpeed = BaseSpeed;
+        }
+    }
+    private void TimerBabyJump()
+    {
+        if (_canTimerBabyJump)
+        {
+            _currentTimerBabyJump += Time.deltaTime;
+            Direction = new Vector3(0, 0, 0);
+        }
+        if (_currentTimerBabyJump >= _maxTimerBabyJump)
+        {
+            _currentTimerBabyJump = 0;
+            _canTimerBabyJump = false;
+            CanMove = true;
             ActualSpeed = BaseSpeed;
         }
     }
@@ -469,6 +513,7 @@ public class PlayerMovements : MonoBehaviour
         //_baby.GetComponent<BabyMovements>().enabled = false;
         CanBabyFollow = false;
         CanPushObstacles = false;
+        CanMove = true;
     }
     private void FixedUpdate()
     {
@@ -495,5 +540,6 @@ public class PlayerMovements : MonoBehaviour
         }
         CheckIsGroundedForParticles();
         IncreaseTimerAnimJump();
+        TimerBabyJump();
     }
 }
