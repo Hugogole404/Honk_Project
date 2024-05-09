@@ -26,7 +26,7 @@ public class AreaDeathZone : MonoBehaviour
             parent.transform.rotation = parent.GetComponent<PlayerMovements>().PlayerOriginRotation;
             parent.GetComponent<CharacterController>().enabled = true;
 
-            parent.GetComponent<PlayerMovements>()._inputsForBaby.SetActive(false);
+            //parent.GetComponent<PlayerMovements>()._inputsForBaby.SetActive(false);
             parent.GetComponent<PlayerMovements>()._holdBaby.Baby.gameObject.transform.parent = gameObject.transform;
             parent.GetComponent<PlayerMovements>()._holdBaby.Baby.gameObject.transform.position = new Vector3(parent.GetComponent<PlayerMovements>()._holdBaby.BasePositionBaby.transform.position.x,
                 parent.GetComponent<PlayerMovements>()._holdBaby.BasePositionBaby.transform.position.y, parent.GetComponent<PlayerMovements>()._holdBaby.BasePositionBaby.transform.position.z);

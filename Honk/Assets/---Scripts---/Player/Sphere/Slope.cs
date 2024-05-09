@@ -280,17 +280,17 @@ public class Slope : MonoBehaviour
     }
     private void Update()
     {
+        ApplyMovement();
+        SpeedDown();
+        ApplyRotationSlope();
+        OrientationPlayer();
+        ApplyGravity();
         TimerJump();
         TimerSlide();
         SpeedModificationAfterSpeedUpArea();
-        OrientationPlayer();
     }
     private void FixedUpdate()
     {
-        ApplyGravity();
-        SpeedDown();
-        ApplyRotationSlope();
-        ApplyMovement();
         CheckLastPosition();
         CheckMaxSpeed();
     }

@@ -334,7 +334,7 @@ MonoBehaviour:
     type: 3}
   ModifyTurn: 0
   _smoothTime: 0
-  BaseSpeed: 5
+  BaseSpeed: 10
   _maxSpeed: 10
   _speedAugmentation: 5
   _speedDecrease: 1
@@ -356,9 +356,8 @@ MonoBehaviour:
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 128
-  _inputsForBaby: {fileID: 8713292870030585880}
   _pushForce: 15
-  _holdBaby: {fileID: 0}
+  _holdBaby: {fileID: 2890229034580983940}
   BabyParent: {fileID: 5491441372606070685}
   OffsetBabyParentX: 0
   OffsetBabyParentY: -0.5
@@ -381,6 +380,7 @@ MonoBehaviour:
   CharaController: {fileID: 0}
   CanBabyFollow: 0
   CanTeleportbabyRift: 0
+  TransformRotationBaby: {fileID: 0}
 --- !u!1 &1035121067210490583
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 4122068132176278278}
   - component: {fileID: 9054082219372434919}
   m_Layer: 0
-  m_Name: PlayerWalk_BugTestResolve
+  m_Name: PlayerWalk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6538,7 +6538,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &3123230849202774918
 MonoBehaviour:
   m_ObjectHideFlags: 0

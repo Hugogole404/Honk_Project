@@ -45,7 +45,6 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private float _frictionForce;
     [SerializeField] private RaycastHit _slopeHit;
     [SerializeField] private LayerMask _whatIsGround;
-    public GameObject _inputsForBaby;
     [Header("Push Obstacles")]
     [SerializeField] private float _pushForce;
 
@@ -192,7 +191,6 @@ public class PlayerMovements : MonoBehaviour
             {
                 // PRENDRE LE PETIT
                 Debug.Log("IS ON");
-                _inputsForBaby.SetActive(false);
                 _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
                 _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
                 _holdBaby.IsOnHisBack = true;
@@ -469,21 +467,20 @@ public class PlayerMovements : MonoBehaviour
         PlayerOriginRotation = ModelPlayer.transform.rotation;
 
         //_baby.GetComponent<BabyMovements>().enabled = false;
-        _inputsForBaby.SetActive(false);
         CanBabyFollow = false;
         CanPushObstacles = false;
     }
     private void FixedUpdate()
     {
         //CheckIsGroundedCoyauteJump();
-        ApplyMovement();
-        ApplySpeed();
+        //ApplySpeed();
     }
     private void Update()
     {
         TimerCoolDownSlope += Time.deltaTime;
         WalkingSpeed = Direction * ActualSpeed;
         _currentTimer += Time.deltaTime;
+        ApplyMovement();
         ApplyRotation();
         //CheckLastPosition();
         ApplyGravity();
