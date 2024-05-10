@@ -26,14 +26,14 @@ public class EmissiveColider : MonoBehaviour
             
             Time += EaseIn;
             
-            emissiveMaterial.SetColor("_EmissionColor", Color.blue * Time);
+            emissiveMaterial.SetColor("_EmissionColor", Color.white * Time);
             rend.material = emissiveMaterial;
             rend.material.EnableKeyword("_EMISSION");
         }
         else if (InOut == false && Time>0) 
         {
             Time -= EaseOut;
-            emissiveMaterial.SetColor("_EmissionColor", Color.blue * Time);
+            emissiveMaterial.SetColor("_EmissionColor", Color.white * Time);
             rend.material = emissiveMaterial;
             rend.material.EnableKeyword("_EMISSION");
 
