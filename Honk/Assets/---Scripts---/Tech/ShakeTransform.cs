@@ -13,16 +13,21 @@ public class ShakeTransform : MonoBehaviour
     public float _distance = 0.1f;
     [Range(0f, 0.1f)]
     public float _delayBetweenShakes = 0f;
+    public float _duration;
+    public static ShakeTransform Instance;
 
     private void Awake()
     {
         _startPos = transform.position;
+        Instance = this;
     }
 
     public void Begin()
     {
         StopAllCoroutines();
         StartCoroutine(Shake());
+        new WaitForSeconds(_duration);
+        StopAllCoroutines();
     }
 
     private IEnumerator Shake()

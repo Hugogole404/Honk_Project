@@ -9,6 +9,7 @@ public class Platform : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _maxTimerBaby;
     [SerializeField] private float _maxTimerDad;
+    public ShakeData ShakeData;
     private float t_transform_initial;
     private float _currentTimer;
     private bool _canFall;
@@ -26,11 +27,20 @@ public class Platform : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerMovements>() != null)
         {
+            //ShakeTransform.Instance.Begin();
+            if (_canFall != true)
+            {
+                ScreenShake.Instance.Shake(ShakeData);
+            }
             _canTimerIncrease = true;
             _isDad = true;
         }
         else if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
+            if ( _canFall != true)
+            {
+                ScreenShake.Instance.Shake(ShakeData);
+            }
             _canTimerIncrease = true;
             _isBaby = true;
         }
