@@ -209,13 +209,13 @@ public class PlayerMovements : MonoBehaviour
                 {
                     // PRENDRE LE PETIT
                     Debug.Log("IS ON");
-                    CanMove = false;
-                    _canTimerBabyJump = true;
-                    ActualSpeed = 0;
+                    //CanMove = false;
+                    //_canTimerBabyJump = true;
+                    //ActualSpeed = 0;
                     _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = true;
                     _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
-                    _holdBaby.Baby.gameObject.transform.DOJump(new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ), 1, 1, _maxTimerBabyJump);
-                    //_holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
+                    //_holdBaby.Baby.gameObject.transform.DOJump(new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ), 1, 1, _maxTimerBabyJump);
+                    _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
                     _holdBaby.IsOnHisBack = true;
                     _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
                     _holdBaby.CanHoldBaby = false;
@@ -227,14 +227,14 @@ public class PlayerMovements : MonoBehaviour
                 {
                     // DEPOSER LE PETIT
                     Debug.Log("IS NOT");
-                    CanMove = false;
-                    _canTimerBabyJump = true;
-                    ActualSpeed = 0;
+                    //CanMove = false;
+                    //_canTimerBabyJump = true;
+                    //ActualSpeed = 0;
                     _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = false;
                     _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = false;
                     _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
-                    _testBabyWalk.transform.DOJump(_holdBaby.PositionBabyPut.transform.position, 2, 1, _maxTimerBabyJump);
-                    //_testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
+                    //_testBabyWalk.transform.DOJump(_holdBaby.PositionBabyPut.transform.position, 2, 1, _maxTimerBabyJump);
+                    _testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
                     _testBabyWalk.LastPositionPlayer.Add(transform.position);
                     _holdBaby.IsOnHisBack = false;
                     AnimatorHonkJR.SetBool("OnBack", false);
@@ -505,7 +505,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void Start()
     {
-        //TeleportToSpawnPoint();
+        TeleportToSpawnPoint();
         ActualSpeed = BaseSpeed;
         IsWalkingBools();
         PlayerOriginRotation = ModelPlayer.transform.rotation;
@@ -540,6 +540,6 @@ public class PlayerMovements : MonoBehaviour
         }
         CheckIsGroundedForParticles();
         IncreaseTimerAnimJump();
-        TimerBabyJump();
+        //TimerBabyJump();
     }
 }
