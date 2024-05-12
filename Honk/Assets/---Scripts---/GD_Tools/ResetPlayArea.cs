@@ -11,6 +11,7 @@ public class ResetPlayArea : MonoBehaviour
 
     private List<Vector3> _listOfPositions = new List<Vector3>();
     private PlayerMovements _playerMovements;
+    private TestBabyWalk _testBabyWalk;
     private int _actualIndex;
 
     public void AreaReset()
@@ -32,6 +33,7 @@ public class ResetPlayArea : MonoBehaviour
     private void Awake()
     {
         _playerMovements= FindObjectOfType<PlayerMovements>();
+        _testBabyWalk= FindObjectOfType<TestBabyWalk>();    
     }
 
     private void Start()
@@ -50,10 +52,8 @@ public class ResetPlayArea : MonoBehaviour
             {
                 // reset player
             }
-            // reset atelier
             AreaReset();
         }
     }
-
-    // si on a besoin de reset un atelier mais pas ceux passé on avance l'index 
+    // si on a besoin de reset un atelier mais pas ceux déja fait, on avance l'index 
 }
