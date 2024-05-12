@@ -17,8 +17,8 @@ public class AreaDeathZone : MonoBehaviour
             other.transform.position = other.GetComponent<PlayerMovements>().SpawnPoint.transform.position;
             other.transform.rotation = other.GetComponent<PlayerMovements>().PlayerOriginRotation;
             other.GetComponent<CharacterController>().enabled = true;
-        }    
-        if(other.GetComponent<TestBabyWalk>() != null)
+        }
+        if (other.GetComponent<TestBabyWalk>() != null)
         {
             GameObject parent = FindAnyObjectByType<PlayerMovements>().gameObject;
             parent.GetComponent<CharacterController>().enabled = false;
