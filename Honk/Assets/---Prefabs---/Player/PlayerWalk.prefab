@@ -362,6 +362,7 @@ MonoBehaviour:
   OffsetBabyParentX: 0
   OffsetBabyParentY: -0.5
   OffsetBabyParentZ: 0
+  _maxTimerBabyJump: 0.5
   CanPushObstacles: 0
   ActualObstacle: {fileID: 0}
   ActualSpeed: 0
@@ -381,6 +382,7 @@ MonoBehaviour:
   CanBabyFollow: 0
   CanTeleportbabyRift: 0
   TransformRotationBaby: {fileID: 0}
+  CanMove: 0
 --- !u!1 &1035121067210490583
 GameObject:
   m_ObjectHideFlags: 0
@@ -6468,9 +6470,9 @@ GameObject:
   - component: {fileID: 2194466666111562979}
   - component: {fileID: 3424993885947851605}
   - component: {fileID: 3123230849202774918}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Honk_JR
-  m_TagString: Untagged
+  m_TagString: Baby
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6506,7 +6508,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 64
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

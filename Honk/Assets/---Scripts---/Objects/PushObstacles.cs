@@ -54,6 +54,7 @@ public class PushObstacles : MonoBehaviour
                 _isOnCube = true;
             }
         }
+        Debug.Log(_currentTimerGetBaby);
     }
     private void Start()
     {
