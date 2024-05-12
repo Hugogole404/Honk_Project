@@ -26,8 +26,7 @@ public class ShakeTransform : MonoBehaviour
     {
         StopAllCoroutines();
         StartCoroutine(Shake());
-        new WaitForSeconds(_duration);
-        StopAllCoroutines();
+        
     }
 
     private IEnumerator Shake()

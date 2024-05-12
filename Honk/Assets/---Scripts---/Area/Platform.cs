@@ -27,10 +27,10 @@ public class Platform : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerMovements>() != null)
         {
-            //ShakeTransform.Instance.Begin();
+            ShakeTransform.Instance.Begin();
             if (_canFall != true)
             {
-                ScreenShake.Instance.Shake(ShakeData);
+                //ScreenShake.Instance.Shake(ShakeData);
             }
             _canTimerIncrease = true;
             _isDad = true;
