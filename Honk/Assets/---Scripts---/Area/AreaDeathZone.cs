@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class AreaDeathZone : MonoBehaviour
 {
+    private ResetPlayArea _resetArea;
+    private void Awake()
+    {
+        _resetArea = FindAnyObjectByType<ResetPlayArea>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Slope>() != null)
@@ -17,6 +22,10 @@ public class AreaDeathZone : MonoBehaviour
             other.transform.position = other.GetComponent<PlayerMovements>().SpawnPoint.transform.position;
             other.transform.rotation = other.GetComponent<PlayerMovements>().PlayerOriginRotation;
             other.GetComponent<CharacterController>().enabled = true;
+            if (_resetArea.ListOfObjToResetInScene.Count > 0)
+            {
+                _resetArea.AreaReset();
+            }
         }
         if (other.GetComponent<TestBabyWalk>() != null)
         {
@@ -35,6 +44,10 @@ public class AreaDeathZone : MonoBehaviour
             parent.GetComponent<PlayerMovements>()._holdBaby.CanHoldBaby = false;
             parent.GetComponent<PlayerMovements>().CanBabyFollow = false;
             parent.GetComponent<PlayerMovements>().AnimatorHonkJR.SetBool("OnBack", true);
+            if (_resetArea.ListOfObjToResetInScene.Count > 0)
+            {
+                _resetArea.AreaReset();
+            }
         }
     }
 }

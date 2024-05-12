@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ResetPlayArea : MonoBehaviour
 {
+    public List<GameObject> ListOfObjToResetInScene = new List<GameObject>();
     [SerializeField] private List<GameObject> _listOfPrefab = new List<GameObject>();
-    [SerializeField] private List<GameObject> _listOfObjToResetInScene = new List<GameObject>();
     [SerializeField] private bool PlayerHaveToBeReset;
     [SerializeField] private KeyCode _keyBind;
 
@@ -13,17 +13,17 @@ public class ResetPlayArea : MonoBehaviour
     private PlayerMovements _playerMovements;
     private int _actualIndex;
 
-    private void AreaReset()
+    public void AreaReset()
     {
-        foreach (GameObject obj in _listOfObjToResetInScene)
+        foreach (GameObject obj in ListOfObjToResetInScene)
         {
             Destroy(obj);
         }
-        _listOfObjToResetInScene.Clear();
+        ListOfObjToResetInScene.Clear();
         foreach (GameObject obj in _listOfPrefab)
         {
             GameObject go = Instantiate(_listOfPrefab[_actualIndex]);
-            _listOfObjToResetInScene.Add(go);
+            ListOfObjToResetInScene.Add(go);
             _actualIndex += 1;
         }
         _actualIndex = 0;
@@ -36,7 +36,7 @@ public class ResetPlayArea : MonoBehaviour
 
     private void Start()
     {
-        foreach (GameObject obj in _listOfObjToResetInScene)
+        foreach (GameObject obj in ListOfObjToResetInScene)
         {
             _listOfPositions.Add(obj.transform.position);
         }
