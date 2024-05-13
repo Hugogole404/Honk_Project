@@ -164,6 +164,7 @@ public class PlayerMovements : MonoBehaviour
                 // animation push
                 if (CanPushObstacles)
                 {
+                    CanPushObstacles = false;
                     Vector3 pushForce = Direction;
 
                     Vector3 distBetween = ActualObstacle.transform.position - transform.position;
@@ -173,9 +174,6 @@ public class PlayerMovements : MonoBehaviour
                     else distBetween.x = 0;
                     distBetween = distBetween.normalized;
                     ActualObstacle.GetComponent<Rigidbody>().AddForce(_pushForce * distBetween, ForceMode.VelocityChange);
-                    CanPushObstacles = false;
-
-                    Debug.Log("PUSHHH");
                 }
             }
         }
@@ -214,6 +212,8 @@ public class PlayerMovements : MonoBehaviour
                     //CanMove = false;
                     //_canTimerBabyJump = true;
                     //ActualSpeed = 0;
+                    _testBabyWalk.GetComponent<Rigidbody>().isKinematic = false;
+                    _testBabyWalk.GetComponent<Rigidbody>().useGravity = true;
                     _testBabyWalk.gameObject.layer = _takeBabyLayer;
                     //_testBabyWalk.gameObject.layer = 13;
                     _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = true;
@@ -545,6 +545,10 @@ public class PlayerMovements : MonoBehaviour
         }
         CheckIsGroundedForParticles();
         IncreaseTimerAnimJump();
+        if (ActualObstacle != null)
+        {
+            Debug.Log(ActualObstacle.GetComponent<Rigidbody>().velocity.magnitude);
+        }
         //TimerBabyJump();
     }
 }

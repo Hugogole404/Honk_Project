@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PushObstacles : MonoBehaviour
@@ -32,6 +33,7 @@ public class PushObstacles : MonoBehaviour
         {
             _currentTimerGetBaby = 0;
             other.GetComponent<TestBabyWalk>().gameObject.transform.parent = _parentBaby.transform;
+            other.GetComponent<Rigidbody>().useGravity = true;
             _isOnCube = false;
         }
     }
@@ -39,7 +41,8 @@ public class PushObstacles : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovements>() != null)
         {
-            other.GetComponent<PlayerMovements>().CanPushObstacles = true;
+            if (gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.01f)
+                other.GetComponent<PlayerMovements>().CanPushObstacles = true;
             other.GetComponent<PlayerMovements>().ActualObstacle = gameObject.transform.parent.transform.gameObject;
         }
         if (other.GetComponent<TestBabyWalk>() != null)
@@ -51,6 +54,7 @@ public class PushObstacles : MonoBehaviour
             if (_currentTimerGetBaby >= _timerMaxGetBaby)
             {
                 other.GetComponent<TestBabyWalk>().gameObject.transform.parent = _bloc.transform;
+                other.GetComponent<Rigidbody>().useGravity = false;
                 _isOnCube = true;
             }
         }

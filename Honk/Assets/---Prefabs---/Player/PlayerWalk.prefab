@@ -334,8 +334,8 @@ MonoBehaviour:
     type: 3}
   ModifyTurn: 0
   _smoothTime: 0
-  BaseSpeed: 10
-  _maxSpeed: 10
+  BaseSpeed: 15
+  _maxSpeed: 15
   _speedAugmentation: 5
   _speedDecrease: 1
   SpeedModification: 1
@@ -358,7 +358,7 @@ MonoBehaviour:
     m_Bits: 128
   _pushForce: 15
   _holdBaby: {fileID: 2890229034580983940}
-  BabyParent: {fileID: 5491441372606070685}
+  BabyParent: {fileID: 1084542050157158261}
   OffsetBabyParentX: 0
   OffsetBabyParentY: -0.5
   OffsetBabyParentZ: 0
@@ -8204,8 +8204,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.3397045, z: 1}
-  m_Center: {x: 0, y: 0.049987223, z: 0}
+  m_Size: {x: 1, y: 0.3985524, z: 1}
+  m_Center: {x: 0, y: -0.037015747, z: 0}
 --- !u!114 &2890229034580983940
 MonoBehaviour:
   m_ObjectHideFlags: 0

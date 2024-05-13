@@ -198,6 +198,9 @@ MonoBehaviour:
   _speed: 3
   _maxTimerBaby: 1
   _maxTimerDad: 1
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!33 &2023167
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -8962,6 +8965,9 @@ MonoBehaviour:
   _speed: 6
   _maxTimerBaby: 2
   _maxTimerDad: 0.1
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!33 &301317269
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -27312,6 +27318,9 @@ MonoBehaviour:
   _speed: 10
   _maxTimerBaby: 6
   _maxTimerDad: 0.025
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!33 &878199459
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -29157,6 +29166,84 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &910038229
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1055
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -82
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 55.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 599535586323762758, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642751605705453411, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: m_Name
+      value: PushObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 8446296059917907288, guid: 095648eb16ca82549af9e67de1480e68,
+        type: 3}
+      propertyPath: _parentBaby
+      value: 
+      objectReference: {fileID: 833593155}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 095648eb16ca82549af9e67de1480e68, type: 3}
 --- !u!1 &917756020
 GameObject:
   m_ObjectHideFlags: 0
@@ -36959,6 +37046,9 @@ MonoBehaviour:
   _speed: 9
   _maxTimerBaby: 2
   _maxTimerDad: 1
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!65 &1101045712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38677,6 +38767,9 @@ MonoBehaviour:
   _speed: 10
   _maxTimerBaby: 6
   _maxTimerDad: 0.001
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!33 &1169906759
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -40025,6 +40118,9 @@ MonoBehaviour:
   _speed: 1
   _maxTimerBaby: 5
   _maxTimerDad: 1
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!65 &1182199601
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42211,6 +42307,9 @@ MonoBehaviour:
   _speed: 5
   _maxTimerBaby: 2
   _maxTimerDad: 1
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!33 &1213829308
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -48577,6 +48676,9 @@ MonoBehaviour:
   _speed: 3
   _maxTimerBaby: 1
   _maxTimerDad: 1
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!33 &1466801890
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -48926,6 +49028,9 @@ MonoBehaviour:
   _speed: 3
   _maxTimerBaby: 2
   _maxTimerDad: 1
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!65 &1467514440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55836,6 +55941,9 @@ MonoBehaviour:
   _speed: 50
   _maxTimerBaby: 6
   _maxTimerDad: 1
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!33 &1684527918
 MeshFilter:
   m_ObjectHideFlags: 10
