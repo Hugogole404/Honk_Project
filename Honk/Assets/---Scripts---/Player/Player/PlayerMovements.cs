@@ -210,7 +210,8 @@ public class PlayerMovements : MonoBehaviour
                 else if (_holdBaby.CanHoldBaby && _holdBaby)
                 {
                     // PRENDRE LE PETIT
-                    Debug.Log("IS ON");
+                    //Debug.Log("IS ON");
+
                     //CanMove = false;
                     //_canTimerBabyJump = true;
                     //ActualSpeed = 0;
@@ -232,7 +233,8 @@ public class PlayerMovements : MonoBehaviour
                 else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
                 {
                     // DEPOSER LE PETIT
-                    Debug.Log("IS NOT");
+                    //Debug.Log("IS NOT");
+
                     //CanMove = false;
                     //_canTimerBabyJump = true;
                     //ActualSpeed = 0;
@@ -249,7 +251,7 @@ public class PlayerMovements : MonoBehaviour
                 else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport)
                 {
                     CanTeleportbabyRift = true;
-                    Debug.Log("TRUEEE");
+                    //Debug.Log("TRUEEE");
                 }
                 else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport == false)
                 {
@@ -271,7 +273,7 @@ public class PlayerMovements : MonoBehaviour
             if (context.canceled)
             {
                 CanTeleportbabyRift = false;
-                Debug.Log("FALSEEE");
+                //Debug.Log("FALSEEE");
             }
         }
     }
@@ -299,8 +301,25 @@ public class PlayerMovements : MonoBehaviour
     #endregion
 
     #region FUNCTIONS
-    private void TeleportToSpawnPoint()
+    public void TeleportToSpawnPoint()
     {
+        CanBabyFollow = false;
+        AnimatorHonkJR.SetBool("IsActive", false);
+        AnimatorHonkJR.SetTrigger("ChangingState");
+
+        _testBabyWalk.GetComponent<Rigidbody>().isKinematic = false;
+        _testBabyWalk.GetComponent<Rigidbody>().useGravity = true;
+        _testBabyWalk.gameObject.layer = _takeBabyLayer;
+        //_testBabyWalk.gameObject.layer = 13;
+        _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+        _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
+        _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
+        _holdBaby.IsOnHisBack = true;
+        _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
+        _holdBaby.CanHoldBaby = false;
+        CanBabyFollow = false;
+        AnimatorHonkJR.SetBool("OnBack", true);
+
         CharaController.enabled = false;
         transform.position = SpawnPoint.transform.position;
         CharaController.enabled = true;
