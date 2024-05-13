@@ -92,6 +92,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public bool CanTeleportbabyRift;
     [HideInInspector] public Transform TransformRotationBaby;
     [HideInInspector] public bool CanMove;
+    [HideInInspector] public bool CanBabyTeleport;
     #endregion
 
     #region ACTIONS
@@ -181,19 +182,19 @@ public class PlayerMovements : MonoBehaviour
     }
     public void TeleportBaby(InputAction.CallbackContext context)
     {
-        if (CanMove)
-        {
-            if (context.performed)
-            {
-                CanTeleportbabyRift = true;
-                Debug.Log("TRUEEE");
-            }
-            if (context.canceled)
-            {
-                CanTeleportbabyRift = false;
-                Debug.Log("FALSEEE");
-            }
-        }
+        //if (CanMove)
+        //{
+        //    if (context.performed)
+        //    {
+        //        CanTeleportbabyRift = true;
+        //        Debug.Log("TRUEEE");
+        //    }
+        //    if (context.canceled)
+        //    {
+        //        CanTeleportbabyRift = false;
+        //        Debug.Log("FALSEEE");
+        //    }
+        //}
     }
     public void HonkNoise(InputAction.CallbackContext context)
     {
@@ -245,7 +246,12 @@ public class PlayerMovements : MonoBehaviour
                     _holdBaby.IsOnHisBack = false;
                     AnimatorHonkJR.SetBool("OnBack", false);
                 }
-                else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false)
+                else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport)
+                {
+                    CanTeleportbabyRift = true;
+                    Debug.Log("TRUEEE");
+                }
+                else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport == false)
                 {
                     // LE FAIRE FOLLOW
                     if (CanBabyFollow)
@@ -261,6 +267,11 @@ public class PlayerMovements : MonoBehaviour
                         AnimatorHonkJR.SetTrigger("ChangingState");
                     }
                 }
+            }
+            if (context.canceled)
+            {
+                CanTeleportbabyRift = false;
+                Debug.Log("FALSEEE");
             }
         }
     }

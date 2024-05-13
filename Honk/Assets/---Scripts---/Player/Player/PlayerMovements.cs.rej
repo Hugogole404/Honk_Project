@@ -1,0 +1,30 @@
+diff a/Honk/Assets/---Scripts---/Player/Player/PlayerMovements.cs b/Honk/Assets/---Scripts---/Player/Player/PlayerMovements.cs	(rejected hunks)
+@@ -165,13 +165,28 @@
+             }
+         }
+     }
++    public void TeleportBaby(InputAction.CallbackContext context)
++    {
++        if (context.performed)
++        {
++            CanTeleportbabyRift = true;
++            Debug.Log("TRUEEE");
++        }
++        if (context.canceled)
++        {
++            CanTeleportbabyRift = false;
++            Debug.Log("FALSEEE");
++        }
++    }
+     public void HonkNoise(InputAction.CallbackContext context)
+     {
+         if (context.performed)
+         {
+             AnimatorHonk.SetTrigger("Shout");
+             ScreenShake.Instance.Shake(ShakeData);
++
+             if (CanPushObstacles) { }
++
+             else if (_holdBaby.CanHoldBaby && _holdBaby)
+             {
+                 // PRENDRE LE PETIT

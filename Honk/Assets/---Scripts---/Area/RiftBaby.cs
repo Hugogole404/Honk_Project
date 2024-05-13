@@ -10,14 +10,20 @@ public class RiftBaby : MonoBehaviour
     private TestBabyWalk _testBabyWalk;
     private PlayerMovements _playerMovements;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<TestBabyWalk>() != null)
+        {
+            _playerMovements.CanBabyTeleport = true;
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false && _playerMovements.CanTeleportbabyRift)
+        if (other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false && _playerMovements.CanTeleportbabyRift)
         {
             // lancer l'anim où il rentre 
             // deplacer la cam 
             other.gameObject.transform.position = _pointEnterRift.transform.position;
-
             //_baby.LastPositionPlayer.Add(_pointEnterRift.gameObject.transform.position);
             //_baby.Offset = _playerMovements.gameObject.transform.position - _pointEnterRift.gameObject.transform.position;
             //_baby.Offset.y = 0;
@@ -27,6 +33,13 @@ public class RiftBaby : MonoBehaviour
             //_testBabyWalk.Offset.y = 0;
 
             // lancer l'anim ou il ressort 
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<TestBabyWalk>() != null)
+        {
+            _playerMovements.CanBabyTeleport = false;
         }
     }
     private void Start()
