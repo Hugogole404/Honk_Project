@@ -65,6 +65,8 @@ public class PlayerMovements : MonoBehaviour
     private bool _canTimerBabyJump;
     private float _currentTimerBabyJump;
     [SerializeField] private float _maxTimerBabyJump;
+    [SerializeField] private LayerMask _putBabyLayer;
+    [SerializeField] private int _takeBabyLayer;
 
     [HideInInspector] public bool CanPushObstacles;
     [HideInInspector] public GameObject ActualObstacle;
@@ -212,6 +214,8 @@ public class PlayerMovements : MonoBehaviour
                     //CanMove = false;
                     //_canTimerBabyJump = true;
                     //ActualSpeed = 0;
+                    _testBabyWalk.gameObject.layer = _takeBabyLayer;
+                    //_testBabyWalk.gameObject.layer = 13;
                     _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = true;
                     _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
                     //_holdBaby.Baby.gameObject.transform.DOJump(new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ), 1, 1, _maxTimerBabyJump);
@@ -230,6 +234,7 @@ public class PlayerMovements : MonoBehaviour
                     //CanMove = false;
                     //_canTimerBabyJump = true;
                     //ActualSpeed = 0;
+                    _testBabyWalk.gameObject.layer = _putBabyLayer;
                     _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = false;
                     _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = false;
                     _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
