@@ -9,6 +9,8 @@ public class Platform : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _maxTimerBaby;
     [SerializeField] private float _maxTimerDad;
+    [SerializeField] private GameObject FXShake;
+
     public ShakeData ShakeData;
     private float t_transform_initial;
     private float _currentTimer;
@@ -27,22 +29,16 @@ public class Platform : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerMovements>() != null)
         {
-            //ShakeTransform.Instance.Begin();
-            if (_canFall != true)
-            {
-                //ScreenShake.Instance.Shake(ShakeData);
-            }
             _canTimerIncrease = true;
             _isDad = true;
+            if (_canFall == false) { ShakeTransform.Instance.Begin(); FXShake.SetActive(true); }
         }
         else if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
-            if ( _canFall != true)
-            {
-                ScreenShake.Instance.Shake(ShakeData);
-            }
             _canTimerIncrease = true;
             _isBaby = true;
+            if (_canFall == false) { ShakeTransform.Instance.Begin(); FXShake.SetActive(true); }
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -63,18 +59,23 @@ public class Platform : MonoBehaviour
         if (_canTimerIncrease)
         {
             _currentTimer += Time.deltaTime;
+
         }
         if (_isDad)
         {
-            if(_currentTimer > _maxTimerDad)
+            if (_currentTimer > _maxTimerDad)
             {
+                ShakeTransform.Instance.Stop();
+                FXShake.SetActive(false);
                 _canFall = true;
             }
         }
-        else if(_isBaby)
+        else if (_isBaby)
         {
             if (_currentTimer > _maxTimerBaby)
             {
+                ShakeTransform.Instance.Stop();
+                FXShake.SetActive(false);
                 _canFall = true;
             }
         }

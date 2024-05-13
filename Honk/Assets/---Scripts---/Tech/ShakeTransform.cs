@@ -13,14 +13,20 @@ public class ShakeTransform : MonoBehaviour
     public float _distance = 0.1f;
     [Range(0f, 0.1f)]
     public float _delayBetweenShakes = 0f;
-    public float _duration;
+    public GameObject Platform;
+    public float prout;
     public static ShakeTransform Instance;
 
     private void Awake()
     {
-        _startPos = transform.position;
         Instance = this;
     }
+
+    private void Update()
+    {
+        _startPos = Platform.transform.position - new Vector3(0,prout,0);
+    }
+
 
     public void Begin()
     {
@@ -28,6 +34,12 @@ public class ShakeTransform : MonoBehaviour
         StartCoroutine(Shake());
         
     }
+
+    public void Stop()
+    {
+        StopAllCoroutines();
+    }
+
 
     private IEnumerator Shake()
     {
