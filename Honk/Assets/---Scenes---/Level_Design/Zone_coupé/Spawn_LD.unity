@@ -6449,6 +6449,9 @@ MonoBehaviour:
   _speed: 3
   _maxTimerBaby: 2
   _maxTimerDad: 1
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!33 &456185695
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -17647,7 +17650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1276749144
 Transform:
   m_ObjectHideFlags: 0
@@ -25135,6 +25138,9 @@ MonoBehaviour:
   _speed: 3
   _maxTimerBaby: 2
   _maxTimerDad: 0.5
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!33 &1851361443
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -26847,6 +26853,9 @@ MonoBehaviour:
   _speed: 6
   _maxTimerBaby: 2
   _maxTimerDad: 0.5
+  ShakeData:
+    Strength: 0
+    Duration: 0
 --- !u!65 &2038511540
 BoxCollider:
   m_ObjectHideFlags: 0
