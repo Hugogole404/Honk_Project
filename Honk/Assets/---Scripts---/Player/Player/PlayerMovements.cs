@@ -541,7 +541,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void Start()
     {
-        TeleportToSpawnPoint();
+        //TeleportToSpawnPoint();
         ActualSpeed = BaseSpeed;
         IsWalkingBools();
         PlayerOriginRotation = ModelPlayer.transform.rotation;
