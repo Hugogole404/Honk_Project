@@ -165,6 +165,7 @@ public class PlayerMovements : MonoBehaviour
                 if (CanPushObstacles)
                 {
                     CanPushObstacles = false;
+                    Debug.Log("CA POUSSE LE BLOC");
                     Vector3 pushForce = Direction;
 
                     Vector3 distBetween = ActualObstacle.transform.position - transform.position;
@@ -545,10 +546,10 @@ public class PlayerMovements : MonoBehaviour
         }
         CheckIsGroundedForParticles();
         IncreaseTimerAnimJump();
-        if (ActualObstacle != null)
-        {
-            Debug.Log(ActualObstacle.GetComponent<Rigidbody>().velocity.magnitude);
-        }
+        //if (ActualObstacle != null)
+        //{
+        //    Debug.Log(ActualObstacle.GetComponent<Rigidbody>().velocity.magnitude);
+        //}
         //TimerBabyJump();
     }
 }

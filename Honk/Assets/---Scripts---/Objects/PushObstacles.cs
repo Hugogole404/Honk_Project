@@ -41,7 +41,7 @@ public class PushObstacles : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovements>() != null)
         {
-            if (gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.01f)
+            if (gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.0001f)
                 other.GetComponent<PlayerMovements>().CanPushObstacles = true;
             other.GetComponent<PlayerMovements>().ActualObstacle = gameObject.transform.parent.transform.gameObject;
         }
