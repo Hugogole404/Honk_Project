@@ -24,6 +24,7 @@ public class ResetPlayArea : MonoBehaviour
                 GameObject baby = obj.GetComponentInChildren<TestBabyWalk>().gameObject;
                 baby.transform.parent = _playerMovements.BabyParent.gameObject.transform;
                 Debug.Log(baby.gameObject.transform.parent.name);
+                Debug.Log(baby);
             }
             Destroy(obj);
         }
