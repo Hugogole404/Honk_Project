@@ -310,7 +310,7 @@ public class PlayerMovements : MonoBehaviour
 
         //if (_testBabyWalk == null)
         //{
-        //    Debug.Log("PATATE");
+        //    //Debug.Log("PATATE");
         //    _testBabyWalk = Instantiate(_babyPrefab, BabyParent.gameObject.transform);
         //}
 
@@ -598,10 +598,6 @@ public class PlayerMovements : MonoBehaviour
         }
         CheckIsGroundedForParticles();
         IncreaseTimerAnimJump();
-        //if (ActualObstacle != null)
-        //{
-        //    Debug.Log(ActualObstacle.GetComponent<Rigidbody>().velocity.magnitude);
-        //}
         //TimerBabyJump();
     }
 }

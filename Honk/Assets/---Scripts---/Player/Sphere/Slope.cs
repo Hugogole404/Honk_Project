@@ -72,14 +72,14 @@ public class Slope : MonoBehaviour
     {
         _inputsJoystick = new Vector3(_moveInput.x, _inputsJoystick.y, _moveInput.y);
 
-        if (context.started && _slideTimer && m_Animator.GetBool("IsSliding") == false)
-        {
-            _modSlide = true;
-            _modWalk = false;
-            _slideTimer = false;
-            m_Animator.SetBool("IsSliding", true);                                     //J'ai rajouté ça (Adam)
-            m_Animator.SetTrigger("StartSlide");
-        }
+        //if (context.started && _slideTimer && m_Animator.GetBool("IsSliding") == false)
+        //{
+        //    _modSlide = true;
+        //    _modWalk = false;
+        //    _slideTimer = false;
+        //    m_Animator.SetBool("IsSliding", true);                                     //J'ai rajouté ça (Adam)
+        //    m_Animator.SetTrigger("StartSlide");
+        //}
     }
     public void Jump(InputAction.CallbackContext context)
     {
@@ -277,6 +277,13 @@ public class Slope : MonoBehaviour
         _lastPosition = transform.position;
         transform.position = SpawnPoint.transform.position;
         _originSpeedSlope = SpeedSlope;
+
+
+        _modSlide = true;
+        _modWalk = false;
+        _slideTimer = false;
+        m_Animator.SetBool("IsSliding", true);                                     //J'ai rajouté ça (Adam)
+        m_Animator.SetTrigger("StartSlide");
     }
     private void Update()
     {

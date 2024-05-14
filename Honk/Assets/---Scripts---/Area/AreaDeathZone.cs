@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class AreaDeathZone : MonoBehaviour
 {

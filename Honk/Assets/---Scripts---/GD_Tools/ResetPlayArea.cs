@@ -18,6 +18,13 @@ public class ResetPlayArea : MonoBehaviour
     {
         foreach (GameObject obj in ListOfObjToResetInScene)
         {
+            if (obj.GetComponentInChildren<TestBabyWalk>() != null)
+            {
+                //GameObject baby = FindObjectOfType<TestBabyWalk>().gameObject; /*obj.GetComponentInChildren<TestBabyWalk>().gameObject;*/
+                GameObject baby = obj.GetComponentInChildren<TestBabyWalk>().gameObject;
+                baby.transform.parent = _playerMovements.BabyParent.gameObject.transform;
+                Debug.Log(baby.gameObject.transform.parent.name);
+            }
             Destroy(obj);
         }
         ListOfObjToResetInScene.Clear();
