@@ -12,6 +12,7 @@ public class PlayerMovements : MonoBehaviour
     public Animator AnimatorHonkJR;
     public GameObject ModelPlayer;
     public GameObject FX_Honking;
+    [SerializeField] private bool _hadSpawnPoint;
     [Header("Orientation")]
     public float ModifyTurn;
     [SerializeField] private float _smoothTime;
@@ -541,7 +542,10 @@ public class PlayerMovements : MonoBehaviour
     }
     private void Start()
     {
-        //TeleportToSpawnPoint();
+        if (_hadSpawnPoint)
+        {
+            TeleportToSpawnPoint();
+        }
         ActualSpeed = BaseSpeed;
         IsWalkingBools();
         PlayerOriginRotation = ModelPlayer.transform.rotation;
