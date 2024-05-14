@@ -239,7 +239,8 @@ public class PlayerMovements : MonoBehaviour
                     //CanMove = false;
                     //_canTimerBabyJump = true;
                     //ActualSpeed = 0;
-                    _testBabyWalk.gameObject.layer = _putBabyLayer;
+                    _testBabyWalk.gameObject.layer = 14;
+                    //_testBabyWalk.gameObject.layer = _putBabyLayer;
                     _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = false;
                     _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = false;
                     _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;

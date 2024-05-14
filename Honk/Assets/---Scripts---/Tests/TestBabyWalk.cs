@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class TestBabyWalk : MonoBehaviour
@@ -17,6 +18,33 @@ public class TestBabyWalk : MonoBehaviour
     private HoldBaby _holdBaby;
     private PlayerMovements _playerMov;
 
+    [Header("Crushed Baby")]
+    public GameObject Visual;
+    public float ScaleCrushedBaby;
+    private float _baseScaleCrushedBaby;
+    [SerializeField] private float _speedToNormalScale;
+    [SerializeField] private float _maxTimerToNormalScale;
+    private float _currentTimerToNormalScale;
+    [HideInInspector] public bool CanGoToNormalScale;
+
+    private void RescaleBaby()
+    {
+        if (CanGoToNormalScale)
+        {
+            _currentTimerToNormalScale += Time.deltaTime;
+            if (_currentTimerToNormalScale >= _maxTimerToNormalScale)
+            {
+                transform.localScale += new Vector3(0, Time.deltaTime * _speedToNormalScale, 0);
+            }
+            if(transform.localScale.y >= _baseScaleCrushedBaby)
+            {
+                transform.localScale = new Vector3(transform.localScale.x, _baseScaleCrushedBaby, transform.localScale.z);
+                _currentTimerToNormalScale = 0;
+                CanGoToNormalScale = false;
+            }
+        }
+    }
+
     private void CheckIsPlayerMoving()
     {
         if (_oldPosPlayer.x != _playerMov.transform.position.x || _oldPosPlayer.z != _playerMov.transform.position.z)
@@ -30,17 +58,12 @@ public class TestBabyWalk : MonoBehaviour
         LastPOSPLAYER = _playerMov.transform.position;
         GetComponent<Rigidbody>().AddForce(Vector3.down * Time.deltaTime * _gravityMultiplier);
     }
-
-    private void Awake()
+    private void UpdateRotationBaby()
     {
-        _holdBaby = FindAnyObjectByType<HoldBaby>();
-        _playerMov = FindAnyObjectByType<PlayerMovements>();
-    }
-    void Start()
-    {
-        Offset = new Vector3(1, 0, 1);
-        _oldPosPlayer = _playerMov.gameObject.transform.position;
-        LastPOSPLAYER = _playerMov.transform.position;
+        if (_holdBaby.IsOnHisBack == false && _isDadMoving && _playerMov.CanBabyFollow)
+        {
+            transform.rotation = _playerMov.transform.rotation;
+        }
     }
     private void BabyMov()
     {
@@ -58,17 +81,26 @@ public class TestBabyWalk : MonoBehaviour
         }
         UpdatePlayerPos();
     }
-    private void UpdateRotationBaby()
+
+    private void Awake()
     {
-        if (_holdBaby.IsOnHisBack == false && _isDadMoving && _playerMov.CanBabyFollow)
-        {
-            transform.rotation = _playerMov.transform.rotation;
-        }
+        _holdBaby = FindAnyObjectByType<HoldBaby>();
+        _playerMov = FindAnyObjectByType<PlayerMovements>();
+    }
+    void Start()
+    {
+        Offset = new Vector3(1, 0, 1);
+        _oldPosPlayer = _playerMov.gameObject.transform.position;
+        LastPOSPLAYER = _playerMov.transform.position;
+
+        _baseScaleCrushedBaby = 1;
+        //_baseScaleCrushedBaby = transform.localScale.y;
     }
     private void Update()
     {
         CheckIsPlayerMoving();
         BabyMov();
         UpdateRotationBaby();
+        RescaleBaby();
     }
 }
