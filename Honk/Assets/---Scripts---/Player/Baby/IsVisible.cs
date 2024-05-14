@@ -25,24 +25,30 @@ public class IsVisible : MonoBehaviour
     }
     private void TimerOutOfScreen()
     {
-        if (IsTargetVisible(_camera, _targetBaby))
+        if (_targetBaby != null)
         {
-            //Debug.Log("IS IN THE SCREEN");
-            _currentTimerBabyOutOfScreen = 0;
-        }
-        else
-        {
-            //Debug.Log("IS NOT IN THE SCREEN");
-            _currentTimerBabyOutOfScreen += Time.deltaTime;
-            if(_currentTimerBabyOutOfScreen >= _maxTimerBabyOutOfScreen)
+            if (IsTargetVisible(_camera, _targetBaby))
             {
-                Debug.Log("Le petit est mort par les Skuas");
+                //Debug.Log("IS IN THE SCREEN");
+                _currentTimerBabyOutOfScreen = 0;
+            }
+            else
+            {
+                //Debug.Log("IS NOT IN THE SCREEN");
+                _currentTimerBabyOutOfScreen += Time.deltaTime;
+                if (_currentTimerBabyOutOfScreen >= _maxTimerBabyOutOfScreen)
+                {
+                    Debug.Log("Le petit est mort par les Skuas");
+                }
             }
         }
     }
     private void Update()
     {
-        var targetRenderer = _targetBaby.GetComponent<Renderer>();
+        if (_targetBaby != null)
+        {
+            var targetRenderer = _targetBaby.GetComponent<Renderer>();
+        }
         TimerOutOfScreen();
     }
 }

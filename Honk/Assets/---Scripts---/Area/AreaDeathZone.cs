@@ -7,10 +7,12 @@ public class AreaDeathZone : MonoBehaviour
 {
     private ResetPlayArea _resetArea;
     private PlayerMovements _playerMovements;
+    private TestBabyWalk _testBabyWalk;
     private void Awake()
     {
         _resetArea = FindAnyObjectByType<ResetPlayArea>();
         _playerMovements = FindAnyObjectByType<PlayerMovements>();
+        _testBabyWalk = FindAnyObjectByType<TestBabyWalk>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -24,17 +26,16 @@ public class AreaDeathZone : MonoBehaviour
             //other.transform.position = other.GetComponent<PlayerMovements>().SpawnPoint.transform.position;
             //other.transform.rotation = other.GetComponent<PlayerMovements>().PlayerOriginRotation;
             //other.GetComponent<CharacterController>().enabled = true;
-
-            _playerMovements.TeleportToSpawnPoint();
-
             if (_resetArea.ListOfObjToResetInScene.Count > 0)
             {
                 _resetArea.AreaReset();
+                //_testBabyWalk = Instantiate(_playerMovements._babyPrefab, _playerMovements.BabyParent.gameObject.transform);
             }
-        }
-        if (other.GetComponent<TestBabyWalk>() != null)
-        {
             _playerMovements.TeleportToSpawnPoint();
+
+        }
+        else if (other.GetComponent<TestBabyWalk>() != null)
+        {
             //GameObject parent = FindAnyObjectByType<PlayerMovements>().gameObject;
             //parent.GetComponent<CharacterController>().enabled = false;
             //parent.transform.position = parent.GetComponent<PlayerMovements>().SpawnPoint.transform.position;
@@ -53,7 +54,9 @@ public class AreaDeathZone : MonoBehaviour
             if (_resetArea.ListOfObjToResetInScene.Count > 0)
             {
                 _resetArea.AreaReset();
+                //_testBabyWalk = Instantiate(_playerMovements._babyPrefab, _playerMovements.BabyParent.gameObject.transform);
             }
+            _playerMovements.TeleportToSpawnPoint();
         }
     }
 }

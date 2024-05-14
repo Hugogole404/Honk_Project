@@ -62,12 +62,13 @@ public class PlayerMovements : MonoBehaviour
     public float OffsetBabyParentY;
     public float OffsetBabyParentZ;
     private Baby _baby;
-    private TestBabyWalk _testBabyWalk;
+    public TestBabyWalk _testBabyWalk;
     private bool _canTimerBabyJump;
     private float _currentTimerBabyJump;
     [SerializeField] private float _maxTimerBabyJump;
     [SerializeField] private LayerMask _putBabyLayer;
     [SerializeField] private int _takeBabyLayer;
+    public TestBabyWalk _babyPrefab;
 
     [HideInInspector] public bool CanPushObstacles;
     [HideInInspector] public GameObject ActualObstacle;
@@ -305,6 +306,23 @@ public class PlayerMovements : MonoBehaviour
     #region FUNCTIONS
     public void TeleportToSpawnPoint()
     {
+        _testBabyWalk = FindAnyObjectByType<TestBabyWalk>();
+
+        //if (_testBabyWalk == null)
+        //{
+        //    Debug.Log("PATATE");
+        //    _testBabyWalk = Instantiate(_babyPrefab, BabyParent.gameObject.transform);
+        //}
+
+        _testBabyWalk.gameObject.transform.parent = BabyParent.gameObject.transform;
+        _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
+        _testBabyWalk = GetComponentInChildren<TestBabyWalk>();
+
+        CharaController.enabled = false;
+        transform.position = SpawnPoint.transform.position;
+        CharaController.enabled = true;
+
+
         CanBabyFollow = false;
         AnimatorHonkJR.SetBool("IsActive", false);
         AnimatorHonkJR.SetTrigger("ChangingState");
@@ -314,7 +332,9 @@ public class PlayerMovements : MonoBehaviour
         _testBabyWalk.gameObject.layer = _takeBabyLayer;
         //_testBabyWalk.gameObject.layer = 13;
         _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
+
+
+        //_holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
         _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
         _holdBaby.IsOnHisBack = true;
         _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
@@ -322,9 +342,6 @@ public class PlayerMovements : MonoBehaviour
         CanBabyFollow = false;
         AnimatorHonkJR.SetBool("OnBack", true);
 
-        CharaController.enabled = false;
-        transform.position = SpawnPoint.transform.position;
-        CharaController.enabled = true;
     }
     private void ResetJumpCounter()
     {
