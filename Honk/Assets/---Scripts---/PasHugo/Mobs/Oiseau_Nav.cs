@@ -10,7 +10,6 @@ public class Oiseau_Nav : MonoBehaviour
     public int contactBefFly;
     public int contactNumber = 0;
     [Range(0.0f, 10.0f)] public float distance = 1f;
-
     private NavMeshAgent agent;
 
     void Start()
