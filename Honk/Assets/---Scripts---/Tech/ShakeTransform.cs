@@ -14,19 +14,14 @@ public class ShakeTransform : MonoBehaviour
     [Range(0f, 0.1f)]
     public float _delayBetweenShakes = 0f;
     public GameObject Platform;
-    public float prout;
+    public float OffsetY;
     public static ShakeTransform Instance;
 
     private void Awake()
     {
         Instance = this;
+        _startPos = Platform.transform.position - new Vector3(0, OffsetY, 0);
     }
-
-    private void Update()
-    {
-        _startPos = Platform.transform.position - new Vector3(0,prout,0);
-    }
-
 
     public void Begin()
     {

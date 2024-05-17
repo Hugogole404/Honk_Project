@@ -35,7 +35,7 @@ Transform:
   - {fileID: 6449732505984135870}
   - {fileID: 9181461620306328724}
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5159868873603205585
 MeshFilter:
@@ -9888,6 +9888,7 @@ MonoBehaviour:
   _maxTimerBaby: 2
   _maxTimerDad: 1
   FXShake: {fileID: 7398291403222424145}
+  ShakeTransform: {fileID: 6435067952865450249}
   ShakeData:
     Strength: 1
     Duration: 1
@@ -14934,7 +14935,7 @@ MonoBehaviour:
   _distance: 0.09
   _delayBetweenShakes: 0
   Platform: {fileID: 5039255813097069327}
-  prout: 3.23
+  OffsetY: 0
 --- !u!4 &6449732505984135870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0d6743969589cd94ab2cde2cd6bcf33f,

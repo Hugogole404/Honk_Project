@@ -10,6 +10,7 @@ public class Platform : MonoBehaviour
     [SerializeField] private float _maxTimerBaby;
     [SerializeField] private float _maxTimerDad;
     [SerializeField] private GameObject FXShake;
+    [SerializeField] private ShakeTransform ShakeTransform;
 
     public ShakeData ShakeData;
     private float t_transform_initial;
@@ -31,13 +32,13 @@ public class Platform : MonoBehaviour
         {
             _canTimerIncrease = true;
             _isDad = true;
-            if (_canFall == false) { ShakeTransform.Instance.Begin(); FXShake.SetActive(true); }
+            if (_canFall == false) { ShakeTransform.Begin(); FXShake.SetActive(true); }
         }
         else if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
             _canTimerIncrease = true;
             _isBaby = true;
-            if (_canFall == false) { ShakeTransform.Instance.Begin(); FXShake.SetActive(true); }
+            if (_canFall == false) { ShakeTransform.Begin(); FXShake.SetActive(true); }
 
         }
     }
@@ -65,7 +66,7 @@ public class Platform : MonoBehaviour
         {
             if (_currentTimer > _maxTimerDad)
             {
-                ShakeTransform.Instance.Stop();
+                ShakeTransform.Stop();
                 FXShake.SetActive(false);
                 _canFall = true;
             }
@@ -74,7 +75,7 @@ public class Platform : MonoBehaviour
         {
             if (_currentTimer > _maxTimerBaby)
             {
-                ShakeTransform.Instance.Stop();
+                ShakeTransform.Stop();
                 FXShake.SetActive(false);
                 _canFall = true;
             }
