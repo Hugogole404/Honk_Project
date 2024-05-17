@@ -22,12 +22,23 @@ public class ResetPlayArea : MonoBehaviour
             {
                 //GameObject baby = FindObjectOfType<TestBabyWalk>().gameObject; /*obj.GetComponentInChildren<TestBabyWalk>().gameObject;*/
                 GameObject baby = obj.GetComponentInChildren<TestBabyWalk>().gameObject;
+                //baby.transform.position = _playerMovements.TPBabyPos;
+                baby.transform.position = new Vector3(0, 0, 0);
                 baby.transform.parent = _playerMovements.BabyParent.gameObject.transform;
+
+                //baby.transform.parent = obj.GetComponentInChildren<PushObstacles>().ParentBabyAfterDeath.transform;
                 Debug.Log(baby.gameObject.transform.parent.name);
-                Debug.Log(baby);
+                Debug.Log(baby.name);
             }
             Destroy(obj);
+            //obj.transform.position = _listOfPositions[_actualIndex];
+            //Debug.Log(_testBabyWalk);
+            //Debug.Log(_testBabyWalk.transform.parent.gameObject.name);
+            //_actualIndex++;
         }
+
+        /// ESSAYER DE NE PAS DETRUIRE LES OBJE MAIS DE RESET LEUR POSITIONS 
+
         ListOfObjToResetInScene.Clear();
         foreach (GameObject obj in _listOfPrefab)
         {
@@ -35,13 +46,15 @@ public class ResetPlayArea : MonoBehaviour
             ListOfObjToResetInScene.Add(go);
             _actualIndex += 1;
         }
+
+
         _actualIndex = 0;
     }
 
     private void Awake()
     {
-        _playerMovements= FindObjectOfType<PlayerMovements>();
-        _testBabyWalk= FindObjectOfType<TestBabyWalk>();    
+        _playerMovements = FindObjectOfType<PlayerMovements>();
+        _testBabyWalk = FindObjectOfType<TestBabyWalk>();
     }
 
     private void Start()
@@ -56,7 +69,7 @@ public class ResetPlayArea : MonoBehaviour
     {
         if (Input.GetKeyUp(_keyBind))
         {
-            if(PlayerHaveToBeReset)
+            if (PlayerHaveToBeReset)
             {
                 _playerMovements.TeleportToSpawnPoint();
             }

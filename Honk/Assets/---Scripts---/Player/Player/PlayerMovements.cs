@@ -95,6 +95,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public Transform TransformRotationBaby;
     [HideInInspector] public bool CanMove;
     [HideInInspector] public bool CanBabyTeleport;
+    [HideInInspector] public Vector3 TPBabyPos;
     #endregion
 
     #region ACTIONS
@@ -225,6 +226,7 @@ public class PlayerMovements : MonoBehaviour
                     _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
                     //_holdBaby.Baby.gameObject.transform.DOJump(new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ), 1, 1, _maxTimerBabyJump);
                     _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
+                    TPBabyPos = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
                     _holdBaby.IsOnHisBack = true;
                     _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
                     _holdBaby.CanHoldBaby = false;
@@ -313,6 +315,11 @@ public class PlayerMovements : MonoBehaviour
         //    //Debug.Log("PATATE");
         //    _testBabyWalk = Instantiate(_babyPrefab, BabyParent.gameObject.transform);
         //}
+        //GameObject toDelete = _testBabyWalk.gameObject;
+        //_testBabyWalk = null;
+        //Destroy(toDelete);
+        //_testBabyWalk = Instantiate(_babyPrefab, BabyParent.gameObject.transform);
+        //AnimatorHonkJR = _testBabyWalk.gameObject.GetComponentInChildren<Animator>();
 
         _testBabyWalk.gameObject.transform.parent = BabyParent.gameObject.transform;
         _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
@@ -321,7 +328,6 @@ public class PlayerMovements : MonoBehaviour
         CharaController.enabled = false;
         transform.position = SpawnPoint.transform.position;
         CharaController.enabled = true;
-
 
         CanBabyFollow = false;
         AnimatorHonkJR.SetBool("IsActive", false);
@@ -332,7 +338,6 @@ public class PlayerMovements : MonoBehaviour
         _testBabyWalk.gameObject.layer = _takeBabyLayer;
         //_testBabyWalk.gameObject.layer = 13;
         _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = true;
-
 
         //_holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
         _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
@@ -599,5 +604,7 @@ public class PlayerMovements : MonoBehaviour
         CheckIsGroundedForParticles();
         IncreaseTimerAnimJump();
         //TimerBabyJump();
+        //_testBabyWalk = FindObjectOfType<TestBabyWalk>();
+        //Debug.Log(_testBabyWalk);
     }
 }

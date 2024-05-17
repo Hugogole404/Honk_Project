@@ -52,12 +52,12 @@ public class AreaDeathZone : MonoBehaviour
             //parent.GetComponent<PlayerMovements>()._holdBaby.CanHoldBaby = false;
             //parent.GetComponent<PlayerMovements>().CanBabyFollow = false;
             //parent.GetComponent<PlayerMovements>().AnimatorHonkJR.SetBool("OnBack", true);
+            _playerMovements.TeleportToSpawnPoint();
             if (_resetArea.ListOfObjToResetInScene.Count > 0)
             {
                 _resetArea.AreaReset();
                 //_testBabyWalk = Instantiate(_playerMovements._babyPrefab, _playerMovements.BabyParent.gameObject.transform);
             }
-            _playerMovements.TeleportToSpawnPoint();
         }
     }
 }

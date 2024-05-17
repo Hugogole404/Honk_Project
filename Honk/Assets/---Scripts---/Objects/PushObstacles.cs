@@ -12,6 +12,7 @@ public class PushObstacles : MonoBehaviour
     [SerializeField] private float _timerMaxGetBaby;
     [SerializeField] private float _currentTimerGetBaby;
     private bool _isOnCube;
+    /*[HideInInspector] */public GameObject ParentBabyAfterDeath;
 
     private float _maxTimerGravity = 2;
     private float _currentTimerGravity = 0;
@@ -62,6 +63,7 @@ public class PushObstacles : MonoBehaviour
     private void Start()
     {
         _baby = FindAnyObjectByType<TestBabyWalk>().gameObject;
+        ParentBabyAfterDeath = FindObjectOfType<BabyParentInDad>().gameObject;
         _maxTimerGravity = 2;
     }
     private void Update()
