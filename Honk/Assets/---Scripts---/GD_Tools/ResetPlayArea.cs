@@ -58,7 +58,7 @@ public class ResetPlayArea : MonoBehaviour
         {
             if(PlayerHaveToBeReset)
             {
-                // reset player
+                _playerMovements.TeleportToSpawnPoint();
             }
             AreaReset();
         }
