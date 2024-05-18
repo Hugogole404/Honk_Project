@@ -69,6 +69,7 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] private LayerMask _putBabyLayer;
     [SerializeField] private int _takeBabyLayer;
     public TestBabyWalk _babyPrefab;
+    private bool _canBePutHere;
 
     [HideInInspector] public bool CanPushObstacles;
     [HideInInspector] public GameObject ActualObstacle;
@@ -248,7 +249,13 @@ public class PlayerMovements : MonoBehaviour
                     _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = false;
                     _holdBaby.Baby.gameObject.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
                     //_testBabyWalk.transform.DOJump(_holdBaby.PositionBabyPut.transform.position, 2, 1, _maxTimerBabyJump);
-                    _testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
+
+                    if (_holdBaby.PositionBabyPut.gameObject.GetComponent<BabyPutDetection>().CanBePut)
+                        _testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
+                    else
+                        _testBabyWalk.transform.position = new Vector3(transform.position.x, transform.position.y+2, transform.position.z);
+
+
                     _testBabyWalk.LastPositionPlayer.Add(transform.position);
                     _holdBaby.IsOnHisBack = false;
                     AnimatorHonkJR.SetBool("OnBack", false);
