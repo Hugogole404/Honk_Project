@@ -294,6 +294,7 @@ MonoBehaviour:
   TransformRotationBaby: {fileID: 0}
   CanMove: 0
   CanBabyTeleport: 0
+  TPBabyPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1084542050157158261
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +892,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1189483024710175931}
+  - component: {fileID: 9145340181322311489}
   m_Layer: 0
   m_Name: PositionBabyPut
   m_TagString: Untagged
@@ -913,6 +915,19 @@ Transform:
   m_Father: {fileID: 8692899270589358110}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9145340181322311489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2807431643372084686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc525d3b687626498e08b482c27933d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBePut: 0
 --- !u!1 &3132025572422586837
 GameObject:
   m_ObjectHideFlags: 0
