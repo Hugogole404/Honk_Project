@@ -46,11 +46,13 @@ public class Platform : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerMovements>() != null)
         {
+            ShakeTransform.Stop();
             _canTimerIncrease = false;
             _currentTimer = 0;
         }
         else if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
+            ShakeTransform.Stop();
             _canTimerIncrease = false;
             _currentTimer = 0;
         }
