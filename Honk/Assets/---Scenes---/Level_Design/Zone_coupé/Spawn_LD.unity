@@ -22622,7 +22622,7 @@ MonoBehaviour:
   _distance: 0.1
   _delayBetweenShakes: 0
   Platform: {fileID: 1199133346}
-  prout: 0
+  OffsetY: 0
 --- !u!43 &184270896
 Mesh:
   m_ObjectHideFlags: 0
@@ -35470,6 +35470,7 @@ MonoBehaviour:
   _maxTimerBaby: 2
   _maxTimerDad: 1
   FXShake: {fileID: 1783448677}
+  ShakeTransform: {fileID: 0}
   ShakeData:
     Strength: 0
     Duration: 0
@@ -35985,7 +35986,7 @@ MonoBehaviour:
   _distance: 0.1
   _delayBetweenShakes: 0
   Platform: {fileID: 538879128}
-  prout: 0
+  OffsetY: 0
 --- !u!43 &483505068
 Mesh:
   m_ObjectHideFlags: 0
@@ -48143,7 +48144,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh74452
+  m_Name: pb_Mesh42350
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -50082,6 +50083,11 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 55469116}
+    - target: {fileID: 9145340181322311489, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: NumberMinOfColliderToDetect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -50487,7 +50493,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1662752334}
 --- !u!33 &872085156
@@ -52169,7 +52175,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh74536
+  m_Name: pb_Mesh42440
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -56516,7 +56522,7 @@ MonoBehaviour:
   _distance: 0.1
   _delayBetweenShakes: 0
   Platform: {fileID: 1482684861}
-  prout: 0
+  OffsetY: 0
 --- !u!43 &1309167749
 Mesh:
   m_ObjectHideFlags: 0
@@ -63504,7 +63510,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh74804
+  m_Name: pb_Mesh42724
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -67217,7 +67223,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh74672
+  m_Name: pb_Mesh42592
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -67888,7 +67894,7 @@ MonoBehaviour:
   _distance: 0.1
   _delayBetweenShakes: 0
   Platform: {fileID: 1851361439}
-  prout: 0
+  OffsetY: 0
 --- !u!43 &1747222858
 Mesh:
   m_ObjectHideFlags: 0
@@ -78482,6 +78488,7 @@ MonoBehaviour:
   _maxTimerBaby: 2
   _maxTimerDad: 0.5
   FXShake: {fileID: 137176493}
+  ShakeTransform: {fileID: 0}
   ShakeData:
     Strength: 0
     Duration: 0
@@ -80198,6 +80205,7 @@ MonoBehaviour:
   _maxTimerBaby: 2
   _maxTimerDad: 0.5
   FXShake: {fileID: 1383236158}
+  ShakeTransform: {fileID: 0}
   ShakeData:
     Strength: 0
     Duration: 0
