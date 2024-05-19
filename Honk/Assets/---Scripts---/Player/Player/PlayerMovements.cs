@@ -209,9 +209,9 @@ public class PlayerMovements : MonoBehaviour
                 AnimatorHonk.SetTrigger("Shout");
                 ScreenShake.Instance.Shake(ShakeData);
 
-                if (CanPushObstacles) { }
+                //if (CanPushObstacles) { }
 
-                else if (_holdBaby.CanHoldBaby && _holdBaby)
+                if (_holdBaby.CanHoldBaby && _holdBaby)
                 {
                     // PRENDRE LE PETIT
                     //Debug.Log("IS ON");
