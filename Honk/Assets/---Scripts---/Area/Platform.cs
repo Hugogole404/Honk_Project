@@ -19,12 +19,21 @@ public class Platform : MonoBehaviour
     private bool _canTimerIncrease;
     private bool _isDad;
     private bool _isBaby;
+    private bool _shake = true;
     private void Fall()
     {
+        if (_shake == true && _platform.transform.position.y <= t_transform_initial)
+        {
+            ScreenShake.Instance.Shake(ShakeData);
+            _shake = false;
+        }
+
         if (_canFall && _platform.transform.position.y > t_transform_initial)
         {
             _platform.transform.position -= new Vector3(0, _speed * Time.deltaTime, 0);
         }
+
+        
     }
     private void OnTriggerEnter(Collider other)
     {
