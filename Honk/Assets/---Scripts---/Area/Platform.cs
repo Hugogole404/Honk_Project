@@ -14,11 +14,11 @@ public class Platform : MonoBehaviour
 
     public ShakeData ShakeData;
     private float t_transform_initial;
-    private float _currentTimer;
+    public float _currentTimer;
     public bool CanFall;
     private bool _canTimerIncrease;
-    private bool _isDad;
-    private bool _isBaby;
+    public bool _isDad;
+    public bool _isBaby;
     private bool _shake = true;
     private void Fall()
     {

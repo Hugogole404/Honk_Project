@@ -42,6 +42,9 @@ public class ResetPlayArea : MonoBehaviour
             if(obj.GetComponentInChildren<Platform>() != null)
             {
                 obj.GetComponentInChildren<Platform>().CanFall = false;
+                obj.GetComponentInChildren<Platform>()._isBaby = false;
+                obj.GetComponentInChildren<Platform>()._isDad = false;
+                obj.GetComponentInChildren<Platform>()._currentTimer = 0;
             }
             obj.transform.position = _listOfPositions[_actualIndex];
             //obj.transform.position = _listOfPositions[_actualIndex];
