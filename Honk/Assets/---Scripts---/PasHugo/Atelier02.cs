@@ -9,6 +9,7 @@ public class Atelier02 : MonoBehaviour
     public CinemachineVirtualCamera Camera;
     public CinemachineDollyCart dolly;
     private float StartPos;
+    public float EndPos;
 
     // Start is called before the first frame update
 
@@ -34,7 +35,7 @@ public class Atelier02 : MonoBehaviour
     }
     private void Update()
     {
-        dolly.m_Position = NormalizeNumber(honkCollider.transform.position.x, StartPos, 180f, 0f, 1f);
+        dolly.m_Position = NormalizeNumber(honkCollider.transform.position.x, StartPos, EndPos, 0f, 1f);
     }
     public float NormalizeNumber(float value, float minOriginal, float maxOriginal, float minNew, float maxNew)
     {
