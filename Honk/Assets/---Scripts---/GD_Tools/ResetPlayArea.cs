@@ -39,6 +39,10 @@ public class ResetPlayArea : MonoBehaviour
             {
                 obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
+            if(obj.GetComponentInChildren<Platform>() != null)
+            {
+                obj.GetComponentInChildren<Platform>().CanFall = false;
+            }
             obj.transform.position = _listOfPositions[_actualIndex];
             //obj.transform.position = _listOfPositions[_actualIndex];
             //Debug.Log(_testBabyWalk);

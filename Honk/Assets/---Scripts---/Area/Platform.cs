@@ -15,7 +15,7 @@ public class Platform : MonoBehaviour
     public ShakeData ShakeData;
     private float t_transform_initial;
     private float _currentTimer;
-    private bool _canFall;
+    public bool CanFall;
     private bool _canTimerIncrease;
     private bool _isDad;
     private bool _isBaby;
@@ -28,7 +28,7 @@ public class Platform : MonoBehaviour
             _shake = false;
         }
 
-        if (_canFall && _platform.transform.position.y > t_transform_initial)
+        if (CanFall && _platform.transform.position.y > t_transform_initial)
         {
             _platform.transform.position -= new Vector3(0, _speed * Time.deltaTime, 0);
         }
@@ -41,13 +41,13 @@ public class Platform : MonoBehaviour
         {
             _canTimerIncrease = true;
             _isDad = true;
-            if (_canFall == false) { ShakeTransform.Begin(); } //FXShake.SetActive(true);
+            if (CanFall == false) { ShakeTransform.Begin(); } //FXShake.SetActive(true);
             }
         else if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
             _canTimerIncrease = true;
             _isBaby = true;
-            if (_canFall == false) { ShakeTransform.Begin(); } //FXShake.SetActive(true);
+            if (CanFall == false) { ShakeTransform.Begin(); } //FXShake.SetActive(true);
 
             }
     }
@@ -79,7 +79,7 @@ public class Platform : MonoBehaviour
             {
                 ShakeTransform.Stop();
                 //FXShake.SetActive(false);
-                _canFall = true;
+                CanFall = true;
             }
         }
         else if (_isBaby)
@@ -88,7 +88,7 @@ public class Platform : MonoBehaviour
             {
                 ShakeTransform.Stop();
                 //FXShake.SetActive(false);
-                _canFall = true;
+                CanFall = true;
             }
         }
     }
