@@ -9,44 +9,51 @@ public class ResetPlayArea : MonoBehaviour
     [SerializeField] private bool PlayerHaveToBeReset;
     [SerializeField] private KeyCode _keyBind;
 
-    private List<Vector3> _listOfPositions = new List<Vector3>();
+    public List<Vector3> _listOfPositions = new List<Vector3>();
     private PlayerMovements _playerMovements;
     private TestBabyWalk _testBabyWalk;
     private int _actualIndex;
 
     public void AreaReset()
     {
+        if (PlayerHaveToBeReset)
+        {
+            _playerMovements._testBabyWalk.transform.parent = _playerMovements.BabyParent.transform;
+        }
         foreach (GameObject obj in ListOfObjToResetInScene)
         {
-            if (obj.GetComponentInChildren<TestBabyWalk>() != null)
-            {
-                //GameObject baby = FindObjectOfType<TestBabyWalk>().gameObject; /*obj.GetComponentInChildren<TestBabyWalk>().gameObject;*/
-                GameObject baby = obj.GetComponentInChildren<TestBabyWalk>().gameObject;
-                //baby.transform.position = _playerMovements.TPBabyPos;
-                baby.transform.position = new Vector3(0, 0, 0);
-                baby.transform.parent = _playerMovements.BabyParent.gameObject.transform;
+            //if (obj.GetComponentInChildren<TestBabyWalk>() != null)
+            //{
+            //    //GameObject baby = FindObjectOfType<TestBabyWalk>().gameObject; /*obj.GetComponentInChildren<TestBabyWalk>().gameObject;*/
+            //    GameObject baby = obj.GetComponentInChildren<TestBabyWalk>().gameObject;
+            //    //baby.transform.position = _playerMovements.TPBabyPos;
+            //    baby.transform.position = new Vector3(0, 0, 0);
+            //    baby.transform.parent = _playerMovements.BabyParent.gameObject.transform;
 
-                //baby.transform.parent = obj.GetComponentInChildren<PushObstacles>().ParentBabyAfterDeath.transform;
-                Debug.Log(baby.gameObject.transform.parent.name);
-                Debug.Log(baby.name);
+            //    //baby.transform.parent = obj.GetComponentInChildren<PushObstacles>().ParentBabyAfterDeath.transform;
+            //    Debug.Log(baby.gameObject.transform.parent.name);
+            //    Debug.Log(baby.name);
+            //}
+            //Destroy(obj);
+            if(obj.GetComponent<Rigidbody>() != null)
+            {
+                obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
-            Destroy(obj);
+            obj.transform.position = _listOfPositions[_actualIndex];
             //obj.transform.position = _listOfPositions[_actualIndex];
             //Debug.Log(_testBabyWalk);
             //Debug.Log(_testBabyWalk.transform.parent.gameObject.name);
-            //_actualIndex++;
+            _actualIndex++;
         }
 
         /// ESSAYER DE NE PAS DETRUIRE LES OBJE MAIS DE RESET LEUR POSITIONS 
-
-        ListOfObjToResetInScene.Clear();
-        foreach (GameObject obj in _listOfPrefab)
-        {
-            GameObject go = Instantiate(_listOfPrefab[_actualIndex]);
-            ListOfObjToResetInScene.Add(go);
-            _actualIndex += 1;
-        }
-
+        //ListOfObjToResetInScene.Clear();
+        //foreach (GameObject obj in _listOfPrefab)
+        //{
+        //    GameObject go = Instantiate(_listOfPrefab[_actualIndex]);
+        //    ListOfObjToResetInScene.Add(go);
+        //    _actualIndex += 1;
+        //}
 
         _actualIndex = 0;
     }

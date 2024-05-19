@@ -27,13 +27,12 @@ public class AreaDeathZone : MonoBehaviour
             //other.transform.position = other.GetComponent<PlayerMovements>().SpawnPoint.transform.position;
             //other.transform.rotation = other.GetComponent<PlayerMovements>().PlayerOriginRotation;
             //other.GetComponent<CharacterController>().enabled = true;
+            _playerMovements.TeleportToSpawnPoint();
             if (_resetArea.ListOfObjToResetInScene.Count > 0)
             {
                 _resetArea.AreaReset();
                 //_testBabyWalk = Instantiate(_playerMovements._babyPrefab, _playerMovements.BabyParent.gameObject.transform);
             }
-            _playerMovements.TeleportToSpawnPoint();
-
         }
         else if (other.GetComponent<TestBabyWalk>() != null)
         {
