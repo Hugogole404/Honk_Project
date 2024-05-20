@@ -56222,7 +56222,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh52592
+  m_Name: pb_Mesh32176
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -56934,17 +56934,17 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 0
-  m_CookingOptions: 30
+  m_CookingOptions: 0
   m_Mesh: {fileID: -2232952877369940510, guid: 14bf045ffda82e4458ec68df887f1a54, type: 3}
 --- !u!1 &1697249659
 GameObject:
@@ -88784,6 +88784,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87567578774743802, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 981542651044063958, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1189483024710175931, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -88814,6 +88824,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLAYER
       objectReference: {fileID: 0}
+    - target: {fileID: 2194466666111562979, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.87620556
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194466666111562979, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.74985695
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194466666111562979, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.84689903
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194466666111562979, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.041587535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194466666111562979, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.37205952
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194466666111562979, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.014329186
+      objectReference: {fileID: 0}
     - target: {fileID: 2890229034580983940, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
         type: 3}
       propertyPath: ParentObjectBaby
@@ -88842,7 +88882,7 @@ PrefabInstance:
     - target: {fileID: 3123230849202774918, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
         type: 3}
       propertyPath: _speedToNormalScale
-      value: 1
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3123230849202774918, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
         type: 3}
@@ -88857,6 +88897,11 @@ PrefabInstance:
     - target: {fileID: 3424993885947851605, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
         type: 3}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3533401713590005379, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4122068132176278278, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
@@ -88918,6 +88963,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530601275188834436, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8530601275188834436, guid: 8c2fd8f8ef294d544a0fb5ea69ef0ed6,
         type: 3}
