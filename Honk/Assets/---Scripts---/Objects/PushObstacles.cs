@@ -7,7 +7,7 @@ public class PushObstacles : MonoBehaviour
 {
     [SerializeField] private GameObject _top;
     [SerializeField] private GameObject _parentBaby;
-    [SerializeField] private GameObject _bloc;
+    public GameObject _bloc;
     private GameObject _baby;
     [SerializeField] private float _timerMaxGetBaby;
     [SerializeField] private float _currentTimerGetBaby;
