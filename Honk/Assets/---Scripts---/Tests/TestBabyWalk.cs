@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 //using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TestBabyWalk : MonoBehaviour
 {
+    public Vector3 BaseScaleBaby;
+    public Vector3 BaseScaleBabyTest;
     public Vector3 Offset;
     public List<Vector3> LastPositionPlayer;
     public Vector3 LastPOSPLAYER;
@@ -89,6 +92,8 @@ public class TestBabyWalk : MonoBehaviour
     }
     void Start()
     {
+        BaseScaleBaby = transform.lossyScale;
+        BaseScaleBabyTest = transform.localScale;
         Offset = new Vector3(1, 0, 1);
         _oldPosPlayer = _playerMov.gameObject.transform.position;
         LastPOSPLAYER = _playerMov.transform.position;

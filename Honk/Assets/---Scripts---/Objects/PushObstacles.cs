@@ -12,7 +12,8 @@ public class PushObstacles : MonoBehaviour
     [SerializeField] private float _timerMaxGetBaby;
     [SerializeField] private float _currentTimerGetBaby;
     private bool _isOnCube;
-    /*[HideInInspector] */public GameObject ParentBabyAfterDeath;
+    /*[HideInInspector] */
+    public GameObject ParentBabyAfterDeath;
 
     private float _maxTimerGravity = 2;
     private float _currentTimerGravity = 0;
@@ -36,6 +37,9 @@ public class PushObstacles : MonoBehaviour
             other.GetComponent<TestBabyWalk>().gameObject.transform.parent = _parentBaby.transform;
             other.GetComponent<Rigidbody>().useGravity = true;
             _isOnCube = false;
+
+            // Rescale du petit
+            //other.GetComponent<TestBabyWalk>().transform.localScale = other.GetComponent<TestBabyWalk>().BaseScaleBaby;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -57,6 +61,9 @@ public class PushObstacles : MonoBehaviour
                 other.GetComponent<TestBabyWalk>().gameObject.transform.parent = _bloc.transform;
                 other.GetComponent<Rigidbody>().useGravity = false;
                 _isOnCube = true;
+
+                //Rescale du petit
+                //other.GetComponent<TestBabyWalk>().transform.localScale = other.GetComponent<TestBabyWalk>().BaseScaleBaby;
             }
         }
     }

@@ -15,6 +15,7 @@ public class BabyCrush : MonoBehaviour
                     other.GetComponent<TestBabyWalk>().ScaleCrushedBaby, other.GetComponent<TestBabyWalk>().transform.localScale.z);
             }
         }
+        /// bloc entre eux 
         //if (other.GetComponent<PushObstacles>() != null)
         //{
         //    other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
