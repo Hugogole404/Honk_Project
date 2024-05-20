@@ -37,6 +37,8 @@ public class PlayerMovements : MonoBehaviour
     public GameObject SpawnPoint;
     [Header("FX")]
     public GameObject SnowTrail;
+    public GameObject IconFollowHonk;
+    public GameObject IconFollowHonkJR;
     [Header("CameraSkake")]
     public ShakeData ShakeData;
 
@@ -270,15 +272,21 @@ public class PlayerMovements : MonoBehaviour
                     // LE FAIRE FOLLOW
                     if (CanBabyFollow)
                     {
+                       
                         CanBabyFollow = false;
                         AnimatorHonkJR.SetBool("IsActive", false);
                         AnimatorHonkJR.SetTrigger("ChangingState");
+                        IconFollowHonk.SetActive(false);
+                        IconFollowHonkJR.SetActive(false);
+
                     }
                     else
                     {
                         CanBabyFollow = true;
                         AnimatorHonkJR.SetBool("IsActive", true);
                         AnimatorHonkJR.SetTrigger("ChangingState");
+                        IconFollowHonk.SetActive(true);
+                        IconFollowHonkJR.SetActive(true);
                     }
                 }
             }
