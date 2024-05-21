@@ -9,7 +9,7 @@ public class Platform : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _maxTimerBaby;
     [SerializeField] private float _maxTimerDad;
-    [SerializeField] private GameObject FXShake;
+    [SerializeField] private ParticleSystem FXFall;
     [SerializeField] private ShakeTransform ShakeTransform;
 
     public ShakeData ShakeData;
@@ -25,7 +25,9 @@ public class Platform : MonoBehaviour
         if (_shake == true && _platform.transform.position.y <= t_transform_initial)
         {
             ScreenShake.Instance.Shake(ShakeData);
+            FXFall.Play();
             _shake = false;
+            
         }
 
         if (CanFall && _platform.transform.position.y > t_transform_initial)
