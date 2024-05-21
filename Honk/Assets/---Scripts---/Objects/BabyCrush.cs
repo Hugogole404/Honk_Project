@@ -18,8 +18,25 @@ public class BabyCrush : MonoBehaviour
         /// bloc entre eux 
         if (other.GetComponent<PushObstacles>() != null)
         {
+            //print(other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().gameObject.name);
+            Rigidbody rbParent = GetComponentInParent<Rigidbody>();
+
+            if (rbParent.velocity.x < 0)
+                rbParent.gameObject.transform.position -= new Vector3(-1, 0, 0);           
+
+            if (rbParent.velocity.x > 0)
+                rbParent.gameObject.transform.position -= new Vector3(1, 0, 0);
+
             other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-            print(other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().gameObject.name);
+
+            GetComponentInParent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.GetComponent<PushObstacles>() != null)
+        {
+            other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             GetComponentInParent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
     }
@@ -34,5 +51,9 @@ public class BabyCrush : MonoBehaviour
     private void Awake()
     {
         _holdBaby = FindObjectOfType<HoldBaby>();
+    }
+    private void Update()
+    {
+        print(GetComponentInParent<Rigidbody>().velocity);
     }
 }
