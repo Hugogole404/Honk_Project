@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -59,7 +60,8 @@ public class Slope : MonoBehaviour
     {
         _moveInput = context.ReadValue<Vector2>();
 
-        _inputsJoystick = new Vector3(_moveInput.x, _inputsJoystick.y, _moveInput.y);
+        //_inputsJoystick = new Vector3(_moveInput.x, _inputsJoystick.y, _moveInput.y);
+        _inputsJoystick = new Vector3(_moveInput.x, transform.position.y, _moveInput.y);
 
         m_Animator.SetBool("IsMoving", true);
 
@@ -85,7 +87,7 @@ public class Slope : MonoBehaviour
     {
         if (context.started && _canJump == true && IsGrounded == true)
         {
-            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _rigidbody.AddForce(new Vector3(0, 1, 0) * _jumpForce, ForceMode.Impulse);
             _canJump = false;
             _currentTimerJump = 0;
             m_Animator.SetTrigger("Jump");
@@ -228,9 +230,9 @@ public class Slope : MonoBehaviour
         {
             _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * Speed * Time.deltaTime * 100, ForceMode.Force);
         }
-        if (_modSlide && _rigidbody.velocity.magnitude > 0.05f)
+        if (_modSlide /*&& _rigidbody.velocity.magnitude > 0.05f*/)
         {
-            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * SpeedSlope * Time.deltaTime * 100, ForceMode.Impulse);
+            _rigidbody.AddForce(new Vector3(_moveInput.x, 0, _moveInput.y) * SpeedSlope * Time.deltaTime * 100, ForceMode.Force);
             _modOnSlope = true;
             _modSlide = false;
         }
@@ -278,7 +280,6 @@ public class Slope : MonoBehaviour
         transform.position = SpawnPoint.transform.position;
         _originSpeedSlope = SpeedSlope;
 
-
         _modSlide = true;
         _modWalk = false;
         _slideTimer = false;
@@ -287,18 +288,22 @@ public class Slope : MonoBehaviour
     }
     private void Update()
     {
-        ApplyMovement();
         SpeedDown();
-        ApplyRotationSlope();
-        OrientationPlayer();
         ApplyGravity();
+        SpeedModificationAfterSpeedUpArea();
+        ApplyMovement();
+
+        OrientationPlayer();
+        ApplyRotationSlope();
+
         TimerJump();
         TimerSlide();
-        SpeedModificationAfterSpeedUpArea();
+
+        CheckMaxSpeed();
     }
     private void FixedUpdate()
     {
-        CheckLastPosition();
-        CheckMaxSpeed();
+        //CheckLastPosition();
+        print(IsGrounded);
     }
 }

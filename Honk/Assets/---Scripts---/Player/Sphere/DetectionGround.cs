@@ -10,7 +10,6 @@ public class DetectionGround : MonoBehaviour
         {
             _slope.IsGrounded = true;
             _slope.m_Animator.SetBool("IsJumping", false);                                  //J'ai rajouté ça (Adam)
-
         }
     }
     private void OnTriggerExit(Collider other)
