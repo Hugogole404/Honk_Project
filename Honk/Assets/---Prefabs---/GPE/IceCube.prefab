@@ -52,6 +52,7 @@ MonoBehaviour:
   _timerMaxGetBaby: 0
   _currentTimerGetBaby: 0
   ParentBabyAfterDeath: {fileID: 0}
+  _parentInBloc: {fileID: 0}
 --- !u!65 &7085718076374795778
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -208,8 +209,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.083334, y: 0.41172466, z: 1.1263361}
-  m_Center: {x: -0.002938329, y: -0.2941377, z: -0.0041538877}
+  m_Size: {x: 1.083334, y: 0.064563245, z: 1.1263361}
+  m_Center: {x: -0.0029383448, y: -0.4677181, z: -0.00415389}
 --- !u!114 &7098088978669583084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5179,7 +5180,7 @@ Transform:
   - {fileID: 2586761202175746694}
   - {fileID: 2105255578030233080}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &278437148972045569
 BoxCollider:
