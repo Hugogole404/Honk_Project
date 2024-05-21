@@ -21,11 +21,14 @@ public class BabyCrush : MonoBehaviour
             //print(other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().gameObject.name);
             Rigidbody rbParent = GetComponentInParent<Rigidbody>();
 
-            if (rbParent.velocity.x < 0)
-                rbParent.gameObject.transform.position -= new Vector3(-1, 0, 0);           
+            //if (rbParent.velocity.x < 0)
+            //    GetComponentInParent<Rigidbody>().gameObject.transform.position -= new Vector3(-1, 0, 0);
 
-            if (rbParent.velocity.x > 0)
-                rbParent.gameObject.transform.position -= new Vector3(1, 0, 0);
+            //if (rbParent.velocity.x > 0)
+            //{
+            //    print("OUI");
+            //    GetComponentInParent<Rigidbody>().gameObject.transform.position -= new Vector3(50, 0, 0);
+            //}
 
             other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 
@@ -54,6 +57,6 @@ public class BabyCrush : MonoBehaviour
     }
     private void Update()
     {
-        print(GetComponentInParent<Rigidbody>().velocity);
+        //print(GetComponentInParent<Rigidbody>().velocity);
     }
 }
