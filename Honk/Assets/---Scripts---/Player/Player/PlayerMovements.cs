@@ -38,6 +38,7 @@ public class PlayerMovements : MonoBehaviour
     public GameObject SpawnPoint;
     [Header("FX")]
     public GameObject SnowTrail;
+    public ParticleSystem FXGround;
     public GameObject IconFollowHonk;
     public GameObject IconFollowHonkJR;
     [Header("CameraSkake")]
@@ -412,6 +413,7 @@ public class PlayerMovements : MonoBehaviour
             if (IsGrounded())
             {
                 AnimatorHonk.SetBool("IsJumping", false);
+                FXGround.Play();
                 _currentTimerAnimJump = 0;
                 _canTimerAnimJump = false;
             }
