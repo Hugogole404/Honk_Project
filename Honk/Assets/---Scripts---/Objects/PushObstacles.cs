@@ -14,6 +14,7 @@ public class PushObstacles : MonoBehaviour
     private bool _isOnCube;
     /*[HideInInspector] */
     public GameObject ParentBabyAfterDeath;
+    [SerializeField] GameObject _parentInBloc;
 
     private float _maxTimerGravity = 2;
     private float _currentTimerGravity = 0;
@@ -46,8 +47,11 @@ public class PushObstacles : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovements>() != null)
         {
-            if (gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.0001f)
+            //if (gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.0001f)
+            //    other.GetComponent<PlayerMovements>().CanPushObstacles = true;
+            if(GetComponentInParent<Rigidbody>().velocity.magnitude < 0.0001f)
                 other.GetComponent<PlayerMovements>().CanPushObstacles = true;
+
             other.GetComponent<PlayerMovements>().ActualObstacle = gameObject.transform.parent.transform.gameObject;
         }
         if (other.GetComponent<TestBabyWalk>() != null)
@@ -58,7 +62,7 @@ public class PushObstacles : MonoBehaviour
             }
             if (_currentTimerGetBaby >= _timerMaxGetBaby)
             {
-                other.GetComponent<TestBabyWalk>().gameObject.transform.parent = _bloc.transform;
+                other.GetComponent<TestBabyWalk>().gameObject.transform.parent = _parentInBloc.transform;
                 other.GetComponent<Rigidbody>().useGravity = false;
                 _isOnCube = true;
 

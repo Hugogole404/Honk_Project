@@ -53,7 +53,7 @@ public class ResetPlayArea : MonoBehaviour
             _actualIndex++;
         }
 
-        /// ESSAYER DE NE PAS DETRUIRE LES OBJE MAIS DE RESET LEUR POSITIONS 
+        /// ESSAYER DE NE PAS DETRUIRE LES OBJETS MAIS DE RESET LEUR POSITIONS 
         //ListOfObjToResetInScene.Clear();
         //foreach (GameObject obj in _listOfPrefab)
         //{
