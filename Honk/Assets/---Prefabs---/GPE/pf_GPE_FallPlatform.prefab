@@ -9885,13 +9885,17 @@ MonoBehaviour:
   _platform: {fileID: 1154000283774605565}
   _fallDistValue: 5
   _speed: 20
-  _maxTimerBaby: 2
+  _maxTimerBaby: 1
   _maxTimerDad: 1
   FXShake: {fileID: 7398291403222424145}
   ShakeTransform: {fileID: 6435067952865450249}
   ShakeData:
     Strength: 1.5
     Duration: 0.5
+  _currentTimer: 0
+  CanFall: 0
+  _isDad: 0
+  _isBaby: 0
 --- !u!1 &7398291403222424145
 GameObject:
   m_ObjectHideFlags: 0
