@@ -16,12 +16,12 @@ public class BabyCrush : MonoBehaviour
             }
         }
         /// bloc entre eux 
-        //if (other.GetComponent<PushObstacles>() != null)
-        //{
-        //    other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        //    print(other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().gameObject.name);
-        //    GetComponentInParent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        //}
+        if (other.GetComponent<PushObstacles>() != null)
+        {
+            other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            print(other.GetComponent<PushObstacles>()._bloc.GetComponent<Rigidbody>().gameObject.name);
+            GetComponentInParent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
