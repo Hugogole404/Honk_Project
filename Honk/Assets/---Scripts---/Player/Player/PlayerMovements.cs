@@ -233,6 +233,8 @@ public class PlayerMovements : MonoBehaviour
                         //CanMove = false;
                         //_canTimerBabyJump = true;
                         //ActualSpeed = 0;
+                        IconFollowHonk.SetActive(false);
+                        IconFollowHonkJR.SetActive(false);
                         _testBabyWalk.GetComponent<Rigidbody>().isKinematic = false;
                         _testBabyWalk.GetComponent<Rigidbody>().useGravity = true;
                         _testBabyWalk.gameObject.layer = _takeBabyLayer;
@@ -288,6 +290,7 @@ public class PlayerMovements : MonoBehaviour
                             CanBabyFollow = false;
                             AnimatorHonkJR.SetBool("IsActive", false);
                             AnimatorHonkJR.SetTrigger("ChangingState");
+                            
                             IconFollowHonk.SetActive(false);
                             IconFollowHonkJR.SetActive(false);
 
