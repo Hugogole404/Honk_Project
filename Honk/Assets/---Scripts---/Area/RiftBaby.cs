@@ -19,12 +19,14 @@ public class RiftBaby : MonoBehaviour
     public float Scalemult = 0.5f;
     public float vitesseSwitch = 30;
     public GameObject EmptyFacing;
+    public AudioSource Tp_Sound;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
             _playerMovements.CanBabyTeleport = true;
+            
         }
     }
     private void OnTriggerStay(Collider other)
@@ -37,6 +39,7 @@ public class RiftBaby : MonoBehaviour
             {
                 currentListNum = 0;
                 StartCoroutine(ChampiScale());
+                Tp_Sound.Play();
             }
             other.gameObject.transform.position = _pointEnterRift.transform.position;
 
