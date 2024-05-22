@@ -7,6 +7,8 @@ using DG.Tweening;
 public class RiftBaby : MonoBehaviour
 {
     [SerializeField] private GameObject _pointEnterRift;
+    [SerializeField] private GameObject _replaceBaby;
+
     private GameObject baby;
     private HoldBaby _holdBaby;
     private Baby _baby;
@@ -29,22 +31,14 @@ public class RiftBaby : MonoBehaviour
     {
         if (other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false && _playerMovements.CanTeleportbabyRift)
         {
+
+            // lancer l'anim où il rentre 
             if (Shrooms.Count != 0)
             {
                 currentListNum = 0;
-            StartCoroutine(ChampiScale());
+                StartCoroutine(ChampiScale());
             }
-            // lancer l'anim où il rentre 
-            // deplacer la cam
-
             other.gameObject.transform.position = _pointEnterRift.transform.position;
-            //_baby.LastPositionPlayer.Add(_pointEnterRift.gameObject.transform.position);
-            //_baby.Offset = _playerMovements.gameObject.transform.position - _pointEnterRift.gameObject.transform.position;
-            //_baby.Offset.y = 0;
-
-
-            //_testBabyWalk.Offset = _playerMovements.gameObject.transform.position - _pointEnterRift.gameObject.transform.position;
-            //_testBabyWalk.Offset.y = 0;
 
             // lancer l'anim ou il ressort 
         }
@@ -66,7 +60,6 @@ public class RiftBaby : MonoBehaviour
 
     private IEnumerator ChampiScale()
     {
-
         Shrooms[currentListNum].transform.DOPunchScale(Shrooms[currentListNum].transform.localScale * Scalemult, 1f, 0, 0);
         currentListNum++;
         if (currentListNum < Shrooms.Count - 1)
@@ -75,11 +68,8 @@ public class RiftBaby : MonoBehaviour
             yield return new WaitForSeconds(distance / vitesseSwitch);
             StartCoroutine(ChampiScale());
         }
-
     }
-
     //private void FaceBreach()
     //{
-
     //}
 }

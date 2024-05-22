@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 //using TMPro.EditorUtilities;
@@ -6,6 +7,10 @@ using UnityEngine.UIElements;
 
 public class TestBabyWalk : MonoBehaviour
 {
+    public bool CanBabyInputs;
+    public float Speed;
+    public float VelocityMax;
+    [Space]
     public Vector3 BaseScaleBaby;
     public Vector3 BaseScaleBabyTest;
     public Vector3 Offset;
@@ -29,6 +34,7 @@ public class TestBabyWalk : MonoBehaviour
     [SerializeField] private float _maxTimerToNormalScale;
     private float _currentTimerToNormalScale;
     [HideInInspector] public bool CanGoToNormalScale;
+    private Vector3 _walkSpd;
 
     private void RescaleBaby()
     {
@@ -39,7 +45,7 @@ public class TestBabyWalk : MonoBehaviour
             {
                 transform.localScale += new Vector3(0, Time.deltaTime * _speedToNormalScale, 0);
             }
-            if(transform.localScale.y >= _baseScaleCrushedBaby)
+            if (transform.localScale.y >= _baseScaleCrushedBaby)
             {
                 transform.localScale = new Vector3(transform.localScale.x, _baseScaleCrushedBaby, transform.localScale.z);
                 _currentTimerToNormalScale = 0;
@@ -47,7 +53,6 @@ public class TestBabyWalk : MonoBehaviour
             }
         }
     }
-
     private void CheckIsPlayerMoving()
     {
         if (_oldPosPlayer.x != _playerMov.transform.position.x || _oldPosPlayer.z != _playerMov.transform.position.z)
@@ -63,26 +68,57 @@ public class TestBabyWalk : MonoBehaviour
     }
     private void UpdateRotationBaby()
     {
-        if (_holdBaby.IsOnHisBack == false && _isDadMoving && _playerMov.CanBabyFollow)
+        if (CanBabyInputs)
         {
-            transform.rotation = _playerMov.transform.rotation;
+            if (_holdBaby.IsOnHisBack == false && _isDadMoving && _playerMov.CanBabyFollow)
+            {
+                transform.rotation = _playerMov.transform.rotation;
+                //transform.eulerAngles = _playerMov.transform.eulerAngles;
+            }
         }
     }
     private void BabyMov()
     {
-        if (_holdBaby.IsOnHisBack)
+        if (CanBabyInputs)
         {
-            LastPositionPlayer.Clear();
-            Point = 0;
+            if (_holdBaby.IsOnHisBack)
+            {
+                LastPositionPlayer.Clear();
+                Point = 0;
+            }
+            if (_isDadMoving && _holdBaby.IsOnHisBack == false && _playerMov.CanBabyFollow)
+            {
+                //// chara controller
+                //Vector3 direction = _playerMov.Direction;
+                //direction.y = transform.position.y;
+                ////direction = direction.normalized;
+                ////GetComponent<CharacterController>().Move(_walkSpd * Time.deltaTime);
+                //GetComponent<CharacterController>().Move(Speed * Time.deltaTime * direction);
+                ////GetComponent<CharacterController>().enabled = true;
+
+
+                // code d'avant
+                Offset = LastPOSPLAYER - _playerMov.transform.position;
+                Offset.y = 0;
+                transform.position -= Offset;
+
+                Point++;
+
+
+                /// pas pris
+                ///if (Offset.x < 0) Offset.x = -1;
+                ///if (Offset.x > 0) Offset.x = 1;
+
+                ///if (Offset.z < 0) Offset.z = -1;
+                ///if (Offset.z > 0) Offset.z = 1;
+
+                ///if (GetComponent<Rigidbody>().velocity.magnitude <= VelocityMax)
+                ///    GetComponent<Rigidbody>().AddForce(new Vector3(Offset.x, 0, Offset.z).normalized * -Speed, ForceMode.Force);
+
+                //print(GetComponent<Rigidbody>().velocity.magnitude);
+            }
+            UpdatePlayerPos();
         }
-        if (_isDadMoving && _holdBaby.IsOnHisBack == false && _playerMov.CanBabyFollow)
-        {
-            Offset = LastPOSPLAYER - _playerMov.transform.position;
-            Offset.y = 0;
-            transform.position -= Offset;
-            Point++;
-        }
-        UpdatePlayerPos();
     }
 
     private void Awake()
@@ -99,10 +135,12 @@ public class TestBabyWalk : MonoBehaviour
         LastPOSPLAYER = _playerMov.transform.position;
 
         _baseScaleCrushedBaby = 1;
+        CanBabyInputs = true;
         //_baseScaleCrushedBaby = transform.localScale.y;
     }
     private void Update()
     {
+        _walkSpd = _playerMov.Direction * Speed;
         CheckIsPlayerMoving();
         BabyMov();
         UpdateRotationBaby();

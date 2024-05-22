@@ -236,6 +236,9 @@ public class PlayerMovements : MonoBehaviour
                         //ActualSpeed = 0;
                         IconFollowHonk.SetActive(false);
                         IconFollowHonkJR.SetActive(false);
+                        /////////////////////////////////////////////////////////////////////
+                        //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
+                        /////////////////////////////////////////////////////////////////////
                         _testBabyWalk.GetComponent<Rigidbody>().isKinematic = false;
                         _testBabyWalk.GetComponent<Rigidbody>().useGravity = true;
                         _testBabyWalk.gameObject.layer = _takeBabyLayer;
@@ -251,6 +254,9 @@ public class PlayerMovements : MonoBehaviour
                         CanBabyFollow = false;
                         //_testBabyWalk.transform.rotation = TransformRotationBaby.rotation;
                         AnimatorHonkJR.SetBool("OnBack", true);
+                        /////////////////////////////////////////////////////////////////////
+                        //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
+                        /////////////////////////////////////////////////////////////////////
                     }
                     else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
                     {
@@ -260,6 +266,9 @@ public class PlayerMovements : MonoBehaviour
                         //CanMove = false;
                         //_canTimerBabyJump = true;
                         //ActualSpeed = 0;
+                        /////////////////////////////////////////////////////////////////////
+                        //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
+                        /////////////////////////////////////////////////////////////////////
                         _testBabyWalk.gameObject.layer = 14;
                         //_testBabyWalk.gameObject.layer = _putBabyLayer;
                         _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = false;
@@ -276,6 +285,9 @@ public class PlayerMovements : MonoBehaviour
                         _testBabyWalk.LastPositionPlayer.Add(transform.position);
                         _holdBaby.IsOnHisBack = false;
                         AnimatorHonkJR.SetBool("OnBack", false);
+                        /////////////////////////////////////////////////////////////////////
+                        //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
+                        /////////////////////////////////////////////////////////////////////
                     }
                     else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport)
                     {
@@ -291,7 +303,7 @@ public class PlayerMovements : MonoBehaviour
                             CanBabyFollow = false;
                             AnimatorHonkJR.SetBool("IsActive", false);
                             AnimatorHonkJR.SetTrigger("ChangingState");
-                            
+
                             IconFollowHonk.SetActive(false);
                             IconFollowHonkJR.SetActive(false);
 
@@ -353,6 +365,7 @@ public class PlayerMovements : MonoBehaviour
         //_testBabyWalk = Instantiate(_babyPrefab, BabyParent.gameObject.transform);
         //AnimatorHonkJR = _testBabyWalk.gameObject.GetComponentInChildren<Animator>();
 
+        _testBabyWalk.GetComponent<CharacterController>().enabled = false;
         _testBabyWalk.gameObject.transform.parent = BabyParent.gameObject.transform;
         _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
         _testBabyWalk = GetComponentInChildren<TestBabyWalk>();
@@ -377,6 +390,7 @@ public class PlayerMovements : MonoBehaviour
         _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
         _holdBaby.CanHoldBaby = false;
         CanBabyFollow = false;
+        _testBabyWalk.GetComponent<CharacterController>().enabled = true;
         AnimatorHonkJR.SetBool("OnBack", true);
 
     }
@@ -569,9 +583,10 @@ public class PlayerMovements : MonoBehaviour
         if (IsWalking)
         {
             CharaController.Move(WalkingSpeed * Time.deltaTime);
-            //_baby.GetComponent<CharacterController>().Move(WalkingSpeed * Time.deltaTime);
-            //if (_holdBaby.IsOnHisBack == false)
+            //if (_baby.GetComponent<TestBabyWalk>().CanBabyInputs && _holdBaby.IsOnHisBack == false && CanBabyFollow)
             //{
+            //    _baby.GetComponent<CharacterController>().Move(WalkingSpeed * Time.deltaTime);
+            //    _baby.GetComponent<CharacterController>().enabled = true;
             //}
             GetComponent<CharacterController>().enabled = true;
         }
@@ -623,7 +638,7 @@ public class PlayerMovements : MonoBehaviour
         WalkingSpeed = Direction * ActualSpeed;
         _currentTimer += Time.deltaTime;
         ApplyMovement();
-        ApplyRotation();
+        //ApplyRotation();
         //CheckLastPosition();
         ApplyGravity();
         if (IsGrounded())
