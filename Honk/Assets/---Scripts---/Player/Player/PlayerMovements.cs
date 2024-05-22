@@ -365,7 +365,7 @@ public class PlayerMovements : MonoBehaviour
         //_testBabyWalk = Instantiate(_babyPrefab, BabyParent.gameObject.transform);
         //AnimatorHonkJR = _testBabyWalk.gameObject.GetComponentInChildren<Animator>();
 
-        _testBabyWalk.GetComponent<CharacterController>().enabled = false;
+        //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
         _testBabyWalk.gameObject.transform.parent = BabyParent.gameObject.transform;
         _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
         _testBabyWalk = GetComponentInChildren<TestBabyWalk>();
@@ -390,7 +390,7 @@ public class PlayerMovements : MonoBehaviour
         _holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
         _holdBaby.CanHoldBaby = false;
         CanBabyFollow = false;
-        _testBabyWalk.GetComponent<CharacterController>().enabled = true;
+        //_testBabyWalk.GetComponent<CharacterController>().enabled = true;
         AnimatorHonkJR.SetBool("OnBack", true);
 
     }
@@ -638,7 +638,7 @@ public class PlayerMovements : MonoBehaviour
         WalkingSpeed = Direction * ActualSpeed;
         _currentTimer += Time.deltaTime;
         ApplyMovement();
-        //ApplyRotation();
+        ApplyRotation();
         //CheckLastPosition();
         ApplyGravity();
         if (IsGrounded())
