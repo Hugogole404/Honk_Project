@@ -35,7 +35,7 @@ public class LightIntensityController : MonoBehaviour
     {
         if (isInside)
         {
-            if (directionalLight.intensity < maxIntensity && isInside==true)
+            if (directionalLight.intensity < maxIntensity)
             {
                 directionalLight.intensity += intensityChangeSpeed * Time.deltaTime;
                 directionalLight.intensity = Mathf.Min(directionalLight.intensity, maxIntensity);
@@ -43,7 +43,7 @@ public class LightIntensityController : MonoBehaviour
         }
         else
         {
-            if (directionalLight.intensity > minIntensity)
+            if (directionalLight.intensity > minIntensity && isInside == true)
             {
                 directionalLight.intensity -= intensityChangeSpeed * Time.deltaTime;
                 directionalLight.intensity = Mathf.Max(directionalLight.intensity, minIntensity);
