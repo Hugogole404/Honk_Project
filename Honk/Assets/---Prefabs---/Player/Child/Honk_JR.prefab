@@ -982,6 +982,7 @@ GameObject:
   - component: {fileID: 7124740929603538983}
   - component: {fileID: 5988767312792590225}
   - component: {fileID: 6324061056305104706}
+  - component: {fileID: 6213251637841871203}
   m_Layer: 13
   m_Name: Honk_JR
   m_TagString: Baby
@@ -1065,6 +1066,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d5d9384e97b7244a96cd32bdccea26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanBabyInputs: 0
+  Speed: 0
+  VelocityMax: 0
+  Direction: {x: 0, y: 0, z: 0}
   BaseScaleBaby: {x: 0, y: 0, z: 0}
   BaseScaleBabyTest: {x: 0, y: 0, z: 0}
   Offset: {x: 0, y: 0, z: 0}
@@ -1077,6 +1082,32 @@ MonoBehaviour:
   _speedToNormalScale: 0
   _maxTimerToNormalScale: 0
   CanGoToNormalScale: 0
+--- !u!143 &6213251637841871203
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4576253192787391514}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Height: 0.81
+  m_Radius: 0.38
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.28, z: 0}
 --- !u!1 &4661707987396591513
 GameObject:
   m_ObjectHideFlags: 0
