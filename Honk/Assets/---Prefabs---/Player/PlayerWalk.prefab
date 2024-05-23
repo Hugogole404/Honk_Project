@@ -294,7 +294,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 24576
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -21054,8 +21054,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5592813460514264912}
-  m_LocalRotation: {x: 0.41471907, y: -0.000000007450581, z: 0.0000000037252903, w: 0.90994954}
-  m_LocalPosition: {x: -29.5024, y: 40.199997, z: -24.106863}
+  m_LocalRotation: {x: 0.41471905, y: -3.5527137e-15, z: 1.7763568e-15, w: 0.90994954}
+  m_LocalPosition: {x: -32.599976, y: 40.199997, z: -24.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21319,7 +21319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6096470208097009403}
   m_LocalRotation: {x: 0.41471905, y: -3.5527137e-15, z: 1.7763568e-15, w: 0.90994954}
-  m_LocalPosition: {x: -29.5024, y: 40.199997, z: -24.106863}
+  m_LocalPosition: {x: -32.599976, y: 40.199997, z: -24.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27399,8 +27399,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6324061056305104706, guid: 7d85b5e8b507a7b40bf618dfe68651ec,
         type: 3}
+      propertyPath: Speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324061056305104706, guid: 7d85b5e8b507a7b40bf618dfe68651ec,
+        type: 3}
+      propertyPath: VelocityMax
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324061056305104706, guid: 7d85b5e8b507a7b40bf618dfe68651ec,
+        type: 3}
       propertyPath: ScaleCrushedBaby
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324061056305104706, guid: 7d85b5e8b507a7b40bf618dfe68651ec,
+        type: 3}
+      propertyPath: _gravityMultiplier
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6324061056305104706, guid: 7d85b5e8b507a7b40bf618dfe68651ec,
         type: 3}
@@ -27412,7 +27427,8 @@ PrefabInstance:
       propertyPath: _maxTimerToNormalScale
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5988767312792590225, guid: 7d85b5e8b507a7b40bf618dfe68651ec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4208612149218285383, guid: 7d85b5e8b507a7b40bf618dfe68651ec,
