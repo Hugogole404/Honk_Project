@@ -25,7 +25,7 @@ public class Platform : MonoBehaviour
     {
         if (_shake == true && _platform.transform.position.y <= t_transform_initial)
         {
-            Sound_plateform.Play();
+            
             ScreenShake.Instance.Shake(ShakeData);
             FXFall.Play();
             _shake = false;

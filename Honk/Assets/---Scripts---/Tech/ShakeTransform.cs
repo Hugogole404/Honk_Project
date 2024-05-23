@@ -25,6 +25,7 @@ public class ShakeTransform : MonoBehaviour
 
     public void Begin()
     {
+        Platform.GetComponent<Platform>().Sound_plateform.Play();
         StopAllCoroutines();
         StartCoroutine(Shake());
         
