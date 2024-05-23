@@ -7,11 +7,18 @@ public class LightIntensityController : MonoBehaviour
     public Light directionalLight;
     public Collider inCollider;
     public Collider outCollider;
+    
 
     public float maxIntensity = 1.0f;
     public float minIntensity = 0.0f;
     public float intensityChangeSpeed = 1.0f;
 
+    public Collider CollideroutColliderPointLight;
+    public float PointMinIntensity = 0;
+    public Light PointLight;
+    public float PointintensityChangeSpeed = 1.0f;
+
+    private bool isOn =false;
     private bool isInside = false;
 
     private void OnTriggerEnter(Collider other)
@@ -19,8 +26,13 @@ public class LightIntensityController : MonoBehaviour
         if (other == inCollider)
         {
             isInside = true;
-            Debug.Log("aie");
+            Debug.Log("IN");
+            directionalLight.intensity = minIntensity;
+            PointLight.intensity = 12.36f;
+            isOn = true;
         }
+
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -29,25 +41,26 @@ public class LightIntensityController : MonoBehaviour
         {
             isInside = false;
         }
+        if (other == CollideroutColliderPointLight)
+        {
+            isOn = false;
+        }
     }
+
+    
 
     private void Update()
     {
-        if (isInside)
+        if (directionalLight.intensity < maxIntensity && isInside == false)
         {
-            if (directionalLight.intensity < maxIntensity)
-            {
-                directionalLight.intensity += intensityChangeSpeed * Time.deltaTime;
-                directionalLight.intensity = Mathf.Min(directionalLight.intensity, maxIntensity);
-            }
+            directionalLight.intensity += intensityChangeSpeed * Time.deltaTime;
+            directionalLight.intensity = Mathf.Min(directionalLight.intensity, maxIntensity);
         }
-        else
+
+        if (PointLight.intensity > PointMinIntensity && isOn == false)
         {
-            if (directionalLight.intensity > minIntensity && isInside == true)
-            {
-                directionalLight.intensity -= intensityChangeSpeed * Time.deltaTime;
-                directionalLight.intensity = Mathf.Min(directionalLight.intensity, minIntensity);
-            }
+            PointLight.intensity -= PointintensityChangeSpeed * Time.deltaTime;
+            PointLight.intensity = Mathf.Max(PointLight.intensity, PointMinIntensity);
         }
     }
 }
