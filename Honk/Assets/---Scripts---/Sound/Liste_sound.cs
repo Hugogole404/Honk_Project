@@ -12,14 +12,4 @@ public class Liste_sound : MonoBehaviour
     public AudioSource paw_grotte;
     public AudioSource depot_petit;
     public AudioSource depot_petit_grotte;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
