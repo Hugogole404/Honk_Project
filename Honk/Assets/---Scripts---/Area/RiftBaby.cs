@@ -26,14 +26,12 @@ public class RiftBaby : MonoBehaviour
         if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
             _playerMovements.CanBabyTeleport = true;
-            
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false && _playerMovements.CanTeleportbabyRift)
         {
-
             // lancer l'anim où il rentre 
             if (Shrooms.Count != 0)
             {

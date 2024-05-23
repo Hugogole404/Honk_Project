@@ -1,15 +1,15 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-//using TMPro.EditorUtilities;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class TestBabyWalk : MonoBehaviour
 {
     public bool CanBabyInputs;
     public float Speed;
     public float VelocityMax;
+    public Vector3 Direction;
     [Space]
     public Vector3 BaseScaleBaby;
     public Vector3 BaseScaleBabyTest;
@@ -17,7 +17,6 @@ public class TestBabyWalk : MonoBehaviour
     public List<Vector3> LastPositionPlayer;
     public Vector3 LastPOSPLAYER;
 
-    //[SerializeField] private float _speed;
     [SerializeField] private float _gravityMultiplier;
 
     public int Point;
@@ -35,6 +34,8 @@ public class TestBabyWalk : MonoBehaviour
     private float _currentTimerToNormalScale;
     [HideInInspector] public bool CanGoToNormalScale;
     private Vector3 _walkSpd;
+    private CharacterController _characterController;
+    private float _velo;
 
     private void RescaleBaby()
     {
@@ -64,7 +65,9 @@ public class TestBabyWalk : MonoBehaviour
     private void UpdatePlayerPos()
     {
         LastPOSPLAYER = _playerMov.transform.position;
-        GetComponent<Rigidbody>().AddForce(Vector3.down * Time.deltaTime * _gravityMultiplier);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //GetComponent<Rigidbody>().AddForce(Vector3.down * Time.deltaTime * _gravityMultiplier);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     private void UpdateRotationBaby()
     {
@@ -89,42 +92,39 @@ public class TestBabyWalk : MonoBehaviour
             if (_isDadMoving && _holdBaby.IsOnHisBack == false && _playerMov.CanBabyFollow)
             {
                 //// chara controller
-                //Vector3 direction = _playerMov.Direction;
-                //direction.y = transform.position.y;
-                ////direction = direction.normalized;
-                ////GetComponent<CharacterController>().Move(_walkSpd * Time.deltaTime);
-                //GetComponent<CharacterController>().Move(Speed * Time.deltaTime * direction);
-                ////GetComponent<CharacterController>().enabled = true;
-
+                Direction = _playerMov.Direction;
+                Direction.y = transform.position.y;
+                _walkSpd = Direction * Speed;
+                GetComponent<CharacterController>().Move(_walkSpd * Time.deltaTime);
 
                 // code d'avant
-                Offset = LastPOSPLAYER - _playerMov.transform.position;
-                Offset.y = 0;
-                transform.position -= Offset;
+                //Offset = LastPOSPLAYER - _playerMov.transform.position;
+                //Offset.y = 0;
+                //transform.position -= Offset;
+                //Point++;
+            }
+            else if (_holdBaby.IsOnHisBack == false)
+            {
+                // Gravity
+                _velo = 0;
+                _velo -= 9.75f * Time.deltaTime * _gravityMultiplier;
+                Direction.y = _velo;
+                Direction.x = 0;
+                Direction.z = 0;
+                _walkSpd = Direction * Speed;
 
-                Point++;
-
-
-                /// pas pris
-                ///if (Offset.x < 0) Offset.x = -1;
-                ///if (Offset.x > 0) Offset.x = 1;
-
-                ///if (Offset.z < 0) Offset.z = -1;
-                ///if (Offset.z > 0) Offset.z = 1;
-
-                ///if (GetComponent<Rigidbody>().velocity.magnitude <= VelocityMax)
-                ///    GetComponent<Rigidbody>().AddForce(new Vector3(Offset.x, 0, Offset.z).normalized * -Speed, ForceMode.Force);
-
-                //print(GetComponent<Rigidbody>().velocity.magnitude);
+                GetComponent<CharacterController>().Move(_walkSpd * Time.deltaTime);
             }
             UpdatePlayerPos();
         }
     }
 
+    public bool IsGrounded() => _characterController.isGrounded;
     private void Awake()
     {
         _holdBaby = FindAnyObjectByType<HoldBaby>();
         _playerMov = FindAnyObjectByType<PlayerMovements>();
+        _characterController = GetComponent<CharacterController>();
     }
     void Start()
     {
@@ -140,7 +140,6 @@ public class TestBabyWalk : MonoBehaviour
     }
     private void Update()
     {
-        _walkSpd = _playerMov.Direction * Speed;
         CheckIsPlayerMoving();
         BabyMov();
         UpdateRotationBaby();

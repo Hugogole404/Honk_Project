@@ -163,6 +163,7 @@ public class PlayerMovements : MonoBehaviour
                 }
                 if (_canJump)
                 {
+                    _soundsList.JumpSound.Play();
                     _canTimerAnimJump = true;
                     AnimatorHonk.SetBool("IsJumping", true);
                     AnimatorHonk.SetTrigger("Jump");
@@ -262,6 +263,7 @@ public class PlayerMovements : MonoBehaviour
                         /////////////////////////////////////////////////////////////////////
                         //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
                         /////////////////////////////////////////////////////////////////////
+                        _soundsList.Tremblement.PlaySound();
                     }
                     else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
                     {
@@ -296,6 +298,7 @@ public class PlayerMovements : MonoBehaviour
                         /////////////////////////////////////////////////////////////////////
                         _testBabyWalk.GetComponent<CharacterController>().enabled = true;
                         /////////////////////////////////////////////////////////////////////
+                        _soundsList.Tremblement.PlaySound();
                     }
                     else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport)
                     {
@@ -619,7 +622,18 @@ public class PlayerMovements : MonoBehaviour
             ////////////////////////////////////////////////////////////////////////////////////////////
             if (IsGrounded())
             {
-                _soundsList.paw_grotte.Play();
+                if (_soundsList.WalkInCave)
+                {
+                    _soundsList.PawGrotteSoundRandom.PlaySound();
+                }
+                else if(_soundsList.WalkInGrass)
+                {
+                    _soundsList.PawGrassSoundRandom.PlaySound();
+                }
+                else if(_soundsList.WalkInSnow)
+                {
+                    _soundsList.PawSnowSoundRandom.PlaySound();
+                }
             }
         }
         if (IsSwimming)

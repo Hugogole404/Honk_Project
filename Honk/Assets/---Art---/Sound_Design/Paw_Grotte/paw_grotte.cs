@@ -12,8 +12,7 @@ public class paw_grotte : MonoBehaviour
         // assigner les sons de pas dans l'éditeur Unity
         AudioSourceSound = GetComponent<AudioSource>();
     }
-
-    void Update()
+    public void PlaySound()
     {
         if (!AudioSourceSound.isPlaying && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0))
         {

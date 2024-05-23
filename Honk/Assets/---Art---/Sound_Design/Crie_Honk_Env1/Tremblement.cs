@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Tremblement : MonoBehaviour
 {
@@ -12,17 +13,12 @@ public class Tremblement : MonoBehaviour
         // assigner les sons de pas dans l'éditeur Unity
         AudioSourceSound = GetComponent<AudioSource>();
     }
-
-    void Update()
+    public void PlaySound()
     {
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            // son de pas aleatoire
-            int randomIndex = Random.Range(0, tremblement.Length);
-            AudioSourceSound.clip = tremblement[randomIndex];
+        int randomIndex = Random.Range(0, tremblement.Length);
+        AudioSourceSound.clip = tremblement[randomIndex];
 
-            // Jouez le son choisi
-            AudioSourceSound.Play();
-        }
+        // Jouez le son choisi
+        AudioSourceSound.Play();
     }
 }
