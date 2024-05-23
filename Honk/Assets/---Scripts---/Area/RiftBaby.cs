@@ -26,6 +26,10 @@ public class RiftBaby : MonoBehaviour
         if (other.gameObject.GetComponent<TestBabyWalk>() != null)
         {
             _playerMovements.CanBabyTeleport = true;
+            other.gameObject.GetComponent<TestBabyWalk>().gameObject.GetComponent<CharacterController>().enabled = false;
+            other.gameObject.GetComponent<TestBabyWalk>().gameObject.transform.position = _pointEnterRift.transform.position;
+            other.gameObject.GetComponent<TestBabyWalk>().gameObject.GetComponent<CharacterController>().enabled = true;
+            _playerMovements.CanBabyTeleport = false;
         }
     }
     private void OnTriggerStay(Collider other)
