@@ -11,7 +11,6 @@ public class AreaUI : MonoBehaviour
     [SerializeField] private float _fadeDuration;
     private Tween _fadeTween;
 
-
     private void Fade(float endVal, float duration, TweenCallback onEnd)
     {
         if (_fadeTween != null)
@@ -34,10 +33,16 @@ public class AreaUI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        FadeIn(_fadeDuration);
+        if (other.GetComponent<PlayerMovements>() != null)
+        {
+            FadeIn(_fadeDuration);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        FadeOut(_fadeDuration);
+        if (other.GetComponent<PlayerMovements>() != null)
+        {
+            FadeOut(_fadeDuration);
+        }
     }
 }

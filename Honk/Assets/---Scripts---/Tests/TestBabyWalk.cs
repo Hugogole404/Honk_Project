@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TestBabyWalk : MonoBehaviour
 {
     public bool CanBabyInputs;
+    public int SetGravityBaby;
     public float Speed;
     public float VelocityMax;
     public Vector3 Direction;
@@ -36,6 +37,9 @@ public class TestBabyWalk : MonoBehaviour
     private Vector3 _walkSpd;
     private CharacterController _characterController;
     private float _velo;
+
+    [HideInInspector] public GameObject ActualIceBlocParent;
+
 
     private void RescaleBaby()
     {
@@ -76,7 +80,6 @@ public class TestBabyWalk : MonoBehaviour
             if (_holdBaby.IsOnHisBack == false && _isDadMoving && _playerMov.CanBabyFollow)
             {
                 transform.rotation = _playerMov.transform.rotation;
-                //transform.eulerAngles = _playerMov.transform.eulerAngles;
             }
         }
     }
@@ -93,7 +96,7 @@ public class TestBabyWalk : MonoBehaviour
             {
                 //// chara controller
                 Direction = _playerMov.Direction;
-                Direction.y = transform.position.y;
+                Direction.y = transform.position.y * SetGravityBaby;
                 _walkSpd = Direction * Speed;
                 GetComponent<CharacterController>().Move(_walkSpd * Time.deltaTime);
 
@@ -108,7 +111,7 @@ public class TestBabyWalk : MonoBehaviour
                 // Gravity
                 _velo = 0;
                 _velo -= 9.75f * Time.deltaTime * _gravityMultiplier;
-                Direction.y = _velo;
+                Direction.y = _velo * SetGravityBaby;
                 Direction.x = 0;
                 Direction.z = 0;
                 _walkSpd = Direction * Speed;

@@ -11,9 +11,9 @@ public class BabyPutDetection : MonoBehaviour
         Collider[] hitCollider = Physics.OverlapSphere(transform.position, 0f);
         if (hitCollider.Length == NumberMinOfColliderToDetect) CanBePut = true;
         else if (hitCollider.Length >= NumberMinOfColliderToDetect) CanBePut = false;
-        foreach (Collider col in hitCollider)
-        {
-            print(col.gameObject.name);
-        }
+        //foreach (Collider col in hitCollider)
+        //{
+        //    print(col.gameObject.name);
+        //}
     }
 }

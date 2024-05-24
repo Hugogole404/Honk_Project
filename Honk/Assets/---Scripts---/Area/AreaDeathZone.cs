@@ -31,7 +31,6 @@ public class AreaDeathZone : MonoBehaviour
             if (_resetArea.ListOfObjToResetInScene.Count > 0)
             {
                 _resetArea.AreaReset();
-                //_testBabyWalk = Instantiate(_playerMovements._babyPrefab, _playerMovements.BabyParent.gameObject.transform);
             }
         }
         else if (other.GetComponent<TestBabyWalk>() != null)
@@ -55,7 +54,6 @@ public class AreaDeathZone : MonoBehaviour
             if (_resetArea.ListOfObjToResetInScene.Count > 0)
             {
                 _resetArea.AreaReset();
-                //_testBabyWalk = Instantiate(_playerMovements._babyPrefab, _playerMovements.BabyParent.gameObject.transform);
             }
         }
     }

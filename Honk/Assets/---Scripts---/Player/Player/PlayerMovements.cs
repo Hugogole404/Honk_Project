@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEditor;
+using Unity.VisualScripting;
 
 [HelpURL("https://app.milanote.com/1RscWs1SJGPM9j/playermovements?p=5Aw4gcZ0pqp")]
 [RequireComponent(typeof(CharacterController))]
@@ -185,7 +186,7 @@ public class PlayerMovements : MonoBehaviour
                     if (CanPushObstacles)
                     {
                         CanPushObstacles = false;
-                        Debug.Log("CA POUSSE LE BLOC");
+                        //Debug.Log("CA POUSSE LE BLOC");
                         Vector3 pushForce = Direction;
 
                         Vector3 distBetween = ActualObstacle.transform.position - transform.position;
@@ -311,7 +312,7 @@ public class PlayerMovements : MonoBehaviour
                         // LE FAIRE FOLLOW
                         if (CanBabyFollow)
                         {
-
+                            //_testBabyWalk.GetComponent<CharacterController>().enabled = true;
                             CanBabyFollow = false;
                             AnimatorHonkJR.SetBool("IsActive", false);
                             AnimatorHonkJR.SetTrigger("ChangingState");
