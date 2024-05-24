@@ -195,7 +195,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 24576
+    m_Bits: 8192
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -269,12 +269,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27eba92303c8afc4299b0b32e3fe308a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bloc: {fileID: 3085660235187707357}
+  ParentBabyAfterDeath: {fileID: 0}
   _top: {fileID: 6030137842821463674}
   _parentBaby: {fileID: 0}
-  _bloc: {fileID: 3085660235187707357}
   _timerMaxGetBaby: 1
   _currentTimerGetBaby: 0
-  ParentBabyAfterDeath: {fileID: 0}
   _parentInBloc: {fileID: 8125187997231045695}
 --- !u!1 &6030137842821463674
 GameObject:
