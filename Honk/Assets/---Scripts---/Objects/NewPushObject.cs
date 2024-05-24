@@ -23,7 +23,6 @@ public class NewPushObject : MonoBehaviour
             if (GetComponentInParent<Rigidbody>().velocity.magnitude <= 0.001f)
             {
                 GetComponentInParent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-                print("NONNNN");
             }
         }
     }
@@ -35,9 +34,9 @@ public class NewPushObject : MonoBehaviour
             if (_currentTimerGetBaby >= _timerMaxGetBaby)
             {
                 IsOnCube = true;
-                //_baby.GetComponent<CharacterController>().enabled = false;
-                //_baby.transform.parent = _parentInBloc.transform;
-                ////_baby.GetComponent<CharacterController>().enabled = true;
+                _baby.GetComponent<CharacterController>().enabled = false;
+                _baby.transform.parent = _parentInBloc.transform;
+                //_baby.GetComponent<CharacterController>().enabled = true;
                 //print("OUI");
                 CanTimerGetBaby = false;
                 _currentTimerGetBaby = 0;
@@ -60,7 +59,14 @@ public class NewPushObject : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-
+        if (other.GetComponent<TestBabyWalk>() != null)
+        {
+            if (IsOnCube)
+            {
+                // DESCATIVER LES MOVS DU PETIT
+                //other.GetComponent<TestBabyWalk>().
+            }
+        }
     }
     private void OnTriggerExit(Collider other)
     {
