@@ -88,9 +88,5 @@ public class PushObstacles : MonoBehaviour
         {
             //_baby.GetComponent<Rigidbody>().velocity = _bloc.GetComponent<Rigidbody>().velocity;
         }
-        //else
-        //{
-        //    _baby.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        //}
     }
 }

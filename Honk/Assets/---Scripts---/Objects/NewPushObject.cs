@@ -12,22 +12,35 @@ public class NewPushObject : MonoBehaviour
     [SerializeField] private float _timerMaxGetBaby;
     [SerializeField] GameObject _parentInBloc;
     private float _currentTimerGetBaby;
-    private bool _canTimerGetBaby;
-    private bool _isOnCube;
+    [HideInInspector] public bool CanTimerGetBaby;
+    [HideInInspector] public bool IsOnCube;
     private TestBabyWalk _baby;
 
+    private void CheckVelocity()
+    {
+        if (GetComponentInParent<Rigidbody>() != null)
+        {
+            if (GetComponentInParent<Rigidbody>().velocity.magnitude <= 0.001f)
+            {
+                GetComponentInParent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                print("NONNNN");
+            }
+        }
+    }
     private void CheckTimerToGetBaby()
     {
-        if (_canTimerGetBaby)
+        if (CanTimerGetBaby)
         {
             _currentTimerGetBaby += Time.deltaTime;
-            if(_currentTimerGetBaby >= _timerMaxGetBaby)
+            if (_currentTimerGetBaby >= _timerMaxGetBaby)
             {
-                _isOnCube = true;
-                _baby.GetComponent<CharacterController>().enabled = false;
-                _baby.transform.parent = _parentInBloc.transform;
-                //_baby.GetComponent<CharacterController>().enabled = true;
-                print("OUI");
+                IsOnCube = true;
+                //_baby.GetComponent<CharacterController>().enabled = false;
+                //_baby.transform.parent = _parentInBloc.transform;
+                ////_baby.GetComponent<CharacterController>().enabled = true;
+                //print("OUI");
+                CanTimerGetBaby = false;
+                _currentTimerGetBaby = 0;
             }
         }
     }
@@ -42,7 +55,7 @@ public class NewPushObject : MonoBehaviour
         if (other.GetComponent<TestBabyWalk>() != null && other.gameObject.transform.position.y >= _top.transform.position.y)
         {
             other.GetComponent<TestBabyWalk>().SetGravityBaby = 0;
-            _canTimerGetBaby = true;
+            CanTimerGetBaby = true;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -54,17 +67,18 @@ public class NewPushObject : MonoBehaviour
         if (other.GetComponent<TestBabyWalk>() != null)
         {
             other.GetComponent<TestBabyWalk>().SetGravityBaby = 1;
-            _canTimerGetBaby = false;
+            CanTimerGetBaby = false;
             _currentTimerGetBaby = 0;
-            _isOnCube = false;
+            IsOnCube = false;
         }
     }
     private void Awake()
     {
-     _baby = FindObjectOfType<TestBabyWalk>();   
+        _baby = FindObjectOfType<TestBabyWalk>();
     }
     private void Update()
     {
-        CheckTimerToGetBaby();   
+        CheckTimerToGetBaby();
+        CheckVelocity();
     }
 }
