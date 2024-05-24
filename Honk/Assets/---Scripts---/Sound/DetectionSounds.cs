@@ -8,6 +8,8 @@ public class DetectionSounds : MonoBehaviour
     [SerializeField] bool _walkInCave;
     [SerializeField] bool _walkInGrass;
     [SerializeField] bool _walkInSnow;
+    [SerializeField] bool _walkInIce;
+    [SerializeField] bool _walkInFlower;
     bool _playerIsDetected;
 
     private void OnTriggerStay(Collider other)
@@ -41,6 +43,14 @@ public class DetectionSounds : MonoBehaviour
             {
                 _listSounds.WalkInSnow = true;
             }
+            if (_walkInIce)
+            {
+                _listSounds.WalkInIce = true;
+            }
+            if (_walkInFlower)
+            {
+                _listSounds.WalkInflower = true;
+            }
         }
         else
         {
@@ -55,6 +65,14 @@ public class DetectionSounds : MonoBehaviour
             if (_walkInSnow)
             {
                 _listSounds.WalkInSnow = false;
+            }
+            if (_walkInIce)
+            {
+                _listSounds.WalkInIce = false;
+            }
+            if (_walkInFlower)
+            {
+                _listSounds.WalkInflower = false;
             }
         }
     }
