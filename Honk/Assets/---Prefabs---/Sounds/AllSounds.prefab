@@ -157,8 +157,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4187805706290760181}
+  - {fileID: 4190464526783773444}
   - {fileID: 5835730761957701111}
   - {fileID: 9040885063401697446}
+  - {fileID: 272694258868105477}
   - {fileID: 2894031811692806742}
   - {fileID: 1338971829911831060}
   - {fileID: 7425114890049480720}
@@ -538,6 +540,219 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2685934132774373396, guid: 2f5d7dcb54e180b45b4172b35ef3bc31,
     type: 3}
   m_PrefabInstance: {fileID: 4777497302514393092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6831413512439634244
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6158417203888869199}
+    m_Modifications:
+    - target: {fileID: 4262178071654624361, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_Name
+      value: paw_grotte_flower
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262178071654624361, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492920532320091057, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492920532320091057, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e90fc880957b6d4caca60ffefff15b6, type: 3}
+    - target: {fileID: 7492920532320091057, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36393d311da8d564ca5f862ea6bd974c, type: 3}
+    - target: {fileID: 7492920532320091057, guid: ad0851724abc86a409ab9b259a78b727,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: e640007080544da45a8d2bcc7e49659d, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad0851724abc86a409ab9b259a78b727, type: 3}
+--- !u!4 &272694258868105477 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6703260182968510529, guid: ad0851724abc86a409ab9b259a78b727,
+    type: 3}
+  m_PrefabInstance: {fileID: 6831413512439634244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7431298745075618629
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6158417203888869199}
+    m_Modifications:
+    - target: {fileID: 4262178071654624361, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_Name
+      value: paw_grotte_ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492920532320091057, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492920532320091057, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e73c7f1b67a53c6458bdff1c0c749f52, type: 3}
+    - target: {fileID: 7492920532320091057, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9642426e4baf41040ba5b71ea2273767, type: 3}
+    - target: {fileID: 7492920532320091057, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: e7e7c9c57fc7294418d5214c6c52f78e, type: 3}
+    - target: {fileID: 7492920532320091057, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: a0dc3e26f31d0a64e85b0d41eaee232e, type: 3}
+    - target: {fileID: 7492920532320091057, guid: d78cdb808b367d848950341bc5f52bf1,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: c8b740771944d3e45b75734981efe08b, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d78cdb808b367d848950341bc5f52bf1, type: 3}
+--- !u!4 &4190464526783773444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6703260182968510529, guid: d78cdb808b367d848950341bc5f52bf1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7431298745075618629}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8602042848157079441
 PrefabInstance:
