@@ -1067,6 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanBabyInputs: 0
+  SetGravityBaby: 1
   Speed: 0
   VelocityMax: 0
   Direction: {x: 0, y: 0, z: 0}
@@ -1082,6 +1083,7 @@ MonoBehaviour:
   _speedToNormalScale: 0
   _maxTimerToNormalScale: 0
   CanGoToNormalScale: 0
+  ActualIceBlocParent: {fileID: 0}
 --- !u!143 &6213251637841871203
 CharacterController:
   m_ObjectHideFlags: 0
