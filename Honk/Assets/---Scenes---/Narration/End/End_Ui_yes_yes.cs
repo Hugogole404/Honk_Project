@@ -30,21 +30,23 @@ public class End_Ui_yes_yes : MonoBehaviour
             _time += Time.deltaTime;
 
             float time = (_speed * Time.deltaTime) / Vector3.Distance(_camPlayer.position, _camCine.position);
+
             _camCine.position = Vector3.Lerp(_camCine.position, _camPlayer.position, time);
             _camCine.rotation = Quaternion.Lerp(_camCine.rotation, _camPlayer.rotation, time);
 
             _animatorFade.SetTrigger("FadeOut");
 
-            if (time >= 1)
+            if (_time >= 5)
             {
+                print("test");
+                _animatorFade.enabled = false;
                 SceneManager.LoadScene(_nameScene);
             }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         _isPlaying = true;
     }
 }
-
