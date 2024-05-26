@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3303251352494534904}
   - component: {fileID: 4723811025397486373}
-  - component: {fileID: 273304803329951718}
+  - component: {fileID: 2910199654600800524}
   m_Layer: 0
   m_Name: ColliderDetectionPush
   m_TagString: Untagged
@@ -257,7 +257,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &273304803329951718
+--- !u!114 &2910199654600800524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,16 +266,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3272855785722267908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27eba92303c8afc4299b0b32e3fe308a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a8b9c5bc0c82d9488eeda9448424510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bloc: {fileID: 3085660235187707357}
+  Bloc: {fileID: 3085660235187707357}
   ParentBabyAfterDeath: {fileID: 0}
-  _top: {fileID: 6030137842821463674}
   _parentBaby: {fileID: 0}
-  _timerMaxGetBaby: 1
-  _currentTimerGetBaby: 0
+  _top: {fileID: 6030137842821463674}
+  _timerMaxGetBaby: 0.5
   _parentInBloc: {fileID: 8125187997231045695}
+  CanTimerGetBaby: 0
+  IsOnCube: 0
 --- !u!1 &6030137842821463674
 GameObject:
   m_ObjectHideFlags: 0

@@ -232,39 +232,7 @@ public class PlayerMovements : MonoBehaviour
 
                     if (_holdBaby.CanHoldBaby && _holdBaby)
                     {
-                        // PRENDRE LE PETIT
-                        //Debug.Log("IS ON");
-
-                        //CanMove = false;
-                        //_canTimerBabyJump = true;
-                        //ActualSpeed = 0;
-                        IconFollowHonk.SetActive(false);
-                        IconFollowHonkJR.SetActive(false);
-                        /////////////////////////////////////////////////////////////////////
-                        _testBabyWalk.GetComponent<CharacterController>().enabled = false;
-                        //_testBabyWalk.GetComponent<Rigidbody>().isKinematic = false;
-                        //_testBabyWalk.GetComponent<Rigidbody>().useGravity = true;
-                        /////////////////////////////////////////////////////////////////////
-                        _testBabyWalk.gameObject.layer = _takeBabyLayer;
-                        //_testBabyWalk.gameObject.layer = 13;
-                        _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = true;
-                        _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
-                        //_holdBaby.Baby.gameObject.transform.DOJump(new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ), 1, 1, _maxTimerBabyJump);
-                        _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
-                        TPBabyPos = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
-                        _holdBaby.IsOnHisBack = true;
-                        /////////////////////////////////////////////////////////////////////
-                        //_holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
-                        /////////////////////////////////////////////////////////////////////
-
-                        _holdBaby.CanHoldBaby = false;
-                        CanBabyFollow = false;
-                        //_testBabyWalk.transform.rotation = TransformRotationBaby.rotation;
-                        AnimatorHonkJR.SetBool("OnBack", true);
-                        /////////////////////////////////////////////////////////////////////
-                        //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
-                        /////////////////////////////////////////////////////////////////////
-                        _soundsList.Tremblement.PlaySound();
+                        TakeBaby();
                     }
                     else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
                     {
@@ -305,14 +273,12 @@ public class PlayerMovements : MonoBehaviour
                     {
                         _testBabyWalk.GetComponent<CharacterController>().enabled = false;
                         CanTeleportbabyRift = true;
-                        //Debug.Log("TRUEEE");
                     }
                     else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport == false)
                     {
                         // LE FAIRE FOLLOW
                         if (CanBabyFollow)
                         {
-                            //_testBabyWalk.GetComponent<CharacterController>().enabled = true;
                             CanBabyFollow = false;
                             AnimatorHonkJR.SetBool("IsActive", false);
                             AnimatorHonkJR.SetTrigger("ChangingState");
@@ -323,6 +289,10 @@ public class PlayerMovements : MonoBehaviour
                         }
                         else
                         {
+                            //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
+                            _testBabyWalk.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
+                            //_testBabyWalk.GetComponent<CharacterController>().enabled = true;
+
                             CanBabyFollow = true;
                             AnimatorHonkJR.SetBool("IsActive", true);
                             AnimatorHonkJR.SetTrigger("ChangingState");
@@ -364,6 +334,42 @@ public class PlayerMovements : MonoBehaviour
     #endregion
 
     #region FUNCTIONS
+
+    public void TakeBaby()
+    {
+        // PRENDRE LE PETIT
+
+        //CanMove = false;
+        //_canTimerBabyJump = true;
+        //ActualSpeed = 0;
+        IconFollowHonk.SetActive(false);
+        IconFollowHonkJR.SetActive(false);
+        /////////////////////////////////////////////////////////////////////
+        _testBabyWalk.GetComponent<CharacterController>().enabled = false;
+        //_testBabyWalk.GetComponent<Rigidbody>().isKinematic = false;
+        //_testBabyWalk.GetComponent<Rigidbody>().useGravity = true;
+        /////////////////////////////////////////////////////////////////////
+        _testBabyWalk.gameObject.layer = _takeBabyLayer;
+        //_testBabyWalk.gameObject.layer = 13;
+        _testBabyWalk.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+        _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
+        //_holdBaby.Baby.gameObject.transform.DOJump(new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ), 1, 1, _maxTimerBabyJump);
+        _holdBaby.Baby.gameObject.transform.position = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
+        TPBabyPos = new Vector3(_holdBaby.BasePositionBaby.transform.position.x + OffsetBabyParentX, _holdBaby.BasePositionBaby.transform.position.y + OffsetBabyParentY, _holdBaby.BasePositionBaby.transform.position.z + OffsetBabyParentZ);
+        _holdBaby.IsOnHisBack = true;
+        /////////////////////////////////////////////////////////////////////
+        //_holdBaby.Baby.GetComponent<Rigidbody>().isKinematic = true;
+        /////////////////////////////////////////////////////////////////////
+
+        _holdBaby.CanHoldBaby = false;
+        CanBabyFollow = false;
+        //_testBabyWalk.transform.rotation = TransformRotationBaby.rotation;
+        AnimatorHonkJR.SetBool("OnBack", true);
+        /////////////////////////////////////////////////////////////////////
+        //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
+        /////////////////////////////////////////////////////////////////////
+        _soundsList.Tremblement.PlaySound();
+    }
     public void TeleportToSpawnPoint()
     {
         _testBabyWalk = FindAnyObjectByType<TestBabyWalk>();
@@ -627,11 +633,11 @@ public class PlayerMovements : MonoBehaviour
                 {
                     _soundsList.PawGrotteSoundRandom.PlaySound();
                 }
-                else if(_soundsList.WalkInGrass)
+                else if (_soundsList.WalkInGrass)
                 {
                     _soundsList.PawGrassSoundRandom.PlaySound();
                 }
-                else if(_soundsList.WalkInSnow)
+                else if (_soundsList.WalkInSnow)
                 {
                     _soundsList.PawSnowSoundRandom.PlaySound();
                 }
