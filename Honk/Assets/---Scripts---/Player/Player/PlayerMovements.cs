@@ -258,7 +258,7 @@ public class PlayerMovements : MonoBehaviour
                         if (_holdBaby.PositionBabyPut.gameObject.GetComponent<BabyPutDetection>().CanBePut)
                             _testBabyWalk.transform.position = _holdBaby.PositionBabyPut.transform.position;
                         else
-                            _testBabyWalk.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+                            _testBabyWalk.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
 
                         _testBabyWalk.LastPositionPlayer.Add(transform.position);
