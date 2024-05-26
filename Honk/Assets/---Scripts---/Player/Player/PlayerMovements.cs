@@ -344,6 +344,7 @@ public class PlayerMovements : MonoBehaviour
         //ActualSpeed = 0;
         IconFollowHonk.SetActive(false);
         IconFollowHonkJR.SetActive(false);
+        _testBabyWalk.SetGravityBaby = 1;
         /////////////////////////////////////////////////////////////////////
         _testBabyWalk.GetComponent<CharacterController>().enabled = false;
         //_testBabyWalk.GetComponent<Rigidbody>().isKinematic = false;
