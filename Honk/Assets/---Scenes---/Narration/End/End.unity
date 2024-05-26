@@ -8513,6 +8513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 552822530}
   - component: {fileID: 552822529}
+  - component: {fileID: 552822531}
   m_Layer: 0
   m_Name: Honk_Walk_Cycle
   m_TagString: Untagged
@@ -8560,6 +8561,20 @@ Transform:
   m_Father: {fileID: 957395657}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &552822531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552822528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba8ff009fb281b4bb7dbaaf7775917f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PasDumanchot: {fileID: 2100000, guid: 23a6a5b196ce55c428311d508cf21434, type: 2}
+  isSnow: 1
 --- !u!1 &553739264
 GameObject:
   m_ObjectHideFlags: 0
@@ -10296,6 +10311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705539975}
   - component: {fileID: 705539974}
+  - component: {fileID: 705539976}
   m_Layer: 0
   m_Name: Parent_02
   m_TagString: Untagged
@@ -10343,6 +10359,20 @@ Transform:
   m_Father: {fileID: 957395657}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 359, y: 0, z: 1}
+--- !u!114 &705539976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705539973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba8ff009fb281b4bb7dbaaf7775917f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PasDumanchot: {fileID: 2100000, guid: 23a6a5b196ce55c428311d508cf21434, type: 2}
+  isSnow: 0
 --- !u!1 &708189822
 GameObject:
   m_ObjectHideFlags: 0
@@ -15369,6 +15399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048728569}
   - component: {fileID: 1048728568}
+  - component: {fileID: 1048728570}
   m_Layer: 0
   m_Name: Parent_01
   m_TagString: Untagged
@@ -15416,6 +15447,20 @@ Transform:
   m_Father: {fileID: 957395657}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 359, z: 0}
+--- !u!114 &1048728570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048728567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba8ff009fb281b4bb7dbaaf7775917f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PasDumanchot: {fileID: 2100000, guid: 23a6a5b196ce55c428311d508cf21434, type: 2}
+  isSnow: 1
 --- !u!1001 &1055116186
 PrefabInstance:
   m_ObjectHideFlags: 0
