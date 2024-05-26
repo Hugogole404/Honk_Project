@@ -23,7 +23,7 @@ public class RiftBaby : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<TestBabyWalk>() != null)
+        if (other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false)
         {
             _playerMovements.CanBabyTeleport = true;
             other.gameObject.GetComponent<TestBabyWalk>().gameObject.GetComponent<CharacterController>().enabled = false;
