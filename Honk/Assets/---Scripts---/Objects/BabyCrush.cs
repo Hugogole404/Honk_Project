@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BabyCrush : MonoBehaviour
@@ -59,7 +60,7 @@ public class BabyCrush : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<TestBabyWalk>() != null)
+        if (other.GetComponent<TestBabyWalk>() != null && GetComponentInParent<Rigidbody>().velocity.magnitude > 0.0001f)
         {
             _playerMovements.TakeBaby();
         }

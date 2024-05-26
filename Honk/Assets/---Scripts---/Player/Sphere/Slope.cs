@@ -304,6 +304,5 @@ public class Slope : MonoBehaviour
     private void FixedUpdate()
     {
         //CheckLastPosition();
-        print(IsGrounded);
     }
 }
