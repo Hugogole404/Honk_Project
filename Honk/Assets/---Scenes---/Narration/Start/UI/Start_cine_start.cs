@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
-using UnityEngine.Timeline;
+using UnityEngine.InputSystem;
+using System;
 
 public class Start_cine_start : MonoBehaviour
 {
@@ -25,8 +23,11 @@ public class Start_cine_start : MonoBehaviour
     float _time;
     bool _isTiming;
 
+    [SerializeField] InputAction _action;
+
     private void Start()
     {
+        _action.Enable();
         _isTiming = false;
         _time = 0;
         _animatorHonk.SetBool("Sleep", true);
@@ -41,7 +42,7 @@ public class Start_cine_start : MonoBehaviour
             if (_time > _timer)
                 _time = _timer;
 
-            if (Input.anyKeyDown)
+            if (Input.anyKeyDown || _action.triggered)
             {
                 _timeLine.Play();
 
