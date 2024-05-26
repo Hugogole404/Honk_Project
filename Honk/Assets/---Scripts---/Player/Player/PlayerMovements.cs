@@ -347,6 +347,7 @@ public class PlayerMovements : MonoBehaviour
         _testBabyWalk.SetGravityBaby = 1;
         /////////////////////////////////////////////////////////////////////
         _testBabyWalk.GetComponent<CharacterController>().enabled = false;
+        _testBabyWalk.transform.rotation = transform.rotation;
         //_testBabyWalk.GetComponent<Rigidbody>().isKinematic = false;
         //_testBabyWalk.GetComponent<Rigidbody>().useGravity = true;
         /////////////////////////////////////////////////////////////////////
