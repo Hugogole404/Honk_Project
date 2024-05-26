@@ -29,6 +29,12 @@ public class RiftBaby : MonoBehaviour
             other.gameObject.GetComponent<TestBabyWalk>().gameObject.GetComponent<CharacterController>().enabled = false;
             other.gameObject.GetComponent<TestBabyWalk>().gameObject.transform.position = _pointEnterRift.transform.position;
             other.gameObject.GetComponent<TestBabyWalk>().gameObject.GetComponent<CharacterController>().enabled = true;
+            if (Shrooms.Count != 0)
+            {
+                currentListNum = 0;
+                StartCoroutine(ChampiScale());
+                Tp_Sound.Play();
+            }
             _playerMovements.CanBabyTeleport = false;
         }
     }
@@ -37,12 +43,7 @@ public class RiftBaby : MonoBehaviour
         if (other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false && _playerMovements.CanTeleportbabyRift)
         {
             // lancer l'anim où il rentre 
-            if (Shrooms.Count != 0)
-            {
-                currentListNum = 0;
-                StartCoroutine(ChampiScale());
-                Tp_Sound.Play();
-            }
+
             other.gameObject.transform.position = _pointEnterRift.transform.position;
 
             // lancer l'anim ou il ressort 
