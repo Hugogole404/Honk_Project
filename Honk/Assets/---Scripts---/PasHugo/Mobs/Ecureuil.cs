@@ -12,15 +12,16 @@ public class Ecureuil : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject NextStop;
     public GameObject Stop1;
-    public GameObject Stop2;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void GoTo()
     {
         agent.destination = Stop1.transform.position;
+        m_animator.SetBool("IsMoving", true);
+
     }
 
     //IEnumerator JustRan()
