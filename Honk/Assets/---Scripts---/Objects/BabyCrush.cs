@@ -60,7 +60,7 @@ public class BabyCrush : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<TestBabyWalk>() != null && GetComponentInParent<Rigidbody>().velocity.magnitude > 0.0001f)
+        if (other.GetComponent<TestBabyWalk>() != null && GetComponentInParent<Rigidbody>().velocity.magnitude > 0.001f)
         {
             _playerMovements.TakeBaby();
         }
