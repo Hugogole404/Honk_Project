@@ -7,6 +7,7 @@ public class BabyCrush : MonoBehaviour
 {
     HoldBaby _holdBaby;
     PlayerMovements _playerMovements;
+    [SerializeField] float _minValToCalculateVelocity;
     /// <summary>
     /// CRUSH 
     /// </summary>
@@ -60,9 +61,9 @@ public class BabyCrush : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<TestBabyWalk>() != null && GetComponentInParent<Rigidbody>().velocity.magnitude > 0.001f)
+        if (other.GetComponent<TestBabyWalk>() != null && GetComponentInParent<Rigidbody>().velocity.magnitude > _minValToCalculateVelocity)
         {
-            _playerMovements.TakeBaby();
+            _playerMovements.TakeBaby(); 
         }
     }
 
