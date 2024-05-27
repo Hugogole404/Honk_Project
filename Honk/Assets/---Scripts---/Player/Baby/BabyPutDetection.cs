@@ -14,7 +14,7 @@ public class BabyPutDetection : MonoBehaviour
         else if (hitCollider.Length >= NumberMinOfColliderToDetect) CanBePut = false;
         foreach (Collider col in hitCollider)
         {
-            print(col.gameObject.name);
+            //print(col.gameObject.name);
             print(hitCollider.Length);
         }
     }

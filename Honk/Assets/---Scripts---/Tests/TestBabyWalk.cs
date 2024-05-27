@@ -96,7 +96,11 @@ public class TestBabyWalk : MonoBehaviour
             {
                 //// chara controller
                 Direction = _playerMov.Direction;
-                Direction.y = transform.position.y * SetGravityBaby;
+
+                _velo = 0;
+                _velo -= 9.75f * Time.deltaTime * _gravityMultiplier;
+                Direction.y = _velo * SetGravityBaby;
+                //Direction.y = transform.position.y * SetGravityBaby;
                 _walkSpd = Direction * Speed;
                 GetComponent<CharacterController>().Move(_walkSpd * Time.deltaTime);
 
