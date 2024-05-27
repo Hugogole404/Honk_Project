@@ -269,11 +269,11 @@ public class PlayerMovements : MonoBehaviour
                         /////////////////////////////////////////////////////////////////////
                         _soundsList.Tremblement.PlaySound();
                     }
-                    else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport)
-                    {
-                        _testBabyWalk.GetComponent<CharacterController>().enabled = false;
-                        CanTeleportbabyRift = true;
-                    }
+                    //else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport)
+                    //{
+                    //    _testBabyWalk.GetComponent<CharacterController>().enabled = false;
+                    //    CanTeleportbabyRift = true;
+                    //}
                     else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport == false)
                     {
                         // LE FAIRE FOLLOW
@@ -371,6 +371,7 @@ public class PlayerMovements : MonoBehaviour
         //_testBabyWalk.GetComponent<CharacterController>().enabled = false;
         /////////////////////////////////////////////////////////////////////
         _soundsList.Tremblement.PlaySound();
+        print("patate");
     }
     public void TeleportToSpawnPoint()
     {

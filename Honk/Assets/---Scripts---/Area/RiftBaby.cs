@@ -36,19 +36,20 @@ public class RiftBaby : MonoBehaviour
                 Tp_Sound.Play();
             }
             _playerMovements.CanBabyTeleport = false;
+            _holdBaby.CanHoldBaby = false;
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false && _playerMovements.CanTeleportbabyRift)
-        {
-            // lancer l'anim où il rentre 
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.GetComponent<TestBabyWalk>() != null && _holdBaby.IsOnHisBack == false && _playerMovements.CanTeleportbabyRift)
+    //    {
+    //        // lancer l'anim où il rentre 
 
-            other.gameObject.transform.position = _pointEnterRift.transform.position;
+    //        other.gameObject.transform.position = _pointEnterRift.transform.position;
 
-            // lancer l'anim ou il ressort 
-        }
-    }
+    //        // lancer l'anim ou il ressort 
+    //    }
+    //}
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<TestBabyWalk>() != null)
