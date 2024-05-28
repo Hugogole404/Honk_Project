@@ -30,23 +30,23 @@ public class ScaleOnCollision : MonoBehaviour
 
             mySequence.Append(transform.DOScale(targetScale, duration));
             FXleaf.Play();
-            mySequence.AppendInterval(returnDelay);
-            mySequence.Append(transform.DOScale(initialScale, duration));
+            //mySequence.AppendInterval(returnDelay);
+            //mySequence.Append(transform.DOScale(initialScale, duration));
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        { 
-            
+        {
+
             //FXleaf.Play();
-            
-            //Sequence mySequence = DOTween.Sequence();
+
+            Sequence mySequence = DOTween.Sequence();
 
             //mySequence.Append(transform.DOScale(targetScale, duration));
             //mySequence.AppendInterval(returnDelay);
-            //mySequence.Append(transform.DOScale(initialScale, duration));
+            mySequence.Append(transform.DOScale(initialScale, duration));
         }
     }
 }
