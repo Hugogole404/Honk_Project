@@ -21,11 +21,11 @@ public class AreaUI : MonoBehaviour
         _fadeTween.onComplete += onEnd;
     }
 
-    private void FadeIn(float duration)
+    public void FadeIn(float duration)
     {
         Fade(1f, duration, () => { UI_ToActivate_or_not.interactable = true; UI_ToActivate_or_not.blocksRaycasts = true; });
     }
-    private void FadeOut(float duration)
+    public void FadeOut(float duration)
     {
         Fade(0f, duration, () => { UI_ToActivate_or_not.interactable = false; UI_ToActivate_or_not.blocksRaycasts = false; });
     }
