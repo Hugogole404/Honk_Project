@@ -670,6 +670,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void Start()
     {
+        Cursor.visible = false;
         CanPlayerUseInputs = true;
         if (_hadSpawnPoint)
         {
