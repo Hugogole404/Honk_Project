@@ -9,6 +9,7 @@ public class Lapin_Nav : MonoBehaviour
     public Transform player;
     public Animator m_animator;
     private NavMeshAgent agent;
+    public bool stopchecking = false;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -18,24 +19,27 @@ public class Lapin_Nav : MonoBehaviour
     IEnumerator CheckTransform()
     {
         yield return new WaitForSeconds(0.05f);
-        if (Vector3.Distance(agent.transform.position, player.position) <= 2)
+        if (Vector3.Distance(agent.transform.position, player.position) <= 30 || stopchecking == true)
         {
-            Vector3 dirToPlayer = transform.position - player.position;
-            Vector3 newPos = transform.position + dirToPlayer *4;
-            agent.destination = newPos;
-            //StartCoroutine(JustRan());
-            //StopCoroutine(CheckTransform());
-            m_animator.SetBool("IsMoving", true);
-        }
-        else if (Vector3.Distance(agent.transform.position, player.position) >= 3)
-        {
-            agent.destination = player.position;
-            m_animator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            agent.destination = agent.transform.position;
-            m_animator.SetBool("IsMoving", false);
+            if (Vector3.Distance(agent.transform.position, player.position) <= 2)
+            {
+                Vector3 dirToPlayer = transform.position - player.position;
+                Vector3 newPos = transform.position + dirToPlayer * 4;
+                agent.destination = newPos;
+                //StartCoroutine(JustRan());
+                //StopCoroutine(CheckTransform());
+                m_animator.SetBool("IsMoving", true);
+            }
+            else if (Vector3.Distance(agent.transform.position, player.position) >= 3)
+            {
+                agent.destination = player.position;
+                m_animator.SetBool("IsMoving", true);
+            }
+            else
+            {
+                agent.destination = agent.transform.position;
+                m_animator.SetBool("IsMoving", false);
+            }
         }
         StartCoroutine(CheckTransform());
     }

@@ -11,7 +11,6 @@ public class GrotteEntree : MonoBehaviour
     private float StartPos;
 
     // Start is called before the first frame update
-
     private void Start()
     {
         
