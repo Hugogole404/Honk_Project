@@ -10,16 +10,18 @@ public class CameraTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("fix");
-        Cam.gameObject.SetActive(true);
-        
+        if (other.GetComponent<PlayerMovements>() != null)
+        {
+            Debug.Log("fix");
+            Cam.gameObject.SetActive(true);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("InCamSwap");
-        Cam.gameObject.SetActive(false);
+        if (other.GetComponent<PlayerMovements>() != null)
+        {
+            Debug.Log("InCamSwap");
+            Cam.gameObject.SetActive(false);
+        }
     }
-
-
 }
-    
