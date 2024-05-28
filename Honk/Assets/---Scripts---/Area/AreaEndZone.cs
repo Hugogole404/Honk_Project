@@ -18,8 +18,6 @@ public class AreaEndZone : MonoBehaviour
         if (other.GetComponent<PlayerMovements>() != null || other.GetComponent<Slope>() != null)
         {
             _areaUI.FadeIn(1.5f);
-            if (_currentTimer >= _maxTimer)
-                SceneManager.LoadScene(NameSceneToLoad);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -44,5 +42,7 @@ public class AreaEndZone : MonoBehaviour
         {
             _currentTimer += Time.deltaTime;
         }
+        if (_currentTimer >= _maxTimer)
+            SceneManager.LoadScene(NameSceneToLoad);
     }
 }
