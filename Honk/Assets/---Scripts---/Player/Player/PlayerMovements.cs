@@ -77,6 +77,7 @@ public class PlayerMovements : MonoBehaviour
     public TestBabyWalk _babyPrefab;
     private bool _canBePutHere;
     private Liste_sound _soundsList;
+    public AreaUI AreaUIFadeStart;
 
     [HideInInspector] public bool CanPushObstacles;
     [HideInInspector] public GameObject ActualObstacle;
@@ -684,6 +685,8 @@ public class PlayerMovements : MonoBehaviour
         CanBabyFollow = false;
         CanPushObstacles = false;
         CanMove = true;
+
+        AreaUIFadeStart.FadeOut(1.5f);
     }
     private void FixedUpdate()
     {

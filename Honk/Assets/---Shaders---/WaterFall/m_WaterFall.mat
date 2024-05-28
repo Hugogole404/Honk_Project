@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: m_WaterFall
-  m_Shader: {fileID: -6465566751694194690, guid: 6bd21f9989bae62429c85ccf67c5b1c6,
+  m_Shader: {fileID: -6465566751694194690, guid: 52d0c7504d1feee4cb7e9b51866983d3,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -17,7 +17,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2020
+  m_CustomRenderQueue: 3012
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -40,20 +40,20 @@ Material:
     m_Floats:
     - _FoamEdgeThickness: 0.4
     - _QueueControl: 0
-    - _QueueOffset: 20
+    - _QueueOffset: 12
     - _ScrolSpeed: 0.1
-    - _SinAmplitude: 0
+    - _SinAmplitude: 0.66
     - _SinAmplitudeWaterFall: -1
-    - _SinFrequence: 0
-    - _SphereRadius: 1.1720986
+    - _SinFrequence: 12.18
+    - _SphereRadius: 6.2029314
     m_Colors:
     - ObjectPosition: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0}
     - _FoamColor: {r: 0.16078432, g: 0.6117647, b: 0.65882355, a: 1}
     - _FoamObjectColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 0}
-    - _SpherePosition: {r: 1277.6597, g: -95.815735, b: 367.51273, a: 0}
+    - _SpherePosition: {r: 55.6, g: 8.55, b: 37.7, a: 0}
     - _WaterColor: {r: 0.15886435, g: 0.6119233, b: 0.6603774, a: 0}
-    - _WaterColor2: {r: 0.043787822, g: 0.17281792, b: 0.2264151, a: 0}
+    - _WaterColor2: {r: 0.043137256, g: 0.17254902, b: 0.227451, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7781259704820903349
 MonoBehaviour:
