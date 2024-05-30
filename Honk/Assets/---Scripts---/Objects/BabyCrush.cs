@@ -72,8 +72,4 @@ public class BabyCrush : MonoBehaviour
         _holdBaby = FindObjectOfType<HoldBaby>();
         _playerMovements = FindObjectOfType<PlayerMovements>();
     }
-    private void Update()
-    {
-        //print(GetComponentInParent<Rigidbody>().velocity);
-    }
 }

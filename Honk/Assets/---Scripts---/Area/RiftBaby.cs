@@ -76,7 +76,4 @@ public class RiftBaby : MonoBehaviour
             StartCoroutine(ChampiScale());
         }
     }
-    //private void FaceBreach()
-    //{
-    //}
 }
