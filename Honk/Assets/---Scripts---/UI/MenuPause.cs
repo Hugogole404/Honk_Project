@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.InputSystem;
@@ -11,10 +9,12 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private float _fadeDuration;
     [SerializeField] private VolumeProfile _volumeProfileGame;
     [SerializeField] private VolumeProfile _volumeProfileMenu;
+    [SerializeField] private List<GameObject> _listButtonsOrange;
     private float _oldPlayerSpeed;
     private bool _isMenuOpen;
     private AreaUI _areaUI;
     private PlayerMovements _playerMovements;
+    private int _currentIndex;
 
 
     public void Menu(InputAction.CallbackContext context)
@@ -38,6 +38,46 @@ public class MenuPause : MonoBehaviour
                 _areaUI.UI_ToActivate_or_not = _menu;
                 _areaUI.FadeOut(_fadeDuration);
                 _playerMovements.BaseSpeed = _oldPlayerSpeed;
+            }
+        }
+    }
+    public void NavigateInMenuTop(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (_isMenuOpen)
+            {
+                _currentIndex -= 1;
+                if (_currentIndex < 0)
+                {
+                    //_currentIndex = _listButtonsOrange.Count - 1;
+                    _currentIndex = 0;
+                }
+                foreach (var button in _listButtonsOrange)
+                {
+                    button.gameObject.SetActive(false);
+                }
+                _listButtonsOrange[_currentIndex].gameObject.SetActive(true);
+            }
+        }
+    }
+    public void NavigateInMenuDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (_isMenuOpen)
+            {
+                _currentIndex += 1;
+                if (_currentIndex > _listButtonsOrange.Count - 1)
+                {
+                    //_currentIndex = 0;
+                    _currentIndex = _listButtonsOrange.Count - 1;
+                }
+                foreach (var button in _listButtonsOrange)
+                {
+                    button.gameObject.SetActive(false);
+                }
+                _listButtonsOrange[_currentIndex].gameObject.SetActive(true);
             }
         }
     }
