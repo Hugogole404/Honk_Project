@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7873505305702126369}
   - component: {fileID: 2620937553462183461}
-  - component: {fileID: 8164725701314115213}
+  - component: {fileID: 8751142839154598822}
   m_Layer: 0
   m_Name: Area_UI_Fade
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2620937553462183461
 BoxCollider:
@@ -54,7 +54,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 10.810076, z: 1}
   m_Center: {x: 0, y: 1.8655806, z: 0}
---- !u!114 &8164725701314115213
+--- !u!114 &8751142839154598822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,8 +63,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2083997486795708689}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f009263f6f99c104c9c223c69500e068, type: 3}
+  m_Script: {fileID: 11500000, guid: 17b69a06e6e775f4f8a0613b89cd59f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UI_ToActivate_or_not: {fileID: 0}
   _fadeDuration: 2
+  _maxTimerUI: 10
