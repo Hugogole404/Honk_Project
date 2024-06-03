@@ -11,6 +11,7 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private float _fadeDuration;
     [SerializeField] private VolumeProfile _volumeProfileGame;
     [SerializeField] private VolumeProfile _volumeProfileMenu;
+    private float _oldPlayerSpeed;
     private bool _isMenuOpen;
     private AreaUI _areaUI;
     private PlayerMovements _playerMovements;
@@ -26,6 +27,9 @@ public class MenuPause : MonoBehaviour
                 _playerMovements.CanPlayerUseInputs = false;
                 _areaUI.UI_ToActivate_or_not = _menu;
                 _areaUI.FadeIn(_fadeDuration);
+                _playerMovements.BaseSpeed = 0;
+                _playerMovements.Direction = Vector3.zero;
+                _playerMovements.AnimatorHonk.SetBool("IsMoving", false);
             }
             else
             {
@@ -33,13 +37,16 @@ public class MenuPause : MonoBehaviour
                 _playerMovements.CanPlayerUseInputs = true;
                 _areaUI.UI_ToActivate_or_not = _menu;
                 _areaUI.FadeOut(_fadeDuration);
+                _playerMovements.BaseSpeed = _oldPlayerSpeed;
             }
         }
     }
+
     private void Start()
     {
         _areaUI = FindObjectOfType<AreaUI>();
         _playerMovements = FindObjectOfType<PlayerMovements>();
         _isMenuOpen = false;
+        _oldPlayerSpeed = _playerMovements.BaseSpeed;
     }
 }
