@@ -46,12 +46,6 @@ public class PlayerMovements : MonoBehaviour
     [Header("CameraSkake")]
     public ShakeData ShakeData;
 
-    //[Header("Slope")]
-    //public float _rotationSpeedSlope = 1f;
-    //public float InertieSlopeSlow;
-    //[SerializeField] private float _frictionForce;
-    //[SerializeField] private RaycastHit _slopeHit;
-    //[SerializeField] private LayerMask _whatIsGround;
     [Header("Push Obstacles")]
     [SerializeField] private float _pushForce;
 
