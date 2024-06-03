@@ -27,6 +27,7 @@ public class Start_cine_start : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         _action.Enable();
         _isTiming = false;
         _time = 0;

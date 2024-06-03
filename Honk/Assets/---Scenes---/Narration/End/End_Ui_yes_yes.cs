@@ -20,6 +20,7 @@ public class End_Ui_yes_yes : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         _time = 0;
     }
 
