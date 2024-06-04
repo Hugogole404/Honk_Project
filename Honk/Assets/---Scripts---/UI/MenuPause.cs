@@ -17,20 +17,22 @@ public class MenuPause : MonoBehaviour
     private AreaUI _areaUI;
     private PlayerMovements _playerMovements;
     private int _currentIndex;
-    private int _currentLevelInMenu;
-
+    private bool _isSettingsOpen;
 
     public void Menu(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (_isMenuOpen == false)
+            if (_isSettingsOpen == false)
             {
-                OpenMenu();
-            }
-            else
-            {
-                CloseMenu();
+                if (_isMenuOpen == false)
+                {
+                    OpenMenu();
+                }
+                else
+                {
+                    CloseMenu();
+                }
             }
         }
     }
@@ -88,6 +90,7 @@ public class MenuPause : MonoBehaviour
                 {
                     _settings.SetActive(true);
                     _mainMenu.SetActive(false);
+                    _isSettingsOpen = true;
                 }
                 else
                 {
@@ -102,16 +105,9 @@ public class MenuPause : MonoBehaviour
         {
             if (context.performed)
             {
-                //if (_currentIndex > 0)
-                //{
-                //    _currentLevelInMenu -= 1;
-                //}
-                //if (_currentIndex < 0)
-                //{
-                //    _currentIndex = 0;
-                //}
                 _settings.SetActive(false);
                 _mainMenu.SetActive(true);
+                _isSettingsOpen = false;
             }
         }
     }
