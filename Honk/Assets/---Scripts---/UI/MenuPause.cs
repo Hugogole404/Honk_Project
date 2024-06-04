@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class MenuPause : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _menu;
+    [SerializeField] private GameObject _mainMenu;
+    [SerializeField] private GameObject _settings;
     [SerializeField] private float _fadeDuration;
     [SerializeField] private VolumeProfile _volumeProfileGame;
     [SerializeField] private VolumeProfile _volumeProfileMenu;
@@ -15,6 +17,7 @@ public class MenuPause : MonoBehaviour
     private AreaUI _areaUI;
     private PlayerMovements _playerMovements;
     private int _currentIndex;
+    private int _currentLevelInMenu;
 
 
     public void Menu(InputAction.CallbackContext context)
@@ -23,21 +26,11 @@ public class MenuPause : MonoBehaviour
         {
             if (_isMenuOpen == false)
             {
-                _isMenuOpen = true;
-                _playerMovements.CanPlayerUseInputs = false;
-                _areaUI.UI_ToActivate_or_not = _menu;
-                _areaUI.FadeIn(_fadeDuration);
-                _playerMovements.BaseSpeed = 0;
-                _playerMovements.Direction = Vector3.zero;
-                _playerMovements.AnimatorHonk.SetBool("IsMoving", false);
+                OpenMenu();
             }
             else
             {
-                _isMenuOpen = false;
-                _playerMovements.CanPlayerUseInputs = true;
-                _areaUI.UI_ToActivate_or_not = _menu;
-                _areaUI.FadeOut(_fadeDuration);
-                _playerMovements.BaseSpeed = _oldPlayerSpeed;
+                CloseMenu();
             }
         }
     }
@@ -81,12 +74,79 @@ public class MenuPause : MonoBehaviour
             }
         }
     }
+    public void ValidSelection(InputAction.CallbackContext context)
+    {
+        if (_isMenuOpen)
+        {
+            if (context.performed)
+            {
+                if (_currentIndex == 0)
+                {
+                    CloseMenu();
+                }
+                if (_currentIndex == 1)
+                {
+                    _settings.SetActive(true);
+                    _mainMenu.SetActive(false);
+                }
+                else
+                {
+                    Application.Quit();
+                }
+            }
+        }
+    }
+    public void ReturnBeforeMenu(InputAction.CallbackContext context)
+    {
+        if (_isMenuOpen)
+        {
+            if (context.performed)
+            {
+                //if (_currentIndex > 0)
+                //{
+                //    _currentLevelInMenu -= 1;
+                //}
+                //if (_currentIndex < 0)
+                //{
+                //    _currentIndex = 0;
+                //}
+                _settings.SetActive(false);
+                _mainMenu.SetActive(true);
+            }
+        }
+    }
 
+    private void OpenMenu()
+    {
+        Cursor.visible = true;
+        _isMenuOpen = true;
+        _playerMovements.CanPlayerUseInputs = false;
+        _areaUI.UI_ToActivate_or_not = _menu;
+        _areaUI.FadeIn(_fadeDuration);
+        _playerMovements.BaseSpeed = 0;
+        _playerMovements.Direction = Vector3.zero;
+        _playerMovements.AnimatorHonk.SetBool("IsMoving", false);
+    }
+    private void CloseMenu()
+    {
+        Cursor.visible = false;
+        _isMenuOpen = false;
+        _playerMovements.CanPlayerUseInputs = true;
+        _areaUI.UI_ToActivate_or_not = _menu;
+        _areaUI.FadeOut(_fadeDuration);
+        _playerMovements.BaseSpeed = _oldPlayerSpeed;
+        _settings.SetActive(false);
+        _mainMenu.SetActive(true);
+    }
     private void Start()
     {
         _areaUI = FindObjectOfType<AreaUI>();
         _playerMovements = FindObjectOfType<PlayerMovements>();
         _isMenuOpen = false;
         _oldPlayerSpeed = _playerMovements.BaseSpeed;
+    }
+    private void Update()
+    {
+        print(_currentIndex);
     }
 }
