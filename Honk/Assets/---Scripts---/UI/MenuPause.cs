@@ -18,22 +18,31 @@ public class MenuPause : MonoBehaviour
     private PlayerMovements _playerMovements;
     private int _currentIndex;
     private bool _isSettingsOpen;
+    private bool _canInterract;
 
     public void Menu(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (_isSettingsOpen == false)
+            if (_isMenuOpen == false)
             {
-                if (_isMenuOpen == false)
-                {
-                    OpenMenu();
-                }
-                else
+                OpenMenu();
+            }
+            else
+            {
+                if (_isSettingsOpen == false)
                 {
                     CloseMenu();
                 }
             }
+        }
+        if (context.canceled)
+        {
+            if(_isMenuOpen == false)
+            {
+
+            }
+            _canInterract = true;
         }
     }
     public void NavigateInMenuTop(InputAction.CallbackContext context)
