@@ -312,6 +312,8 @@ public class PlayerMovements : MonoBehaviour
         CanBabyFollow = false;
 
         AnimatorHonkJR.SetBool("OnBack", true);
+        IconFollowHonk.SetActive(false);
+        IconFollowHonkJR.SetActive(false);
 
         _soundsList.Tremblement.PlaySound();
         print("patate");
@@ -365,6 +367,8 @@ public class PlayerMovements : MonoBehaviour
         CanBabyFollow = false;
 
         AnimatorHonkJR.SetBool("OnBack", true);
+        IconFollowHonk.SetActive(false);
+        IconFollowHonkJR.SetActive(false);
 
     }
     private void ResetJumpCounter()
