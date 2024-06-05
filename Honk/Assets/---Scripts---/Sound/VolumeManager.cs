@@ -17,8 +17,11 @@ public class VolumeManager : MonoBehaviour
     }
     public void SetVolume()
     {
+        PlayerPrefs.SetFloat("SoundSliderValue", _sliderVolume.value);
         AudioListener.volume = _sliderVolume.value;
     }
+
+
     public void GetTimerMusic()
     {
         ActualTimerMusic = _globalMusic.time;

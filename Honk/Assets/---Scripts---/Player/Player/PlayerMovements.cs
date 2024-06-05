@@ -596,6 +596,7 @@ public class PlayerMovements : MonoBehaviour
         CanPushObstacles = false;
         CanMove = true;
 
+        AudioListener.volume = PlayerPrefs.GetFloat("SoundSliderValue");
         _volumeManager.SetTimerMusic();
 
         if (AreaUIFadeStart != null)
