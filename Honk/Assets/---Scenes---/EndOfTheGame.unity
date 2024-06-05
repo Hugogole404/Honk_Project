@@ -30129,6 +30129,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae3dfa1969b1357468d3048bd92128fb, type: 3}
+--- !u!82 &948230038 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2289537757454158230, guid: fe61220b4932cb643894d4a8cdf174d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404920924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &950228152
 Mesh:
   m_ObjectHideFlags: 0
@@ -37055,6 +37061,24 @@ MonoBehaviour:
   vitesseSwitch: 30
   EmptyFacing: {fileID: 0}
   Tp_Sound: {fileID: 0}
+--- !u!114 &1202817728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2441486580718383709, guid: fe61220b4932cb643894d4a8cdf174d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404920924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54561f3ab960334e8a49b9d9ebc8f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1202817729 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6724127815667644822, guid: fe61220b4932cb643894d4a8cdf174d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404920924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1207808664
 GameObject:
   m_ObjectHideFlags: 0
@@ -39511,6 +39535,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1969398002294248923, guid: 71cddedac8b13754a84f006748836aa9,
     type: 3}
   m_PrefabInstance: {fileID: 1386542462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1287846337 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3772919827897873304, guid: fe61220b4932cb643894d4a8cdf174d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404920924}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1289595372
 PrefabInstance:
@@ -44125,11 +44155,51 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2441486580718383709, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: AudioSourceSound
+      value: 
+      objectReference: {fileID: 1202817729}
+    - target: {fileID: 3967497781970274923, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_Ice
+      value: 
+      objectReference: {fileID: 1287846337}
     - target: {fileID: 3967497781970274923, guid: fe61220b4932cb643894d4a8cdf174d2,
         type: 3}
       propertyPath: paw_snow
       value: 
       objectReference: {fileID: 778801251}
+    - target: {fileID: 3967497781970274923, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grass
+      value: 
+      objectReference: {fileID: 1802805198}
+    - target: {fileID: 3967497781970274923, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: WalkInSnow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967497781970274923, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: depot_petit
+      value: 
+      objectReference: {fileID: 948230038}
+    - target: {fileID: 3967497781970274923, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: PawIceSoundRandom
+      value: 
+      objectReference: {fileID: 1202817728}
+    - target: {fileID: 3967497781970274923, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_flower
+      value: 
+      objectReference: {fileID: 1558869714}
+    - target: {fileID: 3967497781970274923, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: PawFlowerSoundRandom
+      value: 
+      objectReference: {fileID: 1202817728}
     - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
         type: 3}
       propertyPath: paw_grotte_sounds.Array.size
@@ -44225,6 +44295,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6724127815667644822, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e73eb22296ad2d42b1063a5f5c3527c, type: 3}
     - target: {fileID: 7343192013072397613, guid: fe61220b4932cb643894d4a8cdf174d2,
         type: 3}
       propertyPath: m_IsActive
@@ -47521,6 +47596,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71cddedac8b13754a84f006748836aa9, type: 3}
+--- !u!82 &1558869714 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 987223061405907353, guid: fe61220b4932cb643894d4a8cdf174d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404920924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1559865385
 GameObject:
   m_ObjectHideFlags: 0
@@ -54705,6 +54786,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801054621}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &1802805198 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8290056880903059514, guid: fe61220b4932cb643894d4a8cdf174d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404920924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1804720548
 PrefabInstance:
   m_ObjectHideFlags: 0
