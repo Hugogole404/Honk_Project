@@ -120,10 +120,6 @@ public class MenuPause : MonoBehaviour
                     _mainMenu.SetActive(true);
                     _isSettingsOpen = false;
                 }
-                else
-                {
-                    CloseMenu();
-                }
             }
         }
     }
