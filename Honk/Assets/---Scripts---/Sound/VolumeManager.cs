@@ -21,10 +21,12 @@ public class VolumeManager : MonoBehaviour
     }
     public void GetTimerMusic()
     {
-
+        ActualTimerMusic = _globalMusic.time;
+        PlayerPrefs.SetFloat("TimerMusic", ActualTimerMusic);
     }
     public void SetTimerMusic()
     {
-
+        ActualTimerMusic = PlayerPrefs.GetFloat("TimerMusic");
+        _globalMusic.time = ActualTimerMusic;
     }
 }

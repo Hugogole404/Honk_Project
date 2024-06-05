@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Transactions;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class AreaEndZone : MonoBehaviour
 {
     public string NameSceneToLoad;
+
+    [SerializeField] private VolumeManager _volumeManager;
+
     AreaUI _areaUI;
     float _maxTimer;
     float _currentTimer;
@@ -43,6 +47,9 @@ public class AreaEndZone : MonoBehaviour
             _currentTimer += Time.deltaTime;
         }
         if (_currentTimer >= _maxTimer)
+        {
+            _volumeManager.GetTimerMusic();
             SceneManager.LoadScene(NameSceneToLoad);
+        }
     }
 }

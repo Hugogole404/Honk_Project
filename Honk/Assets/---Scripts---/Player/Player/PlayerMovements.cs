@@ -72,6 +72,7 @@ public class PlayerMovements : MonoBehaviour
     private bool _canBePutHere;
     private Liste_sound _soundsList;
     public AreaUI AreaUIFadeStart;
+    [SerializeField] private VolumeManager _volumeManager;
 
     [HideInInspector] public bool CanPushObstacles;
     [HideInInspector] public GameObject ActualObstacle;
@@ -594,6 +595,9 @@ public class PlayerMovements : MonoBehaviour
         CanBabyFollow = false;
         CanPushObstacles = false;
         CanMove = true;
+
+        _volumeManager.SetTimerMusic();
+
         if (AreaUIFadeStart != null)
         {
             AreaUIFadeStart.FadeOut(1.5f);
