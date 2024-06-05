@@ -555,6 +555,12 @@ public class PlayerMovements : MonoBehaviour
                     _soundsList.PawSnowSoundRandom.PlaySound();
                 }
             }
+            else
+            {
+                _soundsList.PawGrotteSoundRandom.AudioSourceSound.Stop();
+                _soundsList.PawGrassSoundRandom.AudioSourceSound.Stop();
+                _soundsList.PawSnowSoundRandom.AudioSourceSound.Stop();
+            }
         }
     }
     private void ApplySpeed()
