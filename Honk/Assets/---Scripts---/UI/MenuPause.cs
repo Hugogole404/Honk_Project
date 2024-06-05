@@ -12,6 +12,7 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private VolumeProfile _volumeProfileGame;
     [SerializeField] private VolumeProfile _volumeProfileMenu;
     [SerializeField] private List<GameObject> _listButtonsOrange;
+    [SerializeField] private VolumeManager _volumeManager;
     private float _oldPlayerSpeed;
     private bool _isMenuOpen;
     private AreaUI _areaUI;
@@ -116,6 +117,7 @@ public class MenuPause : MonoBehaviour
             {
                 if (_isSettingsOpen)
                 {
+                    _volumeManager.SetVolume();
                     _settings.SetActive(false);
                     _mainMenu.SetActive(true);
                     _isSettingsOpen = false;
