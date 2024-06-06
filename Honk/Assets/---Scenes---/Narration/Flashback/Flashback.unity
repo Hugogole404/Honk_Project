@@ -1853,17 +1853,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4b41049bdaf748448b45f6a605823ea4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 4.701
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b41049bdaf748448b45f6a605823ea4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 82.045
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b41049bdaf748448b45f6a605823ea4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.724
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -6390169916018675285, guid: 4b41049bdaf748448b45f6a605823ea4,
         type: 3}
@@ -3280,6 +3280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirector: {fileID: 1260117823}
+  _playerMovements: {fileID: 0}
+  _spawnPoint: {fileID: 0}
 --- !u!65 &904210683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4137,10 +4139,10 @@ PlayableDirector:
     value: {fileID: 1640110917}
   - key: {fileID: 3657172035954099694, guid: 93c4baf78f6572b449962e072c7450b2, type: 2}
     value: {fileID: 463328570}
-  - key: {fileID: -1228526547639722064, guid: 93c4baf78f6572b449962e072c7450b2, type: 2}
-    value: {fileID: 1588934289}
   - key: {fileID: 592137458850004581, guid: 93c4baf78f6572b449962e072c7450b2, type: 2}
     value: {fileID: 1588934289}
+  - key: {fileID: 5039200280007578374, guid: 93c4baf78f6572b449962e072c7450b2, type: 2}
+    value: {fileID: 2115056230}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1275054640 stripped
