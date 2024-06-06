@@ -629,6 +629,5 @@ public class PlayerMovements : MonoBehaviour
         IncreaseTimerAnimJump();
         //TimerBabyJump();
         //_testBabyWalk = FindObjectOfType<TestBabyWalk>();
-        //Debug.Log(_testBabyWalk);
     }
 }
