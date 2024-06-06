@@ -63,10 +63,6 @@ public class TimelineTrigger : MonoBehaviour
 
             _playerMovements.BaseSpeed = _oldSpeed;
 
-            //_playerMovements.GetComponent<CharacterController>().enabled = false;
-            //_playerMovements.transform.position = _spawnPoint.transform.position;
-            //_playerMovements.GetComponent<CharacterController>().enabled = true;
-
             _playerMovements.CanPlayerUseInputs = true;
         }
     }
