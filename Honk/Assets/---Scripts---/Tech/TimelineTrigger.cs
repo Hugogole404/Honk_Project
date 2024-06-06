@@ -10,6 +10,7 @@ public class TimelineTrigger : MonoBehaviour
     [SerializeField] private PlayerMovements _playerMovements;
     [SerializeField] private GameObject _spawnPoint;
     private bool _canBePlay;
+    private float _oldSpeed;
 
     private void Start()
     {
@@ -28,9 +29,15 @@ public class TimelineTrigger : MonoBehaviour
             {
                 if (playableDirector != null)
                 {
+                    _canBePlay = false;
+                    _oldSpeed = _playerMovements.BaseSpeed;
+
+                    _playerMovements.BaseSpeed = 0;
+                    _playerMovements.Direction = Vector3.zero;
+                    _playerMovements.AnimatorHonk.SetBool("IsMoving", false);
+
                     _playerMovements.CanPlayerUseInputs = false;
                     playableDirector.Play();
-                    _canBePlay = false;
                 }
                 else
                 {
@@ -53,6 +60,8 @@ public class TimelineTrigger : MonoBehaviour
             _playerMovements.TakeBaby();
             _playerMovements.SpawnPoint = _spawnPoint;
             _playerMovements.TeleportToSpawnPoint();
+
+            _playerMovements.BaseSpeed = _oldSpeed;
 
             //_playerMovements.GetComponent<CharacterController>().enabled = false;
             //_playerMovements.transform.position = _spawnPoint.transform.position;
