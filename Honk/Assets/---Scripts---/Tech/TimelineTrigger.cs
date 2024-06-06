@@ -50,9 +50,13 @@ public class TimelineTrigger : MonoBehaviour
     {
         if (director == playableDirector)
         {
-            _playerMovements.GetComponent<CharacterController>().enabled = false;
-            _playerMovements.transform.position = _spawnPoint.transform.position;
-            _playerMovements.GetComponent<CharacterController>().enabled = true;
+            _playerMovements.TakeBaby();
+            _playerMovements.SpawnPoint = _spawnPoint;
+            _playerMovements.TeleportToSpawnPoint();
+
+            //_playerMovements.GetComponent<CharacterController>().enabled = false;
+            //_playerMovements.transform.position = _spawnPoint.transform.position;
+            //_playerMovements.GetComponent<CharacterController>().enabled = true;
 
             _playerMovements.CanPlayerUseInputs = true;
         }
