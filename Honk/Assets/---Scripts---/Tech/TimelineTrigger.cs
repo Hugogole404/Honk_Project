@@ -14,13 +14,23 @@ public class TimelineTrigger : MonoBehaviour
         {
             if (playableDirector != null)
             {
-                Debug.Log("caca");
                 playableDirector.Play();
+                
             }
             else
             {
                 Debug.LogError("PlayableDirector is not assigned!");
             }
+
+        }
+
+
+    }
+    void OnPlayableDirectorStopped(PlayableDirector director)
+    {
+        if (director == playableDirector)
+        {
+            
         }
     }
 }

@@ -368,12 +368,6 @@ MonoBehaviour:
   ShakeData:
     Strength: 0
     Duration: 1
-  _rotationSpeedSlope: 1
-  InertieSlopeSlow: 0
-  _frictionForce: 0
-  _whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
   _pushForce: 15
   _holdBaby: {fileID: 2890229034580983940}
   BabyParent: {fileID: 1084542050157158261}
@@ -387,6 +381,8 @@ MonoBehaviour:
     m_Bits: 0
   _takeBabyLayer: 13
   _babyPrefab: {fileID: 0}
+  AreaUIFadeStart: {fileID: 0}
+  _volumeManager: {fileID: 0}
   CanPushObstacles: 0
   ActualObstacle: {fileID: 0}
   ActualSpeed: 0
@@ -7229,10 +7225,10 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   RotationModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -7285,7 +7281,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -7338,8 +7334,8 @@ ParticleSystem:
         m_RotationOrder: 4
     curve:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0.7853982
+      minMaxState: 3
+      scalar: 1.5707963
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
