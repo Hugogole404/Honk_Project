@@ -10,6 +10,7 @@ public class Lapin_Nav : MonoBehaviour
     public Animator m_animator;
     private NavMeshAgent agent;
     public bool stopchecking = false;
+    public int maxDistance = 1000000;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -19,7 +20,7 @@ public class Lapin_Nav : MonoBehaviour
     IEnumerator CheckTransform()
     {
         yield return new WaitForSeconds(0.05f);
-        if (Vector3.Distance(agent.transform.position, player.position) <= 30 || stopchecking == true)
+        if (Vector3.Distance(agent.transform.position, player.position) <= maxDistance || stopchecking == true)
         {
             if (Vector3.Distance(agent.transform.position, player.position) <= 2)
             {
