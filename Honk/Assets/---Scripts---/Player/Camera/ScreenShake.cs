@@ -32,6 +32,11 @@ public class ScreenShake : MonoBehaviour
         _shakeCoroutine = StartCoroutine(Shaking(strength, duration));
     }
 
+    public void ShakeEndSlide()
+    {
+        Shake(4, 0.3f);
+    }
+
     public void Shake(ShakeData data)
     {
         Shake(data.Strength, data.Duration);
