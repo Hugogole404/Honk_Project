@@ -28,7 +28,10 @@ public class ScreenShake : MonoBehaviour
 
     public void Shake(float strength = -1, float duration = -1)
     {
-        if (_shakeCoroutine != null) StopCoroutine(_shakeCoroutine);
+        if (_shakeCoroutine != null)
+        {
+            StopCoroutine(_shakeCoroutine);
+        }
         _shakeCoroutine = StartCoroutine(Shaking(strength, duration));
     }
 
@@ -61,4 +64,3 @@ public struct ShakeData
     public float Strength;
     public float Duration;
 }
-

@@ -221,7 +221,7 @@ public class PlayerMovements : MonoBehaviour
                 if (context.performed)
                 {
                     AnimatorHonk.SetTrigger("Shout");
-                    ScreenShake.Instance.Shake(ShakeData);
+                    //ScreenShake.Instance.Shake(ShakeData);
 
                     if (_holdBaby.CanHoldBaby && _holdBaby)
                     {
