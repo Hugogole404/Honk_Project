@@ -43,8 +43,8 @@ public class Start_cine_start : MonoBehaviour
             if (_time > _timer)
                 _time = _timer;
 
-            if (Input.anyKeyDown || _action.triggered)
-            {
+            //if (Input.anyKeyDown || _action.triggered)
+            //{
                 _timeLine.Play();
 
                 _animatorHonk.SetBool("Sleep", false);
@@ -52,7 +52,7 @@ public class Start_cine_start : MonoBehaviour
                 _animatorBip.SetTrigger("Bip");
 
                 _isTiming = true;
-            }
+            //}
         }
 
         if (_timeLine.duration + _timer - 2 < _time)
