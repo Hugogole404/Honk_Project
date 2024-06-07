@@ -13,7 +13,7 @@ public class UI_Timer : MonoBehaviour
     private bool _canBeSee;
     private bool _fadeInIsPlayed;
     private bool _fadeOutIsPlayed;
-    private AreaUI _areaUI;
+    public AreaUI _areaUI;
 
     private void OnTriggerEnter(Collider other)
     {
