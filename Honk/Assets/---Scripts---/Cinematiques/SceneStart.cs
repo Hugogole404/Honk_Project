@@ -14,46 +14,68 @@ public class SceneStart : MonoBehaviour
     [SerializeField] private string _nameScene;
     [SerializeField] private float _currentTimer;
     [SerializeField] private bool _canTimer;
-
     [SerializeField] InputAction _action;
     [SerializeField] private GameObject _blackFade;
 
+    private bool _sceneLoaded = false;
+    private bool _timelineStarted = false;
+
+    private void Start()
+    {
+        if (playableDirector != null)
+        {
+            playableDirector.stopped += OnPlayableDirectorStopped;
+        }
+
+        // Enable the input action
+        _action.Enable();
+    }
+
     private void Update()
     {
-        if (Input.anyKeyDown || _action.triggered)
+        // Check for any key press or input action trigger
+        if (!_timelineStarted && (Input.anyKeyDown || _action.triggered))
         {
-            if (playableDirector != null)
-            {
-                playableDirector.stopped += OnPlayableDirectorStopped;
-                _blackFade.SetActive(false);
-                SceneManager.LoadScene(_nameScene);
-
-                playableDirector.Play();
-            }
+            _timelineStarted = true;
+            _blackFade.SetActive(false);
+            playableDirector.Play();
         }
+
         if (_canTimer)
         {
             _currentTimer += Time.deltaTime;
             if (_currentTimer >= _fadeDuration)
             {
-                SceneManager.LoadScene(_nameScene);
+                LoadScene();
             }
         }
     }
+
     private void OnDestroy()
     {
         if (playableDirector != null)
         {
             playableDirector.stopped -= OnPlayableDirectorStopped;
         }
+
+        // Disable the input action
+        _action.Disable();
     }
+
     void OnPlayableDirectorStopped(PlayableDirector director)
     {
         if (director == playableDirector)
         {
-            //_areaUI.UI_ToActivate_or_not = _canvasGroup;
-            _canTimer = true;
-            //_areaUI.FadeIn(_fadeDuration);
+            LoadScene();
+        }
+    }
+
+    private void LoadScene()
+    {
+        if (!_sceneLoaded)
+        {
+            _sceneLoaded = true;
+            SceneManager.LoadScene(_nameScene);
         }
     }
 }

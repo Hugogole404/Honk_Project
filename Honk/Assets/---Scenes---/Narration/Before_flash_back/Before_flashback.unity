@@ -44343,6 +44343,8 @@ GameObject:
   - component: {fileID: 1845741114}
   - component: {fileID: 1845741113}
   - component: {fileID: 1845741112}
+  - component: {fileID: 1845741116}
+  - component: {fileID: 1845741115}
   m_Layer: 0
   m_Name: Fade_In
   m_TagString: Untagged
@@ -44434,6 +44436,123 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!95 &1845741115
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845741110}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &1845741116
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845741110}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1859382966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a555135f86341e14d8c0cff765035be7,
@@ -53290,13 +53409,13 @@ MonoBehaviour:
   _fadeDuration: 1
   _canvasGroup: {fileID: 0}
   _nameScene: Flashback
-  _currentTimer: 0
+  _currentTimer: 5
   _canTimer: 0
   _action:
     m_Name: Action
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 52ad6f83-459d-45c8-99a6-a90f27c7388b
+    m_Id: b71230f6-b173-4130-b08d-9387053d3f75
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -53595,10 +53714,10 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -972183644803047536, guid: 39372aed0c8c82e489cedf9ea5b0f6de, type: 2}
     value: {fileID: 638378679508919187}
-  - key: {fileID: -5579342817495437090, guid: 39372aed0c8c82e489cedf9ea5b0f6de, type: 2}
+  - key: {fileID: 8640212052552906907, guid: 39372aed0c8c82e489cedf9ea5b0f6de, type: 2}
     value: {fileID: 0}
-  - key: {fileID: -8717738821540996149, guid: 39372aed0c8c82e489cedf9ea5b0f6de, type: 2}
-    value: {fileID: 0}
+  - key: {fileID: -3416572141183429153, guid: 39372aed0c8c82e489cedf9ea5b0f6de, type: 2}
+    value: {fileID: 1845741115}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &8648152422674214214
