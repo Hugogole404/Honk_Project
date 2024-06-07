@@ -275,6 +275,8 @@ public class Slope : MonoBehaviour
 
     private void Start()
     {
+        AreaUIFadeStart.FadeOut(1.5f);
+
         _rigidbody = GetComponent<Rigidbody>();
         _playerMovements = FindAnyObjectByType<PlayerMovements>();
         _lastPosition = transform.position;
@@ -286,7 +288,7 @@ public class Slope : MonoBehaviour
         _slideTimer = false;
         m_Animator.SetBool("IsSliding", true);                                     //J'ai rajouté ça (Adam)
         m_Animator.SetTrigger("StartSlide");
-        AreaUIFadeStart.FadeOut(1.5f);
+
     }
     private void Update()
     {
