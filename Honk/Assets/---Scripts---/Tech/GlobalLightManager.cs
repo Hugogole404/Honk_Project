@@ -28,7 +28,7 @@ public class LightIntensityController : MonoBehaviour
             isInside = true;
             Debug.Log("IN");
             directionalLight.intensity = minIntensity;
-            PointLight.intensity = 12.36f;
+            PointLight.intensity = 10f;
             isOn = true;
         }
 
