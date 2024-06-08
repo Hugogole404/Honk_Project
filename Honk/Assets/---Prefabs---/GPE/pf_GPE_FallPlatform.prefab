@@ -37,7 +37,7 @@ Transform:
   - {fileID: 7194785864124186024}
   - {fileID: 9181461620306328724}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5159868873603205585
 MeshFilter:
@@ -19942,6 +19942,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_Platform_03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9bc3470a55023140bd27225ba1c4e0b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20125,7 +20130,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0d6743969589cd94ab2cde2cd6bcf33f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0d6743969589cd94ab2cde2cd6bcf33f,
         type: 3}

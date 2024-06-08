@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1168a55d0453c2c4a99b6ce38bac502e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1168a55d0453c2c4a99b6ce38bac502e,
         type: 3}
@@ -85,13 +85,23 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7ad1b6d8a61ed6c4f9f3d24815f15cbb, type: 2}
     - target: {fileID: 172739512184086015, guid: 1168a55d0453c2c4a99b6ce38bac502e,
         type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 172739512184086015, guid: 1168a55d0453c2c4a99b6ce38bac502e,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 350a580a7c0c68d4dac09b31abd9c657, type: 2}
     - target: {fileID: 919132149155446097, guid: 1168a55d0453c2c4a99b6ce38bac502e,
         type: 3}
       propertyPath: m_Name
-      value: Ecureuil Variant
+      value: Ecureuil
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430202079671987002, guid: 1168a55d0453c2c4a99b6ce38bac502e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -173,3 +183,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   m_animator: {fileID: 5064020182656364542}
+  stopchecking: 0
+  maxDistance: 1000000
