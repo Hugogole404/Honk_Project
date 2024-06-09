@@ -23,7 +23,8 @@ public class Atelier02 : MonoBehaviour
         {
             Camera.gameObject.SetActive(true);
             dolly.m_Position = 1f;
-            StartPos = honkCollider.transform.position.x;
+            if(StartPos == 0)
+                StartPos = honkCollider.transform.position.x;
         }
     }
     private void OnTriggerExit(Collider other)
