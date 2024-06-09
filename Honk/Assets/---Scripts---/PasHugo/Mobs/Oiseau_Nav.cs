@@ -30,6 +30,8 @@ public class Oiseau_Nav : MonoBehaviour
             Vector3 newPos = transform.position + dirToPlayer;
             newPos += dirToPlayer;
             newPos += dirToPlayer;
+            newPos += dirToPlayer;
+            newPos += dirToPlayer;
             agent.destination = newPos;
             //StartCoroutine(JustRan());
             //StopCoroutine(CheckTransform());
@@ -42,7 +44,7 @@ public class Oiseau_Nav : MonoBehaviour
         else if (Vector3.Distance(agent.transform.position, player.position) <= 4 && contactNumber > contactBefFly)
         {
             m_animator.SetTrigger("IsFlying");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
             Destroy(gameObject);
         }
         else
