@@ -33,7 +33,7 @@ public class EmissiveColider : MonoBehaviour
         else if (InOut == false && Time>0) 
         {
             Time -= EaseOut;
-            emissiveMaterial.SetColor("_EmissionColor", Color.white * Time);
+            emissiveMaterial.SetColor("_EmissionColor",Color.white * Time);
             rend.material = emissiveMaterial;
             rend.material.EnableKeyword("_EMISSION");
 
