@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class LightIntensityController : MonoBehaviour
 {
     public Light directionalLight;
     public Collider inCollider;
     public Collider outCollider;
-    
+
+    public Volume volume;
+    public Color ColorBloom;
 
     public float maxIntensity = 1.0f;
     public float minIntensity = 0.0f;
@@ -26,7 +30,8 @@ public class LightIntensityController : MonoBehaviour
         if (other == inCollider)
         {
             isInside = true;
-            Debug.Log("IN");
+            volume.profile.TryGet(out Bloom bloom);
+            bloom.tint.value = ColorBloom;
             directionalLight.intensity = minIntensity;
             PointLight.intensity = 10f;
             isOn = true;
@@ -40,6 +45,8 @@ public class LightIntensityController : MonoBehaviour
         if (other == outCollider && isInside == true)
         {
             isInside = false;
+            //volume.profile.TryGet(out Bloom bloom);
+            //bloom.tint.value = Color.white;
         }
         if (other == CollideroutColliderPointLight)
         {
