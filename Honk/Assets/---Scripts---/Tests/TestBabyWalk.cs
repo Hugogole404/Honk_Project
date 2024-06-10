@@ -104,11 +104,11 @@ public class TestBabyWalk : MonoBehaviour
                 float distanceX = Mathf.Abs(currentPosition.x - _previousPosition.x);
                 float distanceZ = Mathf.Abs(currentPosition.z - _previousPosition.z);
 
-                if (distanceX < 0.001f /*|| distanceX < -0.001f*/)
+                if (distanceX < 0.001f)
                 {
                     _walkSpd.x = 0;
                 }
-                if (distanceZ < 0.001f /*|| distanceZ < -0.001f*/)
+                if (distanceZ < 0.001f)
                 {
                     _walkSpd.z = 0;
                 }

@@ -16,6 +16,7 @@ public class AreaEndZone : MonoBehaviour
     float _maxTimer;
     float _currentTimer;
     bool _canTimer;
+    PlayerMovements _playerMovements;
 
     private void OnTriggerStay(Collider other)
     {
@@ -34,6 +35,7 @@ public class AreaEndZone : MonoBehaviour
     private void Awake()
     {
         _areaUI = FindAnyObjectByType<AreaUI>();
+        _playerMovements = FindAnyObjectByType<PlayerMovements>();
     }
     private void Start()
     {
@@ -49,7 +51,16 @@ public class AreaEndZone : MonoBehaviour
         if (_currentTimer >= _maxTimer)
         {
             _volumeManager.GetTimerMusic();
-            SceneManager.LoadScene(NameSceneToLoad);
+
+            _playerMovements.CanPlayerUseInputs = false;
+            _playerMovements.Direction = Vector3.zero;
+            _playerMovements.Input = Vector3.zero;
+            _playerMovements.AnimatorHonk.SetBool("IsMoving", false);
+
+            if (_currentTimer >= _maxTimer + 0.75f)
+            {
+                SceneManager.LoadScene(NameSceneToLoad);
+            }
         }
     }
 }

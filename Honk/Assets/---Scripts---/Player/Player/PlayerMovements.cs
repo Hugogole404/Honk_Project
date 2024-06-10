@@ -343,6 +343,10 @@ public class PlayerMovements : MonoBehaviour
     }
     public void TeleportToSpawnPoint()
     {
+        Direction = Vector3.zero;
+        Input = Vector3.zero;
+        AnimatorHonk.SetBool("IsMoving", false);
+
         _testBabyWalk = FindAnyObjectByType<TestBabyWalk>();
         _testBabyWalk.gameObject.transform.parent = BabyParent.gameObject.transform;
         _holdBaby.Baby.gameObject.transform.parent = BabyParent.gameObject.transform;
