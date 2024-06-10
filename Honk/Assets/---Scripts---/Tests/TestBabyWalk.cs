@@ -37,6 +37,8 @@ public class TestBabyWalk : MonoBehaviour
     private CharacterController _characterController;
     private float _velo;
 
+    private Vector3 _previousPosition;
+
     [HideInInspector] public GameObject ActualIceBlocParent;
 
 
@@ -89,6 +91,7 @@ public class TestBabyWalk : MonoBehaviour
             }
             if (_isDadMoving && _holdBaby.IsOnHisBack == false && _playerMov.CanBabyFollow)
             {
+                Vector3 currentPosition = _playerMov.transform.position;
                 //// chara controller
                 Direction = _playerMov.Direction;
 
@@ -98,17 +101,14 @@ public class TestBabyWalk : MonoBehaviour
                 //Direction.y = transform.position.y * SetGravityBaby;
                 _walkSpd = Direction * Speed;
 
-                float distanceX = _oldPosPlayer.x - LastPOSPLAYER.x;
-                float distanceZ = _oldPosPlayer.z - LastPOSPLAYER.z;
+                float distanceX = Mathf.Abs(currentPosition.x - _previousPosition.x);
+                float distanceZ = Mathf.Abs(currentPosition.z - _previousPosition.z);
 
-                print(distanceX);
-                print(distanceZ);
-
-                if (distanceX > 0.1f || distanceX < - 0.1f)
+                if (distanceX < 0.001f /*|| distanceX < -0.001f*/)
                 {
                     _walkSpd.x = 0;
                 }
-                if (distanceZ > 0.1f || distanceZ < - 0.1f)
+                if (distanceZ < 0.001f /*|| distanceZ < -0.001f*/)
                 {
                     _walkSpd.z = 0;
                 }
@@ -119,6 +119,7 @@ public class TestBabyWalk : MonoBehaviour
                 //Offset.y = 0;
                 //transform.position -= Offset;
                 //Point++;
+                _previousPosition = currentPosition;
             }
             else if (_holdBaby.IsOnHisBack == false)
             {
@@ -153,6 +154,7 @@ public class TestBabyWalk : MonoBehaviour
 
         _baseScaleCrushedBaby = 1;
         CanBabyInputs = true;
+        _previousPosition = _playerMov.transform.position;
         //_baseScaleCrushedBaby = transform.localScale.y;
     }
     private void Update()
