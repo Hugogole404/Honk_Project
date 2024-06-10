@@ -29,7 +29,6 @@ public class EndTimeLine : MonoBehaviour
             _currentTimer += Time.deltaTime;
             if (_currentTimer >= _fadeDuration)
             {
-                print("test");
                 SceneManager.LoadScene(_nameScene);
             }
         }
