@@ -557,12 +557,22 @@ public class PlayerMovements : MonoBehaviour
                 {
                     _soundsList.PawSnowSoundRandom.PlaySound();
                 }
+                else if (_soundsList.WalkInflower)
+                {
+                    _soundsList.PawFlowerSoundRandom.PlaySound();
+                }
+                else if (_soundsList.WalkInIce)
+                {
+                    _soundsList.PawIceSoundRandom.PlaySound();
+                }
             }
             else
             {
                 _soundsList.PawGrotteSoundRandom.AudioSourceSound.Stop();
                 _soundsList.PawGrassSoundRandom.AudioSourceSound.Stop();
                 _soundsList.PawSnowSoundRandom.AudioSourceSound.Stop();
+                _soundsList.PawIceSoundRandom.AudioSourceSound.Stop();
+                _soundsList.PawFlowerSoundRandom.AudioSourceSound.Stop();
             }
         }
     }
