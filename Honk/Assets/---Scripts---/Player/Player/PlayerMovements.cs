@@ -337,7 +337,7 @@ public class PlayerMovements : MonoBehaviour
             _testBabyWalk.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
 
-        _testBabyWalk.LastPositionPlayer.Add(transform.position);
+        //_testBabyWalk.LastPositionPlayer.Add(transform.position);
         _holdBaby.IsOnHisBack = false;
         AnimatorHonkJR.SetBool("OnBack", false);
         _testBabyWalk.GetComponent<CharacterController>().enabled = true;

@@ -15,7 +15,6 @@ public class TestBabyWalk : MonoBehaviour
     public Vector3 BaseScaleBaby;
     public Vector3 BaseScaleBabyTest;
     public Vector3 Offset;
-    public List<Vector3> LastPositionPlayer;
     public Vector3 LastPOSPLAYER;
 
     [SerializeField] private float _gravityMultiplier;
@@ -69,9 +68,6 @@ public class TestBabyWalk : MonoBehaviour
     private void UpdatePlayerPos()
     {
         LastPOSPLAYER = _playerMov.transform.position;
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        //GetComponent<Rigidbody>().AddForce(Vector3.down * Time.deltaTime * _gravityMultiplier);
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     private void UpdateRotationBaby()
     {
@@ -89,7 +85,6 @@ public class TestBabyWalk : MonoBehaviour
         {
             if (_holdBaby.IsOnHisBack)
             {
-                LastPositionPlayer.Clear();
                 Point = 0;
             }
             if (_isDadMoving && _holdBaby.IsOnHisBack == false && _playerMov.CanBabyFollow)
@@ -102,6 +97,21 @@ public class TestBabyWalk : MonoBehaviour
                 Direction.y = _velo * SetGravityBaby;
                 //Direction.y = transform.position.y * SetGravityBaby;
                 _walkSpd = Direction * Speed;
+
+                float distanceX = _oldPosPlayer.x - LastPOSPLAYER.x;
+                float distanceZ = _oldPosPlayer.z - LastPOSPLAYER.z;
+
+                print(distanceX);
+                print(distanceZ);
+
+                if (distanceX > 0.1f || distanceX < - 0.1f)
+                {
+                    _walkSpd.x = 0;
+                }
+                if (distanceZ > 0.1f || distanceZ < - 0.1f)
+                {
+                    _walkSpd.z = 0;
+                }
                 GetComponent<CharacterController>().Move(_walkSpd * Time.deltaTime);
 
                 // code d'avant
