@@ -9,14 +9,23 @@ public class Transition_fade_out : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Collision detected with: " + other.gameObject.name); // Message de débogage
+
         if (other.gameObject.name == "PlayerWalkModif")
         {
+            Debug.Log("Collision with PlayerWalkModif detected."); // Message de débogage
+            StartCoroutine(FadeOutMusic());
+        }
+        else if (other.gameObject.name == "BallSlopePlayer")
+        {
+            Debug.Log("Collision with BallSlopePlayer detected."); // Message de débogage
             StartCoroutine(FadeOutMusic());
         }
     }
 
     private IEnumerator FadeOutMusic()
     {
+        Debug.Log("Starting fade out music."); // Message de débogage
         float startVolume = musicSource.volume;
 
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
@@ -27,5 +36,6 @@ public class Transition_fade_out : MonoBehaviour
 
         musicSource.volume = 0;
         musicSource.Stop();
+        Debug.Log("Music faded out and stopped."); // Message de débogage
     }
 }
