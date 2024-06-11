@@ -37,7 +37,7 @@ public class ScreenShake : MonoBehaviour
 
     public void ShakeEndSlide()
     {
-        Shake(1, 0.2f);
+        Shake(3, 0.3f);
     }
 
     public void Shake(ShakeData data)
