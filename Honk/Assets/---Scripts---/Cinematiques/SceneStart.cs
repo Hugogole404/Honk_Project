@@ -19,6 +19,7 @@ public class SceneStart : MonoBehaviour
 
     private bool _sceneLoaded = false;
     private bool _timelineStarted = false;
+    private bool _canPressAnyKey;
 
     private void Start()
     {
@@ -28,17 +29,19 @@ public class SceneStart : MonoBehaviour
         }
 
         // Enable the input action
+        _canTimer = false;
         _action.Enable();
     }
 
     private void Update()
     {
         // Check for any key press or input action trigger
-        if (!_timelineStarted && (Input.anyKeyDown || _action.triggered))
+        if (/*!_timelineStarted && */(Input.anyKeyDown || _action.triggered) && _canPressAnyKey)
         {
             _timelineStarted = true;
             _blackFade.SetActive(false);
             playableDirector.Play();
+            _canTimer = true;
         }
 
         if (_canTimer)
@@ -66,7 +69,9 @@ public class SceneStart : MonoBehaviour
     {
         if (director == playableDirector)
         {
-            LoadScene();
+            _canPressAnyKey = true;
+
+            //LoadScene();
         }
     }
 
