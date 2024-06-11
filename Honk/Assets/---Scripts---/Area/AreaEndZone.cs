@@ -11,6 +11,8 @@ public class AreaEndZone : MonoBehaviour
     public string NameSceneToLoad;
 
     [SerializeField] private VolumeManager _volumeManager;
+    [SerializeField] private CanvasGroup _fade;
+    [SerializeField] private float _fadeTime;
 
     AreaUI _areaUI;
     float _maxTimer;
@@ -22,14 +24,16 @@ public class AreaEndZone : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovements>() != null || other.GetComponent<Slope>() != null)
         {
-            _areaUI.FadeIn(1.5f);
+            //_areaUI.FadeIn(1.5f);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerMovements>() != null || other.GetComponent<Slope>() != null)
         {
+            _areaUI.UI_ToActivate_or_not = _fade;
             _canTimer = true;
+            _areaUI.FadeIn(_fadeTime);
         }
     }
     private void Awake()
@@ -44,6 +48,7 @@ public class AreaEndZone : MonoBehaviour
     }
     private void Update()
     {
+
         if (_canTimer)
         {
             _currentTimer += Time.deltaTime;

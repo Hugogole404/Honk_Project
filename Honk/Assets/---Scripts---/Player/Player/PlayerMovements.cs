@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEditor;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 [HelpURL("https://app.milanote.com/1RscWs1SJGPM9j/playermovements?p=5Aw4gcZ0pqp")]
 [RequireComponent(typeof(CharacterController))]
@@ -73,6 +74,8 @@ public class PlayerMovements : MonoBehaviour
     private Liste_sound _soundsList;
     public AreaUI AreaUIFadeStart;
     [SerializeField] private VolumeManager _volumeManager;
+    [SerializeField] private float _fadeTimer;
+    [SerializeField] private CanvasGroup _fadeCanvasGroup;
 
     [HideInInspector] public bool CanPushObstacles;
     [HideInInspector] public GameObject ActualObstacle;
@@ -343,6 +346,11 @@ public class PlayerMovements : MonoBehaviour
     }
     public void TeleportToSpawnPoint()
     {
+        _fadeCanvasGroup.alpha = 1;
+        AreaUIFadeStart.UI_ToActivate_or_not = _fadeCanvasGroup;
+        AreaUIFadeStart.FadeOut(_fadeTimer);
+        print("Jaaj");
+
         Direction = Vector3.zero;
         Input = Vector3.zero;
         AnimatorHonk.SetBool("IsMoving", false);
@@ -583,6 +591,10 @@ public class PlayerMovements : MonoBehaviour
     }
     #endregion
 
+    void OnSceneLoaded()
+    {
+        Input = Vector3.zero;
+    }
     private void Awake()
     {
         _holdBaby = FindAnyObjectByType<HoldBaby>();
@@ -594,6 +606,7 @@ public class PlayerMovements : MonoBehaviour
     }
     private void Start()
     {
+        //OnSceneLoaded();
         Cursor.visible = false;
         CanPlayerUseInputs = true;
         if (_hadSpawnPoint)
