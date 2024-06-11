@@ -52,10 +52,13 @@ public class AreaEndZone : MonoBehaviour
         {
             _volumeManager.GetTimerMusic();
 
-            _playerMovements.CanPlayerUseInputs = false;
-            _playerMovements.Direction = Vector3.zero;
-            _playerMovements.Input = Vector3.zero;
-            _playerMovements.AnimatorHonk.SetBool("IsMoving", false);
+            if (_playerMovements != null)
+            {
+                _playerMovements.CanPlayerUseInputs = false;
+                _playerMovements.Direction = Vector3.zero;
+                _playerMovements.Input = Vector3.zero;
+                _playerMovements.AnimatorHonk.SetBool("IsMoving", false);
+            }
 
             if (_currentTimer >= _maxTimer + 0.75f)
             {

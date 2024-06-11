@@ -49,6 +49,8 @@ public class Slope : MonoBehaviour
     private Vector2 _moveInput;
     private PlayerMovements _playerMovements;
 
+    private float _aimAngle;
+
     [HideInInspector] public bool IsGrounded = false;
     [HideInInspector] public bool CanSpeedDown = false;
     [HideInInspector] public bool SpeedMaxCanDecrease = false;
@@ -56,6 +58,7 @@ public class Slope : MonoBehaviour
     [HideInInspector] private float _maxTimerSlide;
     [HideInInspector] public float OldSpeedMax, OldSpeedSlopeMax, SpeedToReduce, OldSpeed, OldSpeedSlope;
     public AreaUI AreaUIFadeStart;
+
     #endregion
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -263,14 +266,17 @@ public class Slope : MonoBehaviour
     }
     private void OrientationPlayer()
     {
-        Vector3 targetPos = new Vector3(ModelPlayer.transform.position.x + 1 * _inputsJoystick.x, 0, ModelPlayer.transform.position.z - 1 * _inputsJoystick.z);
+        if (_inputsJoystick.x != 0 || _inputsJoystick.z != 0)
+        {
+            Vector3 targetPos = new Vector3(ModelPlayer.transform.position.x + 1 * _inputsJoystick.x, 0, ModelPlayer.transform.position.z - 1 * _inputsJoystick.z);
 
-        Vector3 POS = new Vector3(targetPos.x, 0, targetPos.z);
+            Vector3 POS = new Vector3(targetPos.x, 0, targetPos.z);
 
-        Vector3 aimDir = POS - ModelPlayer.transform.position;
-        float aimAngle = Mathf.Atan2(aimDir.z, aimDir.x) * Mathf.Rad2Deg - 90f;
+            Vector3 aimDir = POS - ModelPlayer.transform.position;
+            _aimAngle = Mathf.Atan2(aimDir.z, aimDir.x) * Mathf.Rad2Deg - 90f;
+            ModelPlayer.transform.localEulerAngles = new Vector3(0, _aimAngle + 180, 0);
+        }
 
-        ModelPlayer.transform.localEulerAngles = new Vector3(0, aimAngle + 180, 0);
     }
 
     private void Start()
