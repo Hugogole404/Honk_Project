@@ -349,7 +349,6 @@ public class PlayerMovements : MonoBehaviour
         _fadeCanvasGroup.alpha = 1;
         AreaUIFadeStart.UI_ToActivate_or_not = _fadeCanvasGroup;
         AreaUIFadeStart.FadeOut(_fadeTimer);
-        print("Jaaj");
 
         Direction = Vector3.zero;
         Input = Vector3.zero;
