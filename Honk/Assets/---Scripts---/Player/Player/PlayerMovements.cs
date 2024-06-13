@@ -103,6 +103,7 @@ public class PlayerMovements : MonoBehaviour
     [HideInInspector] public bool CanMove;
     [HideInInspector] public bool CanBabyTeleport;
     [HideInInspector] public Vector3 TPBabyPos;
+    [HideInInspector] public bool CanBabyFollowPlayerInput;
     #endregion
 
     #region ACTIONS
@@ -219,7 +220,7 @@ public class PlayerMovements : MonoBehaviour
     {
         if (CanPlayerUseInputs)
         {
-            if (CanMove)
+            if (CanMove && CanBabyFollowPlayerInput)
             {
                 if (context.performed)
                 {
@@ -228,34 +229,28 @@ public class PlayerMovements : MonoBehaviour
 
                     if (_holdBaby.CanHoldBaby && _holdBaby)
                     {
-                        TakeBaby();
+                        if (CanBabyFollowPlayerInput)
+                            TakeBaby();
                     }
                     else if (_holdBaby.IsOnHisBack && _holdBaby.CanHoldBaby == false)
                     {
-                        PutBaby();
+                        if (CanBabyFollowPlayerInput)
+                            PutBaby();
                     }
 
                     else if (_holdBaby.IsOnHisBack == false && _holdBaby.CanHoldBaby == false && CanBabyTeleport == false)
                     {
-                        // LE FAIRE FOLLOW
-                        if (CanBabyFollow)
+                        if (CanBabyFollowPlayerInput)
                         {
-                            CanBabyFollow = false;
-                            AnimatorHonkJR.SetBool("IsActive", false);
-                            AnimatorHonkJR.SetTrigger("ChangingState");
-
-                            IconFollowHonk.SetActive(false);
-                            IconFollowHonkJR.SetActive(false);
-                        }
-                        else
-                        {
-                            _testBabyWalk.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
-
-                            CanBabyFollow = true;
-                            AnimatorHonkJR.SetBool("IsActive", true);
-                            AnimatorHonkJR.SetTrigger("ChangingState");
-                            IconFollowHonk.SetActive(true);
-                            IconFollowHonkJR.SetActive(true);
+                            // LE FAIRE FOLLOW
+                            if (CanBabyFollow)
+                            {
+                                BabyFollowPlayer();
+                            }
+                            else
+                            {
+                                BabyUnfollowPlayer();
+                            }
                         }
                     }
                 }
@@ -320,12 +315,10 @@ public class PlayerMovements : MonoBehaviour
         IconFollowHonkJR.SetActive(false);
 
         _soundsList.Tremblement.PlaySound();
-        print("patate");
     }
     public void PutBaby()
     {
         // DEPOSER LE PETIT
-        //Debug.Log("IS NOT");
 
         //CanMove = false;
         _testBabyWalk.GetComponent<CharacterController>().enabled = false;
@@ -344,6 +337,26 @@ public class PlayerMovements : MonoBehaviour
         _testBabyWalk.GetComponent<CharacterController>().enabled = true;
         _soundsList.Tremblement.PlaySound();
     }
+    public void BabyFollowPlayer()
+    {
+        CanBabyFollow = false;
+        AnimatorHonkJR.SetBool("IsActive", false);
+        AnimatorHonkJR.SetTrigger("ChangingState");
+
+        IconFollowHonk.SetActive(false);
+        IconFollowHonkJR.SetActive(false);
+    }
+    public void BabyUnfollowPlayer()
+    {
+        _testBabyWalk.transform.parent = _holdBaby.ParentObjectBaby.gameObject.transform;
+
+        CanBabyFollow = true;
+        AnimatorHonkJR.SetBool("IsActive", true);
+        AnimatorHonkJR.SetTrigger("ChangingState");
+        IconFollowHonk.SetActive(true);
+        IconFollowHonkJR.SetActive(true);
+    }
+
     public void TeleportToSpawnPoint()
     {
         _fadeCanvasGroup.alpha = 1;
@@ -627,6 +640,7 @@ public class PlayerMovements : MonoBehaviour
         {
             AreaUIFadeStart.FadeOut(1.5f);
         }
+        CanBabyFollowPlayerInput = true;
     }
     private void FixedUpdate()
     {
