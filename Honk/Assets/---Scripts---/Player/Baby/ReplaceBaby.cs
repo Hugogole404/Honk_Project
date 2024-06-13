@@ -19,16 +19,24 @@ public class ReplaceBaby : MonoBehaviour
     {
         _baby = baby;
         _playerMovements = player;
-        player.CanBabyFollowPlayerInput = false;
-        //player.CanPlayerUseInputs = false;
-        baby.CanBabyInputs = false;
-        player.AnimatorHonkJR.SetBool("IsMoving", true);
-        //player.BabyFollowPlayer();
 
-        //player.AnimatorHonkJR.SetBool("IsActive", true);
+        baby.CanCheckPlayerMovements = false;
+        baby._isDadMoving = true;
+
+        player.CanBabyFollowPlayerInput = false;
+
+        baby.CanBabyInputs = false;
+        //player.AnimatorHonkJR.SetBool("IsActive", false);
+        //player.BabyFollowPlayer();
+        player.AnimatorHonkJR.SetBool("OnBack", false);
+        player.AnimatorHonkJR.SetBool("IsActive", true);
+        player.AnimatorHonkJR.SetBool("IsMoving", true);
+
+        //player.BabyUnfollowPlayer();
+
+        _playerMovements.IconFollowHonk.SetActive(false);
+        _playerMovements.IconFollowHonkJR.SetActive(false);
         //player.AnimatorHonkJR.SetTrigger("ChangingState");
-        //player.IconFollowHonk.SetActive(true);
-        //player.IconFollowHonkJR.SetActive(true);
 
         player.Direction = Vector3.zero;
         baby.GetComponent<CharacterController>().enabled = false;
@@ -44,12 +52,11 @@ public class ReplaceBaby : MonoBehaviour
 
     private void MoveBaby()
     {
+        _baby.CanCheckPlayerMovements = true;
         //_playerMovements.AnimatorHonkJR.SetBool("IsMoving", false);
 
         //_playerMovements.AnimatorHonkJR.SetBool("IsActive", false);
         //_playerMovements.AnimatorHonkJR.SetTrigger("ChangingState");
-        //_playerMovements.IconFollowHonk.SetActive(false);
-        //_playerMovements.IconFollowHonkJR.SetActive(false);
 
         _playerMovements.CanBabyTeleport = true;
         _baby.GetComponent<CharacterController>().enabled = false;
@@ -62,10 +69,12 @@ public class ReplaceBaby : MonoBehaviour
 
     void JumpOutBaby()
     {
+        _playerMovements.AnimatorHonkJR.SetBool("IsActive", false);
+        _playerMovements.AnimatorHonkJR.SetBool("IsActive", false);
+        _playerMovements.AnimatorHonkJR.SetBool("IsMoving", false);
         _baby.GetComponent<CharacterController>().enabled = true;
         _playerMovements.CanPlayerUseInputs = true;
         _baby.CanBabyInputs = true;
         _playerMovements.CanBabyFollowPlayerInput = true;
-        print("TRUE");
     }
 }

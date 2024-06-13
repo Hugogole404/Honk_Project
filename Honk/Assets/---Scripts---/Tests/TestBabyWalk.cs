@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class TestBabyWalk : MonoBehaviour
     [SerializeField] private float _gravityMultiplier;
 
     public int Point;
-    private bool _isDadMoving;
+    public bool _isDadMoving;
     private Vector3 _oldPosPlayer;
     private HoldBaby _holdBaby;
     private PlayerMovements _playerMov;
@@ -40,6 +41,7 @@ public class TestBabyWalk : MonoBehaviour
     private Vector3 _previousPosition;
 
     [HideInInspector] public GameObject ActualIceBlocParent;
+    [HideInInspector] public bool CanCheckPlayerMovements;
 
 
     private void RescaleBaby()
@@ -61,10 +63,13 @@ public class TestBabyWalk : MonoBehaviour
     }
     private void CheckIsPlayerMoving()
     {
-        if (_oldPosPlayer.x != _playerMov.transform.position.x || _oldPosPlayer.z != _playerMov.transform.position.z)
-            _isDadMoving = true;
-        else
-            _isDadMoving = false;
+        if (CanCheckPlayerMovements)
+        {
+            if (_oldPosPlayer.x != _playerMov.transform.position.x || _oldPosPlayer.z != _playerMov.transform.position.z)
+                _isDadMoving = true;
+            else
+                _isDadMoving = false;
+        }
         _oldPosPlayer = _playerMov.transform.position;
     }
     private void UpdatePlayerPos()
@@ -146,6 +151,7 @@ public class TestBabyWalk : MonoBehaviour
     }
     void Start()
     {
+        CanCheckPlayerMovements = true;
         BaseScaleBaby = transform.lossyScale;
         BaseScaleBabyTest = transform.localScale;
         Offset = new Vector3(1, 0, 1);
