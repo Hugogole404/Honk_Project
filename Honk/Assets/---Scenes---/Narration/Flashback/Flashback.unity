@@ -3708,6 +3708,7 @@ GameObject:
   - component: {fileID: 113075859}
   - component: {fileID: 113075858}
   - component: {fileID: 113075857}
+  - component: {fileID: 113075860}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -3793,8 +3794,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 2661
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -3815,6 +3816,27 @@ Transform:
   m_Father: {fileID: 1145673942}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 25.364, y: 43.299, z: -34.474}
+--- !u!95 &113075860
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113075856}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &116134207
 GameObject:
   m_ObjectHideFlags: 0
@@ -7656,7 +7678,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 873de61a2cd9a1448b3b9442538bba44, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b9a16eaeb62fe4c4597e0e56eae06863, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -42593,6 +42615,8 @@ PlayableDirector:
     value: {fileID: 145404564}
   - key: {fileID: 4448927986207662944, guid: 93c4baf78f6572b449962e072c7450b2, type: 2}
     value: {fileID: 1588934289}
+  - key: {fileID: 3368166840995818385, guid: 93c4baf78f6572b449962e072c7450b2, type: 2}
+    value: {fileID: 113075860}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1260125499
