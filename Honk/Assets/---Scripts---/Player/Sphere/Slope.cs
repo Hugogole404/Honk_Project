@@ -57,7 +57,11 @@ public class Slope : MonoBehaviour
     [HideInInspector] public Rigidbody _rigidbody;
     [HideInInspector] private float _maxTimerSlide;
     [HideInInspector] public float OldSpeedMax, OldSpeedSlopeMax, SpeedToReduce, OldSpeed, OldSpeedSlope;
+
     public AreaUI AreaUIFadeStart;
+    [SerializeField] private VolumeManager _volumeManager;
+    [SerializeField] private float _fadeTimer;
+    [SerializeField] private CanvasGroup _fadeCanvasGroup;
 
     #endregion
     public void OnMove(InputAction.CallbackContext context)
@@ -294,6 +298,9 @@ public class Slope : MonoBehaviour
         _slideTimer = false;
         m_Animator.SetBool("IsSliding", true);                                     //J'ai rajouté ça (Adam)
         m_Animator.SetTrigger("StartSlide");
+
+        AreaUIFadeStart.UI_ToActivate_or_not = _fadeCanvasGroup;
+        AreaUIFadeStart.FadeOut(_fadeTimer);
 
     }
     private void Update()
