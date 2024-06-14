@@ -8611,14 +8611,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b28ac2cbff101247a9fda812802b475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointEnterRift: {fileID: 105561274}
+  PointTpInsideWall: {fileID: 0}
   _replaceBaby: {fileID: 0}
+  _targetInsideWall: {fileID: 0}
   Shrooms: []
   currentListNum: 0
   Scalemult: 0.5
   vitesseSwitch: 30
-  EmptyFacing: {fileID: 0}
   Tp_Sound: {fileID: 0}
+  _holdBaby: {fileID: 0}
 --- !u!65 &377257183
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12821,7 +12822,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 3578
+  m_ColorTemperature: 3316
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -26382,14 +26383,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b28ac2cbff101247a9fda812802b475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointEnterRift: {fileID: 537232951}
+  PointTpInsideWall: {fileID: 0}
   _replaceBaby: {fileID: 0}
+  _targetInsideWall: {fileID: 0}
   Shrooms: []
   currentListNum: 0
   Scalemult: 0.5
   vitesseSwitch: 30
-  EmptyFacing: {fileID: 0}
   Tp_Sound: {fileID: 0}
+  _holdBaby: {fileID: 0}
 --- !u!65 &1096645718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28228,14 +28230,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b28ac2cbff101247a9fda812802b475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointEnterRift: {fileID: 1882757371}
+  PointTpInsideWall: {fileID: 0}
   _replaceBaby: {fileID: 0}
+  _targetInsideWall: {fileID: 0}
   Shrooms: []
   currentListNum: 0
   Scalemult: 0.5
   vitesseSwitch: 30
-  EmptyFacing: {fileID: 0}
   Tp_Sound: {fileID: 0}
+  _holdBaby: {fileID: 0}
 --- !u!114 &1202817728 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2441486580718383709, guid: fe61220b4932cb643894d4a8cdf174d2,
@@ -48561,14 +48564,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b28ac2cbff101247a9fda812802b475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointEnterRift: {fileID: 2134055046}
+  PointTpInsideWall: {fileID: 0}
   _replaceBaby: {fileID: 0}
+  _targetInsideWall: {fileID: 0}
   Shrooms: []
   currentListNum: 0
   Scalemult: 0.5
   vitesseSwitch: 30
-  EmptyFacing: {fileID: 0}
   Tp_Sound: {fileID: 0}
+  _holdBaby: {fileID: 0}
 --- !u!65 &2049971790
 BoxCollider:
   m_ObjectHideFlags: 0

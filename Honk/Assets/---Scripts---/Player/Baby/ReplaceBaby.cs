@@ -34,14 +34,14 @@ public class ReplaceBaby : MonoBehaviour
 
         //player.BabyUnfollowPlayer();
 
-        _playerMovements.IconFollowHonk.SetActive(false);
-        _playerMovements.IconFollowHonkJR.SetActive(false);
+        //_playerMovements.IconFollowHonk.SetActive(false);
+        //_playerMovements.IconFollowHonkJR.SetActive(false);
         //player.AnimatorHonkJR.SetTrigger("ChangingState");
 
         player.Direction = Vector3.zero;
         baby.GetComponent<CharacterController>().enabled = false;
         baby.gameObject.transform.DOLookAt(new Vector3(targetInsideWall.transform.position.x, targetInsideWall.transform.position.y, targetInsideWall.transform.position.z), 1, AxisConstraint.None, Vector3.zero);
-        baby.gameObject.transform.DOMove(targetInsideWall.transform.position, 2, false).OnComplete(TeleportBaby);
+        baby.gameObject.transform.DOMove(targetInsideWall.transform.position, 1, false).OnComplete(TeleportBaby);
     }
 
     void TeleportBaby()
@@ -69,9 +69,10 @@ public class ReplaceBaby : MonoBehaviour
 
     void JumpOutBaby()
     {
-        _playerMovements.AnimatorHonkJR.SetBool("IsActive", false);
-        _playerMovements.AnimatorHonkJR.SetBool("IsActive", false);
-        _playerMovements.AnimatorHonkJR.SetBool("IsMoving", false);
+        //_playerMovements.AnimatorHonkJR.SetBool("IsActive", false);
+        //_playerMovements.AnimatorHonkJR.SetBool("IsActive", false);
+        //_playerMovements.AnimatorHonkJR.SetBool("IsMoving", false);
+        _playerMovements.AnimatorHonkJR.SetBool("OnBack", false);
         _baby.GetComponent<CharacterController>().enabled = true;
         _playerMovements.CanPlayerUseInputs = true;
         _baby.CanBabyInputs = true;
