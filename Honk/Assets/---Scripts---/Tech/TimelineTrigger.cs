@@ -9,6 +9,7 @@ public class TimelineTrigger : MonoBehaviour
     public PlayableDirector playableDirector;
     [SerializeField] private PlayerMovements _playerMovements;
     [SerializeField] private GameObject _spawnPoint;
+    [SerializeField] private GameObject spawnPointTransform;
     private bool _canBePlay;
     private float _oldSpeed;
 
@@ -57,6 +58,7 @@ public class TimelineTrigger : MonoBehaviour
     {
         if (director == playableDirector)
         {
+            _spawnPoint.transform.position = spawnPointTransform.transform.position;
             _playerMovements.TakeBaby();
             _playerMovements.SpawnPoint = _spawnPoint;
             _playerMovements.TeleportToSpawnPoint();
