@@ -14,6 +14,14 @@ public class VolumeManager : MonoBehaviour
     private void Start()
     {
         AudioListener.volume = 0.5f;
+
+        // S'assure que la musique commence au début lors du demarrage de la scene
+        if (_globalMusic != null)
+        {
+            _globalMusic.Stop();
+            _globalMusic.time = 0;
+            _globalMusic.Play();
+        }
     }
     public void SetVolume()
     {
