@@ -5,22 +5,22 @@ using UnityEngine;
 public class Delai_apparition : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private float delay = 2.0f; // Délai en secondes avant de démarrer la musique
+    [SerializeField] private float delay = 2.0f; // Delai en secondes avant de démarrer la musique
 
     private void Start()
     {
-        Invoke("StartMusic", delay); // Appel la méthode StartMusic() après le délai spécifié
+        Invoke("StartMusic", delay); // Appel la methode StartMusic() après le délai specifie
     }
 
     private void StartMusic()
     {
         if (musicSource != null)
         {
-            musicSource.Play(); // Démarrage de la musique
+            musicSource.Play(); // Demarrage de la musique
         }
         else
         {
-            Debug.LogWarning("AudioSource is not assigned."); // Avertissement si l'AudioSource n'est pas assigné
+            Debug.LogWarning("AudioSource is not assigned."); // Avertissement si lAudioSource nest pas assigne
         }
     }
 }

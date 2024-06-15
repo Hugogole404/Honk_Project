@@ -45,7 +45,7 @@ public class Transition_fade_out_condition : MonoBehaviour
 
         if (isFadingOut)
         {
-            musicSource.Pause(); // Met en pause la musique au lieu de l'arrêter complètement
+            musicSource.Pause(); // Met en pause la musique au lieu de larreter completement
         }
     }
 

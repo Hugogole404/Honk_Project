@@ -7,7 +7,7 @@ public class Transition_in_game : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private float fadeDuration = 1.0f;
-    [SerializeField] private float delayBeforeFadeIn = 2.0f; // Délai avant le début du fondu en reprise
+    [SerializeField] private float delayBeforeFadeIn = 2.0f; // Delai avant le debut du fondu en reprise
     [SerializeField] private PlayableDirector playableDirector;
 
     private void Start()
