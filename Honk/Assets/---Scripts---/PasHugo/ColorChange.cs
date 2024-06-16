@@ -7,14 +7,14 @@ public class ColorChange : MonoBehaviour
     // Start is called before the first frame update
 
     public Material material;
-    public string parameterName = "ColorChange";
+    public string parameterName = "_ColorChange";
     public float duration = 2.0f;
 
     private Coroutine lerpCoroutine;
 
     public void Start()
     {
-        material = GetComponent<Material>();
+        material.SetFloat(parameterName, 0);
     }
     public void StartLerp()
     {
@@ -23,6 +23,7 @@ public class ColorChange : MonoBehaviour
             StopCoroutine(lerpCoroutine);
         }
         lerpCoroutine = StartCoroutine(LerpShaderParameter());
+        Debug.Log("bonjour");
     }
 
     private IEnumerator LerpShaderParameter()
