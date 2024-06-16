@@ -40,6 +40,11 @@ public class ScreenShake : MonoBehaviour
         Shake(3, 0.3f);
     }
 
+    public void ShakeWater()
+    {
+        Shake(0.3f, 0.1f);
+    }
+
     public void Shake(ShakeData data)
     {
         Shake(data.Strength, data.Duration);
