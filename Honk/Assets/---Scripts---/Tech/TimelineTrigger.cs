@@ -7,9 +7,11 @@ using UnityEngine.Playables;
 public class TimelineTrigger : MonoBehaviour
 {
     public PlayableDirector playableDirector;
+    public bool canSeePlayer;
     [SerializeField] private PlayerMovements _playerMovements;
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private GameObject spawnPointTransform;
+    [SerializeField] private GameObject PlayerMesh;
     private bool _canBePlay;
     private float _oldSpeed;
 
@@ -36,6 +38,10 @@ public class TimelineTrigger : MonoBehaviour
                     _playerMovements.BaseSpeed = 0;
                     _playerMovements.Direction = Vector3.zero;
                     _playerMovements.AnimatorHonk.SetBool("IsMoving", false);
+                    if (canSeePlayer == false)
+                    {
+                        PlayerMesh.SetActive(false);
+                    }
 
                     _playerMovements.CanPlayerUseInputs = false;
                     playableDirector.Play();
@@ -58,6 +64,7 @@ public class TimelineTrigger : MonoBehaviour
     {
         if (director == playableDirector)
         {
+            PlayerMesh.SetActive(true);
             _spawnPoint.transform.position = spawnPointTransform.transform.position;
             _playerMovements.TakeBaby();
             _playerMovements.SpawnPoint = _spawnPoint;
@@ -65,6 +72,7 @@ public class TimelineTrigger : MonoBehaviour
 
             _playerMovements.BaseSpeed = _oldSpeed;
 
+            
             _playerMovements.CanPlayerUseInputs = true;
         }
     }

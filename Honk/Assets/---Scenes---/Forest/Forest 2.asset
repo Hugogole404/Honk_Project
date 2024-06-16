@@ -43,10 +43,10 @@ MonoBehaviour:
     m_Value: 1
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 65.6
+    m_Value: 18.9
   gaussianEnd:
     m_OverrideState: 1
-    m_Value: 713.5
+    m_Value: 169.8
   gaussianMaxRadius:
     m_OverrideState: 1
     m_Value: 0.969
@@ -231,9 +231,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   hueVsSat:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 1
+      <length>k__BackingField: 0
       m_Loop: 1
       m_ZeroValue: 0.5
       m_Range: 1
@@ -269,6 +269,25 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+--- !u!114 &-332703606502734186
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb60a22f311433c4c962b888d1393f88, type: 3}
+  m_Name: PaniniProjection
+  m_EditorClassIdentifier: 
+  active: 1
+  distance:
+    m_OverrideState: 1
+    m_Value: 0.17
+  cropToFit:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +310,7 @@ MonoBehaviour:
   - {fileID: 5016708333269201036}
   - {fileID: 3456818204210041879}
   - {fileID: -3377240236518790941}
+  - {fileID: -332703606502734186}
 --- !u!114 &3456818204210041879
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -306,7 +326,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.213
+    m_Value: 0.079
 --- !u!114 &4202033484438100011
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -325,16 +345,16 @@ MonoBehaviour:
     m_Value: 0.04
   contrast:
     m_OverrideState: 1
-    m_Value: -1.4
+    m_Value: 22
   colorFilter:
     m_OverrideState: 0
-    m_Value: {r: 0.15389307, g: 0.15389307, b: 0.15389307, a: 1}
+    m_Value: {r: 1, g: 0.68615836, b: 0, a: 1}
   hueShift:
     m_OverrideState: 1
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: -39
+    m_Value: 9.9
 --- !u!114 &5016708333269201036
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -350,10 +370,10 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.81915414, y: 0.9135795, z: 1, w: -0.050113894}
+    m_Value: {x: 0.9629959, y: 0.9870878, z: 1, w: -0.050113894}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.8540329, y: 0.87201923, z: 1, w: -0.0036406326}
+    m_Value: {x: 0.95269084, y: 1, z: 0.9645595, w: -0.0036406326}
   highlights:
     m_OverrideState: 0
     m_Value: {x: 0.97344863, y: 0.9858369, z: 1, w: 0.00631695}
@@ -458,7 +478,7 @@ MonoBehaviour:
     m_Value: 1.1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.91
+    m_Value: 0.8
   scatter:
     m_OverrideState: 1
     m_Value: 0.634
