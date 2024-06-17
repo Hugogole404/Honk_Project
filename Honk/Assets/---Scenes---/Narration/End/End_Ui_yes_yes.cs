@@ -12,7 +12,7 @@ public class End_Ui_yes_yes : MonoBehaviour
     [SerializeField] Animator _animatorFade;
 
     [SerializeField] float _speed;
-    [SerializeField] int end_start;
+    [SerializeField] float end_start;
     [SerializeField] float _timer;
     [SerializeField] string _nameScene;
 
