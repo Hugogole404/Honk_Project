@@ -12,6 +12,7 @@ public class End_Ui_yes_yes : MonoBehaviour
     [SerializeField] Animator _animatorFade;
 
     [SerializeField] float _speed;
+    [SerializeField] int end_start;
     [SerializeField] float _timer;
     [SerializeField] string _nameScene;
 
@@ -37,7 +38,7 @@ public class End_Ui_yes_yes : MonoBehaviour
 
             _animatorFade.SetTrigger("FadeOut");
 
-            if (_time >= 5)
+            if (_time >= end_start)
             {
                 print("test");
                 _animatorFade.enabled = false;
