@@ -33,6 +33,9 @@ public class Slope : MonoBehaviour
     [SerializeField] private float _speedDecreaseSlopeValue;
     [Header("Slope")]
     [SerializeField] private float _rotationSpeed;
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem _SmokeFX;
+    [SerializeField] private ParticleSystem _SnowFX;
 
     private bool _modWalk = true;
     private bool _modOnSlope = false;
@@ -283,6 +286,20 @@ public class Slope : MonoBehaviour
 
     }
 
+    private void FX()
+    {
+        if (IsGrounded == true)
+        {
+            _SmokeFX.enableEmission = true;
+            _SnowFX.enableEmission = true;
+        }
+        else
+        {
+            _SmokeFX.enableEmission = false;
+            _SnowFX.enableEmission = false;
+        }
+    }
+
     private void Start()
     {
         AreaUIFadeStart.FadeOut(1.5f);
@@ -317,9 +334,12 @@ public class Slope : MonoBehaviour
         TimerSlide();
 
         CheckMaxSpeed();
+
+        FX();
     }
     private void FixedUpdate()
     {
         //CheckLastPosition();
+
     }
 }
