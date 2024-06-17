@@ -54929,6 +54929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8629934207068639847}
   - component: {fileID: 638378679508919187}
+  - component: {fileID: 8629934207068639848}
   m_Layer: 0
   m_Name: Honk_Walk_Cycle
   m_TagString: Untagged
@@ -54969,7 +54970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6570281250806787530
 Transform:
   m_ObjectHideFlags: 0
@@ -55760,6 +55761,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 8, y: -0, z: 1}
+--- !u!114 &8629934207068639848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493104258161239125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba8ff009fb281b4bb7dbaaf7775917f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PasDumanchot: {fileID: 1975305024243980163, guid: 92433fdb51f57064db6668ebb9f80893,
+    type: 3}
+  isSnow: 0
 --- !u!1 &8648152422674214214
 GameObject:
   m_ObjectHideFlags: 0
