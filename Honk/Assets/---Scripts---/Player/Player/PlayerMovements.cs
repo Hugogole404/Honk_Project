@@ -673,6 +673,13 @@ public class PlayerMovements : MonoBehaviour
         }
         CheckIsGroundedForParticles();
         IncreaseTimerAnimJump();
+
+        if(CanPlayerUseInputs == false)
+        {
+            Direction = Vector3.zero;
+            Input = Vector3.zero;
+            AnimatorHonk.SetBool("IsMoving", false);
+        }
         //TimerBabyJump();
         //_testBabyWalk = FindObjectOfType<TestBabyWalk>();
     }
