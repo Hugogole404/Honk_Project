@@ -345,6 +345,7 @@ public class PlayerMovements : MonoBehaviour
 
         IconFollowHonk.SetActive(false);
         IconFollowHonkJR.SetActive(false);
+        _soundsList.Tremblement.PlaySound();
     }
     public void BabyUnfollowPlayer()
     {
@@ -355,6 +356,7 @@ public class PlayerMovements : MonoBehaviour
         AnimatorHonkJR.SetTrigger("ChangingState");
         IconFollowHonk.SetActive(true);
         IconFollowHonkJR.SetActive(true);
+        _soundsList.Tremblement.PlaySound();
     }
 
     public void TeleportToSpawnPoint()
@@ -563,7 +565,8 @@ public class PlayerMovements : MonoBehaviour
             CharaController.Move(WalkingSpeed * Time.deltaTime);
 
             GetComponent<CharacterController>().enabled = true;
-            if (IsGrounded())
+
+            if (IsGrounded() && CanPlayerUseInputs)
             {
                 if (_soundsList.WalkInCave)
                 {
