@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Unity.Properties;
+using DG.Tweening.Core.Easing;
 
 public class ReplaceBaby : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class ReplaceBaby : MonoBehaviour
     [SerializeField] private float _jumpDuration;
     [SerializeField] private GameObject _babyMesh;
 
+    [SerializeField] private List<GameObject> _babyMeshList;
 
     private TestBabyWalk _baby;
     private PlayerMovements _playerMovements;
     public void ReplaceBabyInRift(PlayerMovements player, TestBabyWalk baby, GameObject targetInsideWall)
     {
+        DesactiveMesh();
+
         _baby = baby;
         _playerMovements = player;
 
@@ -50,6 +54,23 @@ public class ReplaceBaby : MonoBehaviour
         _riftBaby.ScaleShroom(MoveBaby);
     }
 
+    void DesactiveMesh()
+    {
+        foreach (GameObject go in _babyMeshList)
+        {
+            go.layer = 0;
+        }
+        print("DESACTIVE");
+    }
+    void ActiveMesh()
+    {
+        foreach (GameObject go in _babyMeshList)
+        {
+            go.layer = 12;
+        }
+        print("ACTIVE");
+    }
+
     private void MoveBaby()
     {
         _baby.CanCheckPlayerMovements = true;
@@ -64,7 +85,7 @@ public class ReplaceBaby : MonoBehaviour
         _playerMovements.CanBabyTeleport = false;
         _riftBaby._holdBaby.CanHoldBaby = false;
         _babyMesh.SetActive(true);
-        _baby.gameObject.transform.DOJump(_jumpEndPosition.transform.position, _jumpForce, 1, _jumpDuration, false).OnComplete(JumpOutBaby);
+        _baby.gameObject.transform.DOJump(_jumpEndPosition.transform.position, _jumpForce, 1, _jumpDuration, false).SetEase(Ease.InQuart).OnComplete(JumpOutBaby);
     }
 
     void JumpOutBaby()
@@ -72,6 +93,7 @@ public class ReplaceBaby : MonoBehaviour
         //_playerMovements.AnimatorHonkJR.SetBool("IsActive", false);
         //_playerMovements.AnimatorHonkJR.SetBool("IsActive", false);
         //_playerMovements.AnimatorHonkJR.SetBool("IsMoving", false);
+        ActiveMesh();
         _playerMovements.AnimatorHonkJR.SetBool("OnBack", false);
         _baby.GetComponent<CharacterController>().enabled = true;
         _playerMovements.CanPlayerUseInputs = true;
