@@ -11,6 +11,7 @@ public class Platform : MonoBehaviour
     [SerializeField] private float _maxTimerDad;
     [SerializeField] private ParticleSystem FXFall;
     [SerializeField] private ShakeTransform ShakeTransform;
+    [SerializeField] private GameObject _deathZone;
 
     public ShakeData ShakeData;
     private float t_transform_initial;
@@ -25,7 +26,7 @@ public class Platform : MonoBehaviour
     {
         if (_shake == true && _platform.transform.position.y <= t_transform_initial)
         {
-            
+
             ScreenShake.Instance.Shake(ShakeData);
             FXFall.Play();
             _shake = false;
@@ -87,6 +88,10 @@ public class Platform : MonoBehaviour
             {
                 ShakeTransform.Stop();
                 //FXShake.SetActive(false);
+                if (_deathZone != null)
+                {
+                    _deathZone.SetActive(true);
+                }
                 CanFall = true;
             }
         }
