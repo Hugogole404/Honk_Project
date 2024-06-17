@@ -4645,7 +4645,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.817254, g: 0.82257986, b: 0.9150943, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0.19
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4702,14 +4702,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113075856}
-  m_LocalRotation: {x: 0.121771954, y: 0.48491168, z: -0.33572623, w: 0.7983234}
+  m_LocalRotation: {x: -0.022929028, y: 0.7641261, z: -0.35639423, w: 0.53718597}
   m_LocalPosition: {x: -455, y: -1.7080173, z: -66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1145673942}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 31.334, y: 54.165, z: -29.295}
+  m_LocalEulerAnglesHint: {x: 31.334, y: 101.4, z: -29.295}
 --- !u!1001 &117324765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123217,6 +123217,11 @@ PrefabInstance:
       objectReference: {fileID: 473300085}
     - target: {fileID: 9095068600113671848, guid: d7f7bd6249b7bb644847f3e5449c9af0,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095068600113671848, guid: d7f7bd6249b7bb644847f3e5449c9af0,
+        type: 3}
       propertyPath: _volumeManager
       value: 
       objectReference: {fileID: 779877682}
@@ -124992,6 +124997,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956889567}
   m_CullTransparentMesh: 1
+--- !u!198 &1959105452 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1956909540649255558, guid: e939f4ffd0d3c014181e100b5c8978f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2105562991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1959114735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6709096899947046836, guid: f26422deaa251a54bbd754fab8522310,
@@ -129615,6 +129626,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerProgSlope
       objectReference: {fileID: 0}
+    - target: {fileID: 5981186471844735083, guid: e939f4ffd0d3c014181e100b5c8978f8,
+        type: 3}
+      propertyPath: _SnowFX
+      value: 
+      objectReference: {fileID: 1959105452}
+    - target: {fileID: 5981186471844735083, guid: e939f4ffd0d3c014181e100b5c8978f8,
+        type: 3}
+      propertyPath: _SmokeFX
+      value: 
+      objectReference: {fileID: 1959105452}
     - target: {fileID: 5981186471844735083, guid: e939f4ffd0d3c014181e100b5c8978f8,
         type: 3}
       propertyPath: SpawnPoint
