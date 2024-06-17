@@ -9,12 +9,16 @@ public class ColorChange : MonoBehaviour
     public Material material;
     public string parameterName = "_ColorChange";
     public float duration = 2.0f;
+    public bool isBlue = true;
 
     private Coroutine lerpCoroutine;
 
     public void Start()
     {
-        material.SetFloat(parameterName, 0);
+        if(isBlue == true)
+            material.SetFloat(parameterName, 0);
+        else
+            material.SetFloat(parameterName, 1);
     }
     public void StartLerp()
     {
