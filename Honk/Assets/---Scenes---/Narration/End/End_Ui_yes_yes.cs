@@ -48,7 +48,7 @@ public class End_Ui_yes_yes : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlayerMovements>() != null)
+        if (other.GetComponent<PlayerMovements>() != null || other.GetComponent<Slope>() != null)
         {
             _isPlaying = true;
         }
