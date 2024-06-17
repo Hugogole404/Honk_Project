@@ -24,6 +24,26 @@ public class DetectionSounds : MonoBehaviour
         if (other.GetComponent<PlayerMovements>() != null)
         {
             _playerIsDetected = false;
+            if (_walkInCave)
+            {
+                _listSounds.WalkInCave = false;
+            }
+            if (_walkInGrass)
+            {
+                _listSounds.WalkInGrass = false;
+            }
+            if (_walkInSnow)
+            {
+                _listSounds.WalkInSnow = false;
+            }
+            if (_walkInIce)
+            {
+                _listSounds.WalkInIce = false;
+            }
+            if (_walkInFlower)
+            {
+                _listSounds.WalkInflower = false;
+            }
         }
     }
 
@@ -52,28 +72,28 @@ public class DetectionSounds : MonoBehaviour
                 _listSounds.WalkInflower = true;
             }
         }
-        else
-        {
-            if (_walkInCave)
-            {
-                _listSounds.WalkInCave = false;
-            }
-            if (_walkInGrass)
-            {
-                _listSounds.WalkInGrass = false;
-            }
-            if (_walkInSnow)
-            {
-                _listSounds.WalkInSnow = false;
-            }
-            if (_walkInIce)
-            {
-                _listSounds.WalkInIce = false;
-            }
-            if (_walkInFlower)
-            {
-                _listSounds.WalkInflower = false;
-            }
-        }
+        //else
+        //{
+        //    if (_walkInCave)
+        //    {
+        //        _listSounds.WalkInCave = false;
+        //    }
+        //    if (_walkInGrass)
+        //    {
+        //        _listSounds.WalkInGrass = false;
+        //    }
+        //    if (_walkInSnow)
+        //    {
+        //        _listSounds.WalkInSnow = false;
+        //    }
+        //    if (_walkInIce)
+        //    {
+        //        _listSounds.WalkInIce = false;
+        //    }
+        //    if (_walkInFlower)
+        //    {
+        //        _listSounds.WalkInflower = false;
+        //    }
+        //}
     }
 }

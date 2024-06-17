@@ -60,7 +60,6 @@ public class ReplaceBaby : MonoBehaviour
         {
             go.layer = 0;
         }
-        print("DESACTIVE");
     }
     void ActiveMesh()
     {
@@ -68,7 +67,6 @@ public class ReplaceBaby : MonoBehaviour
         {
             go.layer = 12;
         }
-        print("ACTIVE");
     }
 
     private void MoveBaby()
