@@ -19,12 +19,14 @@ public class RiftBaby : MonoBehaviour
     //public GameObject EmptyFacing;
     public AudioSource Tp_Sound;
     [HideInInspector] public HoldBaby _holdBaby;
+    public ParticleSystem fxOut;
 
     private GameObject baby;
     private Baby _baby;
     private TestBabyWalk _testBabyWalk;
     private PlayerMovements _playerMovements;
     private ReplaceBaby _replaceBabyScript;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -69,16 +71,23 @@ public class RiftBaby : MonoBehaviour
     {
         Shrooms[currentListNum].transform.DOPunchScale(Shrooms[currentListNum].transform.localScale * Scalemult, 1f, 0, 0);
         currentListNum++;
-        if (currentListNum < Shrooms.Count - 1)
+        if (currentListNum == Shrooms.Count - 8)
+        {
+            action?.Invoke();
+            StartCoroutine(ChampiScale(action));
+        }
+        else if (currentListNum < Shrooms.Count - 1)
         {
             float distance = Vector3.Distance(Shrooms[currentListNum].transform.position, Shrooms[currentListNum + 1].transform.position);
             yield return new WaitForSeconds(distance / vitesseSwitch);
             StartCoroutine(ChampiScale(action));
-        } else
+        } 
+        else
         {
             // END
+            fxOut.Play();
             yield return new WaitForSeconds(0.5f);
-            action?.Invoke();
+            
         }
     }
 }

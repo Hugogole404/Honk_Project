@@ -22,7 +22,7 @@ public class Lapin_Nav : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         if (Vector3.Distance(agent.transform.position, player.position) <= maxDistance || stopchecking == true)
         {
-            if (Vector3.Distance(agent.transform.position, player.position) <= 2)
+            if (Vector3.Distance(agent.transform.position, player.position) <= 3)
             {
                 Vector3 dirToPlayer = transform.position - player.position;
                 Vector3 newPos = transform.position + dirToPlayer * 4;
@@ -31,7 +31,7 @@ public class Lapin_Nav : MonoBehaviour
                 //StopCoroutine(CheckTransform());
                 m_animator.SetBool("IsMoving", true);
             }
-            else if (Vector3.Distance(agent.transform.position, player.position) >= 3)
+            else if (Vector3.Distance(agent.transform.position, player.position) >= 4)
             {
                 agent.destination = player.position;
                 m_animator.SetBool("IsMoving", true);

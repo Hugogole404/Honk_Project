@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6923021857430360025
 MonoBehaviour:
@@ -216,6 +216,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9ffad447-fdac-4dd3-aa18-cd74361fbc73
     m_ActionName: Menu/NavigateDown[/DualShock4GamepadHID/dpad/down,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8fab1881-68b9-4fa3-bc45-c0e63ca5ae27
+    m_ActionName: Menu/ValidAction[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 239049b0-07ab-4406-bb6b-136215d6c475
+    m_ActionName: Menu/ReturnBeforeMenu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Menu
@@ -228,7 +236,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388841675432157470}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d9747051c29715499f2f4edcbebb064, type: 3}
   m_Name: 
@@ -237,3 +245,4 @@ MonoBehaviour:
   _player: {fileID: 0}
   _arrowImage: {fileID: 0}
   _mainCamera: {fileID: 0}
+  _canBabyMustBeDetected: 0
