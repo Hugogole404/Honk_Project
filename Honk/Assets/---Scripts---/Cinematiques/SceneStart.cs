@@ -7,15 +7,22 @@ using UnityEngine.SceneManagement;
 
 public class SceneStart : MonoBehaviour
 {
+    [Header("Components :")]
     public PlayableDirector playableDirector;
+
     [SerializeField] private AreaUI _areaUI;
-    [SerializeField] private float _fadeDuration;
     [SerializeField] private CanvasGroup _canvasGroup;
+    [SerializeField] private GameObject _blackFade;
+    [SerializeField] private GameObject _fadeOut;
+
+    [Header("Values :")]
+    [SerializeField] private float _fadeDuration;
     [SerializeField] private string _nameScene;
+
+    [Header("!-!-! Don't touch please - Danger zone !-!-!")]
+    [SerializeField] private InputAction _action;
     [SerializeField] private float _currentTimer;
     [SerializeField] private bool _canTimer;
-    [SerializeField] InputAction _action;
-    [SerializeField] private GameObject _blackFade;
 
     private bool _sceneLoaded = false;
     private bool _timelineStarted = false;
@@ -31,16 +38,18 @@ public class SceneStart : MonoBehaviour
         // Enable the input action
         _canTimer = false;
         _action.Enable();
+        _fadeOut.SetActive(false);
     }
 
     private void Update()
     {
         // Check for any key press or input action trigger
-        if (/*!_timelineStarted && */(Input.anyKeyDown || _action.triggered) && _canPressAnyKey)
+        if (/*!_timelineStarted && */(Input.anyKeyDown || _action.triggered) && _canPressAnyKey && !_canTimer)
         {
             _timelineStarted = true;
             _blackFade.SetActive(false);
             playableDirector.Play();
+            _fadeOut.SetActive(true);
             _canTimer = true;
         }
 
