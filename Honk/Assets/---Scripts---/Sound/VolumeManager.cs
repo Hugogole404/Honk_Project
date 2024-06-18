@@ -14,6 +14,8 @@ public class VolumeManager : MonoBehaviour
     private void Start()
     {
         AudioListener.volume = 0.5f;
+        _sliderVolume.value = 0.5f;
+        AudioListener.volume = _sliderVolume.value;
 
         // S'assure que la musique commence au début lors du demarrage de la scene
         if (_globalMusic != null)
