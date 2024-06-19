@@ -98,5 +98,7 @@ public class ReplaceBaby : MonoBehaviour
         _playerMovements.CanPlayerUseInputs = true;
         _baby.CanBabyInputs = true;
         _playerMovements.CanBabyFollowPlayerInput = true;
+        _playerMovements.BabyFollowPlayer();
+        //_riftBabby.BabyFollowPlayer();
     }
 }
