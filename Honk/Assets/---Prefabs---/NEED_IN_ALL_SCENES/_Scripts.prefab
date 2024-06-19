@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 847.5566, y: -15.190344, z: 235.00285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7669954332226944003}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,6 +50,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f009263f6f99c104c9c223c69500e068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsKeyboard: 0
+  _action:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _actionKeyboard:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _map:
+    m_Name: 
+    m_Id: 
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
   UI_ToActivate_or_not: {fileID: 0}
 --- !u!114 &9095068600113671848
 MonoBehaviour:
@@ -86,7 +112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActualTimerMusic: 0
-  _sliderVolume: {fileID: 0}
   _globalMusic: {fileID: 0}
 --- !u!114 &3260000921462579322
 MonoBehaviour:
@@ -224,6 +249,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 239049b0-07ab-4406-bb6b-136215d6c475
     m_ActionName: Menu/ReturnBeforeMenu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1315345a-1b7b-4880-bf75-5bc916d89f54
+    m_ActionName: DetectionController/Controller[/DualShock4GamepadHID/buttonEast,/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/leftStickPress,/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right,/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/rightStickPress,/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/select,/DualShock4GamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e048917b-ad47-43d6-aeae-1711f6da1f97
+    m_ActionName: DetectionController/Keyboard[/Keyboard/anyKey]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Menu
@@ -246,3 +279,158 @@ MonoBehaviour:
   _arrowImage: {fileID: 0}
   _mainCamera: {fileID: 0}
   _canBabyMustBeDetected: 0
+--- !u!1 &1583617061803856445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7669954332226944003}
+  - component: {fileID: 5806632653393185956}
+  m_Layer: 0
+  m_Name: Inputs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7669954332226944003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583617061803856445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1558927353515699268}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5806632653393185956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583617061803856445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: df5047e06123ad24b9d623ee73045c45,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 998b698f-4336-487b-a34d-f9074387cbf0
+    m_ActionName: PlayerGameplay/Move[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e5b815d-faae-4a2b-af6c-6e0a6cc2498e
+    m_ActionName: PlayerGameplay/Jump[/DualShock4GamepadHID/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 23395361-d6ed-46ab-926c-7aafe4a3e8fe
+    m_ActionName: PlayerGameplay/PushObjects[/DualShock4GamepadHID/rightTrigger,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27d82a8e-7589-4ad2-b758-1921c25cf182
+    m_ActionName: PlayerGameplay/TeleportBabyRift[/DualShock4GamepadHID/buttonWest,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 390fcc0d-96bc-494c-a1e3-ef34c6c74dbe
+    m_ActionName: PlayerGameplay/Honk[/DualShock4GamepadHID/buttonWest,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99499e07-6184-4dfc-98d8-a0c5f372a2da
+    m_ActionName: PlayerGameplay/Slide[/DualShock4GamepadHID/rightTrigger,/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6185e3ce-6302-431a-9fa8-9a032df34484
+    m_ActionName: TechTest/Pipi[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2df25686-c590-4a66-ad1a-1f2b7105cac2
+    m_ActionName: SlideSphere/Move[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 020ad568-7681-4b17-90f2-6bd2cd2f34b2
+    m_ActionName: SlideSphere/StartSlide[/DualShock4GamepadHID/rightTrigger,/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 69a1a3d7-c65a-410b-92ab-4657090c838f
+    m_ActionName: SlideSphere/Jump[/DualShock4GamepadHID/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94b14120-94e6-420a-9e83-a80e1a66c328
+    m_ActionName: Menu/MenuInGame[/DualShock4GamepadHID/start,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 441e7ace-c37e-4963-beea-a6942a3ead96
+    m_ActionName: Menu/NavigateTop[/DualShock4GamepadHID/dpad/up,/Keyboard/w,/DualShock4GamepadHID/leftStick/up,/Keyboard/upArrow,/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9ffad447-fdac-4dd3-aa18-cd74361fbc73
+    m_ActionName: Menu/NavigateDown[/DualShock4GamepadHID/dpad/down,/Keyboard/s,/DualShock4GamepadHID/leftStick/down,/Keyboard/rightArrow,/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8fab1881-68b9-4fa3-bc45-c0e63ca5ae27
+    m_ActionName: Menu/ValidAction[/Keyboard/enter,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 239049b0-07ab-4406-bb6b-136215d6c475
+    m_ActionName: Menu/ReturnBeforeMenu[/Keyboard/escape,/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6923021857430360025}
+        m_TargetAssemblyTypeName: AreaUI, Assembly-CSharp
+        m_MethodName: ControllerPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1315345a-1b7b-4880-bf75-5bc916d89f54
+    m_ActionName: DetectionController/Controller[/DualShock4GamepadHID/buttonEast,/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/leftStickPress,/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right,/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/rightStickPress,/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/select,/DualShock4GamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6923021857430360025}
+        m_TargetAssemblyTypeName: AreaUI, Assembly-CSharp
+        m_MethodName: KeyBoardPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e048917b-ad47-43d6-aeae-1711f6da1f97
+    m_ActionName: DetectionController/Keyboard[/Keyboard/anyKey]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: DetectionController
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

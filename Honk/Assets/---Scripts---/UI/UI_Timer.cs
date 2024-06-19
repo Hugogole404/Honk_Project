@@ -9,6 +9,8 @@ public class UI_Timer : MonoBehaviour
     [SerializeField] private CanvasGroup UI_ToActivate_or_not;
     [SerializeField] private float _fadeDuration;
     [SerializeField] private float _maxTimerUI;
+    [SerializeField] private GameObject _uiKeyBoard;
+    [SerializeField] private GameObject _uiController;
     private float _currentTimerUI;
     private bool _canBeSee;
     private bool _fadeInIsPlayed;
@@ -43,6 +45,19 @@ public class UI_Timer : MonoBehaviour
             _currentTimerUI += Time.deltaTime;
         }
     }
+    void ChooseGoodUI()
+    {
+        if (_areaUI.IsKeyboard)
+        {
+            _uiKeyBoard.SetActive(true);
+            _uiController.SetActive(false);
+        }
+        else
+        {
+            _uiKeyBoard.SetActive(false);
+            _uiController.SetActive(true);
+        }
+    }
 
     private void Start()
     {
@@ -51,5 +66,6 @@ public class UI_Timer : MonoBehaviour
     private void Update()
     {
         CheckTimer();
+        ChooseGoodUI();
     }
 }

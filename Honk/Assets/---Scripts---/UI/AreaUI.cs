@@ -4,9 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class AreaUI : MonoBehaviour
 {
+    public bool IsKeyboard;
+
+    public void ControllerPress(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            IsKeyboard = false;
+            print("ACTION");
+        }
+    }  
+    public void KeyBoardPress(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            IsKeyboard = true;
+            print("CLAVIER");
+        }
+    }
+
     [HideInInspector] public CanvasGroup UI_ToActivate_or_not;
     private Tween _fadeTween;
 
