@@ -155,8 +155,8 @@ public class MenuPause : MonoBehaviour
         _isMenuOpen = false;
         _oldPlayerSpeed = _playerMovements.BaseSpeed;
     }
-    private void Update()
-    {
-        print(_currentIndex);
-    }
+    //private void Update()
+    //{
+    //    print(_currentIndex);
+    //}
 }

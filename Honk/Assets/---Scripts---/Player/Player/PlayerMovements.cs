@@ -571,27 +571,27 @@ public class PlayerMovements : MonoBehaviour
                 if (_soundsList.WalkInCave)
                 {
                     _soundsList.PawGrotteSoundRandom.PlaySound();
-                    print("CAVE");
+                    //print("CAVE");
                 }
                 else if (_soundsList.WalkInGrass)
                 {
                     _soundsList.PawGrassSoundRandom.PlaySound();
-                    print("GRASS");
+                    //print("GRASS");
                 }
                 else if (_soundsList.WalkInSnow)
                 {
                     _soundsList.PawSnowSoundRandom.PlaySound();
-                    print("SNOW");
+                    //print("SNOW");
                 }
                 else if (_soundsList.WalkInflower)
                 {
                     _soundsList.PawFlowerSoundRandom.PlaySound();
-                    print("FLOWERS");
+                    //print("FLOWERS");
                 }
                 else if (_soundsList.WalkInIce)
                 {
                     _soundsList.PawIceSoundRandom.PlaySound();
-                    print("ICE");
+                    //print("ICE");
                 }
             }
             else
