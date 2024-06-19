@@ -8,14 +8,17 @@ public class VolumeManager : MonoBehaviour
 {
     public float ActualTimerMusic;
 
-    [SerializeField] Slider _sliderVolume;
+    //[SerializeField] Slider _sliderVolume;
     [SerializeField] AudioSource _globalMusic;
 
     private void Start()
     {
-        AudioListener.volume = 0.5f;
-        _sliderVolume.value = 0.5f;
-        AudioListener.volume = _sliderVolume.value;
+        //AudioListener.volume = 0.5f;
+        //_sliderVolume.value = 0.5f;
+        //AudioListener.volume = _sliderVolume.value;    
+        AudioListener.volume = 1;
+        //_sliderVolume.value = 1;
+        //AudioListener.volume = _sliderVolume.value;
 
         // S'assure que la musique commence au début lors du demarrage de la scene
         if (_globalMusic != null)
@@ -27,21 +30,27 @@ public class VolumeManager : MonoBehaviour
     }
     public void SetVolume()
     {
-        PlayerPrefs.SetFloat("SoundSliderValue", _sliderVolume.value);
-        AudioListener.volume = _sliderVolume.value;
+        //PlayerPrefs.SetFloat("SoundSliderValue", _sliderVolume.value);
+        PlayerPrefs.SetFloat("SoundSliderValue", 1);
+        AudioListener.volume = 1;
+        //AudioListener.volume = _sliderVolume.value;
     }
 
 
     public void GetTimerMusic()
     {
-        ActualTimerMusic = _globalMusic.time;
+        //ActualTimerMusic = _globalMusic.time;
+        //PlayerPrefs.SetFloat("TimerMusic", ActualTimerMusic);      
+        ActualTimerMusic = 0;
         PlayerPrefs.SetFloat("TimerMusic", ActualTimerMusic);
     }
     public void SetTimerMusic()
     {
         if (_globalMusic != null)
         {
-            ActualTimerMusic = PlayerPrefs.GetFloat("TimerMusic");
+            //ActualTimerMusic = PlayerPrefs.GetFloat("TimerMusic");
+            //_globalMusic.time = ActualTimerMusic;       
+            ActualTimerMusic = 0;
             _globalMusic.time = ActualTimerMusic;
         }
     }
