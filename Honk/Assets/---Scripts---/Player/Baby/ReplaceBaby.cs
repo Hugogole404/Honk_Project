@@ -12,7 +12,6 @@ public class ReplaceBaby : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _jumpDuration;
     [SerializeField] private GameObject _babyMesh;
-
     [SerializeField] private List<GameObject> _babyMeshList;
 
     private TestBabyWalk _baby;
@@ -71,6 +70,7 @@ public class ReplaceBaby : MonoBehaviour
 
     private void MoveBaby()
     {
+
         _baby.CanCheckPlayerMovements = true;
         //_playerMovements.AnimatorHonkJR.SetBool("IsMoving", false);
 
@@ -83,6 +83,7 @@ public class ReplaceBaby : MonoBehaviour
         _playerMovements.CanBabyTeleport = false;
         _riftBaby._holdBaby.CanHoldBaby = false;
         _babyMesh.SetActive(true);
+
         _baby.gameObject.transform.DOJump(_jumpEndPosition.transform.position, _jumpForce, 1, _jumpDuration, false).SetEase(Ease.InQuart).OnComplete(JumpOutBaby);
     }
 

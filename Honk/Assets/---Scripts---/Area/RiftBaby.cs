@@ -20,6 +20,7 @@ public class RiftBaby : MonoBehaviour
     public AudioSource Tp_Sound;
     [HideInInspector] public HoldBaby _holdBaby;
     public ParticleSystem fxOut;
+    public float DelayFX;
 
     private GameObject baby;
     private Baby _baby;
@@ -85,6 +86,7 @@ public class RiftBaby : MonoBehaviour
         else
         {
             // END
+            yield return new WaitForSeconds(DelayFX);
             fxOut.Play();
             yield return new WaitForSeconds(0.5f);
             
