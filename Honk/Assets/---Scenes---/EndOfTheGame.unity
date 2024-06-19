@@ -19189,6 +19189,7 @@ MonoBehaviour:
   Tp_Sound: {fileID: 0}
   _holdBaby: {fileID: 0}
   fxOut: {fileID: 0}
+  DelayFX: 0
 --- !u!65 &377257183
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44622,6 +44623,9 @@ MonoBehaviour:
   UI_ToActivate_or_not: {fileID: 877271904}
   _fadeDuration: 2
   _maxTimerUI: 0
+  _uiKeyBoard: {fileID: 0}
+  _uiController: {fileID: 0}
+  _isBabyToTrigger: 0
   _areaUI: {fileID: 779877684}
 --- !u!114 &852766921
 MonoBehaviour:
@@ -74321,6 +74325,7 @@ MonoBehaviour:
   Tp_Sound: {fileID: 0}
   _holdBaby: {fileID: 0}
   fxOut: {fileID: 0}
+  DelayFX: 0
 --- !u!65 &1096645718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77592,6 +77597,7 @@ MonoBehaviour:
   Tp_Sound: {fileID: 0}
   _holdBaby: {fileID: 0}
   fxOut: {fileID: 0}
+  DelayFX: 0
 --- !u!114 &1202817728 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2441486580718383709, guid: fe61220b4932cb643894d4a8cdf174d2,
@@ -90988,8 +90994,53 @@ PrefabInstance:
     - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
         type: 3}
       propertyPath: paw_grotte_sounds.Array.size
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a066db729f056c44940c662d0079ed0, type: 3}
+    - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3fe973a524a1c0141a4eb77ebab926ed, type: 3}
+    - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: cfba861e5ec26404393329b902fc36d7, type: 3}
+    - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 918cf3f0794f0d84aa1c2429e2256646, type: 3}
+    - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: e50d40e31e7854b469e90008f5f13f33, type: 3}
+    - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1300615069c2f004784c1080f10db287, type: 3}
+    - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 998a9a3e297c08a48b5e4819f2d970dd, type: 3}
+    - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e7656b92fa9c1647b04db4724fde447, type: 3}
+    - target: {fileID: 4605373617531521782, guid: fe61220b4932cb643894d4a8cdf174d2,
+        type: 3}
+      propertyPath: paw_grotte_sounds.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: e01d80424f356ef46949a568c137f23f, type: 3}
     - target: {fileID: 4725051786754300361, guid: fe61220b4932cb643894d4a8cdf174d2,
         type: 3}
       propertyPath: m_Pitch
@@ -128295,6 +128346,7 @@ MonoBehaviour:
   Tp_Sound: {fileID: 0}
   _holdBaby: {fileID: 0}
   fxOut: {fileID: 0}
+  DelayFX: 0
 --- !u!65 &2049971790
 BoxCollider:
   m_ObjectHideFlags: 0
