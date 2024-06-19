@@ -9,13 +9,14 @@ using UnityEngine.InputSystem;
 public class AreaUI : MonoBehaviour
 {
     public bool IsKeyboard;
+    [HideInInspector] public CanvasGroup UI_ToActivate_or_not;
+    private Tween _fadeTween;
 
     public void ControllerPress(InputAction.CallbackContext context)
     {
         if(context.performed)
         {
             IsKeyboard = false;
-            print("ACTION");
         }
     }  
     public void KeyBoardPress(InputAction.CallbackContext context)
@@ -23,13 +24,8 @@ public class AreaUI : MonoBehaviour
         if(context.performed)
         {
             IsKeyboard = true;
-            print("CLAVIER");
         }
     }
-
-    [HideInInspector] public CanvasGroup UI_ToActivate_or_not;
-    private Tween _fadeTween;
-
     private void Fade(float endVal, float duration, TweenCallback onEnd)
     {
         if (_fadeTween != null)
@@ -39,7 +35,6 @@ public class AreaUI : MonoBehaviour
         _fadeTween = UI_ToActivate_or_not.DOFade(endVal, duration);
         _fadeTween.onComplete += onEnd;
     }
-
     public void FadeIn(float duration)
     {
         Fade(1f, duration, () => { UI_ToActivate_or_not.interactable = true; UI_ToActivate_or_not.blocksRaycasts = true; });

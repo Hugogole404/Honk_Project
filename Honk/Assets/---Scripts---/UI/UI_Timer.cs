@@ -11,6 +11,7 @@ public class UI_Timer : MonoBehaviour
     [SerializeField] private float _maxTimerUI;
     [SerializeField] private GameObject _uiKeyBoard;
     [SerializeField] private GameObject _uiController;
+    [SerializeField] private bool _isBabyToTrigger;
     private float _currentTimerUI;
     private bool _canBeSee;
     private bool _fadeInIsPlayed;
@@ -19,10 +20,21 @@ public class UI_Timer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerMovements>() != null)
+        if (_isBabyToTrigger)
         {
-            _areaUI.UI_ToActivate_or_not = UI_ToActivate_or_not;
-            _canBeSee = true;
+            if (other.GetComponent<TestBabyWalk>() != null)
+            {
+                _areaUI.UI_ToActivate_or_not = UI_ToActivate_or_not;
+                _canBeSee = true;
+            }
+        }
+        else
+        {
+            if (other.GetComponent<PlayerMovements>() != null)
+            {
+                _areaUI.UI_ToActivate_or_not = UI_ToActivate_or_not;
+                _canBeSee = true;
+            }
         }
     }
     private void CheckTimer()
