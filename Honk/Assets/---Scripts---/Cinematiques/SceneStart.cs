@@ -10,6 +10,7 @@ public class SceneStart : MonoBehaviour
     [Header("Components :")]
     public PlayableDirector playableDirector;
 
+    [SerializeField] private AudioSource _sourceFadeOut;
     [SerializeField] private AreaUI _areaUI;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private GameObject _blackFade;
@@ -49,13 +50,20 @@ public class SceneStart : MonoBehaviour
             _timelineStarted = true;
             _blackFade.SetActive(false);
             playableDirector.Play();
-            _fadeOut.SetActive(true);
+
+            if (_fadeOut != null)
+                _fadeOut.SetActive(true);
+
             _canTimer = true;
         }
 
         if (_canTimer)
         {
             _currentTimer += Time.deltaTime;
+
+            if (_sourceFadeOut != null)
+                _sourceFadeOut.volume -= Time.deltaTime;
+
             if (_currentTimer >= _fadeDuration)
             {
                 LoadScene();

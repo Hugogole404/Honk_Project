@@ -475,7 +475,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f1b11d41d5557ca45a28a1bf8a3aed03, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.569
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -94183,6 +94183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirector: {fileID: 8629934207068639848}
+  _sourceFadeOut: {fileID: 1586048520}
   _areaUI: {fileID: 1975600437}
   _canvasGroup: {fileID: 1729314087}
   _blackFade: {fileID: 258703895}
