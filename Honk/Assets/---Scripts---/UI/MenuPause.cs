@@ -96,12 +96,12 @@ public class MenuPause : MonoBehaviour
                 {
                     CloseMenu();
                 }
-                if (_currentIndex == 1)
-                {
-                    _settings.SetActive(true);
-                    _mainMenu.SetActive(false);
-                    _isSettingsOpen = true;
-                }
+                //if (_currentIndex == 1)
+                //{
+                //    _settings.SetActive(true);
+                //    _mainMenu.SetActive(false);
+                //    _isSettingsOpen = true;
+                //}
                 else
                 {
                     Application.Quit();
