@@ -59,16 +59,20 @@ public class UI_Timer : MonoBehaviour
     }
     void ChooseGoodUI()
     {
-        if (_areaUI.IsKeyboard)
+        if (_uiKeyBoard != null && _uiController != null)
         {
-            _uiKeyBoard.SetActive(true);
-            _uiController.SetActive(false);
+            if (_areaUI.IsKeyboard)
+            {
+                _uiKeyBoard.SetActive(true);
+                _uiController.SetActive(false);
+            }
+            else
+            {
+                _uiKeyBoard.SetActive(false);
+                _uiController.SetActive(true);
+            }
         }
-        else
-        {
-            _uiKeyBoard.SetActive(false);
-            _uiController.SetActive(true);
-        }
+
     }
 
     private void Start()
