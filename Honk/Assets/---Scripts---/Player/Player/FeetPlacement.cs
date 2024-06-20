@@ -7,6 +7,7 @@ public class FeetPlacement : MonoBehaviour
 {
     public Object PasDumanchot;
     public bool isSnow;
+    public bool hasToCheck = true;
     int layerMask = 1 << 11;
     // Start is called before the first frame update
     void Start()
@@ -30,17 +31,19 @@ public class FeetPlacement : MonoBehaviour
     public void TriggerEvent()
     {
 
-        if (isSnow)
+        if (isSnow || hasToCheck == false)
         {
-            Instantiate(PasDumanchot, gameObject.transform.position + new Vector3(0.4f, 0.2f, 0), gameObject.transform.rotation * Quaternion.Euler(Vector3.right * 90) * Quaternion.Euler(Vector3.forward));
+            Vector3 offset = gameObject.transform.right * 0.4f + gameObject.transform.up * 0.2f;
+            Instantiate(PasDumanchot, gameObject.transform.position + offset, gameObject.transform.rotation * Quaternion.Euler(Vector3.right * 90) * Quaternion.Euler(Vector3.forward));
         }
        
     }
     public void TriggerEvent2()
     {
-        if (isSnow)
+        if (isSnow ||hasToCheck == false)
         {
-            Instantiate(PasDumanchot, gameObject.transform.position + new Vector3(-0.4f, 0.2f, 0), gameObject.transform.rotation * Quaternion.Euler(Vector3.right * 90) * Quaternion.Euler(Vector3.forward));
+            Vector3 offset = gameObject.transform.right * -0.4f + gameObject.transform.up * 0.2f;
+            Instantiate(PasDumanchot, gameObject.transform.position + offset, gameObject.transform.rotation * Quaternion.Euler(Vector3.right * 90) * Quaternion.Euler(Vector3.forward));
         }
     }
 
