@@ -2,6 +2,7 @@ using DG.Tweening;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.iOS;
 
 public class Slope : MonoBehaviour
 {
@@ -65,6 +66,9 @@ public class Slope : MonoBehaviour
     [SerializeField] private VolumeManager _volumeManager;
     [SerializeField] private float _fadeTimer;
     [SerializeField] private CanvasGroup _fadeCanvasGroup;
+
+    private Liste_sound _sounds;
+    private bool _isPlayingSound;
 
     #endregion
     public void OnMove(InputAction.CallbackContext context)
@@ -302,6 +306,7 @@ public class Slope : MonoBehaviour
 
     private void Start()
     {
+        _sounds = FindObjectOfType<Liste_sound>();
         AreaUIFadeStart.FadeOut(1.5f);
 
         _rigidbody = GetComponent<Rigidbody>();
@@ -336,6 +341,16 @@ public class Slope : MonoBehaviour
         CheckMaxSpeed();
 
         FX();
+        if (IsGrounded && _isPlayingSound == false)
+        {
+            _sounds.SlopeSound.Play();
+            _isPlayingSound = true;
+        }
+        else if (IsGrounded == false)
+        {
+            _sounds.SlopeSound.Pause();
+            _isPlayingSound = false;
+        }
     }
     private void FixedUpdate()
     {
