@@ -110,13 +110,12 @@ public class NewPushObject : MonoBehaviour
         CheckVelocity();
         if (rb != null)
         {
-            if (IsMoving())
+            //if (IsMoving())
+            //{
+
+            //}
+            if(IsMoving() == false)
             {
-                Debug.Log("The object is moving.");
-            }
-            else
-            {
-                Debug.Log("The object is not moving.");
                 if (_canTimerSound)
                 {
                     _IceBlocSound.Stop();
