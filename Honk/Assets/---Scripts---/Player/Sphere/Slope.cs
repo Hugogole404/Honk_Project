@@ -69,6 +69,7 @@ public class Slope : MonoBehaviour
 
     private Liste_sound _sounds;
     private bool _isPlayingSound;
+    [SerializeField] bool _needSlopeSound;
 
     #endregion
     public void OnMove(InputAction.CallbackContext context)
@@ -343,12 +344,18 @@ public class Slope : MonoBehaviour
         FX();
         if (IsGrounded && _isPlayingSound == false)
         {
-            _sounds.SlopeSound.Play();
+            if (_needSlopeSound == false)
+            {
+                _sounds.SlopeSound.Play();
+            }
             _isPlayingSound = true;
         }
         else if (IsGrounded == false)
         {
-            _sounds.SlopeSound.Pause();
+            if (_needSlopeSound == false)
+            {
+                _sounds.SlopeSound.Pause();
+            }
             _isPlayingSound = false;
         }
     }
