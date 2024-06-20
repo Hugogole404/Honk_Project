@@ -73,40 +73,6 @@ public class ShowBabyPosition : MonoBehaviour
         _arrow.position = cappedScreenPosition;
     }
 
-    //private void Start()
-    //{
-    //    _targetPosition = _baby.transform.position;
-    //    _targetPosition = new Vector3(200, 45);
-    //}
-
-    //private void Update()
-    //{
-    //    //_targetPosition = _baby.transform.position;
-    //    //Vector3 toPosition = _targetPosition;
-    //    //Vector3 fromPosition = _mainCamera.transform.position;
-    //    //fromPosition.y = 0;
-    //    //Vector3 dir = (toPosition - fromPosition).normalized;
-    //    //float angle = UtilsClass.GetAngleFromVectorFloat(dir);
-    //    //_arrowImage.localEulerAngles = new Vector3(0, 0, angle);
-
-    //    //Vector3 targetPosScreenpoint = _mainCamera.WorldToScreenPoint(_baby.transform.position);
-    //    //bool isOffScreen = targetPosScreenpoint.x <= 0 || targetPosScreenpoint.y >= Screen.width
-    //    //    || targetPosScreenpoint.y <= 0 || targetPosScreenpoint.y >= Screen.height;
-
-    //    //if (isOffScreen)
-    //    //{
-    //    //    Vector3 cappedTargetPosScreen = targetPosScreenpoint;
-    //    //    if (cappedTargetPosScreen.x <= 0) cappedTargetPosScreen.x = 0f;
-    //    //    if (cappedTargetPosScreen.x >= Screen.width) cappedTargetPosScreen.x = Screen.width;
-    //    //    if (cappedTargetPosScreen.y <= 0) cappedTargetPosScreen.y = 0f;
-    //    //    if (cappedTargetPosScreen.y >= Screen.height) cappedTargetPosScreen.y = Screen.height;
-
-    //    //    Vector3 pointerWorldPos = _uiCamera.ScreenToWorldPoint(cappedTargetPosScreen);
-    //    //    _arrowImage.position = pointerWorldPos;
-    //    //    _arrowImage.localPosition = new Vector3(_arrowImage.localPosition.x, _arrowImage.localPosition.y, 0f);
-    //    //}
-    //}
-
     //void Update()
     //{
     //    if (_canBabyMustBeDetected)
