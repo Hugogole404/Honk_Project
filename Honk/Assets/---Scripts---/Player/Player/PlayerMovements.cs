@@ -195,6 +195,8 @@ public class PlayerMovements : MonoBehaviour
                         else distBetween.x = 0;
                         distBetween = distBetween.normalized;
                         ActualObstacle.GetComponent<Rigidbody>().AddForce(_pushForce * distBetween, ForceMode.VelocityChange);
+
+                        ActualObstacle.GetComponentInChildren<NewPushObject>()._IceBlocSound.Play();
                     }
                 }
             }
