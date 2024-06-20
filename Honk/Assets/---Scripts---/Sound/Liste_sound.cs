@@ -15,6 +15,8 @@ public class Liste_sound : MonoBehaviour
     public AudioSource depot_petit_grotte;
     public AudioSource paw_Ice;
     public AudioSource paw_grotte_flower;
+    public AudioSource IceBloc;
+    public AudioSource SlopeSound;
 
     public paw_grotte PawGrotteSoundRandom;
     public paw_grotte PawGrassSoundRandom;
