@@ -51,30 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsKeyboard: 0
-  _action:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  _actionKeyboard:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  _map:
-    m_Name: 
-    m_Id: 
-    m_Asset: {fileID: 0}
-    m_Actions: []
-    m_Bindings: []
   UI_ToActivate_or_not: {fileID: 0}
 --- !u!114 &9095068600113671848
 MonoBehaviour:
@@ -278,7 +254,8 @@ MonoBehaviour:
   _player: {fileID: 0}
   _arrowImage: {fileID: 0}
   _mainCamera: {fileID: 0}
-  _canBabyMustBeDetected: 0
+  _canBabyMustBeDetected: 1
+  _uiCamera: {fileID: 0}
 --- !u!1 &1583617061803856445
 GameObject:
   m_ObjectHideFlags: 0
