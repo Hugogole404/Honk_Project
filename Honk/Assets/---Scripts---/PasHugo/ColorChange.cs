@@ -8,14 +8,25 @@ public class ColorChange : MonoBehaviour
 
     public Material material;
     public string parameterName = "_ColorChange";
+    public string parameterName2 = "_Alpha";
     public float duration = 2.0f;
     public bool isBlue = true;
+    public bool isTransparent = true;
 
     private Coroutine lerpCoroutine;
 
     public void Start()
     {
-        if(isBlue == true)
+        if (isTransparent == true)
+        {
+            material.SetFloat(parameterName2, 0);
+        }
+        else
+        {
+            material.SetFloat(parameterName2, 1);
+        }
+        
+        if (isBlue == true)
             material.SetFloat(parameterName, 0);
         else
             material.SetFloat(parameterName, 1);
@@ -27,7 +38,6 @@ public class ColorChange : MonoBehaviour
             StopCoroutine(lerpCoroutine);
         }
         lerpCoroutine = StartCoroutine(LerpShaderParameter());
-        Debug.Log("bonjour");
     }
 
     private IEnumerator LerpShaderParameter()
