@@ -651,6 +651,7 @@ public class PlayerMovements : MonoBehaviour
             AreaUIFadeStart.FadeOut(1.5f);
         }
         CanBabyFollowPlayerInput = true;
+        AudioListener.volume = 1;
     }
     private void FixedUpdate()
     {

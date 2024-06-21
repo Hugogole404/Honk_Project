@@ -2,7 +2,6 @@ using DG.Tweening;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.iOS;
 
 public class Slope : MonoBehaviour
 {
