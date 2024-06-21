@@ -11,20 +11,11 @@ public class ColorChange : MonoBehaviour
     public string parameterName2 = "_Alpha";
     public float duration = 2.0f;
     public bool isBlue = true;
-    public bool isTransparent = true;
 
     private Coroutine lerpCoroutine;
 
     public void Start()
     {
-        if (isTransparent == true)
-        {
-            material.SetFloat(parameterName2, 0);
-        }
-        else
-        {
-            material.SetFloat(parameterName2, 1);
-        }
         
         if (isBlue == true)
             material.SetFloat(parameterName, 0);

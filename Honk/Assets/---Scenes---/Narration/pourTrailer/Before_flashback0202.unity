@@ -10552,6 +10552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 130944468}
+  - component: {fileID: 130944469}
   m_Layer: 0
   m_Name: Timeline
   m_TagString: Untagged
@@ -10574,6 +10575,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &130944469
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130944467}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 07dc22e3a8e24a54f989e0244e5910fb, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 4659330597422076120, guid: 07dc22e3a8e24a54f989e0244e5910fb, type: 2}
+    value: {fileID: 1858189558}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &131630469
 GameObject:
   m_ObjectHideFlags: 0
@@ -85767,6 +85787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1858189557}
   - component: {fileID: 1858189556}
+  - component: {fileID: 1858189558}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -85829,6 +85850,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!95 &1858189558
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858189555}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1859382966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a555135f86341e14d8c0cff765035be7,
