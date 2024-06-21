@@ -20,7 +20,12 @@ public class ShowBabyPosition : MonoBehaviour
     public Camera _mainCamera; // La caméra principale de la scène
     public float _distanceThreshold = 2f; // Distance à partir de laquelle l'arrow disparaît
     public Transform _start; // Point de départ
+    private PlayerMovements _playerMovements;
 
+    private void Start()
+    {
+        _playerMovements = FindAnyObjectByType<PlayerMovements>();
+    }
     void Update()
     {
         if (_target == null || _start == null)
@@ -30,7 +35,7 @@ public class ShowBabyPosition : MonoBehaviour
         Vector3 directionToTarget = _target.position - _start.position;
 
         // Si la cible est suffisamment proche, cacher la flèche
-        if (directionToTarget.magnitude < _distanceThreshold)
+        if (directionToTarget.magnitude < _distanceThreshold || _playerMovements.CanPlayerUseInputs == false)
         {
             _arrow.gameObject.SetActive(false);
             return;
